@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./app.css"
+import Topcloud from "./comp/topcloud";
+import Botcloud from "./comp/botcloud";
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   
+       <Topcloud/>
+       <div className="main appmain">
+          <div className="kenside">
+            <h1>Kendegarten Space</h1>
+          </div>
+          <div className="parside">
+            <h1>Parents Space</h1>
+          </div>
+        </div>        
+      <Botcloud/>
+
     </div>
   );
 }

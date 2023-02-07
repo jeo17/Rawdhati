@@ -1,0 +1,39 @@
+
+.topcloud{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    background:url("./clouds3.png") repeat-x;
+    height:17%;
+    width:100%;
+    animation:cloudani1 18s linear infinite;
+  }
+  @keyframes cloudani1{
+    from{
+      background-position:0 0;
+    }
+    to{
+      background-position:100% 0%;
+    }
+ 
+}
+
+.topcloud button{
+    
+    transition: all .5s ease;
+    color: rgb(0, 0, 0);
+    font-family:'Montserrat', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+    font-size: 17px;
+    background-color : transparent;
+    outline: none;
+    border-radius: 4px;
+    margin-bottom: 33px;
+}
+.topcloud button:hover {
+    color: #001F3F;
+    background-color: #fff;
+}

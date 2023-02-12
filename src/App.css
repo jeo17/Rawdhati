@@ -1,4 +1,6 @@
+
 .App{
+    
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -21,6 +23,10 @@
     transform: translate(0,-25px);
     border-radius: 7px;
     font-family:'Montserrat', sans-serif;
+    background-image: url(./fam5.png);
+    background-size: contain;
+    background-position:center 35px ;
+    background-repeat: no-repeat;
 }
 .parside{
     margin: 25px 25px 25px 12.5px;
@@ -30,20 +36,41 @@
     transform: translate(0,-25px);
     border-radius: 7px;
     font-family:'Montserrat', sans-serif;
+    background-image: url(./kin.png);
+    background-size: contain;
+    background-position:bottom ;
+    background-repeat: no-repeat;
 }
 .parside h1{
-    margin-left: 32%;
-    margin-right: 32%;
-    color: blueviolet;
+    color: #45CCFF;
 }
 .kenside h1{
-    margin-left: 26%;
-    margin-right: 26%;
-    color: blueviolet;
+    color: #45CCFF;
+}
+.box-cont p{
+    color: #001e29;
+    font-size: 21px;
+   
 }
 
+.pk{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.box-cont{
+    
+   margin: 0 60px;
+    display: flex;
+    flex-direction: column;
+}
 
-
-
+.darkmode{
+    background-color: darkslategrey;
+}
+.darkmode p{
+    color: antiquewhite;
+}
 
 

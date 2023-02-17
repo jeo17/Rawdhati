@@ -1,35 +1,36 @@
 import "./app.css"
-import Topcloud from "./comp/topcloud";
-import Botcloud from "./comp/botcloud";
+import AboutUs from './about-us';
+import Help from './help';
+import Home from './home';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import {useContext } from "react";
 import ThemeContext from "./context/Theme";
 
 
 function App() {
   const {theme} = useContext(ThemeContext);
-  return (
-    <div className={`App ${theme}`} >
-   
-       <Topcloud/>
-       <div className="main appmain">
-        
-      <div className="kenside">
-          <div className="box-cont">
-          <div className="pk" ><h1>Parents Space </h1> <img  width={"45px"}  src={require('./family3.png')} alt="sorry" /> </div> 
-               <p>A space for parents to register their children and choose the appropriate kindergarten for them</p>
-          </div>
-    </div>
-      <div className="parside">
-        <div className="box-cont">
-          <div className="pk"> <h1>Kendegarten Space  </h1> <img  width={"45px"}  src={require('./kindergarten.png')} alt="sorry" /> </div> 
-           <p>A space for kindergartens to register and introduce various activities and communicate with parents</p>
-        </div>
-      </div>
-        </div>        
-      <Botcloud/>
-
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home />,
+      errorElement: <div> error</div>
+    },
+    {
+      path: "/about-us",
+      element: <AboutUs />,
+    },
+    {
+      path: "/help",
+      element: <Help />,
+    },
+  
+  ]);
+  return(
+    <div id="L_D" className={`App ${theme}`}><RouterProvider router={router} /></div>
+  )
 }
 
 export default App;

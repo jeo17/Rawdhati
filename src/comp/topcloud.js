@@ -4,8 +4,11 @@ import "./topcloud.css"
 import {useContext } from "react";
 import ThemeContext from "../context/Theme";
 
+
 const Topcloud = () => {
-    const {Theme} = useContext(ThemeContext);
+    const {switched,Switched,Theme,Bird,Face,Body,theme} = useContext(ThemeContext);
+    
+    
     return (
         <>
  
@@ -15,8 +18,10 @@ const Topcloud = () => {
            <button> <NavLink to="/about-us" style={{textDecoration: "none",color: "black"}}> about us</NavLink> </button>
            <button>language</button>
  
-          <input type="checkbox" id="switch" onChange={() => {  Theme()  }} />
-              <div className="switch-btn">
+          <input type="checkbox" id="switch" onClick={() => { Theme(); Switched() ; Bird(); Face(); Body();
+            localStorage.setItem("lastTheme",theme)
+          }}/>
+              <div className={`${switched} switch-btn `}> 
                 <label htmlFor="switch">
                   <div className="icons">
                   <span class="material-symbols-outlined">light_mode</span>

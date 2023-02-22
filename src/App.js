@@ -2,6 +2,8 @@ import "./app.css"
 import AboutUs from './about-us';
 import Help from './help';
 import Home from './home';
+import SignPr from "./signin&up/sign_pr";
+import SignKin from "./signin&up/sign_kin";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -26,6 +28,15 @@ function App() {
       path: "/help",
       element: <Help />,
     },
+    {
+      path: "/parent_sign",
+      element: <SignPr />,
+    },
+    {
+      path: "/kindergarten_sign",
+      element: <SignKin />,
+    },
+ 
   
   ]);
   return(

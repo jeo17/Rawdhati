@@ -82,6 +82,9 @@ dark mode style
 .darkmode h1{
     color: #45CCFF;
 }
+.darkmode span{
+    color: antiquewhite;
+}
 
 
 /****************

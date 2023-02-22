@@ -3,6 +3,7 @@ import Topcloud from "./comp/topcloud";
 import Botcloud from "./comp/botcloud";
 import {useContext } from "react";
 import ThemeContext from "./context/Theme";
+import { Link } from 'react-router-dom';
 
 
 
@@ -25,7 +26,7 @@ function App() {
 
           <div class="ag-offer_hidden-item">
           <div className="container">
-              <a href="#" className={`button button--${bird}`}>
+              <Link to="/parent_sign" className={`button button--${bird}`}> 
                 <div className="button__wrapper">
                   <span className="button__text">Get started</span>
                 </div>
@@ -46,7 +47,7 @@ function App() {
                     <div className={`${body}`}></div>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

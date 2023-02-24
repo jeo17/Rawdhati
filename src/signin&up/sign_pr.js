@@ -26,7 +26,7 @@ const SignPr = () => {
           <i className="fab fa-linkedin-in" />
         </a>
       </div>
-      <span>or use your account</span>
+      <p>or use your account</p>
       <input type="email" placeholder="Email" />
       <input type="password" placeholder="Password" />
       <a href="#">Forgot your password?</a>

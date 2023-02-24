@@ -1,6 +1,5 @@
 .information{
 margin: 25px 12.5% 25px 12.5%;
-height: 100%;
 width: 75%;
 border-radius: 7px;
 border: 10px solid;
@@ -10,6 +9,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 gap: 15px;
+font-family:'Montserrat', sans-serif;
 
 
 }
@@ -20,8 +20,16 @@ gap: 15px;
     height: 150px;
 }
 .information header h1{
-    margin: 5% 40%;
+    margin: 5% 37%;
     color:#00708D;
+}
+.information form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
 }
 
 .info {
@@ -35,8 +43,127 @@ gap: 15px;
     align-items: center;
 }
 .info h2{
-    margin-right: 17px;
+    margin-left: 17px;
 }
 .info i{
-    margin-left: 17px;
+    margin-right: 17px;
+}
+
+.nth1-1{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.nth1-1 input{
+    padding: 12px 38px;
+    margin: 0 6px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #00708D;
+
+}
+
+.information label{
+    width: 100px;
+    color: #00708D;
+    background-color: transparent;
+
+    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.nth1-1 label{
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.nth2{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.nth2 input{
+    padding: 12px 115px;
+    margin: 0 12px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #00708D;
+
+}
+
+.nth3{
+    display: flex;
+    flex-direction: column;
+}
+.nth3 input{
+    padding: 12px 300px;
+    margin: 0 12px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #00708D;
+
+}
+
+.nth4{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.nth4-1{
+    display: flex;
+    padding-left: 20px;
+    padding-bottom: 40px;
+}
+.nth4-1 input{
+   width: 20px;
+   height: 20px;
+}
+.nth4-1 label{
+    padding-right: 60px;
+    
+}
+
+.nth5{
+    display: flex;
+    flex-direction: column;
+    margin-right:42% ;
+}
+.nth5 input{
+    padding: 12px 115px;
+    margin: 0 12px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #00708D;
+}
+.nth5 label{
+    width: 200px;
+}
+
+
+.nth6{
+   width: 75%;
+   
+}
+.nth6 p{
+    color: #00708D;
+}
+.nth6-1{
+    display: flex;
+    flex-wrap: wrap;
+}
+.nth6-2{
+    display: flex;
+    padding-bottom: 15px;
+}
+.nth6-1 label{
+    padding-right: 200px;
+}
+.nth6-2 input{
+    width: 20px;
+    height: 20px;
+
 }

@@ -107,8 +107,28 @@ const SignKin = () => {
                   </div>
 
                 </div>
-              
-              
+
+
+           <div className='nth7'>
+              <div className='nth7-1'>
+              <label>From</label>
+              <input type="time"/>
+              </div>
+              <div className='nth7-1'>
+              <label>to</label>
+              <input type="time"/>
+              </div>
+           </div>
+             
+              <div className='nth8'>
+                <label>Additional Information regarding Attendance</label>
+                <textarea placeholder='Type here...'></textarea>
+              </div>
+
+              <div className='info'>
+         <h2>  Guardian & Emergency Contact Information </h2> 
+         <i class="gg-chevron-down-r"></i>       
+       </div>
                   
                 </form>
                 

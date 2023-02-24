@@ -10,6 +10,7 @@ flex-direction: column;
 align-items: center;
 gap: 15px;
 font-family:'Montserrat', sans-serif;
+box-shadow: 0 9px 40px rgb(42 42 42);
 
 
 }

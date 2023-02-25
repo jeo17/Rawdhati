@@ -55,14 +55,7 @@ box-shadow: 0 9px 40px rgb(42 42 42);
     flex-wrap: wrap;
     
 }
-.nth1-1 input{
-    padding: 12px 38px;
-    margin: 0 6px;
-    border-radius: 5px;
-    border-width: 1px;
-    border-color: #00708D;
 
-}
 
 .information label{
     width: 100px;
@@ -75,7 +68,14 @@ box-shadow: 0 9px 40px rgb(42 42 42);
   justify-content: center;
 
 }
+.nth1-1 input{
+    padding: 12px 38px;
+    margin: 0 6px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #00708D;
 
+}
 .nth1-1 label{
     font-size: 13px;
     margin-top: 5px;
@@ -94,7 +94,12 @@ box-shadow: 0 9px 40px rgb(42 42 42);
     border-color: #00708D;
 
 }
-
+.nth2 label{
+    width: 200px;
+}
+.nth2-1 input{
+    padding: 12px 104px;
+}
 .nth3{
     display: flex;
     flex-direction: column;
@@ -117,7 +122,8 @@ box-shadow: 0 9px 40px rgb(42 42 42);
 .nth4-1{
     display: flex;
     padding-left: 20px;
-    padding-bottom: 40px;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 .nth4-1 input{
    width: 20px;
@@ -193,11 +199,81 @@ box-shadow: 0 9px 40px rgb(42 42 42);
     border-width: 2px;
     border-radius: 9px;
     width: 100%;
-    height: 150px;
+    height: 90px;
 }
 .nth8 label{
-    width: 400px;
+    width: 420px;
     margin: 14px 0;
     position: relative;
     right: 25px;
 }
+.nth8-1 label{
+    width: 340px;
+}
+
+.nth9{
+    width: 80%;
+}
+.nth9-1{
+display: flex;
+flex-wrap: wrap;
+}
+.nth9-1 input{
+    padding: 12px 110px;
+    margin: 0 6px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #00708D;
+
+}
+.nth9-1 label{
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+
+.nth10{
+    display: flex;
+    flex-wrap: wrap;
+}
+.nth10 input{
+    padding: 12px 110px;
+    margin: 0 6px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #00708D;
+
+}
+.nth10 label{
+    font-size: 15px;
+    margin-top: 10px;
+
+}
+.nth10-1 label{
+    width: 200px;
+}
+
+.nth4-2{
+    display: flex;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 40px;
+}
+.nth4-2 input{
+   width: 20px;
+   height: 20px;
+}
+.nth4-2 label{
+    padding-right: 60px;
+    width: 200px;
+    
+}
+
+
+.cut{
+    width: 80%;
+    border-width: 4px;
+    border-style:dashed;
+    border-color: #FFD2DA;
+    margin-bottom: 10px;
+ }

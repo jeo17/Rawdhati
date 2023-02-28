@@ -1,10 +1,10 @@
 import React from 'react';
 import "./botcloud.css"
 
-const Botcloud = () => {
+const Botcloud = ({margintop,height}) => {
     return (
         <>
-             <div className="botcloud">
+             <div className="botcloud" style={{marginTop:`${margintop}`, height:`${height}`}}>
               </div>
         </>
     );

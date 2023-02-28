@@ -5,14 +5,14 @@ import {useContext } from "react";
 import ThemeContext from "../context/Theme";
 
 
-const Topcloud = () => {
+const Topcloud = ({height}) => {
     const {switched,Switched,Theme,Bird,Face,Body,theme} = useContext(ThemeContext);
     
     
     return (
         <>
  
-        <div className="topcloud">
+        <div className="topcloud" style={{height:`${height}`}}>
            <button><NavLink to="/" style={{textDecoration: "none" ,color: "black"}}>Home</NavLink></button>
            <button><NavLink to="/help" style={{textDecoration: "none" ,color: "black"}}>help</NavLink></button>
            <button> <NavLink to="/about-us" style={{textDecoration: "none",color: "black"}}> about us</NavLink> </button>

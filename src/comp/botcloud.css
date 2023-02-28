@@ -1,9 +1,12 @@
 .botcloud{
+    position: relative;
     background:url("./clouds2.png") repeat-x;
     height:17%;
     width:100%;
     animation:cloudani 18s linear infinite;
     z-index: 1;
+    float: right;
+    
   }
   @keyframes cloudani{
     from{

@@ -1,7 +1,17 @@
 import React from "react";
 import "./sign_kin.css";
+import { useState } from "react"; 
+
+
 
 const SignKin = () => {
+  const [dis, setDis] = useState();
+  const [dis2, setDis2] = useState();
+  const address1 =document.getElementById("address1")
+  const address2 =document.getElementById("address2")
+
+  
+  
   return (
     <>
       <div className="information">
@@ -48,9 +58,9 @@ const SignKin = () => {
           <div className="nth4">
             <label>Gender</label>
             <div className="nth4-1">
-              <input type="radio" />
+              <input type="radio" name="gender" />
               <label>Male</label>
-              <input type="radio" />
+              <input type="radio" name="gender" />
               <label>Female</label>
             </div>
           </div>
@@ -180,12 +190,17 @@ const SignKin = () => {
           <div className="nth4">
             <label>Address</label>
             <div className="nth4-2">
-              <input type="radio" />
+              <input type="radio" name="address" onChange={() => {  setDis(false) ; address1.disabled= dis;   }}/>
               <label>Same with the child</label>
-              <input type="radio" />
+              <input type="radio" name="address" onChange={() => { setDis(true); address1.disabled= dis;          }}/>
               <label>Different Address</label>
             </div>
           </div>
+          <div className="nth3">
+            <label>Address</label>
+            <input type="text" id="address1" disabled />
+          </div>
+
 
           <div className="cut"></div>
 
@@ -226,12 +241,18 @@ const SignKin = () => {
           <div className="nth4">
             <label>Address</label>
             <div className="nth4-2">
-              <input type="radio" />
+              <input type="radio" name="address2"  onChange={() => { setDis2(false) ; address2.disabled= dis2;   }}/>
               <label>Same with the child</label>
-              <input type="radio" />
+              <input type="radio" name="address2" onChange={() => { setDis2(true) ; address2.disabled= dis2;   }}/>
               <label>Different Address</label>
             </div>
           </div>
+
+        <div className="nth3">
+            <label>Address</label>
+            <input type="text" id="address2" disabled/>
+          </div>
+
 
           <div className="cut"></div>
         </form>
@@ -239,5 +260,4 @@ const SignKin = () => {
     </>
   );
 };
-
 export default SignKin;

@@ -103,8 +103,10 @@ box-shadow: 0 9px 40px rgb(42 42 42);
 .nth3{
     display: flex;
     flex-direction: column;
+    width: 80%;
 }
 .nth3 input{
+   
     padding: 12px 300px;
     margin: 0 12px;
     border-radius: 5px;
@@ -277,3 +279,10 @@ flex-wrap: wrap;
     border-color: #FFD2DA;
     margin-bottom: 10px;
  }
+
+ input:disabled {
+    cursor: default;
+    background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3));
+    color: -internal-light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
+    border-color: rgba(118, 118, 118, 0.3);
+}

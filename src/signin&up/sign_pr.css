@@ -134,3 +134,9 @@
 .Topcloud-sign{
 	height: 25%;
 }
+
+.signButton{
+	display: flex;
+	align-items: center;
+	flex-direction: row-reverse;
+}

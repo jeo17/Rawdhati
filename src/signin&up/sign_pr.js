@@ -3,9 +3,13 @@ import "./sign_pr.css";
 import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../firebase/config';
 
 
 const SignPr = () => {
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
 
   const [marginLeft, setMargin] = useState("50%");
   const [marginLeft1, setMargin1] = useState("0");
@@ -28,17 +32,41 @@ const SignPr = () => {
           <h2>Sign Up</h2>
           <form method="post" onsubmit="return false;">
             <div className="form-group">
-              <input type="text" placeholder="Username" />
-              <input type="text" placeholder="Password" />
+              <input type="email" placeholder="Username" required onChange={(eo) => { setemail(eo.target.value)  }}/>
+              <input type="password" placeholder="Password" required  onChange={(eo) => { setpassword(eo.target.value)  }}/>
             </div>
             <div className="form-group" />
             <div className="form-group" />
             <div className="form-group" />
-          </form>
-          <button id="goLeft" className="off" onClick={() => {   setMargin("50%") ; setMargin1("0")    }}>
-            Login
+
+            <div className='signButton'>
+          <button id="goLeft" className="off" onClick={(eo) => {   setMargin("50%") ; setMargin1("0") ; eo.preventDefault()   }}>
+           already have an account 
           </button>
-          <button>Sign up</button>
+          <button onClick={(eo) => {
+             eo.preventDefault();
+
+            createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in 
+              const user = userCredential.user;
+              console.log("done")
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorMessage)
+              // ..
+            });
+          }}>Sign up</button>
+          </div>
+
+
+
+
+          </form>
+        
         </div>
       </div>
       <div className="right">
@@ -49,12 +77,14 @@ const SignPr = () => {
               <input type="text" placeholder="Username" />
               <input type="text" placeholder="Password" />
             </div>
+            <div className='signButton'>
             <button id="goRight" className="off" onClick={(eo) => { setMargin("0") ; setMargin1("100%") ;eo.preventDefault()   }}>
-              Sign Up
+              You dont have an account?
             </button>
             <button id="login" type="submit">
               Login
             </button>
+            </div>
           </form>
         </div>
       </div>

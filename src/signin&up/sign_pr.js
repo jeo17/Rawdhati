@@ -21,8 +21,8 @@ const SignPr = () => {
     <div className="backRight" />
     <div className="backLeft" />
   </div>
-  <div id="slideBox" style={{marginLeft: `${marginLeft}`}}>
-    <div className="topLayer" style={{marginLeft: `${marginLeft1}`}}>
+  <div id="slideBox" style={{marginLeft: `${marginLeft}`, transition: "1s all"}}>
+    <div className="topLayer" style={{marginLeft: `${marginLeft1}`, transition: "1s all"}}>
       <div className="left">
         <div className="content">
           <h2>Sign Up</h2>

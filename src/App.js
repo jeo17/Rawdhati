@@ -1,9 +1,10 @@
 import "./app.css"
 import AboutUs from './about-us';
 import Help from './help';
-import Home from './home';
+import Start from './Start';
 import SignPr from "./signin&up/sign_pr";
 import SignKin from "./signin&up/sign_kin";
+import PrHome from "./PrHome"
 import {
   createBrowserRouter,
   RouterProvider,
@@ -17,7 +18,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Start />,
       errorElement: <div> error</div>
     },
     {
@@ -35,6 +36,10 @@ function App() {
     {
       path: "/kindergarten_sign",
       element: <SignKin />,
+    },
+    {
+      path: "/PrHome",
+      element: <PrHome />,
     },
  
   

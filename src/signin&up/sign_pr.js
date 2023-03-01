@@ -4,12 +4,19 @@ import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth"
 import {auth} from '../firebase/config';
+import { useNavigate } from "react-router-dom";
 
 
 const SignPr = () => {
+  const navigate = useNavigate();
+
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+
+  const [emailIN, setemail_IN] = useState("");
+  const [passwordIN, setpassword_IN] = useState("");
 
   const [marginLeft, setMargin] = useState("50%");
   const [marginLeft1, setMargin1] = useState("0");
@@ -18,7 +25,7 @@ const SignPr = () => {
         <>
    
      <div className=' main'>
-     <Topcloud height="24%"/>
+     <Topcloud height="22%"/>
      <div className='signcont'>
      <div id="back">
       
@@ -32,7 +39,7 @@ const SignPr = () => {
           <h2>Sign Up</h2>
           <form method="post" onsubmit="return false;">
             <div className="form-group">
-              <input type="email" placeholder="Username" required onChange={(eo) => { setemail(eo.target.value)  }}/>
+              <input type="email" placeholder="Email" required onChange={(eo) => { setemail(eo.target.value)  }}/>
               <input type="password" placeholder="Password" required  onChange={(eo) => { setpassword(eo.target.value)  }}/>
             </div>
             <div className="form-group" />
@@ -74,14 +81,29 @@ const SignPr = () => {
           <h2>Login</h2>
           <form method="post" onsubmit="return false;">
             <div className="form-group">
-              <input type="text" placeholder="Username" />
-              <input type="text" placeholder="Password" />
+              <input type="email" placeholder="Email"  onChange={(eo) => {  setemail_IN(eo.target.value) }}/>
+              <input type="password" placeholder="Password" onChange={(eo) => {  setpassword_IN(eo.target.value) }}/>
             </div>
             <div className='signButton'>
             <button id="goRight" className="off" onClick={(eo) => { setMargin("0") ; setMargin1("100%") ;eo.preventDefault()   }}>
               You dont have an account?
             </button>
-            <button id="login" type="submit">
+            <button id="login" type="submit" onClick={(eo) => {
+              eo.preventDefault();
+
+              signInWithEmailAndPassword(auth, emailIN, passwordIN)
+                 .then((userCredential) => {
+                   // Signed in 
+                   const user = userCredential.user;
+                   console.log(user);
+                   navigate("/PrHome");
+                 })
+                 .catch((error) => {
+                   const errorCode = error.code;
+                   const errorMessage = error.message;
+                   console.log(errorMessage);
+                 });
+            }} >
               Login
             </button>
             </div>
@@ -91,7 +113,7 @@ const SignPr = () => {
     </div>
   </div>
   </div>
-  <Botcloud margintop="63.2vh"  height="24%"/>
+  <Botcloud margintop="65.4vh"  height="22%"/>
   </div>
 
         </>

@@ -47,9 +47,7 @@ const SignPr = () => {
             <div className="form-group" />
 
             <div className='signButton'>
-          <button id="goLeft" className="off" onClick={(eo) => {   setMargin("50%") ; setMargin1("0") ; eo.preventDefault()   }}>
-           already have an account 
-          </button>
+         
           <button onClick={(eo) => {
              eo.preventDefault();
 
@@ -67,9 +65,11 @@ const SignPr = () => {
               // ..
             });
           }}>Sign up</button>
+
+          <p id="goLeft" className="off">
+           already have an account?<h4  onClick={(eo) => {   setMargin("50%") ; setMargin1("0") ; eo.preventDefault()   }}>Sign in</h4>
+          </p>
           </div>
-
-
 
 
           </form>
@@ -85,9 +85,7 @@ const SignPr = () => {
               <input type="password" placeholder="Password" onChange={(eo) => {  setpassword_IN(eo.target.value) }}/>
             </div>
             <div className='signButton'>
-            <button id="goRight" className="off" onClick={(eo) => { setMargin("0") ; setMargin1("100%") ;eo.preventDefault()   }}>
-              You dont have an account?
-            </button>
+            
             <button id="login" type="submit" onClick={(eo) => {
               eo.preventDefault();
 
@@ -104,8 +102,12 @@ const SignPr = () => {
                    console.log(errorMessage);
                  });
             }} >
-              Login
+              Log in
             </button>
+
+            <p id="goRight" className="off" >
+             dont have an account? <h4  onClick={(eo) => { setMargin("0") ; setMargin1("100%") ;eo.preventDefault()   }}>Sign Up</h4>
+            </p>
             </div>
           </form>
         </div>
@@ -113,7 +115,7 @@ const SignPr = () => {
     </div>
   </div>
   </div>
-  <Botcloud margintop="65.4vh"  height="22%"/>
+  <Botcloud margintop="66.1vh"  height="22%"/>
   </div>
 
         </>

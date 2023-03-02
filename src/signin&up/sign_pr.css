@@ -63,11 +63,12 @@
   
   .content {
 	width: 250px;
-	margin: 0 auto;
+	margin: -8vh auto;
 	top: 30%;
 	position: absolute;
 	left: 50%;
 	margin-left: -125px;
+
   }
   
   .content h2 {
@@ -78,7 +79,7 @@
   
   button {
 	background: #03A9F4;
-	padding: 10px 16px;
+	padding: 10px 60px;
 	width: auto;
 	font-weight: 600;
 	text-transform:  uppercase;
@@ -86,11 +87,10 @@
 	color: #fff;
 	line-height: 16px;
 	letter-spacing: 0.5px;
-	border-radius: 2px;
+	border-radius: 20px;
 	box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
 	border: 0;
 	outline: 0;
-	margin: 0px 15px 15px 0;
 	transition: all 0.25s;
 	cursor: pointer;
   }
@@ -100,22 +100,32 @@
 	box-shadow: 0 4px 7px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
   }
   .off {
-	background: none;
-	color: #03A9F4;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: #5c8ca1;
 	box-shadow: none;
+	
   }
   
-  .right .off:hover {
-	background: #eee;
+  .off h4{ 
+	 color: #03A9F4;
+	 cursor: pointer;
+	 font-size: 17.5px;
+}
+
+ .lightmode .off h4:hover {
+	background: #e9dede;
 	color: #03A9F4;
 	box-shadow: none;
   }
-  .left .off:hover {
+ .darkmode .off h4:hover {
 	box-shadow: none;
 	color: #03A9F4;
 	background: #363A3D;
   }
-  input {
+
+  .signcont input  {
 	background: transparent;
 	border: 0;
 	outline: 0;
@@ -124,11 +134,12 @@
 	color: #959595;
 	padding: 8px 0;
 	margin-top: 20px;
+	font-family: 'Fredoka One', cursive;
   }
-
 
 .signcont{
 	z-index: 0;
+	font-family: 'Fredoka One', cursive;
 }
 
 .Topcloud-sign{
@@ -136,10 +147,12 @@
 }
 
 .signButton{
-	display: flex;
-	align-items: center;
-	flex-direction: row-reverse;
+
+	margin: 10px 4px 0 0 ;
+	width: 255px;
+
 }
 .signButton button{
 	margin-top: 15px;
+	
 }

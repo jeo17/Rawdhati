@@ -51,14 +51,14 @@ const Topcloud = ({height}) => {
                 
               }}>SignOut</button>   }
 
-                 {user && 
+                 {/*user && 
                  
                  
                  <select className="circle" value="AD">
                  <option style={{display:"none"}}>AD</option>
                  <option>profile</option>
                  <option >sign out</option>
-               </select>
+               </select>*/
                    
 
 }

@@ -15,6 +15,11 @@
 .appmain{
  display: flex;
 }
+.appmain p{
+    font-family: 'Fredoka One', cursive;
+}
+
+
 .kinside{
     margin: 25px 25px 25px 12.5px;
     height: 100%;
@@ -64,9 +69,8 @@
 .box-cont p{
     color: #001e29;
     font-size: 21px;
-    
    position: relative;
-   bottom: 11px;
+   bottom: 20px;
 }
 
 /****************

@@ -15,11 +15,11 @@ const PrHome = () => {
  
         <div className="main appmain">
          {user && 
-         <h2 style={{margin:"30vh 44vw 30vh 44vw"}}>hellooo user ♥</h2>
+         <h2 style={{margin:"30vh 44vw 30vh 44vw", fontFamily:"'Fredoka One', cursive"}}>hellooo user ♥</h2>
          }
 
          {!user &&
-          <h2 style={{margin:"30vh 36vw 30vh 36vw"}}>you have to <Link to="/parent_sign">sign in</Link> to continue ...☺</h2>
+          <h2 style={{margin:"30vh 34vw 30vh 34vw", fontFamily:"'Fredoka One', cursive"}}>you have to <Link to="/parent_sign">sign in</Link> to continue ...🖤</h2>
          }
          </div>
          <Botcloud />

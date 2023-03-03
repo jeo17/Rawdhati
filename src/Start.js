@@ -103,7 +103,7 @@ function App() {
 
     {user && 
     
-      <h2 style={{margin:"30vh 33vw 30vh 33vw"}}>you need to signout to access this page ... ♪♪ </h2>
+      <h2 style={{margin:"30vh 30vw 30vh 30vw", fontFamily:"'Fredoka One', cursive"}}>you need to signout to access this page ... ♪♪ </h2>
     }
 
 

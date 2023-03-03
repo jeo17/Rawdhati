@@ -9,13 +9,13 @@ body {
 
 
 .welcome{
- background-color: #ffd8db;
+ background-color:white;
  width: 100vw;
  height: 100vh;
 }
 
 .welcome img{
-  display: block;
+   display: block;
    margin-left: auto;
    margin-right: auto;
    width: 270px;

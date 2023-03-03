@@ -5,6 +5,7 @@ import Start from './Start';
 import SignPr from "./signin&up/sign_pr";
 import SignKin from "./signin&up/sign_kin";
 import PrHome from "./PrHome"
+import Visitor from "./VisitorRed"
 import {
   createBrowserRouter,
   RouterProvider,
@@ -40,6 +41,10 @@ function App() {
     {
       path: "/PrHome",
       element: <PrHome />,
+    },
+    {
+      path: "/Visitor",
+      element: <Visitor />,
     },
  
   

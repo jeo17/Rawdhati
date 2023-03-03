@@ -43,7 +43,7 @@ const Topcloud = ({height}) => {
 
               {user && <button onClick={() => {
                 signOut(auth).then(() => {
-                  navigate("/parent_sign");
+                  navigate("/");
                   console.log("signout succ")
                 }).catch((error) => {
                   // An error happened.

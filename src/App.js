@@ -3,7 +3,8 @@ import AboutUs from './about-us';
 import Help from './help';
 import Start from './Start';
 import SignPr from "./signin&up/sign_pr";
-import SignKin from "./signin&up/sign_kin";
+import SignKin from "./signin&up/sign_kin"
+import KinForm from "./signin&up/KinForm";
 import PrHome from "./PrHome"
 import Visitor from "./VisitorRed"
 import {
@@ -35,8 +36,8 @@ function App() {
       element: <SignPr />,
     },
     {
-      path: "/kindergarten_sign",
-      element: <SignKin />,
+      path: "/kindergarten_form",
+      element: <KinForm />,
     },
     {
       path: "/PrHome",
@@ -45,6 +46,9 @@ function App() {
     {
       path: "/Visitor",
       element: <Visitor />,
+    },{
+      path: "/kindergarten_sign",
+      element: <SignKin />,
     },
  
   

@@ -72,7 +72,7 @@ function App() {
 
       <div class="ag-offer_hidden-item">
       <div className="container">
-          <a href="#" className={`button button--${bird}`}>
+          <Link to="/kindergarten_sign" className={`button button--${bird}`}>
             <div className="button__wrapper">
               <span className="button__text">Get started</span>
             </div>
@@ -93,7 +93,7 @@ function App() {
                 <div className={`${body}`}></div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
 

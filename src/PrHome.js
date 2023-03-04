@@ -10,13 +10,15 @@ import { useNavigate } from "react-router-dom";
 const PrHome = () => {
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
- 
+
     useEffect(() => {
-        if (!user) {
+        if (!user && !loading) {
             navigate("/Visitor");
         }
     })
      
+ 
+   
     return (
         <>
         <Topcloud />
@@ -27,6 +29,10 @@ const PrHome = () => {
          <Botcloud />
         </>
     );
+
+    
 }
+
+
 
 export default PrHome;

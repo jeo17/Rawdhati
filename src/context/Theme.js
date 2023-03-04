@@ -6,7 +6,7 @@ import { createContext, useReducer } from "react";
                        switched: lastTheme==="darkmode"?"switched":"" ,
                        bird:lastTheme==="darkmode"?"hoo":"piyo",
                        face2:lastTheme==="darkmode"?"charactor__face2":"",
-                       body:lastTheme==="darkmode"?"charactor__body":""
+                       body:lastTheme==="darkmode"?"charactor__body":"",
                       };
 
  const reducer = (firstState, action) => {
@@ -43,7 +43,7 @@ import { createContext, useReducer } from "react";
       const Body = () => {
         dispatch({ type: "CHANGE_BODY", newValue: firstState.theme === "lightmode"? "charactor__body": "" });
       };
-  
+     
     return (
        <ThemeContexttt.Provider value={{ ...firstState,Theme,Switched,Bird,Face,Body}}>
         {children}

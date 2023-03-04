@@ -1,4 +1,3 @@
-
 .backRight {
 	position: absolute;
 	right: 0;
@@ -9,17 +8,51 @@
 	background-position: 50% 50%;
 	z-index: 0;
   }
+  .darkmode .backRight{
+	background-image:url(./pr_dark.jpeg);
+ }
   
   .backLeft {
 	position: absolute;
 	left: 0;
 	width: 50%;
 	height: 100%;
-	background-image:url(./pr1.jpg);
+	background-image:url(./pr1.gif);
 	background-size: contain;
 	background-position: 50% 50%;
 	z-index: 0;
   }
+ .darkmode .backLeft{
+	background-image:url(./pr1_dark.gif);
+ }
+  .backRight_kin{
+	position: absolute;
+	right: 0;
+	width: 50%;
+	height: 100%;
+	background-image:url(./kin1.jpg);
+	background-size: cover;
+	background-position: 40% 50%;
+	z-index: 0;
+  }
+  .darkmode .backRight_kin{
+	background-image:url(./kin1_darkk.jpg);
+  }
+
+  .backLeft_kin{
+	position: absolute;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	background-image:url(./kin4.jpg);
+	background-size: contain;
+	background-position: 30% 50%;
+	z-index: 0;
+  }
+  .darkmode .backLeft_kin{
+	background-image:url(./kin4_dark.jpg);
+  }
+ 
   
   #back {
 	width: 100%;

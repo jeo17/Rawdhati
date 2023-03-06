@@ -6,6 +6,7 @@ import SignPr from "./signin&up/sign_pr";
 import SignKin from "./signin&up/sign_kin"
 import KinForm from "./signin&up/KinForm";
 import PrHome from "./PrHome"
+import KinHome from './KinHome';
 import Visitor from "./VisitorRed"
 import {
   createBrowserRouter,
@@ -40,15 +41,20 @@ function App() {
       element: <KinForm />,
     },
     {
-      path: "/PrHome",
+      path: "/pr_home",
       element: <PrHome />,
     },
     {
       path: "/Visitor",
       element: <Visitor />,
-    },{
+    },
+    {
       path: "/kindergarten_sign",
       element: <SignKin />,
+    },
+    {
+      path: "/kin_home",
+      element: <KinHome />,
     },
  
   

@@ -21,7 +21,7 @@ const Topcloud = ({height}) => {
         <>
         
         <div className="topcloud" style={{height:`${height}`}}>
-          {user && <button><NavLink to="/PrHome" style={{textDecoration: "none" ,color: "black"}}>Home</NavLink></button>   }
+          {user && <button><NavLink to="/pr_home" style={{textDecoration: "none" ,color: "black"}}>Home</NavLink></button>   }
 
           {!user && <button><NavLink to="/" style={{textDecoration: "none" ,color: "black"}}>Start</NavLink></button>  }
            

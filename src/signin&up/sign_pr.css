@@ -17,13 +17,13 @@
 	left: 0;
 	width: 50%;
 	height: 100%;
-	background-image:url(./pr1.gif);
+	background-image:url(./pr1.jpg);
 	background-size: contain;
 	background-position: 50% 50%;
 	z-index: 0;
   }
  .darkmode .backLeft{
-	background-image:url(./pr1_dark.gif);
+	background-image:url(./pr1_dark.png);
  }
   .backRight_kin{
 	position: absolute;

@@ -3,23 +3,25 @@ import "./sign_pr.css";
 import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import { useState } from "react";
-/*import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword,updateProfile } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth"
 import {auth} from '../firebase/config';
-import { useNavigate } from "react-router-dom";*/
+import { useNavigate } from "react-router-dom";
 
 
 
 
 const SignPr = () => {
 
- /*   const navigate = useNavigate();
+    const navigate = useNavigate();
 
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
   const [emailIN, setemail_IN] = useState("");
-  const [passwordIN, setpassword_IN] = useState("");*/
+  const [passwordIN, setpassword_IN] = useState("");
+
+  const [userName, setuserName] = useState("");
 
   const [marginLeft, setMargin] = useState("50%");
   const [marginLeft1, setMargin1] = useState("0");
@@ -45,8 +47,9 @@ const SignPr = () => {
           <h2>Sign Up</h2>
           <form method="post" onsubmit="return false;">
             <div className="form-group">
-              <input type="email" placeholder="Email" required /*onChange={(eo) => { setemail(eo.target.value)  }}*//>
-              <input type="password" placeholder="Password" required /* onChange={(eo) => { setpassword(eo.target.value)  }}*//>
+              <input type="text" placeholder="Kindergarten name" required onChange={(eo) => { setuserName(eo.target.value)  }}/>
+              <input type="email" placeholder="Email" required onChange={(eo) => { setemail(eo.target.value)  }}/>
+              <input type="password" placeholder="Password" required onChange={(eo) => { setpassword(eo.target.value)  }}/>
             </div>
             <div className="form-group" />
             <div className="form-group" />
@@ -54,15 +57,23 @@ const SignPr = () => {
 
             <div className='signButton'>
          
-          <button /*onClick={(eo) => {
+          <button onClick={(eo) => {
              eo.preventDefault();
 
             createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-              // Signed in 
               const user = userCredential.user;
-              console.log("done")
-              // ...
+
+              updateProfile(auth.currentUser, {
+                displayName: userName
+              }).then(() => {
+                navigate("/kin_home")
+                console.log(`account created successfully and this is the name of your kindergarten : ${user.displayName}`)
+              }).catch((error) => {
+                console.log("buggg")
+              });
+
+
             })
             .catch((error) => {
               const errorCode = error.code;
@@ -70,7 +81,7 @@ const SignPr = () => {
               console.log(errorMessage)
               // ..
             });
-          }}*/>Sign up</button>
+          }}>Sign up</button>
 
           <p id="goLeft" className="off">
            already have an account?<h4  onClick={(eo) => {   setMargin("50%") ; setMargin1("0") ; eo.preventDefault()   }}>Sign in</h4>
@@ -87,12 +98,12 @@ const SignPr = () => {
           <h2>Login</h2>
           <form method="post" onsubmit="return false;">
             <div className="form-group">
-              <input type="email" placeholder="Email" /* onChange={(eo) => {  setemail_IN(eo.target.value) }}*//>
-              <input type="password" placeholder="Password" /*onChange={(eo) => {  setpassword_IN(eo.target.value) }}*//>
+              <input type="email" placeholder="Email"  onChange={(eo) => {  setemail_IN(eo.target.value) }}/>
+              <input type="password" placeholder="Password" onChange={(eo) => {  setpassword_IN(eo.target.value) }}/>
             </div>
             <div className='signButton'>
             
-            <button id="login" type="submit"/* onClick={(eo) => {
+            <button id="login" type="submit" onClick={(eo) => {
               eo.preventDefault();
 
               signInWithEmailAndPassword(auth, emailIN, passwordIN)
@@ -100,14 +111,14 @@ const SignPr = () => {
                    // Signed in 
                    const user = userCredential.user;
                    console.log(user);
-                   navigate("/PrHome");
+                   navigate("/kin_home");
                  })
                  .catch((error) => {
                    const errorCode = error.code;
                    const errorMessage = error.message;
                    console.log(errorMessage);
                  });
-            }} */>
+            }} >
               Log in
             </button>
 

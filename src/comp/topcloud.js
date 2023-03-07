@@ -9,6 +9,7 @@ import {signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 
+
 const Topcloud = ({height}) => {
     const navigate = useNavigate();
 
@@ -25,7 +26,8 @@ const Topcloud = ({height}) => {
 
           {!user && <button><NavLink to="/" style={{textDecoration: "none" ,color: "black"}}>Start</NavLink></button>  }
            
-           <button><NavLink to="/help" style={{textDecoration: "none" ,color: "black"}}>help</NavLink></button>
+           {!user && <button><NavLink to="/help" style={{textDecoration: "none" ,color: "black"}}>help</NavLink></button>}
+           
            <button> <NavLink to="/about-us" style={{textDecoration: "none",color: "black"}}> about us</NavLink> </button>
            <button>language</button>
  
@@ -41,15 +43,53 @@ const Topcloud = ({height}) => {
                 </label>
               </div>
 
-              {user && <button onClick={() => {
-                signOut(auth).then(() => {
-                  navigate("/");
-                  console.log("signout succ")
-                }).catch((error) => {
-                  // An error happened.
-                });
+              {user && 
+
+               <div className="action">
+               <div className="profile" onClick={() => {
+                 const toggleMenu = document.querySelector(".menu");
+                 toggleMenu.classList.toggle("active");
+               }}>
+                 <img src={require("./assets/avatar.jpg")} alt=""/>
+               </div>
+               <div className="menu">
+                 <h3>
+                  {user.displayName}
+                 </h3>
+                 <ul>
+                   <li>
+                     <img src={require("./assets/icons/user.png")}  alt=""/>
+                     <NavLink to="#">My profile</NavLink>
+                   </li>
+                   <li>
+                     <img src={require("./assets/icons/envelope.png")} alt=""/>
+                     <NavLink to="#">Inbox</NavLink>
+                   </li>
+                   <li>
+                     <img src={require("./assets/icons/settings.png")} alt=""/>
+                     <NavLink to="#">Setting</NavLink>
+                   </li>
+                   <li>
+                     <img src={require("./assets/icons/question.png")} alt=""/>
+                     <NavLink to="/help">Help</NavLink>
+                   </li>
+                   <li>
+                     <img src={require("./assets/icons/log-out.png")} alt=""/>
+                     <NavLink to="#" onClick={() => {
+                      signOut(auth).then(() => {
+                        navigate("/")
+                            }).catch((error) => {
+                        // An error happened.
+                       });
                 
-              }}>SignOut</button>   }
+                     }}>Logout</NavLink>                   
+                   </li>
+                 </ul>
+               </div>
+             </div>
+              }
+
+
 
                  {/*user && 
                  

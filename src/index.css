@@ -9,21 +9,20 @@ body {
 
 
 .welcome{
- background-color:white;
- width: 100vw;
+ background-color:#ffdba6;
  height: 100vh;
+
 }
 
 .welcome img{
    display: block;
    margin-left: auto;
    margin-right: auto;
-   width: 270px;
-   padding-top: 25vh;
-   padding-bottom: 25vh;
+   width: 320px;
+   padding-top: 24vh;
+   padding-bottom: 24vh;
 }
 
 .done{
   display: none;
 }
-

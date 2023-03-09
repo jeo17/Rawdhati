@@ -6,6 +6,7 @@ import ThemeContext from "./context/Theme";
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebase/config';
+import NeedToSignOut from "./needToSignOut";
 
 
 
@@ -16,13 +17,13 @@ function App() {
 
   return (
     <>
-
+   {!user &&  
+      <>
       <Topcloud />
       
       <div className="main appmain">
   
-      {!user &&  
-      <>
+      
       <div className="parside ag-offer_item">
       <div className="pk" ><h1>Parents Space </h1> <img width={"45px"} src={require('./family3.png')} alt="sorry" /> </div>
       <div className="box-cont ag-offer_visible-item">
@@ -98,19 +99,15 @@ function App() {
       </div>
 
     </div>
-    </>
-      }
-
-    {user && 
     
-      <h2 style={{margin:"30vh 30vw 30vh 30vw", fontFamily:"'Fredoka One', cursive"}}>you need to signout to access this page ... ♪♪ </h2>
-    }
-
-
-        
       </div>
       <Botcloud />
-
+      </>
+    }
+     {user && 
+       <NeedToSignOut/ >
+  
+      }
     </>
 
   );

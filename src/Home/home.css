@@ -1,0 +1,13 @@
+.refresh{
+    border:3px solid #5957f9;
+    font-weight:700;
+    border-radius:20px;
+    cursor:pointer;
+    color: #5957f9;
+    position: relative;
+    top: 5px;
+    margin-left: 10px;
+}
+.refresh:hover{
+    scale: 1.1;
+}

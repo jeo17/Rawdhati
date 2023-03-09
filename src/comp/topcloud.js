@@ -22,7 +22,7 @@ const Topcloud = ({height}) => {
         <>
         
         <div className="topcloud" style={{height:`${height}`}}>
-          {user && <button><NavLink to="/pr_home" style={{textDecoration: "none" ,color: "black"}}>Home</NavLink></button>   }
+          {user && <button><NavLink to={user.displayName===null?"/kin_home":"/pr_home"} style={{textDecoration: "none" ,color: "black"}}>Home</NavLink></button>   }
 
           {!user && <button><NavLink to="/" style={{textDecoration: "none" ,color: "black"}}>Start</NavLink></button>  }
            
@@ -54,13 +54,20 @@ const Topcloud = ({height}) => {
                </div>
                <div className="menu">
                  <h3>
-                  {user.displayName}
+                  {user.displayName=== null? "el rawda":`${user.displayName}`}
                  </h3>
                  <ul>
                    <li>
                      <img src={require("./assets/icons/user.png")}  alt=""/>
-                     <NavLink to="#">My profile</NavLink>
+                     <NavLink to="#" 
+                     onClick={(eo) => {
+                      const profile =document.getElementById("profile");
+                      profile.showModal();
+                     }}
+                     >My profile</NavLink>
                    </li>
+                 
+                 
                    <li>
                      <img src={require("./assets/icons/envelope.png")} alt=""/>
                      <NavLink to="#">Inbox</NavLink>

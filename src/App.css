@@ -89,7 +89,9 @@ dark mode style
 .darkmode .left,.darkmode .right{
     background: #2C3034;
 }
-
+.darkmode .mail{
+    color: grey;
+}
 
 
 /****************

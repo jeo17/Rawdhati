@@ -5,8 +5,8 @@ import Start from './Start';
 import SignPr from "./signin&up/sign_pr";
 import SignKin from "./signin&up/sign_kin"
 import KinForm from "./signin&up/KinForm";
-import PrHome from "./PrHome"
-import KinHome from './KinHome';
+import PrHome from "./Home/PrHome"
+import KinHome from './Home/KinHome';
 import Visitor from "./VisitorRed"
 import {
   createBrowserRouter,

@@ -8,7 +8,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Profile from '../comp/Profile';
-import {signOut } from "firebase/auth";
+import {signOut,sendEmailVerification } from "firebase/auth";
 
 
 const KinHome = () => {
@@ -36,28 +36,61 @@ const KinHome = () => {
         navigate("/Visitor");
       }
 
-
-      if(error){
-        return(
-          <>
-          errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror
-          </>
-          
-        )
-      }
   
       if(user.displayName===null){
-        return (
-          <>
-          <Topcloud />
-          <Profile />
-          <div className="main appmain">
-           <h2 style={{margin:"30vh 40vw 30vh 40vw", fontFamily:"'Fredoka One', cursive"}}>welcome to el-rawdat</h2>
-           </div>
-           <Botcloud />
-          </>
-      );
+
+
+         if (user.emailVerified) {
+          
+          return (
+            <>
+            <Topcloud />
+            <Profile />
+            <div className="main appmain">
+             <h2 style={{margin:"30vh 40vw 30vh 40vw", fontFamily:"'Fredoka One', cursive"}}>welcome to el-rawdat</h2>
+             </div>
+             <Botcloud />
+            </>
+        );
+        
+         } else {
+          
+          return (
+            <>
+              <Topcloud />
+    
+              <Profile />
+              <div className="main appmain">
+                <div className="errorMsg">
+                  <h2
+                    style={{
+                      fontFamily: "'Fredoka One', cursive",
+                      textAlign: "center",
+                    }}
+                  >
+                    ◘ welcome {user.displayName} el-rawda ◘<br />
+                    please verify your email and refesh the page to continue ...{" "}
+                  </h2>
+                  <button
+                    onClick={() => {
+                      sendEmailVerification(auth.currentUser).then(() => {
+                        console.log("verification sended!!");
+                      });
+                    }}
+                  >
+                    send again
+                  </button>
+                </div>
+              </div>
+              <Botcloud />
+            </>
+          );
+
+         }
+
       }
+
+
       else{
         return(
               <>

@@ -43,7 +43,7 @@ const Profile = () => {
       <span className="recent-orders">Activits</span>
     </div>
     <div className="wishlist-border pt-2">
-      <span className="wishlist">Wishlist</span>
+      <span className="wishlist">Add a child +</span>
     </div>
     <div className="fashion-studio-border pt-2">
       <span className="fashion-studio">Fashion studio</span>

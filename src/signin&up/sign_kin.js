@@ -5,8 +5,7 @@ import Botcloud from "../comp/botcloud";
 import NeedToSignOut from '../needToSignOut';
 import { useState } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword,sendEmailVerification } from "firebase/auth";
 import {auth} from '../firebase/config';
 import { useNavigate } from "react-router-dom";
 
@@ -64,6 +63,12 @@ const SignPr = () => {
             createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
               const user = userCredential.user;
+
+              sendEmailVerification(auth.currentUser)
+              .then(() => {
+               console.log("verification sended!!")
+              });
+              
                navigate("/kin_home")
             })
             .catch((error) => {

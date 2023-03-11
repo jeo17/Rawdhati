@@ -14,6 +14,8 @@
 
 .appmain{
  display: flex;
+ align-items: center;
+ justify-content: center;
 }
 .appmain p{
     font-family: 'Fredoka One', cursive;
@@ -21,7 +23,7 @@
 
 
 .kinside{
-    margin: 25px 25px 25px 12.5px;
+    margin: 48px 25px 0px 12.5px;
     height: 100%;
     width: 50%;
     box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
@@ -34,7 +36,7 @@
     background-repeat: no-repeat;
 }
 .parside{
-    margin: 25px 12.5px 25px 25px;
+    margin: 48px 12.5px 0px 25px;
     height: 100%;
     width: 50%;
     box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
@@ -663,4 +665,19 @@ get started button
     .ag-format-container {
       width: 960px;
     }
+  }
+
+  .errorMsg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .errorMsg button{
+    background-color: #2e3052;
+  }
+  .errorMsg button:hover{
+    transform: scale(1.1);
+  }
+  .errorMsg button:active{
+    transform: scale(1);
   }

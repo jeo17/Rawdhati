@@ -1,87 +1,125 @@
-import React from 'react';
+import React from "react";
 import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
-import TopcloudErr from '../comp/topcloud_err';
-import Profile from '../comp/Profile';
-import { auth } from '../firebase/config';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import TopcloudErr from "../comp/topcloud_err";
+import Profile from "../comp/Profile";
+import { auth } from "../firebase/config";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {signOut } from "firebase/auth";
-
+import { signOut, sendEmailVerification } from "firebase/auth";
 
 const PrHome = () => {
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!user && !loading) {
-            navigate("/Visitor");
-        }
-    })
-     
-    if (loading) {
-        //if he is in the loading state do this block of code ... and when he done read the rest of the code.
-        return (
-          <div>
-            <p>Initialising User...</p>  
+  useEffect(() => {
+    if (!user && !loading) {
+      navigate("/Visitor");
+    }
+  });
+
+  if (loading) {
+    //if he is in the loading state do this block of code ... and when he done read the rest of the code.
+    return (
+      <div>
+        <p>Initialising User...</p>
+      </div>
+    );
+  }
+
+  if (!user) {
+    navigate("/Visitor");
+  }
+
+  if (user.displayName === null) {
+    return (
+      <>
+        <TopcloudErr />
+        <div className="main appmain">
+          <div
+            style={{
+              margin: "20vh 27vw",
+              fontFamily: "'Fredoka One', cursive",
+            }}
+          >
+            <h2>you did signed in on the wrong space ...</h2>
+            <h2>
+              {" "}
+              click here to signin again in the right space 👉{" "}
+              <span
+                class="material-symbols-outlined refresh"
+                onClick={() => {
+                  signOut(auth)
+                    .then(() => {
+                      navigate("/kindergarten_sign");
+                    })
+                    .catch((error) => {
+                      // An error happened.
+                    });
+                }}
+              >
+                refresh
+              </span>{" "}
+            </h2>
           </div>
-        );
-      }
-
-      if(!user){
-        navigate("/Visitor");
-      }
-  
-     
-
-      if(user.displayName===null){
-
-        return(
-          <>
-            <TopcloudErr />
-            <div className="main appmain">
-              <div style={{margin:"20vh 27vw", fontFamily:"'Fredoka One', cursive"}} >
-  
-               <h2 >you did signed in on the wrong space ...</h2>
-               <h2> click here to signin again in the right space 👉 <span class="material-symbols-outlined refresh"  onClick={() => {
-               
-               signOut(auth).then(() => {
-                  navigate("/kindergarten_sign")
-                      }).catch((error) => {
-                  // An error happened.
-                });
-  
-               }}>refresh</span> </h2>
-               
-              </div>
-               
-            </div>
-            <Botcloud />
-            </>
-            )
-      }
-    else{
-
+        </div>
+        <Botcloud />
+      </>
+    );
+  } else {
+    if (user.emailVerified) {
       return (
         <>
-        <Topcloud />
+          <Topcloud />
 
-        <Profile />
-        <div className="main appmain">
-         <h2 style={{margin:"30vh 40vw 30vh 40vw", fontFamily:"'Fredoka One', cursive"}}>hellooo {user.displayName} ◘</h2>
-         </div>
-         <Botcloud />
+          <Profile />
+          <div className="main appmain">
+            <h2
+              style={{
+                margin: "30vh 40vw 30vh 40vw",
+                fontFamily: "'Fredoka One', cursive",
+              }}
+            >
+              hellooo {user.displayName} ♥♥
+            </h2>
+          </div>
+          <Botcloud />
         </>
-    );
+      );
+    } else {
+      return (
+        <>
+          <Topcloud />
+
+          <Profile />
+          <div className="main appmain">
+            <div className="errorMsg">
+              <h2
+                style={{
+                  fontFamily: "'Fredoka One', cursive",
+                  textAlign: "center",
+                }}
+              >
+                ◘ welcome {user.displayName} ◘<br />
+                please verify your email and refesh the page to continue ...{" "}
+              </h2>
+              <button
+                onClick={() => {
+                  sendEmailVerification(auth.currentUser).then(() => {
+                    console.log("verification sended!!");
+                  });
+                }}
+              >
+                send again
+              </button>
+            </div>
+          </div>
+          <Botcloud />
+        </>
+      );
     }
-
-
-    
-
-    
-}
-
-
+  }
+};
 
 export default PrHome;

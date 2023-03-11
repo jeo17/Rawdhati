@@ -5,7 +5,7 @@ import Botcloud from "../comp/botcloud";
 import NeedToSignOut from '../needToSignOut';
 import { useState } from "react";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { createUserWithEmailAndPassword,updateProfile  } from "firebase/auth";
+import { createUserWithEmailAndPassword,updateProfile,sendEmailVerification  } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth"
 import {auth} from '../firebase/config';
 import { useNavigate } from "react-router-dom";
@@ -42,7 +42,7 @@ const SignPr = () => {
 <div id="slideBox" style={{marginLeft: `${marginLeft}`, transition: "1s all"}}>
   <div className="topLayer" style={{marginLeft: `${marginLeft1}`, transition: "1s all"}}>
     <div className="left">
-      <div className="content">
+      <div className="content" style={{position:"absolute", top:"23.5%"}}>
         <h2>Sign Up</h2>
         <form method="post" onsubmit="return false;">
           <div className="form-group">
@@ -63,6 +63,12 @@ const SignPr = () => {
           .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
+            
+
+            sendEmailVerification(auth.currentUser)
+            .then(() => {
+             console.log("verification sended!!")
+            });
 
             updateProfile(auth.currentUser, {
               displayName: userName, photoURL: "https://example.com/jane-q-user/profile.jpg"
@@ -82,8 +88,6 @@ const SignPr = () => {
             // ..
           });
 
-
-          
         }}>Sign up</button>
 
         <p id="goLeft" className="off">
@@ -140,7 +144,6 @@ const SignPr = () => {
    }
      {user && 
        <NeedToSignOut/ >
-  
       }
 
         </>

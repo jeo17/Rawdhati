@@ -97,7 +97,7 @@
   .content {
 	width: 250px;
 	margin: -8vh auto;
-	top: 30%;
+	top: 25%;
 	position: absolute;
 	left: 50%;
 	margin-left: -125px;
@@ -147,6 +147,7 @@
 	 font-size: 17.5px;
 }
 
+
  .lightmode .off h4:hover {
 	background: #e9dede;
 	color: #03A9F4;
@@ -156,6 +157,11 @@
 	box-shadow: none;
 	color: #03A9F4;
 	background: #363A3D;
+  }
+
+  .forget-pass{
+	color: #5c8ca1;
+	font-size: 14px;
   }
 
   .signcont input  {
@@ -188,4 +194,11 @@
 .signButton button{
 	margin-top: 15px;
 	
+}
+
+.sign-err-msg{
+	color: #dc2929;
+}
+.darkmode .sign-err-msg{
+	color: #dc2929;
 }

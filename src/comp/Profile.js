@@ -21,11 +21,11 @@ const Profile = () => {
 
 
   <div className="card">
-      <p style={{float:"right",border:"2px solid grey",borderRadius:"50%", width:"16px",height:"14.2px",color:"grey",textAlign:"center",cursor:"pointer",position:"relative",bottom:"28px",fontSize:"14px" }}
+      <span class="material-symbols-outlined"     style={{float:"right" , color:"orange", position:"relative",bottom:"18px",left:"14px",fontWeight:"900",transform:"scale(1.2)",cursor:"pointer"}}
        onClick={() => {
           const profile = document.getElementById("profile");
           profile.close();
-       }} >X</p>
+       }} >close</span>
     <div className="top-container">
       <img
         src={require("./assets/avatar.jpg")}

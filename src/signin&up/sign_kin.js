@@ -3,6 +3,7 @@ import "./sign_pr.css";
 import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import NeedToSignOut from "../needToSignOut";
+import ForgetPass from "../comp/Forget-pass";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
@@ -233,8 +234,7 @@ const SignPr = () => {
 
                                   case "auth/too-many-requests":
                                     seterrMsg_signin(
-                                      "❌ Too many requests, please try aganin later ! ❌ "
-                                    );
+                                      "❌ Too many requests, please try aganin later ! ❌ ");
                                     break;
 
                                   default:
@@ -249,8 +249,14 @@ const SignPr = () => {
                           Log in
                         </button>
 
-                        <p className="forget-pass">Forgot password ? </p>
+                        <p className="forget-pass"  onClick={(eo) => {
+                          const forgetPass = document.getElementById("forget-pass");
+                          forgetPass.showModal();
+                        }}>Forgot password ? </p>
                         
+                        <ForgetPass />
+
+
                         <p className="sign-err-msg">{errMsg_signin}</p>
 
                         <p id="goRight" className="off">

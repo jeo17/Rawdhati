@@ -3,6 +3,7 @@ import "./sign_pr.css";
 import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import NeedToSignOut from "../needToSignOut";
+import ForgetPass from "../comp/Forget-pass";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
@@ -279,7 +280,13 @@ const SignPr = () => {
 
                         
 
-                        <p className="forget-pass">Forgot password ? </p>
+                        <p className="forget-pass" onClick={(eo) => {
+                          const forgetPass = document.getElementById("forget-pass");
+                          forgetPass.showModal();
+                        }}>Forgot password ? </p>
+
+
+                        <ForgetPass /> 
 
                         <p className="sign-err-msg">{errMsg_signin}</p>
 

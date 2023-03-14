@@ -17,9 +17,10 @@
 	left: 0;
 	width: 50%;
 	height: 100%;
-	background-image:url(./pr1.jpg);
+	background-image:url(./pr1.png);
 	background-size: contain;
 	background-position: 50% 50%;
+	background-position-x: right;
 	z-index: 0;
   }
  .darkmode .backLeft{

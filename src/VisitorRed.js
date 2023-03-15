@@ -1,5 +1,4 @@
 import React from 'react';
-import Topcloud from "./comp/topcloud";
 import Botcloud from "./comp/botcloud";
 import { Link } from 'react-router-dom';
 import TopcloudErr from './comp/topcloud_err';

@@ -8,6 +8,7 @@ import KinForm from "./signin&up/KinForm";
 import PrHome from "./Home/PrHome"
 import KinHome from './Home/KinHome';
 import Visitor from "./VisitorRed"
+import Page404 from "./Page_404";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,7 +23,7 @@ function App() {
     {
       path: "/",
       element: <Start />,
-      errorElement: <div> error</div>
+      errorElement: <Page404 />
     },
     {
       path: "/about-us",

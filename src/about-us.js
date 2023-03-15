@@ -1,28 +1,46 @@
-import React from 'react';
-import Topcloud from './comp/topcloud';
-import Botcloud from './comp/botcloud';
-import Profile from './comp/Profile';
-import "./app.css"
-
-
+import React from "react";
+import Topcloud from "./comp/topcloud";
+import Botcloud from "./comp/botcloud";
+import Profile from "./comp/Profile";
+import "./app.css";
+import "./about-us.css";
 
 const AboutUs = () => {
- 
-    return (
-        <>
-          <Topcloud/>
-          <div className='main'>
-          <Profile />
-          <h2 dir="rtl">روضتي : هو عبارة عن موفع الكتروني مصحوب بتطبيق يسهل على الاولياء ايجاد الروضة المناسبة لأطفالهم
-           بالمختصر التطبيق يحتوي على نافذتين: نافذ خاصة بالاولياء و أخرى بالروضة حيث يعرض التطبيق كل الأنشطة التي
-         تقوم بها الروضة
-          </h2>
+  return (
+    <>
+      <Topcloud />
 
-          </div>
-         
-          <Botcloud/>
-        </>
-    );
-}
+      <Profile />
+
+      <div className="about-us">
+        <div className="image">
+          <img
+            src={require('./about-us.png')} alt="sorry"
+          />
+        </div>
+        <div className="content-aboutUs">
+          <h2>About Us</h2>
+          <span>{/* line here */}</span>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis
+            aspernatur voluptas inventore ab voluptates nostrum minus illo
+            laborum harum laudantium earum ut.
+          </p>
+          <ul className="links">
+            <li>
+              <a href="#">service</a>
+            </li>
+            <div className="vertical-line" />
+            <li>
+              <a href="#">contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <Botcloud />
+    </>
+  );
+};
 
 export default AboutUs;

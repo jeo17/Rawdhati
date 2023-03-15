@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+
+.about-us{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    height:68%;
+    
+}
+.image{
+    display: flex;
+  
+}
+.image img{
+height:50vh;
+margin:50px 0 50px 125px;
+}
+.content-aboutUs{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0  12px 12px 0;
+}
+.content-aboutUs h2{
+    color: #3b65c9;
+    text-transform: uppercase;
+    font-size: 36px;
+    letter-spacing: 6px;
+    opacity: 0.9;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.darkmode .content-aboutUs h2{
+    color: #45CCFF;
+}
+
+
+.content-aboutUs span{
+    height: 0.5px;
+    width: 80px;
+    background: #777;
+    margin: 0 0 30px 0;
+}
+.content-aboutUs p{
+    font-family: 'Fredoka One', cursive;
+    padding-bottom: 15px;
+    font-weight: 300;
+    opacity: 0.9;
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    line-height: 1.7;
+    color:#001e29
+}
+
+
+.darkmode .content-aboutUs p{
+    color: antiquewhite;
+}
+
+
+
+.links{
+    margin: 15px 0;
+}
+.links li{
+    font-family: 'Fredoka One', cursive;
+    border: 2px solid #3b65c9;
+    list-style: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    width: 160px;
+    text-align: center;
+}
+
+.darkmode .links li{
+    border: 2px solid #45CCFF;
+}
+
+
+.links li a{
+    text-transform: uppercase;
+    color: #001e29;
+    text-decoration: none;
+}
+
+
+.darkmode .links li a{
+    color: antiquewhite;
+}
+
+.links li:hover{
+    border-color: #C850C0;
+}
+
+.vertical-line{
+    height: 30px;
+    width: 3px;
+    background: #C850C0;
+    margin: 0 auto;
+}
+.icons{
+    display: flex;
+    padding: 15px 0;
+}
+.icons li{
+    display: block;
+    padding: 5px;
+    margin: 5px;
+}
+.icons li i{
+    font-size: 26px;
+    opacity: 0.8;
+}
+.icons li i:hover{
+    color: #C850C0;
+    cursor: pointer;
+}
+
+
+/*****************/
+
+@media(max-width: 900px){
+    section{
+        grid-template-columns: 1fr;
+        width: 100%;
+        border-radius: none;
+    }
+    .image{
+        height: 100vh;
+        border-radius: none;
+    }
+    .content-aboutUs{
+        height: 100vh;
+        border-radius: none;
+    }
+    .content-aboutUs h2{
+        font-size: 20px;
+        margin-top: 50px;
+    }
+    .content-aboutUs span{
+        margin: 20px 0;
+    }
+    .content-aboutUs p{
+        font-size: 14px;
+    }
+    .links li a{
+        font-size: 14px;
+    }
+    .links{
+        margin: 5px 0;
+    }
+    .links li{
+        padding: 6px 10px;
+    }
+    .icons li i{
+        font-size: 15px;
+    }
+}
+.credit{
+    text-align: center;
+    color: #000;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  .credit a{
+    text-decoration: none;
+    color:#000;
+    font-weight: bold;
+  } 
+

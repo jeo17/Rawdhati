@@ -13,7 +13,7 @@ import NeedToSignOut from "./needToSignOut";
 function App() {
   const {bird,face2,body} = useContext(ThemeContext);
 
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   return (
     <>

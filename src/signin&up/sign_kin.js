@@ -4,6 +4,7 @@ import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import NeedToSignOut from "../needToSignOut";
 import ForgetPass from "../comp/Forget-pass";
+import Page404 from "../Page_404";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
@@ -30,6 +31,37 @@ const SignPr = () => {
   const [errMsg_signup, seterrMsg_signup] = useState("");
 
   const [user, loading, error] = useAuthState(auth);
+
+
+
+
+  if (loading) {
+    //if he is in the loading state do this block of code ... and when he done read the rest of the code.
+    return (
+      <div>
+        <p>Initialising User...</p>
+      </div>
+    );
+  }
+
+
+
+  if (error) {
+    return (
+      <>
+        <Page404 />
+      </>
+    );
+  }
+
+
+
+
+
+
+
+
+
 
   return (
     <>
@@ -87,7 +119,7 @@ const SignPr = () => {
                             )
                               .then((userCredential) => {
                                 const user = userCredential.user;
-
+                                  console.log(user)
                                 sendEmailVerification(auth.currentUser).then(
                                   () => {
                                     console.log("verification sended!!");

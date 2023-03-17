@@ -19,7 +19,7 @@ const KinHome = () => {
 
   const Next = () => {
 
-    document.querySelector('.progress_holder:nth-child(1)').classList.add('activated_step');
+    
 
 
       let i = document.querySelector(".activated_feild");
@@ -37,7 +37,9 @@ const KinHome = () => {
         current_fs.classList.remove("activated_feild");
         next_fs.classList.add("activated_feild");
 
-        
+        if (current_fs.id === "1") {
+          document.querySelector(".progress_holder:nth-child(1)").classList.add("activated_step");
+        }
         if (current_fs.id === "2") {
           document.querySelector(".progress_holder:nth-child(2)").classList.add("activated_step");
         }
@@ -138,49 +140,102 @@ const KinHome = () => {
 
           <div className="main appmain">
             <dialog id="kin-dialog" open>
-              <form className="kin-form">
+              <form className="kin-form ">
 
 
                 <div id="multi_step_form">
-                  <div className="container-kin">
+                  <div className="container-kin flex">
                     <div id="multistep_nav">
-                      <div className="progress_holder">Step One</div>
-                      <div className="progress_holder">Step Two</div>
-                      <div className="progress_holder">Step Three</div>
-                      <div className="progress_holder">Step Four</div>
-                      <div className="progress_holder">Step Five</div>
+                      <div className="progress_holder">Kindergarten Name</div>
+                      <div className="progress_holder">Kindergarten Address</div>
+                      <div className="progress_holder">Kindergarten Picture</div>
+                      <div className="progress_holder">Kindergarten Activites</div>
+                      <div className="progress_holder">kindergarten monthly payment</div>
                     </div>
-                    <fieldset className="step activated_feild" id="1">
-                      <h2>One last step and we will open your space</h2>
-                      <h3>Please put your information down</h3>
 
-                     
-                      <p>This multi form is currently under development</p>
+
+                  
+                    <div className="content-kin-form">
+
+
+                    <fieldset className="step activated_feild" id="0">
+                      <div className="open-kin-dialog-form"> 
+                      <h2>One last step and we will open a space for you </h2>
+                      <h3>Please put your information down</h3>
+                      </div>
+                   
+                      <button className="nextStep" onClick={(eo) => { eo.preventDefault();  Next();   }}>Next</button>
+                    </fieldset>
+
+                    <fieldset className="step" id="1">
+                     <label>Kindergarten Name</label>
+                     <br/>
+                     <br/>
+                      <input  type="text" placeholder="Rawdhat:" required/>
                       <button className="nextStep" onClick={(eo) => { eo.preventDefault();  Next();   }}>Next</button>
                     </fieldset>
                     <fieldset className="step" id="2">
                       <button className="prevStep"  onClick={(eo) => {  eo.preventDefault(); Prev();   }}>Prev</button>
-                      <h4>Step Two</h4>
-                      <p>This multi form is currently under development</p>
+                      <label>Kindergarten Address</label>
+                      <br/>
+                     <br/>
+                      <input  type="text" required placeholder="address" />
                       <button className="nextStep"  onClick={(eo) => { eo.preventDefault();  Next();   }}>Next</button>
                     </fieldset>
                     <fieldset className="step" id="3">
                       <button className="prevStep"  onClick={(eo) => { eo.preventDefault();  Prev();   }}>Prev</button>
-                      <h4>Step Three</h4>
-                      <p>This multi form is currently under development</p>
+                      <label>Kindergarten Picture</label>
+                      <br/>
+                     <br/>
+                      <input  type="file" placeholder="add picture"/>
                       <button className="nextStep"  onClick={(eo) => { eo.preventDefault();  Next();   }}>Next</button>
                     </fieldset>
                     <fieldset className="step" id="4">
                       <button className="prevStep" onClick={(eo) => { eo.preventDefault();  Prev();   }}>Prev</button>
-                      <h4>Step Four</h4>
-                      <p>This multi form is currently under development</p>
+                      <div className="kin-form-header" >
+                      <label>Kindergarten Activites</label>
+                      <br/> <br/> 
+                      <p>Choose the activites that your kindergarten do :</p>
+                      </div>
+
+
+
+                    <div className="activites">
+
+                    <div className="activite"> <input type="checkbox" id="Travel"/> <lable for="Travel">Travel</lable> </div>  
+                     <div className="activite"> <input type="checkbox" id="Language Learning"/> <lable for="Language Learning">Language Learning</lable> </div>
+                     <div className="activite"> <input type="checkbox" id="Sports"/> <lable for="Sports">Sports</lable> </div>
+                     <div className="activite"> <input type="checkbox" id="Painting "/> <lable for="Painting ">Painting </lable> </div>
+                     <div className="activite"> <input type="checkbox" id="Quran "/> <lable for="Quran ">Quran </lable> </div>
+                     <div className="activite"> <input type="checkbox" id="Reading "/> <lable for="Reading ">Reading </lable> </div>
+                     <div className="activite"> <input type="checkbox" id="other "/> <lable for="other ">Other Things </lable> </div>
+
+                    </div>
                       <button className="nextStep"  onClick={(eo) => {  eo.preventDefault(); Next();   }}>Next</button>
                     </fieldset>
                     <fieldset className="step" id="5">
                       <button className="prevStep"  onClick={(eo) => { eo.preventDefault();  Prev();   }}>Prev</button>
-                      <h4>Step Five</h4>
-                      <p>This multi form is currently under development</p>
+                      <label>kindergarten monthly payment amount</label>
+                      <br/> <br/>
+                      <input  type="number" placeholder="DA/MONTH"/>
+                      <button className="nextStep"  onClick={(eo) => {  eo.preventDefault();  Next();
+                      document.querySelector(".kin-form ").style.backgroundColor = "#01c103";
+                      setTimeout(() => {
+                        document.getElementById("kin-dialog").close();
+                      }, 3700);
+                      }}>Next</button>
                     </fieldset>
+
+                    <fieldset className="step" id="6">
+                      <div  className="kin-form-footer">
+                      <h1>Thank You </h1>
+                      <h3 >Those information will help people reached your kindergarten</h3>
+                      </div>
+                    
+                    </fieldset>
+
+                    </div>
+                   
                   </div>
                 </div>
 

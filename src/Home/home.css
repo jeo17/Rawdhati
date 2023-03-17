@@ -18,30 +18,35 @@
     background-color: #fff;
 	border-radius: 33px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 1800ms;
 }
 
 
 
 
-.progress_holder:nth-child(1){
-    border-top-left-radius: 33px;
-}
-.progress_holder:nth-child(5){
-    border-top-right-radius: 33px;
-}
+
 
 #multi_step_form {
     padding-bottom: 60px;
   }
+
+
   #multi_step_form .container-kin #multistep_nav {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    border-right: 2px solid grey;
+    font-family: 'Fredoka One', cursive;
+    color: #3b65c9;
+   
   }
   #multi_step_form .container-kin #multistep_nav .progress_holder {
-    padding: 20px;
-    width: 25%;
+    padding: 29px 20px;
     text-align: center;
+    border-bottom: 2px solid grey;
   }
+ 
+
   #multi_step_form .container-kin #multistep_nav .activated_step {
     background-color: #01c103;
     color: white;
@@ -70,11 +75,68 @@
   #multi_step_form .container-kin fieldset.step:not(:first-of-type) {
     display: none;
   }
-  fieldset {
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    transition: all 4s;
+ 
+
+  .open-kin-dialog-form{
+    color: #5957f9;
   }
 
+
+  fieldset {
+    border: none;
+  }
+  .content-kin-form{
+    flex-grow: 2;
+    font-family: 'Fredoka One', cursive;
+    
+  }
+  .content-kin-form label{
+    font-size: 23px;
+    color:#03a9f4 ;
+    font-weight: 800;
+  }
+
+  .content-kin-form input{
+    margin-top: 25px;
+    width: 280px;
+  }
  
+ 
+  .progress_holder:nth-child(1){
+    border-top-left-radius: 33px;
+}
+.progress_holder:nth-child(5){
+    border-bottom-left-radius: 33px;
+    border :none !important;
+}
+
+.activites{
+display: flex;
+flex-wrap: wrap;
+position: absolute;
+bottom: 77px;
+
+}
+
+
+.activite {
+  display: flex;
+  align-items: baseline;
+  margin-right: 65px;
+}
+.activite input{
+  width: 25px;
+}
+
+.kin-form-header{
+ position: relative;
+ bottom: 77px;
+
+}
+
+.kin-form-footer{
+  position: absolute;
+  bottom: 64px;
+  color: aliceblue;
+  
+}

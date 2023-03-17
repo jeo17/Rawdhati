@@ -219,10 +219,9 @@ const KinHome = () => {
                       <br/> <br/>
                       <input  type="number" placeholder="DA/MONTH"/>
                       <button className="nextStep"  onClick={(eo) => {  eo.preventDefault();  Next();
-                      document.querySelector(".kin-form ").style.backgroundColor = "#01c103";
                       setTimeout(() => {
                         document.getElementById("kin-dialog").close();
-                      }, 3700);
+                      }, 3000);
                       }}>Next</button>
                     </fieldset>
 

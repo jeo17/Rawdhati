@@ -48,7 +48,7 @@
  
 
   #multi_step_form .container-kin #multistep_nav .activated_step {
-    background-color: #01c103;
+    background-color: #a0fa20;
     color: white;
   }
   #multi_step_form .container-kin fieldset.step {
@@ -137,6 +137,6 @@ bottom: 77px;
 .kin-form-footer{
   position: absolute;
   bottom: 64px;
-  color: aliceblue;
+  color: #5957f9;
   
 }

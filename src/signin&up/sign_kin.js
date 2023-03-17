@@ -127,6 +127,7 @@ const SignPr = () => {
                                 );
 
                                 navigate("/kin_home");
+                                
                               })
                               .catch((error) => {
                                 const errorCode = error.code;

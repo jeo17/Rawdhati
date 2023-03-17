@@ -11,3 +11,70 @@
 .refresh:hover{
     scale: 1.1;
 }
+
+.kin-form{
+    width: 75vw;
+    height: 65vh;
+    background-color: #fff;
+	border-radius: 33px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+
+.progress_holder:nth-child(1){
+    border-top-left-radius: 33px;
+}
+.progress_holder:nth-child(5){
+    border-top-right-radius: 33px;
+}
+
+#multi_step_form {
+    padding-bottom: 60px;
+  }
+  #multi_step_form .container-kin #multistep_nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  #multi_step_form .container-kin #multistep_nav .progress_holder {
+    padding: 20px;
+    width: 25%;
+    text-align: center;
+  }
+  #multi_step_form .container-kin #multistep_nav .activated_step {
+    background-color: #01c103;
+    color: white;
+  }
+  #multi_step_form .container-kin fieldset.step {
+    position: relative;
+    padding: 100px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  #multi_step_form .container-kin fieldset.step .nextStep {
+    position: absolute;
+    right: 18px;
+    bottom: 0;
+    padding: 10px;
+    width: 100px;
+  }
+  #multi_step_form .container-kin fieldset.step .prevStep {
+    position: absolute;
+    left: 18px;
+    bottom: 0;
+    padding: 10px;
+    width: 100px;
+  }
+  #multi_step_form .container-kin fieldset.step:not(:first-of-type) {
+    display: none;
+  }
+  fieldset {
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    transition: all 4s;
+  }
+
+ 

@@ -169,7 +169,7 @@
 	transform: scale(1.02);
   }
 
-  .signcont input  {
+  .signcont input,.kin-form input {
 	background: transparent;
 	border: 0;
 	outline: 0;

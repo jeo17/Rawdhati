@@ -21,6 +21,19 @@
     font-family: 'Fredoka One', cursive;
 }
 
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+
+.flex-c{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+}
+
 
 .kinside{
     margin: 48px 25px 0px 12.5px;

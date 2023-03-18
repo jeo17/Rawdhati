@@ -21,6 +21,10 @@
   transition: all 1800ms;
 }
 
+.darkmode .kin-form{
+  background-color: #001e29;
+}
+
 
 
 
@@ -72,6 +76,7 @@
     bottom: 0;
     padding: 10px;
     width: 100px;
+    background-color: gray;
   }
   #multi_step_form .container-kin fieldset.step:not(:first-of-type) {
     display: none;
@@ -126,7 +131,9 @@ bottom: 77px;
 
 }
 
-
+.darkmode .activites lable{
+  color: antiquewhite ;
+}
 .activite {
   display: flex;
   align-items: baseline;
@@ -144,9 +151,12 @@ bottom: 77px;
 
 .kin-form-footer{
   position: absolute;
-  bottom: 64px;
+  bottom: 20px;
   color: #5957f9;
-  
+}
+
+.darkmode .kin-form-footer h1{
+  color: #5957f9;
 }
 
 button:disabled{

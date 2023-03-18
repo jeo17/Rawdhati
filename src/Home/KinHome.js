@@ -88,6 +88,13 @@ const KinHome = () => {
     } 
   
   }
+
+
+   const keyEvent = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+  }
+   }
   
 
   const validButton = (eo,name) => {
@@ -111,7 +118,7 @@ const KinHome = () => {
   if (amount < 2 || amount > 5) {
     eo.target.disabled = true
   } else {
-    Next();   setTimeout(() => {   document.getElementById("kin-dialog").close();   }, 3000);
+    Next();   setTimeout(() => {   document.getElementById("kin-dialog").close();   }, 3300);
   }
   
   }
@@ -197,8 +204,11 @@ const KinHome = () => {
                       <input  type="text" placeholder="Rawdhat:" required onChange={(eo) => {
                         setname(eo.target.value.length)
                         name <= 3 ? document.querySelectorAll(".nextStep")[1].disabled = true : document.querySelectorAll(".nextStep")[1].disabled = false;
-                      }}/>
-                      <button className="nextStep" onClick={(eo) => {     validButton(eo,name)   }}>Next</button>
+                      }}  
+                      onKeyDown={(eo) => {
+                        keyEvent(eo);
+                      }} />
+                      <button className="nextStep" onClick={(eo) => {   validButton(eo,name)   }} >Next</button>
                     </fieldset>
                     <fieldset className="step" id="2">
                       <button className="prevStep"  onClick={(eo) => {  eo.preventDefault(); Prev();   }}>Prev</button>
@@ -208,6 +218,9 @@ const KinHome = () => {
                       <input  type="text" required placeholder="Address"  onChange={(eo) => {
                         setaddress(eo.target.value.length)
                         address <= 3 ? document.querySelectorAll(".nextStep")[2].disabled = true : document.querySelectorAll(".nextStep")[2].disabled = false;
+                      }}
+                      onKeyDown={(eo) => {
+                        keyEvent(eo);
                       }}/>
                       <button className="nextStep"  onClick={(eo) => { validButton(eo,address);   }}>Next</button>
                     </fieldset>
@@ -233,37 +246,58 @@ const KinHome = () => {
 
                     <div className="activite"> <input type="checkbox" id="Travel" onChange={(eo) => {
                      countBOX(eo,activite);
+                    }}
+                    onKeyDown={(eo) => {
+                      keyEvent(eo);
                     }}/> <lable for="Travel">Travel</lable> </div>  
 
 
                      <div className="activite"> <input type="checkbox" id="Language Learning"onChange={(eo) => {
                       countBOX(eo,activite);
-                     }}/> <lable for="Language Learning">Language Learning</lable> </div>
+                     }}
+                     onKeyDown={(eo) => {
+                      keyEvent(eo);
+                    }}/> <lable for="Language Learning">Language Learning</lable> </div>
 
 
                      <div className="activite"> <input type="checkbox" id="Sports"onChange={(eo) => {
                       countBOX(eo,activite);
-                     }}/> <lable for="Sports">Sports</lable> </div>
+                     }}
+                     onKeyDown={(eo) => {
+                      keyEvent(eo);
+                    }}/> <lable for="Sports">Sports</lable> </div>
 
 
                      <div className="activite"> <input type="checkbox" id="Painting "onChange={(eo) => {
                       countBOX(eo,activite);
-                     }}/> <lable for="Painting ">Painting </lable> </div>
+                     }}
+                     onKeyDown={(eo) => {
+                      keyEvent(eo);
+                    }}/> <lable for="Painting ">Painting </lable> </div>
 
 
                      <div className="activite"> <input type="checkbox" id="Quran "onChange={(eo) => {
                       countBOX(eo,activite);
-                     }}/> <lable for="Quran ">Quran </lable> </div>
+                     }}
+                     onKeyDown={(eo) => {
+                      keyEvent(eo);
+                    }}/> <lable for="Quran ">Quran </lable> </div>
 
 
                      <div className="activite"> <input type="checkbox" id="Reading "onChange={(eo) => {
                       countBOX(eo,activite);
-                     }}/> <lable for="Reading ">Reading </lable> </div>
+                     }}
+                     onKeyDown={(eo) => {
+                      keyEvent(eo);
+                    }}/> <lable for="Reading ">Reading </lable> </div>
 
 
                      <div className="activite"> <input type="checkbox" id="other "onChange={(eo) => {
                       countBOX(eo,activite);
-                     }}/> <lable for="other ">Other Things </lable> </div>
+                     }}
+                     onKeyDown={(eo) => {
+                      keyEvent(eo);
+                    }}/> <lable for="other ">Other Things </lable> </div>
 
                     </div>
                       <button className="nextStep" onClick={(eo) => { validButton2(eo,activite)  }}>Next</button>
@@ -274,10 +308,13 @@ const KinHome = () => {
                       <label>kindergarten monthly payment amount <p>*</p></label>
                       <br/> <br/>
                       <div className="amount">
-                      <input  type="number" placeholder="Price" min="500" max="10000" step="50" style={{width:"200px"}}
+                      <input  type="number" placeholder="Price" min="500" max="10000" step="50" maxlength="5" size="5" style={{width:"215px"}}
                       onChange={ (eo) => {
                         setamount(eo.target.value.length)
                         amount < 2 ? document.querySelectorAll(".nextStep")[5].disabled = true : document.querySelectorAll(".nextStep")[5].disabled = false;
+                      }}
+                      onKeyDown={(eo) => {
+                        keyEvent(eo);
                       }} />
                        <span class="unit">.00 DA</span>
                       </div>

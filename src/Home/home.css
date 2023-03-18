@@ -53,6 +53,7 @@
   }
   #multi_step_form .container-kin fieldset.step {
     position: relative;
+    bottom: 36px;
     padding: 100px;
     text-align: center;
     align-items: center;
@@ -94,6 +95,13 @@
     font-size: 23px;
     color:#03a9f4 ;
     font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .content-kin-form label p {
+    color: #ff0000;
   }
 
   .content-kin-form input{
@@ -139,4 +147,22 @@ bottom: 77px;
   bottom: 64px;
   color: #5957f9;
   
+}
+
+button:disabled{
+  background-color: gray;
+}
+
+.unit { 
+  position: relative; 
+  right: 160px; 
+  color: #a39595;
+  font-weight: 600;
+  font-size: 15px;
+  
+}
+.amount{
+  display: flex;
+  align-items: baseline;
+ justify-content: center;
 }

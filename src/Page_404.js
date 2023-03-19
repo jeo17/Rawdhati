@@ -8,8 +8,6 @@ const Page404 = () => {
 const snow = () => {
     
 
-
-
     function ready(fn) {
         if (document.readyState !== 'loading'){
             fn();

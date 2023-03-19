@@ -16,9 +16,11 @@
     width: 75vw;
     height: 65vh;
     background-color: #fff;
-	border-radius: 33px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transition: all 1800ms;
+ 	  border-radius: 33px;
+  	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 1800ms;
+    position: relative;
+    z-index: 1;
 }
 
 .darkmode .kin-form{
@@ -175,4 +177,59 @@ button:disabled{
   display: flex;
   align-items: baseline;
  justify-content: center;
+}
+
+
+
+/****************************************************************************************
+****************************************************************************************/
+
+
+.kin-card{
+    position: absolute;
+    height: 550px;
+    width: 99.3vw;
+    top: 100vh;
+    background-color: #beddec;
+    
+}
+
+
+
+
+.banner,
+h1,
+button {
+  transition: 0.6s;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 85vh;
+  background: url("kin2.jpg");
+  background-size: 130%;
+  background-position: center;
+  transition: 0.5s;
+  position: absolute;
+}
+
+.banner h1 {
+  font-size: 50px;
+  font-family: 'Fredoka One', cursive;
+  color: #ba315d;
+}
+
+.banner button {
+  padding: 12px 36px;
+  border-radius: 50px;
+  border: 0;
+  background: #221e6f;
+  color: #f9f9f9;
+  font-size: 18px;
+  font-family: inherit;
+  font-family: 'Fredoka One', cursive;
 }

@@ -119,7 +119,7 @@ profile circle
 
 .action {
   transform: scale(0.7);
-  position: fixed;
+  position: absolute;
   top: 5px;
   right: 55px;
   font-family: "Poppins", sans-serif;

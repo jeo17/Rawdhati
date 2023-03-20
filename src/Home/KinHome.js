@@ -23,7 +23,7 @@ const KinHome = () => {
   
   const scrollPosition = event.target.scrollingElement.scrollTop;
   if (scrollPosition > 150) {
-    banner.style.backgroundSize = "100%";
+    banner.style.backgroundSize = "140%";
     h1.style.opacity = 0;
     h1.style.translate = "0 -50px";
     h1.style.scale = "0.9";
@@ -31,7 +31,7 @@ const KinHome = () => {
     button.style.translate = "0 -50px";
     button.style.scale = "0.8";
   } else {
-    banner.style.backgroundSize = "130%";
+    banner.style.backgroundSize = "100%";
     h1.style.opacity = 1;
     h1.style.translate = 0;
     h1.style.scale = 1;
@@ -376,7 +376,88 @@ document.addEventListener("scroll", onScroll);
                 onScroll(eo)
                }}>Get Started</button>
             </div>
-            <div className="kin-card"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+            <div className="kin-card">
+
+<ul className="cards">
+  <li className="cards_item">
+    <div className="card card1">
+      <div className="card_content">
+        <h2 className="card_title"> Class  <span className="material-symbols-outlined">  school  </span></h2>
+        <div className="card_text">
+          <p>
+           ..............
+          </p>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li className="cards_item">
+    <div className="card card2">
+      <div className="card_content">
+        <h2 className="card_title"> Activities   <span class="material-symbols-outlined">  extension  </span></h2>
+        <div className="card_text">
+          <p>
+            <ol>
+              <li>
+              Reading
+              </li>
+              <li>
+              Quran
+              </li>
+              <li>
+              Painting
+              </li>
+              <li>
+              Language Learning
+              </li>
+            </ol>
+          </p>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li className="cards_item">
+    <div className="card card3">
+      <div className="card_content">
+        <h2 className="card_title">Chat  <span class="material-symbols-outlined">  chat  </span> </h2>
+        <div className="card_text">
+        
+          <p>
+          .................
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  </li>
+  <li className="cards_item">
+    <div className="card card4">
+      <div className="card_content">
+        <h2 className="card_title">Registration Request  <span class="material-symbols-outlined"> person_add  </span></h2>
+        <div className="card_text">
+          <p>
+           ...........
+          </p>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+            </div>
             
           </div>
           <Botcloud />

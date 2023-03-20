@@ -21,7 +21,7 @@ const PrHome = () => {
   
   const scrollPosition = event.target.scrollingElement.scrollTop;
   if (scrollPosition > 150) {
-    banner.style.backgroundSize = "100%";
+    banner.style.backgroundSize = "130%";
     h1.style.opacity = 0;
     h1.style.translate = "0 -50px";
     h1.style.scale = "0.9";
@@ -29,7 +29,7 @@ const PrHome = () => {
     button.style.translate = "0 -50px";
     button.style.scale = "0.8";
   } else {
-    banner.style.backgroundSize = "130%";
+    banner.style.backgroundSize = "100%";
     h1.style.opacity = 1;
     h1.style.translate = 0;
     h1.style.scale = 1;

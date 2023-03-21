@@ -12,13 +12,13 @@ import { signOut, sendEmailVerification } from "firebase/auth";
 
 const PrHome = () => {
   const h1 = document.getElementById("h1"),
-    banner = document.getElementById("banner"),
-    button = document.getElementById("button");
+    banner2 = document.getElementById("banner2"),
+    button = document.querySelector(".search-container");
 
   const onScroll = (event) => {
     const scrollPosition = event.target.scrollingElement.scrollTop;
     if (scrollPosition > 150) {
-      banner.style.backgroundSize = "130%";
+      banner2.style.backgroundSize = "130%";
       h1.style.opacity = 0;
       h1.style.translate = "0 -50px";
       h1.style.scale = "0.9";
@@ -26,7 +26,7 @@ const PrHome = () => {
       button.style.translate = "0 -50px";
       button.style.scale = "0.8";
     } else {
-      banner.style.backgroundSize = "100%";
+      banner2.style.backgroundSize = "100%";
       h1.style.opacity = 1;
       h1.style.translate = 0;
       h1.style.scale = 1;
@@ -112,17 +112,15 @@ const PrHome = () => {
 
           <Profile />
           <div className="main appmain">
-            <div id="banner" className="banner">
+            <div id="banner2" className="banner2">
               <h1 id="h1">welcome {user.displayName}</h1>
 
               <div className="search-container">
-                <input className="search-main" />
+                <input className="search-main" placeholder="Search for a kindergarten"/>
 
                   <span className="searchicon" />
                   
                   <div className="microphone" onClick={(eo) => {
-                    //if&else
-
                    const holder = document.querySelector(".icon-holder");
                    const icons = document.querySelectorAll(".icon");
                    
@@ -136,11 +134,7 @@ const PrHome = () => {
                     icons.forEach(icon => {
                     icon.style.animation = "ani 2.2s ease-out infinite";
                    });
-                   }
-
-                   
-
-                    
+                   }                
                   }}>
                      <label style={{cursor:"pointer"}}> search by</label>
                   <span class="material-symbols-outlined">  filter_list  </span>
@@ -170,6 +164,8 @@ const PrHome = () => {
                 </div>
               </div>
             </div>
+
+           <div className="pr-card"></div> 
 
           </div>
           <Botcloud />

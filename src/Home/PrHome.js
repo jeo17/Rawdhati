@@ -123,12 +123,22 @@ const PrHome = () => {
                   <div className="microphone" onClick={(eo) => {
                     //if&else
 
-                   const tester = document.querySelector(".icon");
+                   const holder = document.querySelector(".icon-holder");
                    const icons = document.querySelectorAll(".icon");
-                    
-                   icons.forEach(icon => {
+                   
+                   if (holder.style.visibility === "visible") {
+                    holder.style.visibility = "hidden";
+                    icons.forEach(icon => {
+                      icon.style.animation = "";
+                     });
+                   } else {
+                    holder.style.visibility = "visible";
+                    icons.forEach(icon => {
                     icon.style.animation = "ani 2.2s ease-out infinite";
                    });
+                   }
+
+                   
 
                     
                   }}>

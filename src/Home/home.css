@@ -190,7 +190,6 @@ button:disabled{
   width: 99.3vw;
   top: 100vh;
   background-color: #beddec;
-  
 }
 
 
@@ -319,7 +318,7 @@ button {
   align-items: center;
   width: 100%;
   height: 85vh;
-  background: url("kin2.jpg");
+  background: url("kin.jpg");
   background-size: 100%;
   background-position: center;
   transition: 0.5s;
@@ -421,6 +420,7 @@ button {
   display: flex;
   justify-content: space-evenly;
   margin-top: 7px;
+  visibility: hidden;
 }
 
 .icon {

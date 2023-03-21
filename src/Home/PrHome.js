@@ -137,7 +137,7 @@ document.addEventListener("scroll", onScroll);
           
           </div>
           <Botcloud />
-          <div className="kin-card"></div>
+          
           
 
         </>

@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut, sendEmailVerification } from "firebase/auth";
 
+
 const PrHome = () => {
   const h1 = document.getElementById("h1"),
     banner2 = document.getElementById("banner2"),
@@ -37,6 +38,8 @@ const PrHome = () => {
   };
 
   document.addEventListener("scroll", onScroll);
+
+
 
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
@@ -165,7 +168,14 @@ const PrHome = () => {
               </div>
             </div>
 
-           <div className="pr-card"></div> 
+
+
+
+           <div className="pr-card">
+            
+
+            
+            </div> 
 
           </div>
           <Botcloud />

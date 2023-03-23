@@ -3,6 +3,7 @@ import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import TopcloudErr from "../comp/topcloud_err";
 import Profile from "../comp/Profile";
+import Slider from "../comp/Slider";
 import Page404 from "../Page_404";
 import { auth } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -60,7 +61,7 @@ const PrHome = () => {
   }
 
   if (error) {
-    //if he is in the loading state do this block of code ... and when he done read the rest of the code.
+    
     return (
       <>
         <Page404 />
@@ -173,7 +174,7 @@ const PrHome = () => {
 
            <div className="pr-card">
             
-
+           <Slider />
             
             </div> 
 

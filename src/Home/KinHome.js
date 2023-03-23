@@ -12,11 +12,12 @@ import Profile from "../comp/Profile";
 import { signOut, sendEmailVerification } from "firebase/auth";
 
 const KinHome = () => {
-  const h1 = document.getElementById("h1"),
-    banner = document.getElementById("banner"),
-    button = document.getElementById("button");
+  
 
   const onScroll = (event) => {
+    const h1 = document.getElementById("h1"),
+    banner = document.getElementById("banner"),
+    button = document.getElementById("button");
     const scrollPosition = event.target.scrollingElement.scrollTop;
     if (scrollPosition > 150) {
       banner.style.backgroundSize = "140%";

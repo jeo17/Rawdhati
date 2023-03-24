@@ -514,7 +514,7 @@ const KinHome = () => {
                               keyEvent(eo);
                             }}
                           />
-                          <span class="unit">.00 DA</span>
+                          <span className="unit">.00 DA</span>
                         </div>
                         <button
                           className="nextStep"
@@ -578,7 +578,7 @@ const KinHome = () => {
                       <h2 className="card_title">
                         {" "}
                         Activities{" "}
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                           {" "}
                           extension{" "}
                         </span>
@@ -601,7 +601,7 @@ const KinHome = () => {
                     <div className="card_content">
                       <h2 className="card_title">
                         Chat{" "}
-                        <span class="material-symbols-outlined"> chat </span>{" "}
+                        <span className="material-symbols-outlined"> chat </span>{" "}
                       </h2>
                       <div className="card_text">
                         <p>.................</p>
@@ -614,7 +614,7 @@ const KinHome = () => {
                     <div className="card_content">
                       <h2 className="card_title">
                         Registration Request{" "}
-                        <span class="material-symbols-outlined">
+                        <span className="material-symbols-outlined">
                           {" "}
                           person_add{" "}
                         </span>
@@ -679,7 +679,7 @@ const KinHome = () => {
               {" "}
               click here to signin again in the right space 👉{" "}
               <span
-                class="material-symbols-outlined refresh"
+                className="material-symbols-outlined refresh"
                 onClick={() => {
                   signOut(auth)
                     .then(() => {

@@ -1,5 +1,6 @@
 .swiper{
-  width: 950px;
+  width: 86vw;
+  margin-top: 50px;
 }
 
 .slider-card {
@@ -50,10 +51,24 @@ section .slider-card .slider-image{
 
 .slider-card .media-icons i{
   color: #7d2ae8;
-  opacity: 0.8;
+  opacity: 0.9;
   margin-top: 10px;
   transition: all 0.3s ease;
   cursor: pointer;
+  border-radius: 50%;
+}
+
+.slider-card .media-icons .fa-facebook{
+  color: #0676e7;
+  background-color: antiquewhite;
+}
+.slider-card .media-icons .fa-instagram{
+  color: antiquewhite;
+  background-color: #f22577;
+}
+.slider-card .media-icons .fa-google{
+  color: #d14a3e;
+  background-color:antiquewhite ;
 }
 
 .slider-card .media-icons i:hover{
@@ -77,34 +92,15 @@ section .slider-card .slider-image{
   font-weight: 500;
 }
 
-.stars{
-  display: flex;
-  transform: scale(0.3);
+.rating{
+  margin-top: 15px;
+}
+.rating i{
+  color: #7d2ae8;
+  font-weight: 400;
 
 }
-.stars input {
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-}
 
-.stars label {
-  box-sizing: border-box;
-  display: inline-block;
-  margin-right: 6px;
-  height: 60px;
-  width: 60px;
-  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='transparent' stroke='slategray' stroke-width='38' d='M259.216 29.942L330.27 173.92l158.89 23.087L374.185 309.08l27.145 158.23-142.114-74.698-142.112 74.698 27.146-158.23L29.274 197.007l158.89-23.088z' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  font-size: 0;
-  cursor: pointer;
-}
-
-.stars input:nth-child(1):checked ~ label:nth-of-type(-n + 1),
-.stars input:nth-child(2):checked ~ label:nth-of-type(-n + 2),
-.stars input:nth-child(3):checked ~ label:nth-of-type(-n + 3),
-.stars input:nth-child(4):checked ~ label:nth-of-type(-n + 4),
-.stars input:nth-child(5):checked ~ label:nth-of-type(-n + 5) {
-  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='slategray' stroke='slategray' stroke-width='38' d='M259.216 29.942L330.27 173.92l158.89 23.087L374.185 309.08l27.145 158.23-142.114-74.698-142.112 74.698 27.146-158.23L29.274 197.007l158.89-23.088z' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
 
 .slider-card .slider-button{
   width: 100%;
@@ -131,6 +127,8 @@ section .slider-card .slider-image{
 
 .swiper-pagination{
   position: absolute;
+  bottom: -10px !important;
+  background-color: #beddec;
 }
 
 .swiper-pagination-bullet{

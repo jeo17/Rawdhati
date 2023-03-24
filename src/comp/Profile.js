@@ -46,7 +46,7 @@ const Profile = () => {
       <span className="wishlist">Add a child +</span>
     </div>
     <div className="fashion-studio-border pt-2">
-      <span className="fashion-studio">Fashion studio</span>
+      <span className="fashion-studio">Bio</span>
     </div>
    </div>
     

@@ -8,7 +8,8 @@ import { useState } from "react";
 const ForgetPass = () => {
 
     const [email, setemail] = useState("")
-    const [msg, setmsg] = useState("none")
+    const [displayMsg, setDisplayMsg] = useState("none")
+    const [Msg, setMsg] = useState("")
 
   return (
     <dialog id="forget-pass">
@@ -32,7 +33,7 @@ const ForgetPass = () => {
         <div className="form-group">
           <input type="email" name="user_email" id="user_email" placeholder="Email" required onChange={(eo) => {
             setemail(eo.target.value);
-           setmsg("none");
+           setDisplayMsg("none");
           }} />
           <button onClick={(eo) => {
             eo.preventDefault();
@@ -40,19 +41,51 @@ const ForgetPass = () => {
             sendPasswordResetEmail(auth, email)
             .then(() => {
               // Password reset email sent!
-              setmsg("block")
+              setDisplayMsg("block")
+              setMsg("✔️ check your email ! ✔️")
             })
             .catch((error) => {
               const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log(errorCode)
+              setDisplayMsg("block")
+
+
+              switch (errorCode) {
+                case "auth/invalid-email":
+                  setMsg("❌ Wrong Email ! ❌ ");
+                  break;
+
+                case "auth/user-not-found":
+                  setMsg("❌ Wrong Email ! ❌ ");
+                  break;
+
+                case "auth/missing-email":
+                  setMsg("❌ Missing Email ! ❌ ");
+                  break;
+
+                default:
+                  setMsg(
+                    "❌ Please check your email ! ❌ "
+                  );
+                  break;
+              }
+
+
+
+
+
+
+
+
+
+
+
               // ..
             });
 
           }}>Reset Password</button>
 
-        <h5 className="information-text" style={{display:`${msg}`}}>
-          check your email !!
+        <h5 className="information-text" style={{display:`${displayMsg}`}}>
+          {Msg}
         </h5>
 
         </div>

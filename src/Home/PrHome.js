@@ -174,7 +174,7 @@ const PrHome = () => {
 
            <div className="pr-card">
 
-            <h2 className="card-title">Kindergartens may you like:</h2>
+            <h2 className="card-title">Kindergartens may you like it:</h2>
             
            <Slider />
 

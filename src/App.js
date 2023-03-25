@@ -38,7 +38,7 @@ function App() {
       element: <SignPr />,
     },
     {
-      path: "/pr_home/kindergarten_form",
+      path: "/kindergarten_form",
       element: <KinForm />,
     },
     {

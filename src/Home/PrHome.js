@@ -14,10 +14,16 @@ import { signOut, sendEmailVerification } from "firebase/auth";
 
 const PrHome = () => {
    
+
+
+ 
   const onScroll = (event) => {
-    const h1 = document.getElementById("h1"),
-    banner2 = document.getElementById("banner2"),
-    button = document.querySelector(".search-container");
+
+ if ( document.getElementById("banner2") != null) {
+      const banner2 = document.getElementById("banner2");
+      const h1 = document.getElementById("h1");
+      const button = document.querySelector(".search-container");
+
     const scrollPosition = event.target.scrollingElement.scrollTop;
     if (scrollPosition > 150) {
       banner2.style.backgroundSize = "130%";
@@ -37,8 +43,15 @@ const PrHome = () => {
       button.style.scale = 1;
     }
   };
+    
+}
+
+
 
   document.addEventListener("scroll", onScroll);
+
+
+  
 
 
 
@@ -168,7 +181,6 @@ const PrHome = () => {
                 </div>
               </div>
             </div>
-
 
 
 

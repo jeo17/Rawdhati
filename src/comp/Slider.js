@@ -49,7 +49,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
+                  <button className="hireMe"><Link to="/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -77,7 +77,7 @@ function Slider() {
 
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
+                  <button className="hireMe"><Link to="/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -102,7 +102,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
+                  <button className="hireMe"><Link to="/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -127,7 +127,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
+                  <button className="hireMe"><Link to="/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
+                  <button className="hireMe"><Link to="/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -177,7 +177,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
+                  <button className="hireMe"><Link to="/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -202,7 +202,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
+                  <button className="hireMe"><Link to="/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -227,7 +227,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
+                  <button className="hireMe"><Link to="/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -252,7 +252,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
+                  <button className="hireMe"><Link to="/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>

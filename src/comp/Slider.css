@@ -1,11 +1,11 @@
 .swiper{
   width: 86vw;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .slider-card {
   position: relative;
-  background: #fff;
+  background: #f1f1f1;
   border-radius: 20px;
   margin: 20px 0;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -127,9 +127,14 @@ section .slider-card .slider-image{
 
 .swiper-pagination{
   position: absolute;
-  bottom: -10px !important;
-  background-color: #beddec;
+ top: 435px !important;
 }
+
+.swiper-button-next, .swiper-button-prev {
+  top: 250px !important;
+}
+
+
 
 .swiper-pagination-bullet{
   height: 7px;

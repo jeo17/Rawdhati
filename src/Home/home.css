@@ -286,7 +286,7 @@ h2.card_title,p {
   align-items: center; 
   gap: 12px;
   color: #03a9f4;
-  font-size: 28px;
+  font-size: 26.5px;
   font-family: 'Fredoka One', cursive;
 }
 
@@ -696,9 +696,18 @@ button {
  
 }
 
+.annonces{
+  height: 300px;
+  width: 99.2vw;
 
+  background-color: #beddec;
+}
 
-
+.card-title{
+  color: #5797b7;
+  font-family: 'Fredoka One', cursive;
+  margin-left: 50px;
+}
 
 
 

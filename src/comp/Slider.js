@@ -2,6 +2,7 @@ import "./Slider.css";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 import { useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 function Slider() {
   useEffect(() => {
@@ -48,7 +49,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe">Hire Me</button>
+                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -76,7 +77,7 @@ function Slider() {
 
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe">Hire Me</button>
+                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -101,7 +102,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe">Hire Me</button>
+                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -126,7 +127,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe">Hire Me</button>
+                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -151,7 +152,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe">Hire Me</button>
+                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -176,7 +177,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe">Hire Me</button>
+                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -201,7 +202,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe">Hire Me</button>
+                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -226,7 +227,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe">Hire Me</button>
+                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>
@@ -251,7 +252,7 @@ function Slider() {
                 </div>
                 <div className="slider-button">
                   <button className="aboutMe">About Me</button>
-                  <button className="hireMe">Hire Me</button>
+                  <button className="hireMe"><Link to="/pr_home/kindergarten_form" style={{all:"unset"}}> Registration </Link></button>
                 </div>
               </div>
             </div>

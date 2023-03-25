@@ -173,11 +173,20 @@ const PrHome = () => {
 
 
            <div className="pr-card">
+
+            <h2 className="card-title">Kindergartens may you like:</h2>
             
            <Slider />
+
+           <h2 className="card-title">Advertisements:</h2>
+
+           <div className="annonces">
             
+            </div>
+
             </div> 
 
+           
           </div>
           <Botcloud />
         </>

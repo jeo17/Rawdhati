@@ -613,7 +613,7 @@ const KinHome = () => {
                   <div className="card card4">
                     <div className="card_content">
                       <h2 className="card_title">
-                        Registration Request{" "}
+                        Registration Requests{" "}
                         <span className="material-symbols-outlined">
                           {" "}
                           person_add{" "}

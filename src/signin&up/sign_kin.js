@@ -34,7 +34,6 @@ const SignPr = () => {
 
 
 
-
   if (loading) {
     //if he is in the loading state do this block of code ... and when he done read the rest of the code.
     return (
@@ -84,7 +83,7 @@ const SignPr = () => {
                 <div className="left">
                   <div className="content">
                     <h2>Sign Up</h2>
-                    <form method="post" onsubmit="return false;">
+                    <form method="post">
                       <div className="form-group">
                         <input
                           type="email"
@@ -119,10 +118,9 @@ const SignPr = () => {
                             )
                               .then((userCredential) => {
                                 const user = userCredential.user;
-                                  console.log(user)
                                 sendEmailVerification(auth.currentUser).then(
                                   () => {
-                                    console.log("verification sended!!");
+                                    alert("check your email. verification sended!!");
                                   }
                                 );
 
@@ -131,7 +129,7 @@ const SignPr = () => {
                               })
                               .catch((error) => {
                                 const errorCode = error.code;
-                                console.log(errorCode);
+                                
                                 switch (errorCode) {
                                   case "auth/invalid-email":
                                     seterrMsg_signup("❌ Wrong Email ! ❌ ");
@@ -181,9 +179,9 @@ const SignPr = () => {
 
                         <p className="sign-err-msg">{errMsg_signup}</p>
 
-                        <p id="goLeft" className="off">
+                        <label id="goLeft" className="off">
                           already have an account?
-                          <h4
+                          <p
                             onClick={(eo) => {
                               setMargin("50%");
                               setMargin1("0");
@@ -191,8 +189,8 @@ const SignPr = () => {
                             }}
                           >
                             Sign in
-                          </h4>
-                        </p>
+                          </p>
+                        </label>
                       </div>
                     </form>
                   </div>
@@ -200,7 +198,7 @@ const SignPr = () => {
                 <div className="right">
                   <div className="content">
                     <h2>Login</h2>
-                    <form method="post" onsubmit="return false;">
+                    <form method="post">
                       <div className="form-group">
                         <input
                           type="email"
@@ -232,7 +230,6 @@ const SignPr = () => {
                               .then((userCredential) => {
                                 // Signed in
                                 const user = userCredential.user;
-                                console.log(user);
                                 navigate("/kin_home");
                               })
                               .catch((error) => {
@@ -290,11 +287,11 @@ const SignPr = () => {
                         <ForgetPass />
 
 
-                        <p className="sign-err-msg">{errMsg_signin}</p>
+                        <label className="sign-err-msg">{errMsg_signin}</label>
 
-                        <p id="goRight" className="off">
+                        <label id="goRight" className="off">
                           dont have an account?{" "}
-                          <h4
+                          <p
                             onClick={(eo) => {
                               setMargin("0");
                               setMargin1("100%");
@@ -302,8 +299,8 @@ const SignPr = () => {
                             }}
                           >
                             Sign Up
-                          </h4>
-                        </p>
+                          </p>
+                        </label>
                       </div>
                     </form>
                   </div>

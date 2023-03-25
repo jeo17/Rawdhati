@@ -15,6 +15,7 @@ const KinHome = () => {
   
 
   const onScroll = (event) => {
+   if ( document.getElementById("banner") != null) {
     const h1 = document.getElementById("h1"),
     banner = document.getElementById("banner"),
     button = document.getElementById("button");
@@ -37,6 +38,7 @@ const KinHome = () => {
       button.style.scale = 1;
     }
   };
+  };
 
   document.addEventListener("scroll", onScroll);
 
@@ -45,9 +47,6 @@ const KinHome = () => {
 
     let current_fs = i;
     let next_fs = document.getElementById(Number(i.id) + 1);
-
-    console.log(current_fs);
-    console.log(next_fs);
 
     current_fs.style.display = "none";
     next_fs.style.display = "block";
@@ -371,7 +370,7 @@ const KinHome = () => {
                                 keyEvent(eo);
                               }}
                             />{" "}
-                            <lable for="Travel">Travel</lable>{" "}
+                            <p htmlFor="Travel">Travel</p>{" "}
                           </div>
 
                           <div className="activite">
@@ -386,9 +385,9 @@ const KinHome = () => {
                                 keyEvent(eo);
                               }}
                             />{" "}
-                            <lable for="Language Learning">
+                            <p htmlFor="Language Learning">
                               Language Learning
-                            </lable>{" "}
+                            </p>{" "}
                           </div>
 
                           <div className="activite">
@@ -403,7 +402,7 @@ const KinHome = () => {
                                 keyEvent(eo);
                               }}
                             />{" "}
-                            <lable for="Sports">Sports</lable>{" "}
+                            <p htmlFor="Sports">Sports</p>{" "}
                           </div>
 
                           <div className="activite">
@@ -418,7 +417,7 @@ const KinHome = () => {
                                 keyEvent(eo);
                               }}
                             />{" "}
-                            <lable for="Painting ">Painting </lable>{" "}
+                            <p htmlFor="Painting ">Painting </p>{" "}
                           </div>
 
                           <div className="activite">
@@ -433,7 +432,7 @@ const KinHome = () => {
                                 keyEvent(eo);
                               }}
                             />{" "}
-                            <lable for="Quran ">Quran </lable>{" "}
+                            <p htmlFor="Quran ">Quran </p>{" "}
                           </div>
 
                           <div className="activite">
@@ -448,7 +447,7 @@ const KinHome = () => {
                                 keyEvent(eo);
                               }}
                             />{" "}
-                            <lable for="Reading ">Reading </lable>{" "}
+                            <p htmlFor="Reading ">Reading </p>{" "}
                           </div>
 
                           <div className="activite">
@@ -463,7 +462,7 @@ const KinHome = () => {
                                 keyEvent(eo);
                               }}
                             />{" "}
-                            <lable for="other ">Other Things </lable>{" "}
+                            <p htmlFor="other ">Other Things </p>{" "}
                           </div>
                         </div>
                         <button
@@ -497,7 +496,7 @@ const KinHome = () => {
                             min="500"
                             max="10000"
                             step="50"
-                            maxlength="5"
+                            maxLength="5"
                             size="5"
                             style={{ width: "215px" }}
                             onChange={(eo) => {
@@ -584,14 +583,12 @@ const KinHome = () => {
                         </span>
                       </h2>
                       <div className="card_text">
-                        <p>
-                          <ol>
+                          <ol style={{fontFamily:"'Fredoka One', cursive", marginBottom:"20px"}}>
                             <li>Reading</li>
                             <li>Quran</li>
                             <li>Painting</li>
                             <li>Language Learning</li>
-                          </ol>
-                        </p>
+                          </ol>                   
                       </div>
                     </div>
                   </div>

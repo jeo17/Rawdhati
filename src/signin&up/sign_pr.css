@@ -142,19 +142,20 @@
 	
   }
   
-  .off h4{ 
+  .off p{ 
 	 color: #03A9F4;
 	 cursor: pointer;
 	 font-size: 17.5px;
+	 font-weight: 600;
 }
 
 
- .lightmode .off h4:hover {
+ .lightmode .off p:hover {
 	background: #e9dede;
 	color: #03A9F4;
 	box-shadow: none;
   }
- .darkmode .off h4:hover {
+ .darkmode .off p:hover {
 	box-shadow: none;
 	color: #03A9F4;
 	background: #363A3D;

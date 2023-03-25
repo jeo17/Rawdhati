@@ -33,7 +33,7 @@ function App() {
         
       </div>
 
-      <div class="ag-offer_hidden-item">
+      <div className="ag-offer_hidden-item">
       <div className="container">
           <Link to="/parent_sign" className={`button button--${bird}`}> 
             <div className="button__wrapper">
@@ -71,7 +71,7 @@ function App() {
        
       </div>
 
-      <div class="ag-offer_hidden-item">
+      <div className="ag-offer_hidden-item">
       <div className="container">
           <Link to="/kindergarten_sign" className={`button button--${bird}`}>
             <div className="button__wrapper">

@@ -102,7 +102,7 @@ const PrHome = () => {
               {" "}
               click here to signin again in the right space 👉{" "}
               <span
-                class="material-symbols-outlined refresh"
+                className="material-symbols-outlined refresh"
                 onClick={() => {
                   signOut(auth)
                     .then(() => {
@@ -154,20 +154,20 @@ const PrHome = () => {
                    }                
                   }}>
                      <label style={{cursor:"pointer"}}> search by</label>
-                  <span class="material-symbols-outlined">  filter_list  </span>
+                  <span className="material-symbols-outlined">  filter_list  </span>
                </div>
                 
                 <div className="icon-holder">
                   <div className="icon" id="Price">
-                  <span class="material-symbols-outlined circ">attach_money</span>
+                  <span className="material-symbols-outlined circ">attach_money</span>
                   <div className="tooltip">Price</div>
                   </div>
                   <div className="icon" id="Place">
-                  <span class="material-symbols-outlined circ">location_on</span>
+                  <span className="material-symbols-outlined circ">location_on</span>
                     <div className="tooltip">Place</div>
                   </div>
                   <div className="icon" id="Activ">
-                  <span class="material-symbols-outlined circ">extension</span>
+                  <span className="material-symbols-outlined circ">extension</span>
                     <div className="tooltip">Activite</div>
                   </div>
                   <div className="icon" id="Trending">

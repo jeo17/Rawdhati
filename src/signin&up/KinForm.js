@@ -14,14 +14,16 @@ const SignKin = () => {
   
   return (
     <>
-      <div className="information">
+    <div className="full-screen">
+
+    <div className="information">
         <header>
           <h1> Information form</h1>
         </header>
         <form>
           <div className="info">
             <h2> child information </h2>
-            <i class="gg-chevron-down-r"></i>
+            <i className="gg-chevron-down-r"></i>
           </div>
           <div className="nth1">
             <label>Child's Name</label>
@@ -90,7 +92,7 @@ const SignKin = () => {
 
           <div className="info">
             <h2> kindergarten Attendance Information </h2>
-            <i class="gg-chevron-down-r"></i>
+            <i className="gg-chevron-down-r"></i>
           </div>
 
           <div className="nth5">
@@ -150,7 +152,7 @@ const SignKin = () => {
 
           <div className="info">
             <h2> Guardian & Emergency Contact Information </h2>
-            <i class="gg-chevron-down-r"></i>
+            <i className="gg-chevron-down-r"></i>
           </div>
 
           <div className="nth9">
@@ -257,6 +259,9 @@ const SignKin = () => {
           <div className="cut"></div>
         </form>
       </div>
+
+    </div>
+      
     </>
   );
 };

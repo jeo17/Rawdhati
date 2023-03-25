@@ -1,3 +1,10 @@
+.darkmode .full-screen{
+    width: 100%;
+    height: max-content;
+    background-color: #274d62;
+}
+
+
 .information{
 margin: 25px 12.5% 25px 12.5%;
 width: 75%;
@@ -16,7 +23,8 @@ box-shadow: 0 9px 40px rgb(42 42 42);
 }
 
 .information header{
-    background-color:#FFD2DA ;
+    background-image: url(./kin-form.png);
+    background-repeat: no-repeat;
     width: 100%;
     height: 150px;
 }
@@ -31,6 +39,28 @@ box-shadow: 0 9px 40px rgb(42 42 42);
     align-items: center;
     gap: 15px;
 
+}
+
+.information label{
+    width: 100px;
+    color: #00708D;
+    background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.darkmode .information label, .darkmode .information p {
+    color: #ffeaee;
+    
+}
+
+.information input,.information textarea{
+border-color: #b5b5b5;
+}
+.darkmode .information input,.darkmode .information textarea {
+    border-width: 2.5px;
+    border-color:#ff8585 ;
 }
 
 .info {
@@ -57,23 +87,14 @@ box-shadow: 0 9px 40px rgb(42 42 42);
 }
 
 
-.information label{
-    width: 100px;
-    color: #00708D;
-    background-color: transparent;
 
-    
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-}
 .nth1-1 input{
     padding: 12px 38px;
     margin: 0 6px;
     border-radius: 5px;
-    border-width: 1px;
-    border-color: #00708D;
+    border-width: 2.5px;
+    border-color: #b5b5b5;
 
 }
 .nth1-1 label{
@@ -90,8 +111,8 @@ box-shadow: 0 9px 40px rgb(42 42 42);
     padding: 12px 115px;
     margin: 0 12px;
     border-radius: 5px;
-    border-width: 1px;
-    border-color: #00708D;
+    border-width: 2.5px;
+    border-color: #b5b5b5;
 
 }
 .nth2 label{
@@ -110,8 +131,8 @@ box-shadow: 0 9px 40px rgb(42 42 42);
     padding: 12px 300px;
     margin: 0 12px;
     border-radius: 5px;
-    border-width: 1px;
-    border-color: #00708D;
+    border-width: 2.5px;
+    border-color: #b5b5b5;
 
 }
 
@@ -145,8 +166,8 @@ box-shadow: 0 9px 40px rgb(42 42 42);
     padding: 12px 115px;
     margin: 0 12px;
     border-radius: 5px;
-    border-width: 1px;
-    border-color: #00708D;
+    border-width: 2.5px;
+    border-color: #b5b5b5;
 }
 .nth5 label{
     width: 200px;
@@ -185,8 +206,8 @@ box-shadow: 0 9px 40px rgb(42 42 42);
     padding: 12px 100px;
     margin: 0 12px;
     border-radius: 5px;
-    border-width: 1px;
-    border-color: #00708D;
+    border-width: 2.5px;
+    border-color: #b5b5b5;
 }
 .nth7-1{
     margin: 0 78px;
@@ -196,7 +217,7 @@ box-shadow: 0 9px 40px rgb(42 42 42);
     width: 80%;
 }
 .nth8 textarea{
-    border-color: #00708D;
+    border-color: #b5b5b5;
     color: #00708D;
     border-width: 2px;
     border-radius: 9px;
@@ -224,8 +245,8 @@ flex-wrap: wrap;
     padding: 12px 110px;
     margin: 0 6px;
     border-radius: 5px;
-    border-width: 1px;
-    border-color: #00708D;
+    border-width: 2.5px;
+    border-color: #b5b5b5;
 
 }
 .nth9-1 label{
@@ -242,8 +263,8 @@ flex-wrap: wrap;
     padding: 12px 110px;
     margin: 0 6px;
     border-radius: 5px;
-    border-width: 1px;
-    border-color: #00708D;
+    border-width: 2.5px;
+    border-color: #b5b5b5;
 
 }
 .nth10 label{

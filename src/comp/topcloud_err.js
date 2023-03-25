@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import {useContext } from "react";
 import ThemeContext from "../context/Theme";
 
@@ -21,8 +20,8 @@ const TopcloudErr = (height) => {
               <div className={`${switched} switch-btn `}> 
                 <label htmlFor="switch">
                   <div className="icons">
-                  <span class="material-symbols-outlined">light_mode</span>
-                  <span class="material-symbols-outlined">dark_mode</span>
+                  <span className="material-symbols-outlined">light_mode</span>
+                  <span className="material-symbols-outlined">dark_mode</span>
                   </div>
                 </label>
               </div>

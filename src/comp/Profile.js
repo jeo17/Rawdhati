@@ -21,7 +21,7 @@ const Profile = () => {
 
 
   <div className="profile-card">
-      <span class="material-symbols-outlined"     style={{float:"right" , color:"orange", position:"relative",bottom:"18px",left:"14px",fontWeight:"900",transform:"scale(1.2)",cursor:"pointer"}}
+      <span className="material-symbols-outlined"     style={{float:"right" , color:"orange", position:"relative",bottom:"18px",left:"14px",fontWeight:"900",transform:"scale(1.2)",cursor:"pointer"}}
        onClick={() => {
           const profile = document.getElementById("profile");
           profile.close();

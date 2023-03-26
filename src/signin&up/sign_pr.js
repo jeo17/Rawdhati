@@ -6,6 +6,7 @@ import NeedToSignOut from "../needToSignOut";
 import ForgetPass from "../comp/Forget-pass";
 import Page404 from "../Page_404";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {
   createUserWithEmailAndPassword,
@@ -14,7 +15,10 @@ import {
 } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
-import { useNavigate } from "react-router-dom";
+
+
+
+
 
 const SignPr = () => {
   const navigate = useNavigate();
@@ -138,8 +142,7 @@ const SignPr = () => {
 
                                 updateProfile(auth.currentUser, {
                                   displayName: userName,
-                                  photoURL:
-                                    "",
+                                  photoURL: "",
                                 })
                                   .then(() => {
                                     navigate("/pr_home");

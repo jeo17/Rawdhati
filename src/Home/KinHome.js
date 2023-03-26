@@ -5,11 +5,13 @@ import Botcloud from "../comp/botcloud";
 import TopcloudErr from "../comp/topcloud_err";
 import Page404 from "../Page_404";
 import { auth } from "../firebase/config";
+import { db } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Profile from "../comp/Profile";
 import { signOut, sendEmailVerification } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore"; 
 
 const KinHome = () => {
   
@@ -152,8 +154,8 @@ const KinHome = () => {
     }
   };
 
-  let [name, setname] = useState(0);
-  let [address, setaddress] = useState(0);
+  let [name, setname] = useState("");
+  let [address, setaddress] = useState("");
   let [activite, setactivites] = useState(0);
   let [amount, setamount] = useState(0);
 
@@ -246,8 +248,8 @@ const KinHome = () => {
                           placeholder="Rawdhat:"
                           required
                           onChange={(eo) => {
-                            setname(eo.target.value.length);
-                            name <= 3
+                            setname(eo.target.value);
+                            name.length <= 3
                               ? (document.querySelectorAll(
                                   ".nextStep"
                                 )[1].disabled = true)
@@ -261,8 +263,13 @@ const KinHome = () => {
                         />
                         <button
                           className="nextStep"
-                          onClick={(eo) => {
+                          onClick={async (eo) => {
                             validButton(eo, name);
+
+                            await setDoc(doc(db, user.uid , "kindergarten Name"), {
+                              kindergarten_Name: name,
+                            }); 
+
                           }}
                         >
                           Next
@@ -288,8 +295,8 @@ const KinHome = () => {
                           required
                           placeholder="Address"
                           onChange={(eo) => {
-                            setaddress(eo.target.value.length);
-                            address <= 3
+                            setaddress(eo.target.value);
+                            address.length <= 3
                               ? (document.querySelectorAll(
                                   ".nextStep"
                                 )[2].disabled = true)
@@ -303,8 +310,13 @@ const KinHome = () => {
                         />
                         <button
                           className="nextStep"
-                          onClick={(eo) => {
+                          onClick={async (eo) => {
                             validButton(eo, address);
+
+                            await setDoc(doc(db, user.uid , "kindergarten Address"), {
+                              kindergarten_Address: address,
+                            });
+
                           }}
                         >
                           Next

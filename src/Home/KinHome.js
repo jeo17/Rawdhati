@@ -137,7 +137,17 @@ const KinHome = () => {
   };
 
   const countBOX = (eo, activite) => {
-    eo.target.checked ? setactivites(++activite) : setactivites(--activite);
+
+    if (eo.target.checked) {
+      setactivites(++activite)
+      act.push(`${eo.target.id}`)
+    } else {
+      setactivites(--activite)
+      const index = act.indexOf(eo.target.id);
+      act.splice(index, 1);
+    }
+    
+   console.log(act)
     activite <= 0
       ? (document.querySelectorAll(".nextStep")[4].disabled = true)
       : (document.querySelectorAll(".nextStep")[4].disabled = false);
@@ -159,10 +169,15 @@ const KinHome = () => {
     }
   };
 
+
+
+
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
   let [activite, setactivites] = useState(0);
   let [amount, setamount] = useState("");
+
+  let [act, setact] = useState([]);
 
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
@@ -473,7 +488,7 @@ const KinHome = () => {
                             {" "}
                             <input
                               type="checkbox"
-                              id="other "
+                              id="Other Things "
                               onChange={(eo) => {
                                 countBOX(eo, activite);
                               }}
@@ -481,13 +496,18 @@ const KinHome = () => {
                                 keyEvent(eo);
                               }}
                             />{" "}
-                            <p htmlFor="other ">Other Things </p>{" "}
+                            <p htmlFor="Other Things ">Other Things </p>{" "}
                           </div>
                         </div>
                         <button
                           className="nextStep"
-                          onClick={(eo) => {
+                          onClick={async (eo) => {
                             validButton2(eo, activite);
+
+                            await setDoc(doc(db, user.uid , "kindergarten Activites"), {
+                              kindergarten_Activites: act,
+                            });
+
                           }}
                         >
                           Next

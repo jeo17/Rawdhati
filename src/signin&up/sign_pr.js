@@ -133,6 +133,7 @@ const SignPr = () => {
                               .then((userCredential) => {
                                 // Signed in
                                 const user = userCredential.user;
+                
 
                                 sendEmailVerification(auth.currentUser).then(
                                   () => {
@@ -142,7 +143,6 @@ const SignPr = () => {
 
                                 updateProfile(auth.currentUser, {
                                   displayName: userName,
-                                  photoURL: "",
                                 })
                                   .then(() => {
                                     navigate("/pr_home");

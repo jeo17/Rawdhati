@@ -120,6 +120,11 @@ const KinHome = () => {
     }
   };
 
+
+
+
+
+  
   const keyEvent = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
@@ -128,7 +133,7 @@ const KinHome = () => {
 
   const validButton = (eo, name) => {
     eo.preventDefault();
-    name <= 3 ? (eo.target.disabled = true) : Next();
+    name.length <= 3 ? (eo.target.disabled = true) : Next();
   };
 
   const countBOX = (eo, activite) => {
@@ -137,14 +142,14 @@ const KinHome = () => {
       ? (document.querySelectorAll(".nextStep")[4].disabled = true)
       : (document.querySelectorAll(".nextStep")[4].disabled = false);
   };
-  const validButton2 = (eo, name) => {
+  const validButton2 = (eo, activite) => {
     eo.preventDefault();
     activite <= 0 ? (eo.target.disabled = true) : Next();
   };
 
   const validButton3 = (eo, amount) => {
     eo.preventDefault();
-    if (amount < 2 || amount > 5) {
+    if (amount.length < 2 || amount.length > 5) {
       eo.target.disabled = true;
     } else {
       Next();
@@ -157,7 +162,7 @@ const KinHome = () => {
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
   let [activite, setactivites] = useState(0);
-  let [amount, setamount] = useState(0);
+  let [amount, setamount] = useState("");
 
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
@@ -265,11 +270,12 @@ const KinHome = () => {
                           className="nextStep"
                           onClick={async (eo) => {
                             validButton(eo, name);
-
+                           
                             await setDoc(doc(db, user.uid , "kindergarten Name"), {
                               kindergarten_Name: name,
                             }); 
 
+                            
                           }}
                         >
                           Next
@@ -317,6 +323,7 @@ const KinHome = () => {
                               kindergarten_Address: address,
                             });
 
+                            
                           }}
                         >
                           Next
@@ -512,14 +519,15 @@ const KinHome = () => {
                             size="5"
                             style={{ width: "215px" }}
                             onChange={(eo) => {
-                              setamount(eo.target.value.length);
-                              amount < 2
+                              setamount(eo.target.value);
+                              amount.length < 2
                                 ? (document.querySelectorAll(
                                     ".nextStep"
                                   )[5].disabled = true)
                                 : (document.querySelectorAll(
                                     ".nextStep"
-                                  )[5].disabled = false);
+                                  )[5].disabled = false);        
+
                             }}
                             onKeyDown={(eo) => {
                               keyEvent(eo);
@@ -529,8 +537,15 @@ const KinHome = () => {
                         </div>
                         <button
                           className="nextStep"
-                          onClick={(eo) => {
+                          onClick={async (eo) => {
                             validButton3(eo, amount);
+
+                            await setDoc(doc(db, user.uid , "kindergarten Price"), {
+                              kindergarten_Price: `${amount}.00 DA`,
+                            });
+                            
+                            
+                           
                           }}
                         >
                           Next

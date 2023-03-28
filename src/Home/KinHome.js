@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import Profile from "../comp/Profile";
 import { signOut, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore"; 
+//import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 
 const KinHome = () => {
   
@@ -88,10 +90,7 @@ const KinHome = () => {
 
     let current_fs = i;
     let prev_fs = document.getElementById(Number(i.id) - 1);
-
-    console.log(current_fs);
-    console.log(prev_fs);
-
+    
     current_fs.style.display = "none";
     prev_fs.style.display = "block";
 
@@ -136,25 +135,23 @@ const KinHome = () => {
     name.length <= 3 ? (eo.target.disabled = true) : Next();
   };
 
-  const countBOX = (eo, activite) => {
+  const countBOX = (eo, act) => {
 
     if (eo.target.checked) {
-      setactivites(++activite)
+
       act.push(`${eo.target.id}`)
     } else {
-      setactivites(--activite)
       const index = act.indexOf(eo.target.id);
       act.splice(index, 1);
     }
     
-   console.log(act)
-    activite <= 0
+    act.length <= 0
       ? (document.querySelectorAll(".nextStep")[4].disabled = true)
       : (document.querySelectorAll(".nextStep")[4].disabled = false);
   };
-  const validButton2 = (eo, activite) => {
+  const validButton2 = (eo, act) => {
     eo.preventDefault();
-    activite <= 0 ? (eo.target.disabled = true) : Next();
+    act.length <= 0 ? (eo.target.disabled = true) : Next();
   };
 
   const validButton3 = (eo, amount) => {
@@ -169,15 +166,36 @@ const KinHome = () => {
     }
   };
 
+ const handlIMG = (eo) => {
+  if(eo.target.files[0]){
+    setimg(eo.target.files[0])
+  }
+ }
+
+ /*const storeIMG = () => {
+   const imageref = ref(db, "Kindergarten Image");
+   uploadBytes(imageref, img).then(() => {
+    getDownloadURL(imageref).then((url) => {
+      seturl(url);
+    })
+    .catch((error) => {
+      console.log(error.message, "error getting the image url");
+    });
+    setimg(null)
+   })
+   .catch(() => {
+    console.log(error.message)
+   });
+ }*/
 
 
 
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
-  let [activite, setactivites] = useState(0);
+  let [img, setimg] = useState(null);
   let [amount, setamount] = useState("");
-
-  let [act, setact] = useState([]);
+ /* let [url, seturl] = useState(null);*/
+  let act = [];
 
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
@@ -360,12 +378,16 @@ const KinHome = () => {
                         </label>
                         <br />
                         <br />
-                        <input type="file" placeholder="add picture" />
+                        <input type="file" placeholder="add picture" onChange={(eo) => {
+                          handlIMG(eo)
+                        }}/>
                         <button
                           className="nextStep"
-                          onClick={(eo) => {
+                          onClick={ (eo) => {
                             eo.preventDefault();
-                            Next();
+                             Next();
+                          //   storeIMG();
+                            
                           }}
                         >
                           Next
@@ -398,7 +420,7 @@ const KinHome = () => {
                               type="checkbox"
                               id="Travel"
                               onChange={(eo) => {
-                                countBOX(eo, activite);
+                                countBOX(eo, act);
                               }}
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
@@ -413,7 +435,7 @@ const KinHome = () => {
                               type="checkbox"
                               id="Language Learning"
                               onChange={(eo) => {
-                                countBOX(eo, activite);
+                                countBOX(eo, act);
                               }}
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
@@ -430,7 +452,7 @@ const KinHome = () => {
                               type="checkbox"
                               id="Sports"
                               onChange={(eo) => {
-                                countBOX(eo, activite);
+                                countBOX(eo, act);
                               }}
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
@@ -445,7 +467,7 @@ const KinHome = () => {
                               type="checkbox"
                               id="Painting "
                               onChange={(eo) => {
-                                countBOX(eo, activite);
+                                countBOX(eo, act);
                               }}
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
@@ -460,7 +482,7 @@ const KinHome = () => {
                               type="checkbox"
                               id="Quran "
                               onChange={(eo) => {
-                                countBOX(eo, activite);
+                                countBOX(eo, act);
                               }}
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
@@ -475,7 +497,7 @@ const KinHome = () => {
                               type="checkbox"
                               id="Reading "
                               onChange={(eo) => {
-                                countBOX(eo, activite);
+                                countBOX(eo, act);
                               }}
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
@@ -490,7 +512,7 @@ const KinHome = () => {
                               type="checkbox"
                               id="Other Things "
                               onChange={(eo) => {
-                                countBOX(eo, activite);
+                                countBOX(eo, act);
                               }}
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
@@ -502,7 +524,7 @@ const KinHome = () => {
                         <button
                           className="nextStep"
                           onClick={async (eo) => {
-                            validButton2(eo, activite);
+                            validButton2(eo, act);
 
                             await setDoc(doc(db, user.uid , "kindergarten Activites"), {
                               kindergarten_Activites: act,
@@ -695,7 +717,7 @@ const KinHome = () => {
               <button
                 onClick={() => {
                   sendEmailVerification(auth.currentUser).then(() => {
-                    console.log("verification sended!!");
+                    alert("verification sended!!");
                   });
                 }}
               >

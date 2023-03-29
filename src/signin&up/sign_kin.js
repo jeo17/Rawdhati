@@ -124,7 +124,7 @@ const SignPr = () => {
                                   }
                                 );
 
-                                navigate("/kin_home");
+                                navigate(`/kin_home/${user.uid}`);
                                 
                               })
                               .catch((error) => {
@@ -230,7 +230,7 @@ const SignPr = () => {
                               .then((userCredential) => {
                                 // Signed in
                                 const user = userCredential.user;
-                                navigate("/kin_home");
+                                navigate(`/kin_home/${user.uid}`);
                               })
                               .catch((error) => {
                                 const errorCode = error.code;

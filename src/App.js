@@ -54,7 +54,7 @@ function App() {
       element: <SignKin />,
     },
     {
-      path: "/kin_home",
+      path: "/kin_home/:userId",
       element: <KinHome />,
     },
  

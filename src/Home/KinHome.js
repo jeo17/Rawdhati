@@ -4,7 +4,6 @@ import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import TopcloudErr from "../comp/topcloud_err";
 import Page404 from "../Page_404";
-import KinData from "./KinData";
 import { auth } from "../firebase/config";
 import { db } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -13,8 +12,8 @@ import { useNavigate } from "react-router-dom";
 import Profile from "../comp/Profile";
 import { signOut, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore"; 
-import { useCollection } from "react-firebase-hooks/firestore";
-import { collection } from "firebase/firestore";
+import { useDocument } from "react-firebase-hooks/firestore";
+import { useParams } from 'react-router-dom';
 
 //import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -201,12 +200,19 @@ const KinHome = () => {
  /* let [url, seturl] = useState(null);*/
   let [act, setact] = useState([]);
 
-
+  let { userId } = useParams();
 
   
   const [user, loading, error] = useAuthState(auth);
-  const [value, loadingg, errorr] = useCollection(collection(db, "kindergarten Information"));
+  const [value, loadingg, errorr] = useDocument(doc(db, "kindergarten Information", userId));
 
+if(user){
+  if(value){
+    console.log(value.data())
+  }
+  
+}
+  
 
   const navigate = useNavigate();
 
@@ -268,7 +274,7 @@ const KinHome = () => {
           <Profile />
 
           <div className="main appmain">
-            <dialog id="kin-dialog" open>
+            {value.data() === undefined &&  <dialog id="kin-dialog" open>
               <form className="kin-form ">
                 <div id="multi_step_form">
                   <div className="container-kin flex">
@@ -627,10 +633,14 @@ const KinHome = () => {
                   </div>
                 </div>
               </form>
-            </dialog>
+            </dialog> }
+            
 
             <div id="banner" className="banner">
-            <h1 id="h1"> Welcome to  {value.docs[0].data().kindergarten_Name} </h1>
+            
+            
+            { value.data() !== undefined ? <h1 id="h1">  Welcome to  {value.data().kindergarten_Name} </h1> : <h1 id="h1">welcome</h1>}
+                     
               <button
                 id="button"
                 onClick={(eo) => {
@@ -673,12 +683,12 @@ const KinHome = () => {
                       </h2>
                       <div className="card_text">
                           <ol style={{fontFamily:"'Fredoka One', cursive", marginBottom:"20px"}}>
-                           {value.docs[0].data().kindergarten_Activites.map((item) => {
-                            return(
-                              <li key={item}>{item}</li>
-                            )
-                           })}
-                            
+
+                            {value.data() !== undefined? value.data().kindergarten_Activites.map((item) => {
+                                return(     <li key={item}>{item}</li>        )
+                               }) : <li ></li>}
+
+
                           </ol>                   
                       </div>
                     </div>

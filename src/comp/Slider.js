@@ -28,6 +28,11 @@ function Slider() {
       <section>
         <div className="swiper mySwiper">
           <div className="swiper-wrapper">
+
+
+
+
+            
             <div className="swiper-slide slider-card">
               <div className="card-content">
                 <div className="slider-image"></div>

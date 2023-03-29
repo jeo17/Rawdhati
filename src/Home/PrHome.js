@@ -145,12 +145,12 @@ const PrHome = () => {
    
    <div className="recent-border mt-4">
       <span className="recent-orders">My Kindergarten:</span>
-      <span className="wishlist"> {/*text */}  <span class="material-symbols-outlined">edit_square</span></span>
+      <span className="wishlist"> {/*text */}  <span className="material-symbols-outlined">edit_square</span></span>
     </div>
 
     <div className="recent-border mt-4">
       <span className="recent-orders">Bio:</span>
-      <span className="wishlist"> {/*text */}  <span class="material-symbols-outlined">edit_square</span></span>
+      <span className="wishlist"> {/*text */}  <span className="material-symbols-outlined">edit_square</span></span>
     </div>
 
    </div>

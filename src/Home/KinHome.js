@@ -4,6 +4,7 @@ import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import TopcloudErr from "../comp/topcloud_err";
 import Page404 from "../Page_404";
+import KinData from "./KinData";
 import { auth } from "../firebase/config";
 import { db } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -12,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import Profile from "../comp/Profile";
 import { signOut, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore"; 
+
 //import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
@@ -144,11 +146,11 @@ const KinHome = () => {
       const index = act.indexOf(eo.target.id);
       act.splice(index, 1);
     }
-    
     act.length <= 0
       ? (document.querySelectorAll(".nextStep")[4].disabled = true)
       : (document.querySelectorAll(".nextStep")[4].disabled = false);
   };
+ 
   const validButton2 = (eo, act) => {
     eo.preventDefault();
     act.length <= 0 ? (eo.target.disabled = true) : Next();
@@ -195,9 +197,15 @@ const KinHome = () => {
   let [img, setimg] = useState(null);
   let [amount, setamount] = useState("");
  /* let [url, seturl] = useState(null);*/
-  let act = [];
+  let [act, setact] = useState([]);
 
+
+
+  
   const [user, loading, error] = useAuthState(auth);
+  
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -215,7 +223,6 @@ const KinHome = () => {
   }
 
   if (error) {
-    //if he is in the loading state do this block of code ... and when he done read the rest of the code.
     return (
       <>
         <Page404 />
@@ -227,10 +234,14 @@ const KinHome = () => {
     navigate("/Visitor");
   }
 
+
+
   if (user.displayName === null) {
     if (user.emailVerified) {
       return (
         <>
+
+        
           <Topcloud />
           <Profile />
 
@@ -301,14 +312,8 @@ const KinHome = () => {
                         />
                         <button
                           className="nextStep"
-                          onClick={async (eo) => {
-                            validButton(eo, name);
-                           
-                            await setDoc(doc(db, user.uid , "kindergarten Name"), {
-                              kindergarten_Name: name,
-                            }); 
-
-                            
+                          onClick={ (eo) => {
+                            validButton(eo, name);                           
                           }}
                         >
                           Next
@@ -350,13 +355,7 @@ const KinHome = () => {
                         <button
                           className="nextStep"
                           onClick={async (eo) => {
-                            validButton(eo, address);
-
-                            await setDoc(doc(db, user.uid , "kindergarten Address"), {
-                              kindergarten_Address: address,
-                            });
-
-                            
+                            validButton(eo, address);                          
                           }}
                         >
                           Next
@@ -525,11 +524,7 @@ const KinHome = () => {
                           className="nextStep"
                           onClick={async (eo) => {
                             validButton2(eo, act);
-
-                            await setDoc(doc(db, user.uid , "kindergarten Activites"), {
-                              kindergarten_Activites: act,
-                            });
-
+                            
                           }}
                         >
                           Next
@@ -582,11 +577,12 @@ const KinHome = () => {
                           onClick={async (eo) => {
                             validButton3(eo, amount);
 
-                            await setDoc(doc(db, user.uid , "kindergarten Price"), {
+                            await setDoc(doc(db, user.uid , "kindergarten Information"), {
+                              kindergarten_Name: name,
+                              kindergarten_Address: address,
+                              kindergarten_Activites: act,
                               kindergarten_Price: `${amount}.00 DA`,
                             });
-                            
-                            
                            
                           }}
                         >
@@ -610,7 +606,7 @@ const KinHome = () => {
             </dialog>
 
             <div id="banner" className="banner">
-              <h1 id="h1">welcome to el-Rawdha </h1>
+            <h1 id="h1"> Welcome to  <KinData  user={user}/> </h1>
               <button
                 id="button"
                 onClick={(eo) => {

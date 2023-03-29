@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import Profile from "../comp/Profile";
 import { signOut, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore"; 
+import { useCollection } from "react-firebase-hooks/firestore";
+import { collection } from "firebase/firestore";
 
 //import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -203,7 +205,7 @@ const KinHome = () => {
 
   
   const [user, loading, error] = useAuthState(auth);
-  
+  const [value, loadingg, errorr] = useCollection(collection(db, "kindergarten Information"));
 
 
   const navigate = useNavigate();
@@ -233,6 +235,26 @@ const KinHome = () => {
   if (!user) {
     navigate("/Visitor");
   }
+
+
+  if (loadingg) {
+    return (
+      <div>
+        <p>Initialising storage...</p>
+      </div>
+    );
+  }
+
+  if (errorr) {
+    return (
+      <>
+        <Page404 />
+      </>
+    );
+  }
+
+
+
 
 
 
@@ -280,6 +302,7 @@ const KinHome = () => {
                           onClick={(eo) => {
                             eo.preventDefault();
                             Next();
+
                           }}
                         >
                           Next
@@ -577,13 +600,14 @@ const KinHome = () => {
                           onClick={async (eo) => {
                             validButton3(eo, amount);
 
-                            await setDoc(doc(db, user.uid , "kindergarten Information"), {
+                            await setDoc(doc(db, "kindergarten Information" ,user.uid ), {
                               kindergarten_Name: name,
                               kindergarten_Address: address,
                               kindergarten_Activites: act,
                               kindergarten_Price: `${amount}.00 DA`,
                             });
                            
+
                           }}
                         >
                           Next
@@ -606,7 +630,7 @@ const KinHome = () => {
             </dialog>
 
             <div id="banner" className="banner">
-            <h1 id="h1"> Welcome to  <KinData  user={user}/> </h1>
+            <h1 id="h1"> Welcome to  {value.docs[0].data().kindergarten_Name} </h1>
               <button
                 id="button"
                 onClick={(eo) => {
@@ -649,10 +673,12 @@ const KinHome = () => {
                       </h2>
                       <div className="card_text">
                           <ol style={{fontFamily:"'Fredoka One', cursive", marginBottom:"20px"}}>
-                            <li>Reading</li>
-                            <li>Quran</li>
-                            <li>Painting</li>
-                            <li>Language Learning</li>
+                           {value.docs[0].data().kindergarten_Activites.map((item) => {
+                            return(
+                              <li key={item}>{item}</li>
+                            )
+                           })}
+                            
                           </ol>                   
                       </div>
                     </div>

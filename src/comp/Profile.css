@@ -8,7 +8,6 @@
 .top-container{
 	display: flex;
 	align-items: center;
-    justify-content: space-evenly;
 }
 .profile-image{
 	border-radius: 10px;
@@ -16,8 +15,9 @@
     width: 90px;
 }
 .name{
-	font-size: 16px;
-	color: #272727;
+	font-family: 'Fredoka One', cursive;
+	font-size: 19px;
+	color: #5957f9;
 	position: relative;
 	top: 8px;
 }
@@ -34,6 +34,7 @@
 }
 
 .recent-border{
+	position: relative;
 	border-left: 2px solid #5957f9;
 	display: flex;
 	align-items: center;
@@ -44,20 +45,33 @@
 }
 
 .recent-orders{
-	font-size: 16px;
-	font-weight: 700;
+	font-size: 17px;
+	font-weight: 800;
 	color: #5957f9;
 	margin-left: 2px;
 }
 
 .wishlist{
+	
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-left: 8px;
 	font-size: 16px;
-	font-weight: 700;
+	font-weight: 600;
 	color: #272727;
 
 }
 .wishlist-border:hover{
 	border-bottom: 1px solid #dee2e6!important;
+}
+.wishlist .material-symbols-outlined{
+	position: absolute;
+	right: 0px;
+	bottom: 3px;
+	font-size: 20px;
+	font-weight: 800;
+	cursor: pointer;
 }
 .fashion-studio{
 	font-size: 16px;

@@ -299,6 +299,9 @@ h2.card_title,p {
   list-style: circle;
 }
 
+.darkmode .card_text{
+  color: aliceblue;
+}
 
 
 

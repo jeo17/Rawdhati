@@ -271,7 +271,40 @@ if(user){
 
         
           <Topcloud />
-          <Profile />
+
+
+          <Profile>
+
+<div className="top-container">
+      <img
+        src={require("../comp/assets/avatar.jpg")}
+        className="img-fluid profile-image"
+        width={70}
+        alt="sorry"
+      />
+      <div style={{marginLeft:"11px"}}>
+        <h5 className="name"> {value.data().kindergarten_Name}</h5>
+        <p className="mail">{user.email}</p>
+      </div>
+    </div>
+   <div className='bot-container'>
+   <div className="recent-border mt-4">
+      <span className="recent-orders">Address: </span>
+      <span className="wishlist"> {value.data().kindergarten_Address}   <span class="material-symbols-outlined">edit_square</span></span>
+    </div>
+
+    <div className="recent-border mt-4">
+      <span className="recent-orders">Price: </span>
+      <span className="wishlist"> {value.data().kindergarten_Price}   <span class="material-symbols-outlined">edit_square</span></span>
+    </div>
+    
+    <div className="recent-border mt-4">
+      <span className="recent-orders">Bio: </span>
+      <span className="wishlist"> .. <span class="material-symbols-outlined">edit_square</span></span>
+    </div>
+   </div>
+
+          </Profile>
 
           <div className="main appmain">
             {value.data() === undefined &&  <dialog id="kin-dialog" open>

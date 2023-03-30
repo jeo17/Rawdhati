@@ -205,13 +205,6 @@ const KinHome = () => {
   
   const [user, loading, error] = useAuthState(auth);
   const [value, loadingg, errorr] = useDocument(doc(db, "kindergarten Information", userId));
-
-if(user){
-  if(value){
-    console.log(value.data())
-  }
-  
-}
   
 
   const navigate = useNavigate();
@@ -283,24 +276,28 @@ if(user){
         alt="sorry"
       />
       <div style={{marginLeft:"11px"}}>
-        <h5 className="name"> {value.data().kindergarten_Name}</h5>
+        {value.data() !== undefined ? <h5 className="name"> {value.data().kindergarten_Name}</h5> : <h5 className="name"> welcome</h5>}
         <p className="mail">{user.email}</p>
       </div>
     </div>
    <div className='bot-container'>
    <div className="recent-border mt-4">
       <span className="recent-orders">Address: </span>
-      <span className="wishlist"> {value.data().kindergarten_Address}   <span class="material-symbols-outlined">edit_square</span></span>
+
+      
+      <span className="wishlist">  {value.data() !== undefined ? value.data().kindergarten_Address : <></>}  <span className="material-symbols-outlined">edit_square</span></span>
     </div>
 
     <div className="recent-border mt-4">
       <span className="recent-orders">Price: </span>
-      <span className="wishlist"> {value.data().kindergarten_Price}   <span class="material-symbols-outlined">edit_square</span></span>
+
+      
+      <span className="wishlist"> {value.data() !== undefined ? value.data().kindergarten_Price : <></>}   <span className="material-symbols-outlined">edit_square</span></span>
     </div>
     
     <div className="recent-border mt-4">
       <span className="recent-orders">Bio: </span>
-      <span className="wishlist"> .. <span class="material-symbols-outlined">edit_square</span></span>
+      <span className="wishlist"> .. <span className="material-symbols-outlined">edit_square</span></span>
     </div>
    </div>
 

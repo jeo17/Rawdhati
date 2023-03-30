@@ -22,9 +22,10 @@ const AboutUs = () => {
           <h2>About Us</h2>
           <span>{/* line here */}</span>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis
-            aspernatur voluptas inventore ab voluptates nostrum minus illo
-            laborum harum laudantium earum ut.
+          Rawdhati: It is a website accompanied by an application that makes it easier for parents to find the appropriate kindergarten for their children. 
+          <br />
+  In short, the application contains two windows: a window for parents and another for the kindergarten, where the application displays all the activities that take place
+  Kindergarten does
           </p>
           <ul className="links">
             <li>

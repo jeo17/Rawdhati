@@ -91,7 +91,7 @@ section .slider-card .slider-image{
 }
 
 .name-profession .slider-name{
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
 }
 
@@ -138,7 +138,7 @@ section .slider-card .slider-image{
 
 .swiper-pagination{
   position: absolute;
- top: 435px !important;
+ top: 480px !important;
 }
 
 .swiper-button-next, .swiper-button-prev {

@@ -301,9 +301,34 @@ flex-wrap: wrap;
     margin-bottom: 10px;
  }
 
+ .cut2{
+    width: 100%;
+    border-width: 1.5px;
+    border-style:double;
+    border-color: #83d0e4;
+    margin-bottom: 10px;
+ }
+
  input:disabled {
     cursor: default;
     background-color: -internal-light-dark(rgba(239, 239, 239, 0.3), rgba(59, 59, 59, 0.3));
     color: -internal-light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
     border-color: rgba(118, 118, 118, 0.3);
+}
+
+.information button{ 
+    border: 1px solid;
+    border-radius: 4px;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    color: #fff;
+    background-color: #00708D;
+    min-width: 180px;
+    margin-bottom: 25px;
+}
+.information button:hover{
+    background-color: #004355;
+    border-color: #004355;
 }

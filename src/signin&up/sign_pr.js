@@ -144,7 +144,7 @@ const SignPr = () => {
                                   displayName: userName,
                                 })
                                   .then(() => {
-                                    navigate("/pr_home");
+                                    navigate(`/pr_home/${user.uid}`)
                                   })
                                   .catch((error) => {
                                     console.log("buggg");
@@ -253,7 +253,7 @@ const SignPr = () => {
                                 // Signed in
                                 const user = userCredential.user;
                                 console.log(user);
-                                navigate("/pr_home");
+                                navigate(`/pr_home/${user.uid}`)
                               })
                               .catch((error) => {
                                 const errorCode = error.code;

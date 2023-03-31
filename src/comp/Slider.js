@@ -48,63 +48,68 @@ function Slider() {
   }
 
   let sliderCard = [];
-
-  value.docs.map((item) => {
-    return sliderCard.push(
-      <div className="swiper-slide slider-card" key={item.data().kindergarten_Name}>
-        <div className="card-content">
-          <div className="slider-image"></div>
-          <div className="media-icons">
-            <i className="fab fa-facebook" />
-            <i className="fab fa-instagram" />
-            <i className="fab fa-google" />
-          </div>
-          <div className="name-profession">
-            <span className="slider-name">{item.data().kindergarten_Name}</span>
-            <span
-              className="profession"
-              style={{ fontSize: "16px", fontWeight: "600" }}
-            >
-              {item.data().kindergarten_Address}
-            </span>
-            <span
-              className="profession"
-              style={{ fontSize: "16px", fontWeight: "600" }}
-            >
-              {item.data().kindergarten_Price}
-            </span>
-
-         {/*  <span className="profession">
-              {" "}
-              <span style={{ fontSize: "16px", fontWeight: "600" }}>
-                Activites:
-              </span>{" "}
-              {item.data().kindergarten_Activites.map((item) => {
-                return <span style={{ marginLeft: "5px" }} key={item}>{item},</span>;
-              })}{" "}
-            </span>  */}   
-
-          </div>
-          <div className="rating">
-            <i className="fas fa-star" />
-            <i className="fas fa-star" />
-            <i className="fas fa-star" />
-            <i className="far fa-star" />
-            <i className="far fa-star" />
-          </div>
-          <div className="slider-button">
-            <button className="aboutMe">About Me</button>
-            <button className="hireMe">
-              <Link to="/kindergarten_form" style={{ all: "unset" }}>
+  let i = 0;
+  value.docs.map((item,index) => {
+    if(index<9){
+      return sliderCard.push(
+        <div className="swiper-slide slider-card" key={item.data().kindergarten_Name}>
+          <div className="card-content">
+            <div className="slider-image"></div>
+            <div className="media-icons">
+              <i className="fab fa-facebook" />
+              <i className="fab fa-instagram" />
+              <i className="fab fa-google" />
+            </div>
+            <div className="name-profession">
+              <span className="slider-name">{item.data().kindergarten_Name}</span>
+              <span
+                className="profession"
+                style={{ fontSize: "16px", fontWeight: "600" }}
+              >
+                {item.data().kindergarten_Address}
+              </span>
+              <span
+                className="profession"
+                style={{ fontSize: "16px", fontWeight: "600" }}
+              >
+                {item.data().kindergarten_Price}
+              </span>
+  
+           {/*  <span className="profession">
                 {" "}
-                Registration{" "}
-              </Link>
-            </button>
+                <span style={{ fontSize: "16px", fontWeight: "600" }}>
+                  Activites:
+                </span>{" "}
+                {item.data().kindergarten_Activites.map((item) => {
+                  return <span style={{ marginLeft: "5px" }} key={item}>{item},</span>;
+                })}{" "}
+              </span>  */}   
+  
+            </div>
+            <div className="rating">
+              <i className="fas fa-star" />
+              <i className="fas fa-star" />
+              <i className="fas fa-star" />
+              <i className="far fa-star" />
+              <i className="far fa-star" />
+            </div>
+            <div className="slider-button">
+              <button className="aboutMe">About Me</button>
+              <button className="hireMe" >
+                <Link to={`/kindergarten_form/${item.data().kindergarten_id}`} style={{ all: "unset" }} >
+                  Registration
+                </Link>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      ); 
+    }
+    
   });
+
+
+
 
   if (value) {
     return (

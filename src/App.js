@@ -38,11 +38,11 @@ function App() {
       element: <SignPr />,
     },
     {
-      path: "/kindergarten_form",
+      path: "/kindergarten_form/:kinId",
       element: <KinForm />,
     },
     {
-      path: "/pr_home",
+      path: "/pr_home/:prId",
       element: <PrHome />,
     },
     {
@@ -54,7 +54,7 @@ function App() {
       element: <SignKin />,
     },
     {
-      path: "/kin_home/:userId",
+      path: "/kin_home/:kinId",
       element: <KinHome />,
     },
  

@@ -200,11 +200,11 @@ const KinHome = () => {
  /* let [url, seturl] = useState(null);*/
   let [act, setact] = useState([]);
 
-  let { userId } = useParams();
+  let { kinId } = useParams();
 
   
   const [user, loading, error] = useAuthState(auth);
-  const [value, loadingg, errorr] = useDocument(doc(db, "kindergarten Information", userId));
+  const [value, loadingg, errorr] = useDocument(doc(db, "kindergarten Information", kinId));
   
 
   const navigate = useNavigate();
@@ -328,7 +328,7 @@ const KinHome = () => {
                       <fieldset className="step activated_feild" id="0">
                         <div className="open-kin-dialog-form">
                           <h2>
-                            One last step and we will open a space for you{" "}
+                            One last step and we will open a space for you
                           </h2>
                           <h3>Please put your information down</h3>
                         </div>
@@ -431,7 +431,7 @@ const KinHome = () => {
                           Prev
                         </button>
                         <label>
-                          Kindergarten Picture{" "}
+                          Kindergarten Picture
                           <p style={{ fontSize: "15px" }}>(Not Obligatory)</p>
                         </label>
                         <br />
@@ -473,7 +473,7 @@ const KinHome = () => {
 
                         <div className="activites">
                           <div className="activite">
-                            {" "}
+                            
                             <input
                               type="checkbox"
                               id="Travel"
@@ -483,12 +483,12 @@ const KinHome = () => {
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
                               }}
-                            />{" "}
-                            <p htmlFor="Travel">Travel</p>{" "}
+                            />
+                            <p htmlFor="Travel">Travel</p>
                           </div>
 
                           <div className="activite">
-                            {" "}
+                            
                             <input
                               type="checkbox"
                               id="Language Learning"
@@ -498,14 +498,14 @@ const KinHome = () => {
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
                               }}
-                            />{" "}
+                            />
                             <p htmlFor="Language Learning">
                               Language Learning
-                            </p>{" "}
+                            </p>
                           </div>
 
                           <div className="activite">
-                            {" "}
+                            
                             <input
                               type="checkbox"
                               id="Sports"
@@ -515,12 +515,12 @@ const KinHome = () => {
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
                               }}
-                            />{" "}
-                            <p htmlFor="Sports">Sports</p>{" "}
+                            />
+                            <p htmlFor="Sports">Sports</p>
                           </div>
 
                           <div className="activite">
-                            {" "}
+                            
                             <input
                               type="checkbox"
                               id="Painting "
@@ -530,12 +530,12 @@ const KinHome = () => {
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
                               }}
-                            />{" "}
-                            <p htmlFor="Painting ">Painting </p>{" "}
+                            />
+                            <p htmlFor="Painting ">Painting </p>
                           </div>
 
                           <div className="activite">
-                            {" "}
+                            
                             <input
                               type="checkbox"
                               id="Quran "
@@ -545,12 +545,12 @@ const KinHome = () => {
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
                               }}
-                            />{" "}
-                            <p htmlFor="Quran ">Quran </p>{" "}
+                            />
+                            <p htmlFor="Quran ">Quran </p>
                           </div>
 
                           <div className="activite">
-                            {" "}
+                            
                             <input
                               type="checkbox"
                               id="Reading "
@@ -560,12 +560,12 @@ const KinHome = () => {
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
                               }}
-                            />{" "}
-                            <p htmlFor="Reading ">Reading </p>{" "}
+                            />
+                            <p htmlFor="Reading ">Reading </p>
                           </div>
 
                           <div className="activite">
-                            {" "}
+                            
                             <input
                               type="checkbox"
                               id="Other Things "
@@ -575,13 +575,13 @@ const KinHome = () => {
                               onKeyDown={(eo) => {
                                 keyEvent(eo);
                               }}
-                            />{" "}
-                            <p htmlFor="Other Things ">Other Things </p>{" "}
+                            />
+                            <p htmlFor="Other Things ">Other Things </p>
                           </div>
                         </div>
                         <button
                           className="nextStep"
-                          onClick={async (eo) => {
+                          onClick={ (eo) => {
                             validButton2(eo, act);
                             
                           }}
@@ -641,6 +641,7 @@ const KinHome = () => {
                               kindergarten_Address: address,
                               kindergarten_Activites: act,
                               kindergarten_Price: `${amount}.00 DA`,
+                              kindergarten_id: kinId,
                             });
                            
 
@@ -687,11 +688,11 @@ const KinHome = () => {
                   <div className="card card1">
                     <div className="card_content">
                       <h2 className="card_title">
-                        {" "}
-                        Class{" "}
+                        
+                        Class
                         <span className="material-symbols-outlined">
-                          {" "}
-                          school{" "}
+                          
+                          school
                         </span>
                       </h2>
                       <div className="card_text">
@@ -704,11 +705,11 @@ const KinHome = () => {
                   <div className="card card2">
                     <div className="card_content">
                       <h2 className="card_title">
-                        {" "}
-                        Activities{" "}
+                        
+                        Activities
                         <span className="material-symbols-outlined">
-                          {" "}
-                          extension{" "}
+                          
+                          extension
                         </span>
                       </h2>
                       <div className="card_text">
@@ -728,8 +729,8 @@ const KinHome = () => {
                   <div className="card card3">
                     <div className="card_content">
                       <h2 className="card_title">
-                        Chat{" "}
-                        <span className="material-symbols-outlined"> chat </span>{" "}
+                        Chat
+                        <span className="material-symbols-outlined"> chat </span>
                       </h2>
                       <div className="card_text">
                         <p>.................</p>
@@ -741,10 +742,10 @@ const KinHome = () => {
                   <div className="card card4">
                     <div className="card_content">
                       <h2 className="card_title">
-                        Registration Requests{" "}
+                        Registration Requests
                         <span className="material-symbols-outlined">
-                          {" "}
-                          person_add{" "}
+                          
+                          person_add
                         </span>
                       </h2>
                       <div className="card_text">
@@ -774,7 +775,7 @@ const KinHome = () => {
                 }}
               >
                 ◘ welcome {user.displayName} el-rawda ◘<br />
-                please verify your email and refesh the page to continue ...{" "}
+                please verify your email and refesh the page to continue ...
               </h2>
               <button
                 onClick={() => {
@@ -804,8 +805,8 @@ const KinHome = () => {
           >
             <h2>you did signed in on the wrong space ...</h2>
             <h2>
-              {" "}
-              click here to signin again in the right space 👉{" "}
+              
+              click here to signin again in the right space 👉
               <span
                 className="material-symbols-outlined refresh"
                 onClick={() => {
@@ -819,7 +820,7 @@ const KinHome = () => {
                 }}
               >
                 refresh
-              </span>{" "}
+              </span>
             </h2>
           </div>
         </div>

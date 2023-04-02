@@ -1,6 +1,5 @@
 import React from "react";
 import { db } from "../../firebase/config";
-import { doc, setDoc } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, query, where } from "firebase/firestore";
 import { useParams } from "react-router-dom";

@@ -16,13 +16,14 @@
     width: 80%;
     min-width: 280px;
     max-width: 500px;
-    height: auto;
+    height: 360px;
     background: #E2E2E2;
     border-radius: 10px;
     padding: 0;
     margin: 0;
     border-top: 1px solid white;
     animation: fade 0.5s ease 1 forwards;
+    overflow-y: auto;
   }
   .confirm h1 {
     text-align: center;
@@ -31,7 +32,7 @@
   }
   .confirm .child-content {
     font-size: 16px;
-    margin: 0 2rem 4.5rem;
+    margin: 1rem 0 2rem 2rem;
   }
   .confirm .child-content label{
     font-weight: 600;
@@ -39,30 +40,44 @@
   .confirm button {
     background: transparent;
     border: none;
-    color: #1678E5;
+    color: aliceblue;
     height: 3rem;
     font-size: 1rem;
     width: 50%;
     position: absolute;
-    bottom: 0;
     cursor: pointer;
   }
   .confirm button:nth-of-type(1) {
+    background-color: #f93f2a;
     border-top: 1px solid #B4B4B4;
     border-right: 1px solid #B4B4B4;
     left: 0;
     border-radius: 0 0 0 10px;
   }
   .confirm button:nth-of-type(2) {
+    background-color: #01d15f;
     border-top: 1px solid #B4B4B4;
     right: 0;
     border-radius: 0 0 10px 0;
   }
-  .confirm button:focus,
+  
   .confirm button:hover {
     font-weight: bold;
-    background: #EFEFEF;
+   transform: scale(0.95);
   }
-  .confirm button:active {
-    background: #D6D6D6;
+
+
+  .Registration-child-info{
+    display: flex;
+    flex-direction: column;
   }
+
+  .cut3{
+    width: 90%;
+    border-width: 4px;
+    border-style:dashed;
+    border-color: #ffa500;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    opacity: 0.8;
+ }

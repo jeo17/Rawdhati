@@ -95,7 +95,7 @@ const SignKin = () => {
  const [Guardian_2_Address, setGuardian_2_Address] = useState("Same as the child");
 
 
- const [AddSomeThing, setAddSomeThing] = useState("");
+ const [AddSomeThing, setAddSomeThing] = useState("none");
 
   /********************************************************/
   const [dis, setDis] = useState();
@@ -491,7 +491,7 @@ console.log("wait")
               Add_SomeThing:AddSomeThing,
               kindergarten_id: kinId, 
               User_name: user.displayName,
-
+              Request_State:"waitting"
             });
 
             console.log("doneeee")

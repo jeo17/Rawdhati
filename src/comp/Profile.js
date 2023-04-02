@@ -5,7 +5,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Page404 from '../Page_404';
 
 
-const Profile = ({children}) => {
+const Profile = ({children,id}) => {
   const [user, loading, error] = useAuthState(auth);
 
   if (loading) {
@@ -27,12 +27,12 @@ const Profile = ({children}) => {
 
   if(user){
     return (
-      <dialog id='profile'>
+      <dialog id={id === undefined? "profile":id}>
 
        <div className="profile-card">
          <span className="material-symbols-outlined"     style={{float:"right" , color:"orange", position:"relative",bottom:"18px",left:"14px",fontWeight:"900",transform:"scale(1.2)",cursor:"pointer"}}
              onClick={() => {
-          const profile = document.getElementById("profile");
+          const profile = document.getElementById(id === undefined? "profile":`${id}`);
           profile.close();
        }} >close</span>
     

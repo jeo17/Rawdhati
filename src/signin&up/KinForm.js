@@ -490,6 +490,7 @@ console.log("wait")
               Guardian_2_Address: Guardian_2_Address,
               Add_SomeThing:AddSomeThing,
               kindergarten_id: kinId, 
+              User_name: user.displayName,
 
             });
 

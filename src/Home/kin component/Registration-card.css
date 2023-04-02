@@ -1,0 +1,7 @@
+.Registration-list-item{
+    margin-bottom: 5px;
+}
+
+.Registration-list-item:hover{
+background-color: gray;
+}

@@ -297,6 +297,7 @@ h2.card_title,p {
 
 .card_text ol{
   list-style: circle;
+  font-size: 18px;
 }
 
 .darkmode .card_text{

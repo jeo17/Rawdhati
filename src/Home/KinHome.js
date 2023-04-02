@@ -4,6 +4,7 @@ import Topcloud from "../comp/topcloud";
 import Botcloud from "../comp/botcloud";
 import TopcloudErr from "../comp/topcloud_err";
 import Page404 from "../Page_404";
+import RegistrationCard from "./kin component/Registration-card";
 import { auth } from "../firebase/config";
 import { db } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -738,22 +739,8 @@ const KinHome = () => {
                     </div>
                   </div>
                 </li>
-                <li className="cards_item">
-                  <div className="card card4">
-                    <div className="card_content">
-                      <h2 className="card_title">
-                        Registration Requests
-                        <span className="material-symbols-outlined">
-                          
-                          person_add
-                        </span>
-                      </h2>
-                      <div className="card_text">
-                        <p>...........</p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                
+                <RegistrationCard />
               </ul>
             </div>
           </div>

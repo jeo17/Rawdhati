@@ -332,3 +332,42 @@ flex-wrap: wrap;
     background-color: #004355;
     border-color: #004355;
 }
+
+
+@keyframes msgPop {
+
+    0%  {
+        right : -440px ;
+         ;
+    }
+    75%  {
+        right : 30px ;
+         ;
+    }
+    100%{
+        right: 10px;
+    }
+    
+}
+
+
+.succ-msg{
+    font-size: 17px;
+    font: 600;
+    font-family: 'Fredoka One', cursive;
+    position: fixed;
+    top: 40px;
+    right: -440px;
+    width: 440px;
+    height: 60px;
+    display:flex ;
+    align-items: center;
+    justify-content: center;
+    background-image: url("./msg.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 13px;
+    opacity: 0.85;
+    transition: all 0.7s;
+}
+

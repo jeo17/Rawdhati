@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth,db } from "../firebase/config";
 import { doc, setDoc } from "firebase/firestore"; 
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -29,6 +30,8 @@ const AttDays = (eo, attendancedays) => {
 
 
 const SignKin = () => {
+
+  const navigate = useNavigate();
 
   let { kinId } = useParams();
 
@@ -131,6 +134,7 @@ if (user) {
     <>
     <div className="full-screen">
 
+    <div className="succ-msg">Child's information has been saved successfully ✔️</div>
     <div className="information">
         <header>
           <h1> Information form</h1>
@@ -461,6 +465,8 @@ if (user) {
 
 console.log("wait")
 
+
+
               await setDoc(doc(db, "Registration Requests" ,user.uid ), {
               Child_Name: name,
               Date_of_Birth: date,
@@ -493,8 +499,18 @@ console.log("wait")
               User_name: user.displayName,
               Request_State:"waitting"
             });
+            
+            const popupMsg = document.querySelector(".succ-msg")
+            popupMsg.style.animation = "msgPop 1s 1";
+            popupMsg.style.right = "10px"
 
-            console.log("doneeee")
+             setTimeout(() => {
+              popupMsg.style.right = "-440px";
+              popupMsg.style.animation = "none";
+              navigate(`/pr_home/${user.uid}`);
+              
+            }, 3000);
+            
 
           }}>Submit</button>
 

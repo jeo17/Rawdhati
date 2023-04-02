@@ -15,7 +15,7 @@ const RegistrationCard = () => {
       where("kindergarten_id", "==", kinId)
     )
   );
-
+ 
   if (loading) {
     return (
       <div>

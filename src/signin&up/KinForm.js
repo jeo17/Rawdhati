@@ -132,7 +132,8 @@ const SignKin = () => {
 if (user) {
   return (
     <>
-    <div className="full-screen">
+
+   <div className="full-screen">
 
     <div className="succ-msg">Child's information has been saved successfully ✔️</div>
     <div className="information">
@@ -497,7 +498,9 @@ console.log("wait")
               Add_SomeThing:AddSomeThing,
               kindergarten_id: kinId, 
               User_name: user.displayName,
-              Request_State:"waitting"
+              User_id: user.uid,
+              Request_State:"waitting",
+
             });
             
             const popupMsg = document.querySelector(".succ-msg")

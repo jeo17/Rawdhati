@@ -1,44 +1,56 @@
-import React from "react";
+import React from 'react';
+import IosDialog from './Ios-dialog';
 import { db } from "../../firebase/config";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, query, where ,doc, updateDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
-import "./Registration-card.css";
-import IosDialog from "./Ios-dialog";
 
-const RegistrationCard = () => {
-  let { kinId } = useParams();
 
-  const [value, loading, error] = useCollection(
-    query(
-      collection(db, "Registration Requests"),
-      where("kindergarten_id", "==", kinId)
-    )
-  );
- 
-  if (loading) {
-    return (
-      <div>
-        <p>Initialising User...</p>
-      </div>
-    );
-  }
+const ClassCard = () => {
 
-  if (error) {
-    return <>error loading the data ...</>;
-  }
+    let { kinId } = useParams();
 
-  if (value) {
-    return (
-      <li className="cards_item">
-        <div className="card card4">
-          <div className="card_content">
-            <h2 className="card_title">
-              Registration Requests
-              <span className="material-symbols-outlined">person_add</span>
-            </h2>
-            <div className="card_text">
-              <ol
+    const [value, loading, error] = useCollection(
+        query(
+          collection(db, "Registration Requests"),
+          where("kindergarten_id", "==", kinId)
+        )
+      );
+
+
+      if (loading) {
+        return (
+          <div>
+            <p>Initialising User...</p>
+          </div>
+        );
+      }
+    
+      if (error) {
+        return <>error loading the data ...</>;
+      }
+
+
+
+
+      if (value) {
+        return (
+            <li className="cards_item">
+                      <div className="card card1">
+                        <div className="card_content">
+                          <h2 className="card_title">
+                            
+                            Class
+                            <span className="material-symbols-outlined">
+                              
+                              school
+                            </span>
+                          </h2>
+                          <div className="card_text">
+                            
+
+
+                         <ol
                 style={{
                   fontFamily: "'Fredoka One', cursive",
                   marginBottom: "20px",
@@ -48,7 +60,27 @@ const RegistrationCard = () => {
                   value.docs.map((item) => {
                     return (
                       <>
-                        <IosDialog id={item.data().User_name}>
+                        
+                        {item.data().Request_State ==="accept"? <li
+                          className="Registration-list-item"
+                          key={item.Child_Name}
+                          onClick={(eo) => {
+                            const ios = document.getElementById(
+                              `${item.data().User_id}`
+                            );
+                            ios.showModal();
+                          }}
+                        >
+                          {item.data().Child_Name.map((item) => {
+                            return(
+                                <span> {item} </span>
+                            )
+                          })}
+                        </li>: <></> }
+
+
+
+                        <IosDialog id={item.data().User_id}>
                           <span
                             className="material-symbols-outlined"
                             style={{
@@ -63,7 +95,7 @@ const RegistrationCard = () => {
                             }}
                             onClick={() => {
                               const profile = document.getElementById(
-                                item.data().User_name
+                                item.data().User_id
                               );
                               profile.close();
                             }}
@@ -121,36 +153,13 @@ const RegistrationCard = () => {
                             <div><label>Added Informations:</label> {item.data().Add_SomeThing} </div>
                             
                           </div>
-                          <div>
-                            <button>Decline </button>
-                            <button autoFocus="" onClick={async(eo) => {
-
-                              await updateDoc(doc(db, "Registration Requests", item.data().User_id), {
-                                Request_State: "accept",
-                              });
-
-                              const profile = document.getElementById(
-                                item.data().User_name
-                              );
-                              profile.close();
-                             
-                            }}>Accept </button>
-                          </div>
                           </div>
                           
                         </IosDialog>
-                        {item.data().Request_State ==="waitting"? <li
-                          className="Registration-list-item"
-                          key={item.User_name}
-                          onClick={(eo) => {
-                            const ios = document.getElementById(
-                              `${item.data().User_name}`
-                            );
-                            ios.showModal();
-                          }}
-                        >
-                          {item.data().User_name}
-                        </li>: <></> }
+
+
+
+
 
                       </>
                     );
@@ -159,12 +168,16 @@ const RegistrationCard = () => {
                   <></>
                 )}
               </ol>
-            </div>
-          </div>
-        </div>
-      </li>
-    );
-  }
-};
 
-export default RegistrationCard;
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+        );
+      }
+    
+}
+
+export default ClassCard;

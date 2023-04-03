@@ -122,7 +122,19 @@ const RegistrationCard = () => {
                             
                           </div>
                           <div>
-                            <button>Decline </button>
+                            <button onClick={async(eo) => {
+
+                               await updateDoc(doc(db, "Registration Requests", item.data().User_id), {
+                                 Request_State: "delet",
+                               });
+
+                               const profile = document.getElementById(
+                                 item.data().User_name
+                               );
+                               profile.close();
+
+                              }}>Decline </button>
+
                             <button autoFocus="" onClick={async(eo) => {
 
                               await updateDoc(doc(db, "Registration Requests", item.data().User_id), {

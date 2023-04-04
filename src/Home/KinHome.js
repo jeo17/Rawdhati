@@ -6,6 +6,7 @@ import TopcloudErr from "../comp/topcloud_err";
 import Page404 from "../Page_404";
 import RegistrationCard from "./kin component/Registration-card";
 import ClassCard from "./kin component/Class-card";
+import ActivitieCard from "./kin component/Activitie-card";
 import { auth } from "../firebase/config";
 import { db } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -688,32 +689,13 @@ const KinHome = () => {
               <ul className="cards">
                 
              <ClassCard /> 
-
+             
+             <ActivitieCard />
+                
                 <li className="cards_item">
-                  <div className="card card2">
-                    <div className="card_content">
-                      <h2 className="card_title">
-                        
-                        Activities
-                        <span className="material-symbols-outlined">
-                          
-                          extension
-                        </span>
-                      </h2>
-                      <div className="card_text">
-                          <ol style={{fontFamily:"'Fredoka One', cursive", marginBottom:"20px"}}>
-
-                            {value.data() !== undefined? value.data().kindergarten_Activites.map((item) => {
-                                return(     <li key={item}>{item}</li>        )
-                               }) : <li ></li>}
-
-
-                          </ol>                   
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li className="cards_item">
+                <div className="indicator" >
+                <div className="noti_count">0</div>
+                    </div> 
                   <div className="card card3">
                     <div className="card_content">
                       <h2 className="card_title">

@@ -13,7 +13,7 @@ const ClassCard = () => {
     const [value, loading, error] = useCollection(
         query(
           collection(db, "Registration Requests"),
-          where("kindergarten_id", "==", kinId)
+          where("kindergarten_id", "==", kinId),where("Request_State", "==", "accept")
         )
       );
 
@@ -61,7 +61,7 @@ const ClassCard = () => {
                     return (
                       <>
                         
-                        {item.data().Request_State ==="accept"? <li
+                        <li
                           className="Registration-list-item"
                           key={item.Child_Name}
                           onClick={(eo) => {
@@ -71,12 +71,17 @@ const ClassCard = () => {
                             ios.showModal();
                           }}
                         >
+                          <img src="https://cdn-icons-png.flaticon.com/512/1717/1717992.png" alt=""/>
                           {item.data().Child_Name.map((item) => {
                             return(
-                                <span> {item} </span>
+                              <>
+                              
+                              <span style={{marginRight:"4px"}}>{item} </span>
+                              </>
+                              
                             )
                           })}
-                        </li>: <></> }
+                        </li>
 
 
 

@@ -1,7 +1,92 @@
+
 .Registration-list-item{
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.Registration-list-item img{
+    max-width: 20px;
+    margin-right: 18px;
+    opacity: 1;
+    transition: 0.5s;
 }
 
 .Registration-list-item:hover{
 background-color: gray;
+}
+
+.noti_count {
+    font-family: 'Montserrat', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: aliceblue;
+    font-weight: 700;
+}
+.indicator {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top:25px;
+    right: 70px;
+    background-color: #f83f3c;
+    border: 2px solid rgb(51, 51, 51);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 0.95;
+
+}
+
+
+
+.class-list-item{
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.class-list-item img{
+    max-width: 20px;
+    margin-right: 18px;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+
+.card2 ol .material-symbols-outlined{
+    font-weight: bold;
+    color: #f72522;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+}
+.card2 ol .material-symbols-outlined:hover{
+    transform: scale(1.1);
+}
+
+.add-act-icon{
+    font-weight: bold;
+    cursor: pointer;
+    color: #0cb000;
+}
+.add-act-icon:hover{
+    transform: scale(1.1);
+}
+.add-act{
+    display: flex;
+    align-items: center;
+    margin-left: 37px;
+}
+.add-act input{
+    background: transparent;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #45494C;
+    font-size: 14px;
+    padding: 3px 0;
+    font-family: 'Fredoka One', cursive;
 }

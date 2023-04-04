@@ -225,11 +225,6 @@ button:disabled{
   -webkit-mask:radial-gradient(circle .8rem at 2px 50%,#0000 98%,#000)0 0/100% 2.4rem;
   width: 370px;
   transition: all 0.1s;
-  cursor: pointer;
-}
-
-.card:hover{
-  scale: 0.95;
 }
 
 .card1{
@@ -295,6 +290,10 @@ h2.card_title,p {
   font-weight: 700;
 }
 
+.card_text{
+  position: relative;
+  padding-bottom: 15px;
+}
 .card_text ol{
   list-style: circle;
   font-size: 18px;

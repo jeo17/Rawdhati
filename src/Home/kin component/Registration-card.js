@@ -3,6 +3,7 @@ import { db } from "../../firebase/config";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, query, where ,doc, updateDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 import "./Registration-card.css";
 import IosDialog from "./Ios-dialog";
 
@@ -12,10 +13,10 @@ const RegistrationCard = () => {
   const [value, loading, error] = useCollection(
     query(
       collection(db, "Registration Requests"),
-      where("kindergarten_id", "==", kinId)
+      where("kindergarten_id", "==", kinId),where("Request_State", "==", "waitting"),
     )
   );
- 
+
   if (loading) {
     return (
       <div>
@@ -29,10 +30,14 @@ const RegistrationCard = () => {
   }
 
   if (value) {
+    let Noti = value.docs.length;
     return (
-      <li className="cards_item">
+      <li className="cards_item">     
+      <div className="indicator" >
+          <div className="noti_count">{Noti}</div>
+        </div> 
         <div className="card card4">
-          <div className="card_content">
+          <div className="card_content">      
             <h2 className="card_title">
               Registration Requests
               <span className="material-symbols-outlined">person_add</span>
@@ -45,7 +50,7 @@ const RegistrationCard = () => {
                 }}
               >
                 {value.docs !== undefined ? (
-                  value.docs.map((item) => {
+                  value.docs.map((item,index) => {
                     return (
                       <>
                         <IosDialog id={item.data().User_name}>
@@ -136,22 +141,24 @@ const RegistrationCard = () => {
                               }}>Decline </button>
 
                             <button autoFocus="" onClick={async(eo) => {
+                              const profile = document.getElementById(
+                                item.data().User_name
+                              );
+                              profile.close();
 
                               await updateDoc(doc(db, "Registration Requests", item.data().User_id), {
                                 Request_State: "accept",
                               });
 
-                              const profile = document.getElementById(
-                                item.data().User_name
-                              );
-                              profile.close();
+                              
                              
                             }}>Accept </button>
                           </div>
                           </div>
                           
                         </IosDialog>
-                        {item.data().Request_State ==="waitting"? <li
+
+                         <li
                           className="Registration-list-item"
                           key={item.User_name}
                           onClick={(eo) => {
@@ -161,12 +168,16 @@ const RegistrationCard = () => {
                             ios.showModal();
                           }}
                         >
+                          <img src="https://d29fhpw069ctt2.cloudfront.net/icon/image/37641/preview.svg" alt=""/>
                           {item.data().User_name}
-                        </li>: <></> }
+                        </li>
 
                       </>
+                      
                     );
+                    
                   })
+                  
                 ) : (
                   <></>
                 )}

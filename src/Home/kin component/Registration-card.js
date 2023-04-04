@@ -4,7 +4,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, query, where ,doc, updateDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import "./Registration-card.css";
+import "./cards.css";
 import IosDialog from "./Ios-dialog";
 
 const RegistrationCard = () => {

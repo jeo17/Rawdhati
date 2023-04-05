@@ -291,8 +291,6 @@ const KinHome = () => {
 
     <div className="recent-border mt-4">
       <span className="recent-orders">Price: </span>
-
-      
       <span className="wishlist"> <input value={value.data() !== undefined ? value.data().kindergarten_Price : <></>} />   <span className="material-symbols-outlined">edit_square</span></span>
     </div>
     

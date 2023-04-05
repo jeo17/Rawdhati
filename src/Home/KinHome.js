@@ -286,21 +286,19 @@ const KinHome = () => {
    <div className='bot-container'>
    <div className="recent-border mt-4">
       <span className="recent-orders">Address: </span>
-
-      
-      <span className="wishlist">  {value.data() !== undefined ? value.data().kindergarten_Address : <></>}  <span className="material-symbols-outlined">edit_square</span></span>
+      <span className="wishlist">  <input  value={value.data() !== undefined ? value.data().kindergarten_Address : <></>}/>  <span className="material-symbols-outlined">edit_square</span></span>
     </div>
 
     <div className="recent-border mt-4">
       <span className="recent-orders">Price: </span>
 
       
-      <span className="wishlist"> {value.data() !== undefined ? value.data().kindergarten_Price : <></>}   <span className="material-symbols-outlined">edit_square</span></span>
+      <span className="wishlist"> <input value={value.data() !== undefined ? value.data().kindergarten_Price : <></>} />   <span className="material-symbols-outlined">edit_square</span></span>
     </div>
     
     <div className="recent-border mt-4">
       <span className="recent-orders">Bio: </span>
-      <span className="wishlist"> .. <span className="material-symbols-outlined">edit_square</span></span>
+      <span className="wishlist"> <input  value=".."/> <span className="material-symbols-outlined">edit_square</span></span>
     </div>
    </div>
 

@@ -3,7 +3,6 @@ import { db } from "../../firebase/config";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, query, where ,doc, updateDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 import "./cards.css";
 import IosDialog from "./Ios-dialog";
 

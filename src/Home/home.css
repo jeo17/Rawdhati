@@ -712,7 +712,13 @@ button {
   margin-left: 50px;
 }
 
-
+.wishlist input{
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  font-family: 'Fredoka One', cursive;
+}
 
 
 

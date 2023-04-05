@@ -14,40 +14,37 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Profile from "../comp/Profile";
 import { signOut, sendEmailVerification } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 //import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-
 const KinHome = () => {
-  
-
   const onScroll = (event) => {
-   if ( document.getElementById("banner") != null) {
-    const h1 = document.getElementById("h1"),
-    banner = document.getElementById("banner"),
-    button = document.getElementById("button");
-    const scrollPosition = event.target.scrollingElement.scrollTop;
-    if (scrollPosition > 150) {
-      banner.style.backgroundSize = "140%";
-      h1.style.opacity = 0;
-      h1.style.translate = "0 -50px";
-      h1.style.scale = "0.9";
-      button.style.opacity = 0;
-      button.style.translate = "0 -50px";
-      button.style.scale = "0.8";
-    } else {
-      banner.style.backgroundSize = "100%";
-      h1.style.opacity = 1;
-      h1.style.translate = 0;
-      h1.style.scale = 1;
-      button.style.opacity = 1;
-      button.style.translate = 0;
-      button.style.scale = 1;
+    if (document.getElementById("banner") != null) {
+      const h1 = document.getElementById("h1"),
+        banner = document.getElementById("banner"),
+        button = document.getElementById("button");
+      const scrollPosition = event.target.scrollingElement.scrollTop;
+      if (scrollPosition > 150) {
+        banner.style.backgroundSize = "140%";
+        h1.style.opacity = 0;
+        h1.style.translate = "0 -50px";
+        h1.style.scale = "0.9";
+        button.style.opacity = 0;
+        button.style.translate = "0 -50px";
+        button.style.scale = "0.8";
+      } else {
+        banner.style.backgroundSize = "100%";
+        h1.style.opacity = 1;
+        h1.style.translate = 0;
+        h1.style.scale = 1;
+        button.style.opacity = 1;
+        button.style.translate = 0;
+        button.style.scale = 1;
+      }
     }
-  };
   };
 
   document.addEventListener("scroll", onScroll);
@@ -96,7 +93,7 @@ const KinHome = () => {
 
     let current_fs = i;
     let prev_fs = document.getElementById(Number(i.id) - 1);
-    
+
     current_fs.style.display = "none";
     prev_fs.style.display = "block";
 
@@ -125,11 +122,6 @@ const KinHome = () => {
     }
   };
 
-
-
-
-
-  
   const keyEvent = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
@@ -142,10 +134,8 @@ const KinHome = () => {
   };
 
   const countBOX = (eo, act) => {
-
     if (eo.target.checked) {
-
-      act.push(`${eo.target.id}`)
+      act.push(`${eo.target.id}`);
     } else {
       const index = act.indexOf(eo.target.id);
       act.splice(index, 1);
@@ -154,7 +144,7 @@ const KinHome = () => {
       ? (document.querySelectorAll(".nextStep")[4].disabled = true)
       : (document.querySelectorAll(".nextStep")[4].disabled = false);
   };
- 
+
   const validButton2 = (eo, act) => {
     eo.preventDefault();
     act.length <= 0 ? (eo.target.disabled = true) : Next();
@@ -172,13 +162,13 @@ const KinHome = () => {
     }
   };
 
- const handlIMG = (eo) => {
-  if(eo.target.files[0]){
-    setimg(eo.target.files[0])
-  }
- }
+  const handlIMG = (eo) => {
+    if (eo.target.files[0]) {
+      setimg(eo.target.files[0]);
+    }
+  };
 
- /*const storeIMG = () => {
+  /*const storeIMG = () => {
    const imageref = ref(db, "Kindergarten Image");
    uploadBytes(imageref, img).then(() => {
     getDownloadURL(imageref).then((url) => {
@@ -194,21 +184,24 @@ const KinHome = () => {
    });
  }*/
 
-
-
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
   let [img, setimg] = useState(null);
   let [amount, setamount] = useState("");
- /* let [url, seturl] = useState(null);*/
+  /* let [url, seturl] = useState(null);*/
   let [act, setact] = useState([]);
 
   let { kinId } = useParams();
 
-  
+
+    let [NewAddress, setNewAddress] = useState(undefined);
+    let [NewPrice, setNewPrice] = useState(undefined);
+    let [NewBio, setNewBio] = useState(undefined);
+
   const [user, loading, error] = useAuthState(auth);
-  const [value, loadingg, errorr] = useDocument(doc(db, "kindergarten Information", kinId));
-  
+  const [value, loadingg, errorr] = useDocument(
+    doc(db, "kindergarten Information", kinId)
+  );
 
   const navigate = useNavigate();
 
@@ -238,7 +231,6 @@ const KinHome = () => {
     navigate("/Visitor");
   }
 
-
   if (loadingg) {
     return (
       <div>
@@ -255,422 +247,461 @@ const KinHome = () => {
     );
   }
 
-
-
-
-
-
   if (user.displayName === null) {
     if (user.emailVerified) {
       return (
         <>
-
-        
           <Topcloud />
 
-
           <Profile>
+            <div className="top-container">
+              <img
+                src={require("../comp/assets/avatar.jpg")}
+                className="img-fluid profile-image"
+                width={70}
+                alt="sorry"
+              />
+              <div style={{ marginLeft: "11px" }}>
+                {value.data() !== undefined ? (
+                  <h5 className="name"> {value.data().kindergarten_Name}</h5>
+                ) : (
+                  <h5 className="name"> welcome</h5>
+                )}
+                <p className="mail">{user.email}</p>
+              </div>
+            </div>
+            <div className="bot-container">
+              <div className="recent-border mt-4">
+                <span className="recent-orders">Address: </span>
+                <span className="wishlist">
+                  
+                  <input
+                    defaultValue={
+                      value.data() !== undefined ? (
+                        value.data().kindergarten_Address
+                      ) : (
+                        <></>
+                      )
+                    }
+                    onChange={async (eo) => {
+                      setNewAddress(eo.target.value)
+                    }}
+                  />
+                  <span className="material-symbols-outlined" onClick={async (eo) => {
+                    await updateDoc(doc(db, "kindergarten Information", kinId), {
+                      kindergarten_Address: NewAddress,
+                    });
+                  }}>edit_square</span>
+                </span>
+              </div>
 
-<div className="top-container">
-      <img
-        src={require("../comp/assets/avatar.jpg")}
-        className="img-fluid profile-image"
-        width={70}
-        alt="sorry"
-      />
-      <div style={{marginLeft:"11px"}}>
-        {value.data() !== undefined ? <h5 className="name"> {value.data().kindergarten_Name}</h5> : <h5 className="name"> welcome</h5>}
-        <p className="mail">{user.email}</p>
-      </div>
-    </div>
-   <div className='bot-container'>
-   <div className="recent-border mt-4">
-      <span className="recent-orders">Address: </span>
-      <span className="wishlist">  <input  value={value.data() !== undefined ? value.data().kindergarten_Address : <></>}/>  <span className="material-symbols-outlined">edit_square</span></span>
-    </div>
+              <div className="recent-border mt-4">
+                <span className="recent-orders">Price: </span>
+                <span className="wishlist">
+                  
+                  <input
+                    defaultValue={
+                      value.data() !== undefined ? (
+                        value.data().kindergarten_Price
+                      ) : (
+                        <></>
+                      )
+                    }
+                    onChange={(eo) => {
+                      setNewPrice(eo.target.value)
+                    }}
+                  />
+                  <span className="material-symbols-outlined" onClick={async (eo) => {
+                     await updateDoc(doc(db, "kindergarten Information", kinId), {
+                      kindergarten_Price: NewPrice,
+                    });
+                  }}>edit_square</span>
+                </span>
+              </div>
 
-    <div className="recent-border mt-4">
-      <span className="recent-orders">Price: </span>
-      <span className="wishlist"> <input value={value.data() !== undefined ? value.data().kindergarten_Price : <></>} />   <span className="material-symbols-outlined">edit_square</span></span>
-    </div>
-    
-    <div className="recent-border mt-4">
-      <span className="recent-orders">Bio: </span>
-      <span className="wishlist"> <input  value=".."/> <span className="material-symbols-outlined">edit_square</span></span>
-    </div>
-   </div>
-
+              <div className="recent-border mt-4">
+                <span className="recent-orders">Bio: </span>
+                <span className="wishlist">
+                  
+                  <input defaultValue="set your bio" onChange={(eo) => {
+                    setNewBio(eo.target.value)
+                  }}/>
+                  <span className="material-symbols-outlined" onClick={async (eo) => {
+                   /* await updateDoc(doc(db, "kindergarten Information", kinId), {
+                      kindergarten_Address: NewAddress,
+                    });*/
+                  }}>edit_square</span>
+                </span>
+              </div>
+            </div>
           </Profile>
 
           <div className="main appmain">
-            {value.data() === undefined &&  <dialog id="kin-dialog" open>
-              <form className="kin-form ">
-                <div id="multi_step_form">
-                  <div className="container-kin flex">
-                    <div id="multistep_nav">
-                      <div className="progress_holder">Kindergarten Name</div>
-                      <div className="progress_holder">
-                        Kindergarten Address
-                      </div>
-                      <div className="progress_holder">
-                        Kindergarten Picture
-                      </div>
-                      <div className="progress_holder">
-                        Kindergarten Activites
-                      </div>
-                      <div className="progress_holder">
-                        kindergarten monthly payment
-                      </div>
-                    </div>
-
-                    <div className="content-kin-form">
-                      <fieldset className="step activated_feild" id="0">
-                        <div className="open-kin-dialog-form">
-                          <h2>
-                            One last step and we will open a space for you
-                          </h2>
-                          <h3>Please put your information down</h3>
+            {value.data() === undefined && (
+              <dialog id="kin-dialog" open>
+                <form className="kin-form ">
+                  <div id="multi_step_form">
+                    <div className="container-kin flex">
+                      <div id="multistep_nav">
+                        <div className="progress_holder">Kindergarten Name</div>
+                        <div className="progress_holder">
+                          Kindergarten Address
                         </div>
-
-                        <button
-                          className="nextStep"
-                          onClick={(eo) => {
-                            eo.preventDefault();
-                            Next();
-
-                          }}
-                        >
-                          Next
-                        </button>
-                      </fieldset>
-
-                      <fieldset className="step" id="1">
-                        <label>
-                          Kindergarten Name <p>*</p>
-                        </label>
-                        <br />
-                        <br />
-                        <input
-                          type="text"
-                          placeholder="Rawdhat:"
-                          required
-                          onChange={(eo) => {
-                            setname(eo.target.value);
-                            name.length <= 3
-                              ? (document.querySelectorAll(
-                                  ".nextStep"
-                                )[1].disabled = true)
-                              : (document.querySelectorAll(
-                                  ".nextStep"
-                                )[1].disabled = false);
-                          }}
-                          onKeyDown={(eo) => {
-                            keyEvent(eo);
-                          }}
-                        />
-                        <button
-                          className="nextStep"
-                          onClick={ (eo) => {
-                            validButton(eo, name);                           
-                          }}
-                        >
-                          Next
-                        </button>
-                      </fieldset>
-                      <fieldset className="step" id="2">
-                        <button
-                          className="prevStep"
-                          onClick={(eo) => {
-                            eo.preventDefault();
-                            Prev();
-                          }}
-                        >
-                          Prev
-                        </button>
-                        <label>
-                          Kindergarten Address <p>*</p>
-                        </label>
-                        <br />
-                        <br />
-                        <input
-                          type="text"
-                          required
-                          placeholder="Address"
-                          onChange={(eo) => {
-                            setaddress(eo.target.value);
-                            address.length <= 3
-                              ? (document.querySelectorAll(
-                                  ".nextStep"
-                                )[2].disabled = true)
-                              : (document.querySelectorAll(
-                                  ".nextStep"
-                                )[2].disabled = false);
-                          }}
-                          onKeyDown={(eo) => {
-                            keyEvent(eo);
-                          }}
-                        />
-                        <button
-                          className="nextStep"
-                          onClick={async (eo) => {
-                            validButton(eo, address);                          
-                          }}
-                        >
-                          Next
-                        </button>
-                      </fieldset>
-                      <fieldset className="step" id="3">
-                        <button
-                          className="prevStep"
-                          onClick={(eo) => {
-                            eo.preventDefault();
-                            Prev();
-                          }}
-                        >
-                          Prev
-                        </button>
-                        <label>
+                        <div className="progress_holder">
                           Kindergarten Picture
-                          <p style={{ fontSize: "15px" }}>(Not Obligatory)</p>
-                        </label>
-                        <br />
-                        <br />
-                        <input type="file" placeholder="add picture" onChange={(eo) => {
-                          handlIMG(eo)
-                        }}/>
-                        <button
-                          className="nextStep"
-                          onClick={ (eo) => {
-                            eo.preventDefault();
-                             Next();
-                          //   storeIMG();
-                            
-                          }}
-                        >
-                          Next
-                        </button>
-                      </fieldset>
-                      <fieldset className="step" id="4">
-                        <button
-                          className="prevStep"
-                          onClick={(eo) => {
-                            eo.preventDefault();
-                            Prev();
-                          }}
-                        >
-                          Prev
-                        </button>
-                        <div className="kin-form-header">
+                        </div>
+                        <div className="progress_holder">
+                          Kindergarten Activites
+                        </div>
+                        <div className="progress_holder">
+                          kindergarten monthly payment
+                        </div>
+                      </div>
+
+                      <div className="content-kin-form">
+                        <fieldset className="step activated_feild" id="0">
+                          <div className="open-kin-dialog-form">
+                            <h2>
+                              One last step and we will open a space for you
+                            </h2>
+                            <h3>Please put your information down</h3>
+                          </div>
+
+                          <button
+                            className="nextStep"
+                            onClick={(eo) => {
+                              eo.preventDefault();
+                              Next();
+                            }}
+                          >
+                            Next
+                          </button>
+                        </fieldset>
+
+                        <fieldset className="step" id="1">
                           <label>
-                            Kindergarten Activites <p>*</p>
+                            Kindergarten Name <p>*</p>
                           </label>
-                          <br /> <br />
-                          <p>
-                            Choose the activites that your kindergarten do :
-                          </p>
-                        </div>
-
-                        <div className="activites">
-                          <div className="activite">
-                            
-                            <input
-                              type="checkbox"
-                              id="Travel"
-                              onChange={(eo) => {
-                                countBOX(eo, act);
-                              }}
-                              onKeyDown={(eo) => {
-                                keyEvent(eo);
-                              }}
-                            />
-                            <p htmlFor="Travel">Travel</p>
-                          </div>
-
-                          <div className="activite">
-                            
-                            <input
-                              type="checkbox"
-                              id="Language Learning"
-                              onChange={(eo) => {
-                                countBOX(eo, act);
-                              }}
-                              onKeyDown={(eo) => {
-                                keyEvent(eo);
-                              }}
-                            />
-                            <p htmlFor="Language Learning">
-                              Language Learning
-                            </p>
-                          </div>
-
-                          <div className="activite">
-                            
-                            <input
-                              type="checkbox"
-                              id="Sports"
-                              onChange={(eo) => {
-                                countBOX(eo, act);
-                              }}
-                              onKeyDown={(eo) => {
-                                keyEvent(eo);
-                              }}
-                            />
-                            <p htmlFor="Sports">Sports</p>
-                          </div>
-
-                          <div className="activite">
-                            
-                            <input
-                              type="checkbox"
-                              id="Painting "
-                              onChange={(eo) => {
-                                countBOX(eo, act);
-                              }}
-                              onKeyDown={(eo) => {
-                                keyEvent(eo);
-                              }}
-                            />
-                            <p htmlFor="Painting ">Painting </p>
-                          </div>
-
-                          <div className="activite">
-                            
-                            <input
-                              type="checkbox"
-                              id="Quran "
-                              onChange={(eo) => {
-                                countBOX(eo, act);
-                              }}
-                              onKeyDown={(eo) => {
-                                keyEvent(eo);
-                              }}
-                            />
-                            <p htmlFor="Quran ">Quran </p>
-                          </div>
-
-                          <div className="activite">
-                            
-                            <input
-                              type="checkbox"
-                              id="Reading "
-                              onChange={(eo) => {
-                                countBOX(eo, act);
-                              }}
-                              onKeyDown={(eo) => {
-                                keyEvent(eo);
-                              }}
-                            />
-                            <p htmlFor="Reading ">Reading </p>
-                          </div>
-
-                          <div className="activite">
-                            
-                            <input
-                              type="checkbox"
-                              id="Other Things "
-                              onChange={(eo) => {
-                                countBOX(eo, act);
-                              }}
-                              onKeyDown={(eo) => {
-                                keyEvent(eo);
-                              }}
-                            />
-                            <p htmlFor="Other Things ">Other Things </p>
-                          </div>
-                        </div>
-                        <button
-                          className="nextStep"
-                          onClick={ (eo) => {
-                            validButton2(eo, act);
-                            
-                          }}
-                        >
-                          Next
-                        </button>
-                      </fieldset>
-
-                      <fieldset className="step" id="5">
-                        <button
-                          className="prevStep"
-                          onClick={(eo) => {
-                            eo.preventDefault();
-                            Prev();
-                          }}
-                        >
-                          Prev
-                        </button>
-                        <label>
-                          kindergarten monthly payment amount <p>*</p>
-                        </label>
-                        <br /> <br />
-                        <div className="amount">
+                          <br />
+                          <br />
                           <input
-                            type="number"
-                            placeholder="Price"
-                            min="500"
-                            max="10000"
-                            step="50"
-                            maxLength="5"
-                            size="5"
-                            style={{ width: "215px" }}
+                            type="text"
+                            placeholder="Rawdhat:"
+                            required
                             onChange={(eo) => {
-                              setamount(eo.target.value);
-                              amount.length < 2
+                              setname(eo.target.value);
+                              name.length <= 3
                                 ? (document.querySelectorAll(
                                     ".nextStep"
-                                  )[5].disabled = true)
+                                  )[1].disabled = true)
                                 : (document.querySelectorAll(
                                     ".nextStep"
-                                  )[5].disabled = false);        
-
+                                  )[1].disabled = false);
                             }}
                             onKeyDown={(eo) => {
                               keyEvent(eo);
                             }}
                           />
-                          <span className="unit">.00 DA</span>
-                        </div>
-                        <button
-                          className="nextStep"
-                          onClick={async (eo) => {
-                            validButton3(eo, amount);
+                          <button
+                            className="nextStep"
+                            onClick={(eo) => {
+                              validButton(eo, name);
+                            }}
+                          >
+                            Next
+                          </button>
+                        </fieldset>
+                        <fieldset className="step" id="2">
+                          <button
+                            className="prevStep"
+                            onClick={(eo) => {
+                              eo.preventDefault();
+                              Prev();
+                            }}
+                          >
+                            Prev
+                          </button>
+                          <label>
+                            Kindergarten Address <p>*</p>
+                          </label>
+                          <br />
+                          <br />
+                          <input
+                            type="text"
+                            required
+                            placeholder="Address"
+                            onChange={(eo) => {
+                              setaddress(eo.target.value);
+                              address.length <= 3
+                                ? (document.querySelectorAll(
+                                    ".nextStep"
+                                  )[2].disabled = true)
+                                : (document.querySelectorAll(
+                                    ".nextStep"
+                                  )[2].disabled = false);
+                            }}
+                            onKeyDown={(eo) => {
+                              keyEvent(eo);
+                            }}
+                          />
+                          <button
+                            className="nextStep"
+                            onClick={async (eo) => {
+                              validButton(eo, address);
+                            }}
+                          >
+                            Next
+                          </button>
+                        </fieldset>
+                        <fieldset className="step" id="3">
+                          <button
+                            className="prevStep"
+                            onClick={(eo) => {
+                              eo.preventDefault();
+                              Prev();
+                            }}
+                          >
+                            Prev
+                          </button>
+                          <label>
+                            Kindergarten Picture
+                            <p style={{ fontSize: "15px" }}>(Not Obligatory)</p>
+                          </label>
+                          <br />
+                          <br />
+                          <input
+                            type="file"
+                            placeholder="add picture"
+                            onChange={(eo) => {
+                              handlIMG(eo);
+                            }}
+                          />
+                          <button
+                            className="nextStep"
+                            onClick={(eo) => {
+                              eo.preventDefault();
+                              Next();
+                              //   storeIMG();
+                            }}
+                          >
+                            Next
+                          </button>
+                        </fieldset>
+                        <fieldset className="step" id="4">
+                          <button
+                            className="prevStep"
+                            onClick={(eo) => {
+                              eo.preventDefault();
+                              Prev();
+                            }}
+                          >
+                            Prev
+                          </button>
+                          <div className="kin-form-header">
+                            <label>
+                              Kindergarten Activites <p>*</p>
+                            </label>
+                            <br /> <br />
+                            <p>
+                              Choose the activites that your kindergarten do :
+                            </p>
+                          </div>
 
-                            await setDoc(doc(db, "kindergarten Information" ,user.uid ), {
-                              kindergarten_Name: name,
-                              kindergarten_Address: address,
-                              kindergarten_Activites: act,
-                              kindergarten_Price: `${amount}.00 DA`,
-                              kindergarten_id: kinId,
-                            });
-                           
+                          <div className="activites">
+                            <div className="activite">
+                              <input
+                                type="checkbox"
+                                id="Travel"
+                                onChange={(eo) => {
+                                  countBOX(eo, act);
+                                }}
+                                onKeyDown={(eo) => {
+                                  keyEvent(eo);
+                                }}
+                              />
+                              <p htmlFor="Travel">Travel</p>
+                            </div>
 
-                          }}
-                        >
-                          Next
-                        </button>
-                      </fieldset>
+                            <div className="activite">
+                              <input
+                                type="checkbox"
+                                id="Language Learning"
+                                onChange={(eo) => {
+                                  countBOX(eo, act);
+                                }}
+                                onKeyDown={(eo) => {
+                                  keyEvent(eo);
+                                }}
+                              />
+                              <p htmlFor="Language Learning">
+                                Language Learning
+                              </p>
+                            </div>
 
-                      <fieldset className="step" id="6">
-                        <div className="kin-form-footer">
-                          <h1>Thank You </h1>
-                          <h3>
-                            Those information will help people reached your
-                            kindergarten
-                          </h3>
-                        </div>
-                      </fieldset>
+                            <div className="activite">
+                              <input
+                                type="checkbox"
+                                id="Sports"
+                                onChange={(eo) => {
+                                  countBOX(eo, act);
+                                }}
+                                onKeyDown={(eo) => {
+                                  keyEvent(eo);
+                                }}
+                              />
+                              <p htmlFor="Sports">Sports</p>
+                            </div>
+
+                            <div className="activite">
+                              <input
+                                type="checkbox"
+                                id="Painting "
+                                onChange={(eo) => {
+                                  countBOX(eo, act);
+                                }}
+                                onKeyDown={(eo) => {
+                                  keyEvent(eo);
+                                }}
+                              />
+                              <p htmlFor="Painting ">Painting </p>
+                            </div>
+
+                            <div className="activite">
+                              <input
+                                type="checkbox"
+                                id="Quran "
+                                onChange={(eo) => {
+                                  countBOX(eo, act);
+                                }}
+                                onKeyDown={(eo) => {
+                                  keyEvent(eo);
+                                }}
+                              />
+                              <p htmlFor="Quran ">Quran </p>
+                            </div>
+
+                            <div className="activite">
+                              <input
+                                type="checkbox"
+                                id="Reading "
+                                onChange={(eo) => {
+                                  countBOX(eo, act);
+                                }}
+                                onKeyDown={(eo) => {
+                                  keyEvent(eo);
+                                }}
+                              />
+                              <p htmlFor="Reading ">Reading </p>
+                            </div>
+
+                            <div className="activite">
+                              <input
+                                type="checkbox"
+                                id="Other Things "
+                                onChange={(eo) => {
+                                  countBOX(eo, act);
+                                }}
+                                onKeyDown={(eo) => {
+                                  keyEvent(eo);
+                                }}
+                              />
+                              <p htmlFor="Other Things ">Other Things </p>
+                            </div>
+                          </div>
+                          <button
+                            className="nextStep"
+                            onClick={(eo) => {
+                              validButton2(eo, act);
+                            }}
+                          >
+                            Next
+                          </button>
+                        </fieldset>
+
+                        <fieldset className="step" id="5">
+                          <button
+                            className="prevStep"
+                            onClick={(eo) => {
+                              eo.preventDefault();
+                              Prev();
+                            }}
+                          >
+                            Prev
+                          </button>
+                          <label>
+                            kindergarten monthly payment amount <p>*</p>
+                          </label>
+                          <br /> <br />
+                          <div className="amount">
+                            <input
+                              type="number"
+                              placeholder="Price"
+                              min="500"
+                              max="10000"
+                              step="50"
+                              maxLength="5"
+                              size="5"
+                              style={{ width: "215px" }}
+                              onChange={(eo) => {
+                                setamount(eo.target.value);
+                                amount.length < 2
+                                  ? (document.querySelectorAll(
+                                      ".nextStep"
+                                    )[5].disabled = true)
+                                  : (document.querySelectorAll(
+                                      ".nextStep"
+                                    )[5].disabled = false);
+                              }}
+                              onKeyDown={(eo) => {
+                                keyEvent(eo);
+                              }}
+                            />
+                            <span className="unit">.00 DA</span>
+                          </div>
+                          <button
+                            className="nextStep"
+                            onClick={async (eo) => {
+                              validButton3(eo, amount);
+
+                              await setDoc(
+                                doc(db, "kindergarten Information", user.uid),
+                                {
+                                  kindergarten_Name: name,
+                                  kindergarten_Address: address,
+                                  kindergarten_Activites: act,
+                                  kindergarten_Price: `${amount}.00 DA`,
+                                  kindergarten_id: kinId,
+                                }
+                              );
+                            }}
+                          >
+                            Next
+                          </button>
+                        </fieldset>
+
+                        <fieldset className="step" id="6">
+                          <div className="kin-form-footer">
+                            <h1>Thank You </h1>
+                            <h3>
+                              Those information will help people reached your
+                              kindergarten
+                            </h3>
+                          </div>
+                        </fieldset>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </form>
-            </dialog> }
-            
+                </form>
+              </dialog>
+            )}
 
             <div id="banner" className="banner">
-            
-            
-            { value.data() !== undefined ? <h1 id="h1">  Welcome to  {value.data().kindergarten_Name} </h1> : <h1 id="h1">welcome</h1>}
-                     
+              {value.data() !== undefined ? (
+                <h1 id="h1"> Welcome to {value.data().kindergarten_Name} </h1>
+              ) : (
+                <h1 id="h1">welcome</h1>
+              )}
+
               <button
                 id="button"
                 onClick={(eo) => {
@@ -683,20 +714,22 @@ const KinHome = () => {
 
             <div className="kin-card">
               <ul className="cards">
-                
-             <ClassCard /> 
-             
-             <ActivitieCard />
-                
+                <ClassCard />
+
+                <ActivitieCard />
+
                 <li className="cards_item">
-                <div className="indicator" >
-                <div className="noti_count">0</div>
-                    </div> 
+                  <div className="indicator">
+                    <div className="noti_count">0</div>
+                  </div>
                   <div className="card card3">
                     <div className="card_content">
                       <h2 className="card_title">
                         Chat
-                        <span className="material-symbols-outlined"> chat </span>
+                        <span className="material-symbols-outlined">
+                          
+                          chat
+                        </span>
                       </h2>
                       <div className="card_text">
                         <p>.................</p>
@@ -704,7 +737,7 @@ const KinHome = () => {
                     </div>
                   </div>
                 </li>
-                
+
                 <RegistrationCard />
               </ul>
             </div>
@@ -757,7 +790,6 @@ const KinHome = () => {
           >
             <h2>you did signed in on the wrong space ...</h2>
             <h2>
-              
               click here to signin again in the right space 👉
               <span
                 className="material-symbols-outlined refresh"

@@ -121,7 +121,7 @@ const KinHome = () => {
         .classList.remove("activated_step");
     }
   };
-
+//invalid enter key:
   const keyEvent = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
@@ -756,7 +756,7 @@ const KinHome = () => {
                   </div>
                 </li>
 
-                <RegistrationCard />
+                <RegistrationCard  kindergarten_Name={value.data().kindergarten_Name}/>
               </ul>
             </div>
           </div>

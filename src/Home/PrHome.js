@@ -9,7 +9,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut, sendEmailVerification } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc,updateDoc } from "firebase/firestore"; 
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "../firebase/config";
 import { useParams } from "react-router-dom";
@@ -183,18 +183,26 @@ const PrHome = () => {
    
    <div className="recent-border mt-4">
       <span className="recent-orders">My Kindergarten:</span>
-      <span className="wishlist"> <input /* value={value.data() !== undefined ? value.data().kindergarten_Price : <></>} */ /> </span>
+      <span className="wishlist"> <label>{value.data() !== undefined ? value.data().User_Kindergarten: "" }</label> </span>
     </div>
 
     <div className="recent-border mt-4">
       <span className="recent-orders">Bio:</span>
-      <span className="wishlist"> <textarea defaultValue={value.data().Bio}  onChange={(eo) => {
+      <span className="wishlist"> <textarea defaultValue={value.data()!== undefined ? value.data().Bio : "Write your own bio"}  onChange={(eo) => {
         setBio(eo.target.value)
         setUpdateBio("block")
       }}/>  <span className="material-symbols-outlined" style={{display:`${UpdateBio}`}} onClick={async (eo) => {
-        await setDoc(doc(db, "Parents Informations", prId), {
+        if (value.data() === undefined) {
+          await setDoc(doc(db, "Parents Informations", prId), {
           Bio: Bio,
-        });  
+        }); 
+        }
+        else{
+          await updateDoc(doc(db, "Parents Informations", prId), {
+            Bio: Bio,
+          });
+        }
+         
         setUpdateBio("none")
       }}>download</span></span>
     </div>

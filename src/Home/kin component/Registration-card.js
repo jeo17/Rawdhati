@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import "./cards.css";
 import IosDialog from "./Ios-dialog";
 
-const RegistrationCard = () => {
+const RegistrationCard = ({kindergarten_Name}) => {
   let { kinId } = useParams();
 
   const [value, loading, error] = useCollection(
@@ -147,6 +147,9 @@ const RegistrationCard = () => {
 
                               await updateDoc(doc(db, "Registration Requests", item.data().User_id), {
                                 Request_State: "accept",
+                              });
+                              await updateDoc(doc(db, "Parents Informations", item.data().User_id), {
+                                User_Kindergarten: kindergarten_Name,
                               });
 
                               

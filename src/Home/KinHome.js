@@ -193,10 +193,12 @@ const KinHome = () => {
 
   let { kinId } = useParams();
 
+  
+  let [SaveAddress, setSaveAddress] = useState("none");
+  let [SavePrice, setSavePrice] = useState("none");
+  let [SaveBio, setSaveBio] = useState("none");
 
-    let [NewAddress, setNewAddress] = useState(undefined);
-    let [NewPrice, setNewPrice] = useState(undefined);
-    let [NewBio, setNewBio] = useState(undefined);
+    let [Bio, setBio] = useState(undefined);
 
   const [user, loading, error] = useAuthState(auth);
   const [value, loadingg, errorr] = useDocument(
@@ -275,6 +277,13 @@ const KinHome = () => {
                 <span className="recent-orders">Address: </span>
                 <span className="wishlist">
                   
+                <span style={{display:`${SaveAddress}`}} className="material-symbols-outlined" onClick={async (eo) => {
+                    await updateDoc(doc(db, "kindergarten Information", kinId), {
+                      kindergarten_Address: address,
+                    });
+                    setSaveAddress("none")
+                  }}>download</span>
+
                   <input
                     defaultValue={
                       value.data() !== undefined ? (
@@ -284,14 +293,11 @@ const KinHome = () => {
                       )
                     }
                     onChange={async (eo) => {
-                      setNewAddress(eo.target.value)
+                      setaddress(eo.target.value)
+                      setSaveAddress("block")
                     }}
                   />
-                  <span className="material-symbols-outlined" onClick={async (eo) => {
-                    await updateDoc(doc(db, "kindergarten Information", kinId), {
-                      kindergarten_Address: NewAddress,
-                    });
-                  }}>edit_square</span>
+                  
                 </span>
               </div>
 
@@ -308,14 +314,16 @@ const KinHome = () => {
                       )
                     }
                     onChange={(eo) => {
-                      setNewPrice(eo.target.value)
+                      setamount(eo.target.value)
+                      setSavePrice("block")
                     }}
                   />
-                  <span className="material-symbols-outlined" onClick={async (eo) => {
+                  <span style={{display:`${SavePrice}`}} className="material-symbols-outlined" onClick={async (eo) => {
                      await updateDoc(doc(db, "kindergarten Information", kinId), {
-                      kindergarten_Price: NewPrice,
+                      kindergarten_Price: `${amount}.00 DA`,
                     });
-                  }}>edit_square</span>
+                    setSavePrice("none")
+                  }}>download</span>
                 </span>
               </div>
 
@@ -323,14 +331,24 @@ const KinHome = () => {
                 <span className="recent-orders">Bio: </span>
                 <span className="wishlist">
                   
-                  <input defaultValue="set your bio" onChange={(eo) => {
-                    setNewBio(eo.target.value)
+                <span  style={{display:`${SaveBio}`}} className="material-symbols-outlined" onClick={async (eo) => {
+                    await updateDoc(doc(db, "kindergarten Information", kinId), {
+                      kindergarten_Bio: Bio,
+                    });
+                    setSaveBio("none")
+                  }}>download</span>
+
+                  <textarea defaultValue={
+                      value.data() !== undefined ? (
+                        value.data().kindergarten_Bio
+                      ) : (
+                        <></>
+                      )
+                    } onChange={(eo) => {
+                    setBio(eo.target.value)
+                    setSaveBio("block")
                   }}/>
-                  <span className="material-symbols-outlined" onClick={async (eo) => {
-                   /* await updateDoc(doc(db, "kindergarten Information", kinId), {
-                      kindergarten_Address: NewAddress,
-                    });*/
-                  }}>edit_square</span>
+                  
                 </span>
               </div>
             </div>

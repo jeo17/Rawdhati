@@ -51,7 +51,7 @@ const ActivitieCard = () => {
                         />
                         {item}
 
-                        <span class="material-symbols-outlined" onClick={async(eo) => {   
+                        <span className="material-symbols-outlined" onClick={async(eo) => {   
                           await updateDoc(doc(db, "kindergarten Information", kinId), {
                             kindergarten_Activites: arrayRemove(item),
                           });
@@ -65,7 +65,7 @@ const ActivitieCard = () => {
               </ol>
               <div className="add-act">
                 <span
-                  class="material-symbols-outlined add-act-icon"
+                  className="material-symbols-outlined add-act-icon"
                   onClick={async (eo) => {
                     await updateDoc(doc(db, "kindergarten Information", kinId), {
                       kindergarten_Activites: arrayUnion(Activitie=== "" ? undefined :Activitie ),

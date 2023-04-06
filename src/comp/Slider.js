@@ -112,7 +112,7 @@ function Slider() {
 
               <div className="recent-border mt-4">
                 <span className="recent-orders">Bio: </span>
-                <span className="wishlist"> .. </span>
+                <span className="wishlist"> {item.data().kindergarten_Bio} </span>
               </div>
             </div>
           </Profile>

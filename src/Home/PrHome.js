@@ -6,9 +6,13 @@ import Slider from "../comp/Slider";
 import Page404 from "../Page_404";
 import { auth } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut, sendEmailVerification } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore"; 
+import { useDocument } from "react-firebase-hooks/firestore";
+import { db } from "../firebase/config";
+import { useParams } from "react-router-dom";
 
 
 const PrHome = () => {
@@ -49,13 +53,19 @@ const PrHome = () => {
 
   document.addEventListener("scroll", onScroll);
 
-
+  let { prId } = useParams();
   
 
-
+  const [value, loadingdata, errordata] = useDocument(doc(db, "Parents Informations", prId));
 
   const [user, loading, error] = useAuthState(auth);
+
+  const [Bio, setBio] = useState(undefined);
+  let [UpdateBio, setUpdateBio] = useState("none");
+
   const navigate = useNavigate();
+
+  
 
   useEffect((eo) => {
     if (!user && !loading) {
@@ -80,6 +90,34 @@ const PrHome = () => {
       </>
     );
   }
+
+  if (loadingdata) {
+
+    return (
+      <div>
+        <p>Initialising data...</p>
+      </div>
+    );
+  }
+
+  if (errordata) {
+    
+    return (
+      <>
+        <p>data error...</p>
+      </>
+    );
+  }
+
+
+
+
+
+
+
+
+
+
 
   if (!user) {
     navigate("/Visitor");
@@ -145,12 +183,20 @@ const PrHome = () => {
    
    <div className="recent-border mt-4">
       <span className="recent-orders">My Kindergarten:</span>
-      <span className="wishlist"> <input /* value={value.data() !== undefined ? value.data().kindergarten_Price : <></>} */ />  <span className="material-symbols-outlined">edit_square</span></span>
+      <span className="wishlist"> <input /* value={value.data() !== undefined ? value.data().kindergarten_Price : <></>} */ /> </span>
     </div>
 
     <div className="recent-border mt-4">
       <span className="recent-orders">Bio:</span>
-      <span className="wishlist"> <input /* value={value.data() !== undefined ? value.data().kindergarten_Price : <></>} */ />  <span className="material-symbols-outlined">edit_square</span></span>
+      <span className="wishlist"> <textarea defaultValue={value.data().Bio}  onChange={(eo) => {
+        setBio(eo.target.value)
+        setUpdateBio("block")
+      }}/>  <span className="material-symbols-outlined" style={{display:`${UpdateBio}`}} onClick={async (eo) => {
+        await setDoc(doc(db, "Parents Informations", prId), {
+          Bio: Bio,
+        });  
+        setUpdateBio("none")
+      }}>download</span></span>
     </div>
 
    </div>

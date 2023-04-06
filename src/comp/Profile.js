@@ -27,7 +27,12 @@ const Profile = ({children,id}) => {
 
   if(user){
     return (
-      <dialog id={id === undefined? "profile":id}>
+      <dialog id={id === undefined? "profile":id} className="toHide" onClick={(eo) => {
+        if (eo.target.className==="toHide") {
+          const profile = document.getElementById(id === undefined? "profile":`${id}`);
+          profile.close();
+        }
+      }}>
 
        <div className="profile-card">
          <span className="material-symbols-outlined"     style={{float:"right" , color:"orange", position:"relative",bottom:"18px",left:"14px",fontWeight:"900",transform:"scale(1.2)",cursor:"pointer"}}

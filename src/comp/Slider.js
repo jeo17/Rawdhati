@@ -49,73 +49,9 @@ function Slider() {
   }
 
   let sliderCard = [];
-  let i = 0;
   value.docs.map((item, index) => {
     if (index < 9) {
       return sliderCard.push(
-        <>
-          <Profile id={item.data().kindergarten_id}>
-            <div className="top-container">
-              <img
-                src={require("../comp/assets/avatar.jpg")}
-                className="img-fluid profile-image"
-                width={70}
-                alt="sorry"
-              />
-            </div>
-            <div className="bot-container" style={{ marginTop: "0" }}>
-              <div style={{ marginLeft: "11px" }}>
-                {item.data().kindergarten_Name !== undefined ? (
-                  <h5 className="name"> {item.data().kindergarten_Name}</h5>
-                ) : (
-                  <h5 className="name"> welcome</h5>
-                )}
-              </div>
-
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Address: </span>
-                <span className="wishlist">
-                  
-                  {item.data().kindergarten_Address !== undefined ? (
-                    item.data().kindergarten_Address
-                  ) : (
-                    <></>
-                  )}
-                </span>
-              </div>
-
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Activites: </span>
-                <span className="wishlist">
-                  
-                  {item.data().kindergarten_Activites.map((item) => {
-                    return (
-                      <span style={{ marginLeft: "5px" }} key={item}>
-                        {item},
-                      </span>
-                    );
-                  })}
-                </span>
-              </div>
-
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Price: </span>
-                <span className="wishlist">
-                  
-                  {item.data().kindergarten_Price !== undefined ? (
-                    item.data().kindergarten_Price
-                  ) : (
-                    <></>
-                  )}
-                </span>
-              </div>
-
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Bio: </span>
-                <span className="wishlist"> {item.data().kindergarten_Bio} </span>
-              </div>
-            </div>
-          </Profile>
 
           <div
             className="swiper-slide slider-card"
@@ -168,7 +104,12 @@ function Slider() {
                     const Kprofile = document.getElementById(
                       `${item.data().kindergarten_id}`
                     );
-                    Kprofile.showModal();
+                    if(Kprofile.open ){
+                      Kprofile.close()
+                    }
+                    else{
+                      Kprofile.showModal();
+                    }  
                   }}
                 >
                   About Me
@@ -177,14 +118,86 @@ function Slider() {
                   <Link
                     to={`/kindergarten_form/${item.data().kindergarten_id}`}
                     style={{ all: "unset" }}
+                    onClick={(eo) => {
+                      document.documentElement.scrollTop = 0;
+                    }}
                   >
                     Registration
                   </Link>
                 </button>
               </div>
+
+
             </div>
+
+
+            <Profile id={item.data().kindergarten_id}>
+            <div className="top-container">
+              <img
+                src={require("../comp/assets/avatar.jpg")}
+                className="img-fluid profile-image"
+                width={70}
+                alt="sorry"
+              />
+            </div>
+            <div className="bot-container" style={{ marginTop: "0" }}>
+              <div style={{ marginLeft: "11px" }}>
+                {item.data().kindergarten_Name !== undefined ? (
+                  <h5 className="name"> {item.data().kindergarten_Name}</h5>
+                ) : (
+                  <h5 className="name"> welcome</h5>
+                )}
+              </div>
+
+              <div className="recent-border mt-4">
+                <span className="recent-orders">Address: </span>
+                <span className="wishlist">
+                  {item.data().kindergarten_Address !== undefined ? (
+                    item.data().kindergarten_Address
+                  ) : (
+                    <></>
+                  )}
+                </span>
+              </div>
+
+              <div className="recent-border mt-4">
+                <span className="recent-orders">Activites: </span>
+                <span className="wishlist">
+                  {item.data().kindergarten_Activites.map((item) => {
+                    return (
+                      <span style={{ marginLeft: "5px" }} key={item}>
+                        {item},
+                      </span>
+                    );
+                  })}
+                </span>
+              </div>
+
+              <div className="recent-border mt-4">
+                <span className="recent-orders">Price: </span>
+                <span className="wishlist">
+                  {item.data().kindergarten_Price !== undefined ? (
+                    item.data().kindergarten_Price
+                  ) : (
+                    <></>
+                  )}
+                </span>
+              </div>
+
+              <div className="recent-border mt-4">
+                <span className="recent-orders">Bio: </span>
+                <span className="wishlist">
+                  {" "}
+                  {item.data().kindergarten_Bio}{" "}
+                </span>
+              </div>
+            </div>
+          </Profile>
+
           </div>
-        </>
+
+         
+
       );
     }
   });

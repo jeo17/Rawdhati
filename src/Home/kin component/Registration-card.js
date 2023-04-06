@@ -52,7 +52,7 @@ const RegistrationCard = ({kindergarten_Name}) => {
                   value.docs.map((item,index) => {
                     return (
                       <>
-                        <IosDialog id={item.data().User_name}>
+                        <IosDialog id={item.data().User_name} key={item.data().User_name}>
                           <span
                             className="material-symbols-outlined"
                             style={{
@@ -79,9 +79,9 @@ const RegistrationCard = ({kindergarten_Name}) => {
 
                           <div className="Registration-child-info">
                           <div className="child-content">
-                            <div> <label>Child Name:</label>   {item.data().Child_Name.map((item) => {
+                            <div> <label>Child Name:</label>   {item.data().Child_Name.map((item,index) => {
                                return(
-                                <span>{item} </span>
+                                <span key={index}>{item} </span>
                               )
                             })}</div> 
                             <div><label>Date of Birth:</label> {item.data().Date_of_Birth} </div>
@@ -91,18 +91,18 @@ const RegistrationCard = ({kindergarten_Name}) => {
                             <div><label>Unlike Food:</label> {item.data().Unlike_Food} </div>
                             <div className="cut3"></div>
                             <div><label>Start Date:</label> {item.data().Start_Date} </div>
-                            <div><label>Attendance_Days:</label> {item.data().Attendance_Days.map((item) => {
+                            <div><label>Attendance_Days:</label> {item.data().Attendance_Days.map((item,index) => {
                               return(
-                                <span>{item} </span>
+                                <span key={index}>{item} </span>
                               )
                             })} </div>
                             <div><label>Start From:</label> {item.data().From} </div>
                             <div><label>To:</label> {item.data().To} </div>
                             <div><label>Any Attendance Informations:</label> {item.data().Attendance_Informations} </div>
                             <div className="cut3"></div>
-                            <div><label>Guardian Name:</label> {item.data().Guardian_Name.map((item) => {
+                            <div><label>Guardian Name:</label> {item.data().Guardian_Name.map((item,index) => {
                               return(
-                                <span>{item} </span>
+                                <span key={index}>{item} </span>
                               )
                             })} </div>
                             <div><label>Guardian Email:</label> {item.data().Guardian_Email} </div>
@@ -111,9 +111,9 @@ const RegistrationCard = ({kindergarten_Name}) => {
                             <div><label>Guardian Work Phone:</label> {item.data().Guardian_Work_Phone} </div>
                             <div><label>Guardian Address:</label> {item.data().Guardian_Address} </div>
                             <div className="cut3"></div>
-                            <div><label>Second Guardian Name:</label> {item.data().Guardian_2_Name.map((item) => {
+                            <div><label>Second Guardian Name:</label> {item.data().Guardian_2_Name.map((item,index) => {
                               return(
-                                <span>{item} </span>
+                                <span key={index}>{item} </span>
                               )
                             })} </div>                     
                             <div><label>Second Guardian Email:</label> {item.data().Guardian_2_Email} </div>

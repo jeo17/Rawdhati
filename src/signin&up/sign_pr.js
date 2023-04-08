@@ -15,8 +15,8 @@ import {
 } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
-
-
+import { doc, setDoc } from "firebase/firestore"; 
+import { db } from "../firebase/config";
 
 
 
@@ -134,21 +134,28 @@ const SignPr = () => {
                                 // Signed in
                                 const user = userCredential.user;
 
+                                updateProfile(auth.currentUser, {
+                                  displayName: userName,
+                                })
+                                  .then(async () => {
+
+                                    await setDoc(doc(db, "Parents Informations", user.uid), {
+                                      Bio: "Write your own bio"
+                                    });  
+                                    navigate(`/pr_home/${user.uid}`)
+
+                                  })
+                                  .catch((error) => {
+                                    console.log("buggg");
+                                  });
+
                                 sendEmailVerification(auth.currentUser).then(
                                   () => {
                                     alert("check your email. verification sended!!");
                                   }
                                 );
 
-                                updateProfile(auth.currentUser, {
-                                  displayName: userName,
-                                })
-                                  .then(() => {
-                                    navigate(`/pr_home/${user.uid}`)
-                                  })
-                                  .catch((error) => {
-                                    console.log("buggg");
-                                  });
+                                
                               })
                               .catch((error) => {
                                 const errorCode = error.code;

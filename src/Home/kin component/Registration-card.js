@@ -1,7 +1,7 @@
 import React from "react";
 import { db } from "../../firebase/config";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, query, where ,doc, updateDoc } from "firebase/firestore";
+import { collection, query, where ,doc, updateDoc,deleteDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import "./cards.css";
 import IosDialog from "./Ios-dialog";
@@ -128,14 +128,12 @@ const RegistrationCard = ({kindergarten_Name}) => {
                           <div>
                             <button onClick={async(eo) => {
 
-                               await updateDoc(doc(db, "Registration Requests", item.data().User_id), {
-                                 Request_State: "delet",
-                               });
+                              const profile = document.getElementById(
+                                item.data().User_name
+                              );
+                              profile.close();
 
-                               const profile = document.getElementById(
-                                 item.data().User_name
-                               );
-                               profile.close();
+                                await deleteDoc(doc(db, "Registration Requests", item.data().User_id));    
 
                               }}>Decline </button>
 

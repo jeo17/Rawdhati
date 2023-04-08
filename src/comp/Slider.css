@@ -23,7 +23,7 @@
   width: 100%;
   background: #7d2ae8;
   border-radius: 20px 20px 0 0;
-  background-image: url(https://content.pentagonplay.co.uk/completed-photos/24635/8394/Large/playground-safety-surfacing.JPG);
+  background-image: url(https://scontent.fqfd1-1.fna.fbcdn.net/v/t1.6435-9/82261670_1485070874965030_3627461333034729472_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=uJctqSN0-rIAX9AthOq&_nc_ht=scontent.fqfd1-1.fna&oh=00_AfAujafa_CFOOXNy3XOEUfvw1VQcDt13sG2h6vpMdzKSgA&oe=6458F6D2);
   background-position: center;
   background-size: cover;
 
@@ -56,7 +56,6 @@ section .slider-card .slider-image{
 
 .slider-card .media-icons i{
   color: #7d2ae8;
-  opacity: 0.9;
   margin-top: 10px;
   transition: all 0.3s ease;
   cursor: pointer;

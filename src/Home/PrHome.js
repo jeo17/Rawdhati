@@ -4,6 +4,7 @@ import TopcloudErr from "../comp/topcloud_err";
 import Profile from "../comp/Profile";
 import Slider from "../comp/Slider";
 import Page404 from "../Page_404";
+import MyKindergarten from "./Pr component/My-Kindergarten";
 import { auth } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
@@ -268,6 +269,13 @@ const PrHome = () => {
             </div>
 
             <div className="pr-card">
+
+              
+              {/*value.data().User_Kindergarten !== undefined &&
+              <MyKindergarten />            
+                */}
+
+
               <h2 className="card-title">Kindergartens may you like it:</h2>
 
               <Slider />

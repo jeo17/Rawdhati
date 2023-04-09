@@ -271,14 +271,12 @@ const PrHome = () => {
             <div className="pr-card">
 
               
-              {/*value.data().User_Kindergarten !== undefined &&
-              <MyKindergarten />            
-                */}
-
-
-              <h2 className="card-title">Kindergartens may you like it:</h2>
-
-              <Slider />
+              {value.data().User_Kindergarten !== undefined &&
+              <MyKindergarten  MyKindergarten_info={value.data().User_Kindergarten} MyKindergarten_activites={value.data().User_kindergarten_Activites}/>            
+                }
+              {value.data().User_Kindergarten === undefined &&
+                <Slider /> 
+              }
 
               <h2 className="card-title">Advertisements:</h2>
 

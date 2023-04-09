@@ -204,8 +204,9 @@ function Slider() {
 
   if (value) {
     return (
-      <>
+     
         <section>
+          <h2 className="card-title">Kindergartens may you like it:</h2>
           <div className="swiper mySwiper">
             <div className="swiper-wrapper">{sliderCard}</div>
           </div>
@@ -213,7 +214,7 @@ function Slider() {
           <div className="swiper-button-prev" />
           <div className="swiper-pagination" />
         </section>
-      </>
+      
     );
   }
 }

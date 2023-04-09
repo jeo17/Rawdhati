@@ -695,7 +695,10 @@ button {
   width: 99.2vw;
   top: 100vh;
   background-color: #beddec;
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
  
 }
 
@@ -709,7 +712,7 @@ button {
 .card-title{
   color: #5797b7;
   font-family: 'Fredoka One', cursive;
-  margin-left: 50px;
+  margin-left: 10px;
 }
 
 .wishlist input{

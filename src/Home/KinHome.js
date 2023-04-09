@@ -121,7 +121,7 @@ const KinHome = () => {
         .classList.remove("activated_step");
     }
   };
-//invalid enter key:
+  //invalid enter key:
   const keyEvent = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
@@ -193,12 +193,11 @@ const KinHome = () => {
 
   let { kinId } = useParams();
 
-  
   let [SaveAddress, setSaveAddress] = useState("none");
   let [SavePrice, setSavePrice] = useState("none");
   let [SaveBio, setSaveBio] = useState("none");
 
-    let [Bio, setBio] = useState(undefined);
+  let [Bio, setBio] = useState(undefined);
 
   const [user, loading, error] = useAuthState(auth);
   const [value, loadingg, errorr] = useDocument(
@@ -276,13 +275,21 @@ const KinHome = () => {
               <div className="recent-border mt-4">
                 <span className="recent-orders">Address: </span>
                 <span className="wishlist">
-                  
-                <span style={{display:`${SaveAddress}`}} className="material-symbols-outlined" onClick={async (eo) => {
-                    await updateDoc(doc(db, "kindergarten Information", kinId), {
-                      kindergarten_Address: address,
-                    });
-                    setSaveAddress("none")
-                  }}>download</span>
+                  <span
+                    style={{ display: `${SaveAddress}` }}
+                    className="material-symbols-outlined"
+                    onClick={async (eo) => {
+                      await updateDoc(
+                        doc(db, "kindergarten Information", kinId),
+                        {
+                          kindergarten_Address: address,
+                        }
+                      );
+                      setSaveAddress("none");
+                    }}
+                  >
+                    download
+                  </span>
 
                   <input
                     defaultValue={
@@ -293,18 +300,16 @@ const KinHome = () => {
                       )
                     }
                     onChange={async (eo) => {
-                      setaddress(eo.target.value)
-                      setSaveAddress("block")
+                      setaddress(eo.target.value);
+                      setSaveAddress("block");
                     }}
                   />
-                  
                 </span>
               </div>
 
               <div className="recent-border mt-4">
                 <span className="recent-orders">Price: </span>
                 <span className="wishlist">
-                  
                   <input
                     defaultValue={
                       value.data() !== undefined ? (
@@ -314,41 +319,60 @@ const KinHome = () => {
                       )
                     }
                     onChange={(eo) => {
-                      setamount(eo.target.value)
-                      setSavePrice("block")
+                      setamount(eo.target.value);
+                      setSavePrice("block");
                     }}
                   />
-                  <span style={{display:`${SavePrice}`}} className="material-symbols-outlined" onClick={async (eo) => {
-                     await updateDoc(doc(db, "kindergarten Information", kinId), {
-                      kindergarten_Price: `${amount}.00 DA`,
-                    });
-                    setSavePrice("none")
-                  }}>download</span>
+                  <span
+                    style={{ display: `${SavePrice}` }}
+                    className="material-symbols-outlined"
+                    onClick={async (eo) => {
+                      await updateDoc(
+                        doc(db, "kindergarten Information", kinId),
+                        {
+                          kindergarten_Price: `${amount}.00 DA`,
+                        }
+                      );
+                      setSavePrice("none");
+                    }}
+                  >
+                    download
+                  </span>
                 </span>
               </div>
 
               <div className="recent-border mt-4">
                 <span className="recent-orders">Bio: </span>
                 <span className="wishlist">
-                  
-                <span  style={{display:`${SaveBio}`}} className="material-symbols-outlined" onClick={async (eo) => {
-                    await updateDoc(doc(db, "kindergarten Information", kinId), {
-                      kindergarten_Bio: Bio,
-                    });
-                    setSaveBio("none")
-                  }}>download</span>
+                  <span
+                    style={{ display: `${SaveBio}` }}
+                    className="material-symbols-outlined"
+                    onClick={async (eo) => {
+                      await updateDoc(
+                        doc(db, "kindergarten Information", kinId),
+                        {
+                          kindergarten_Bio: Bio,
+                        }
+                      );
+                      setSaveBio("none");
+                    }}
+                  >
+                    download
+                  </span>
 
-                  <textarea defaultValue={
+                  <textarea
+                    defaultValue={
                       value.data() !== undefined ? (
                         value.data().kindergarten_Bio
                       ) : (
                         <></>
                       )
-                    } onChange={(eo) => {
-                    setBio(eo.target.value)
-                    setSaveBio("block")
-                  }}/>
-                  
+                    }
+                    onChange={(eo) => {
+                      setBio(eo.target.value);
+                      setSaveBio("block");
+                    }}
+                  />
                 </span>
               </div>
             </div>
@@ -744,10 +768,7 @@ const KinHome = () => {
                     <div className="card_content">
                       <h2 className="card_title">
                         Chat
-                        <span className="material-symbols-outlined">
-                          
-                          chat
-                        </span>
+                        <span className="material-symbols-outlined">chat</span>
                       </h2>
                       <div className="card_text">
                         <p>.................</p>
@@ -756,7 +777,13 @@ const KinHome = () => {
                   </div>
                 </li>
 
-                <RegistrationCard  kindergarten_Name={value.data().kindergarten_Name}/>
+                <RegistrationCard
+                  kindergarten_Name={value.data().kindergarten_Name}
+                  kindergarten_Bio={value.data().kindergarten_Bio}
+                  kindergarten_Address={value.data().kindergarten_Address}
+                  kindergarten_Activites={value.data().kindergarten_Activites}
+                  kindergarten_Price={value.data().kindergarten_Price}
+                />
               </ul>
             </div>
           </div>

@@ -15,6 +15,7 @@
  background-color: #2d3e89;
 }
 
+.pr-card section{position: relative;}
 
 .slider-card:before{
   content: "";
@@ -137,14 +138,20 @@ section .slider-card .slider-image{
 
 .swiper-pagination{
   position: absolute;
- top: 480px !important;
-}
-
-.swiper-button-next, .swiper-button-prev {
-  top: 250px !important;
+ bottom: -20px !important;
 }
 
 
+.swiper-button-next{
+  right: -65px !important;
+  bottom: 190px !important;
+  top:unset !important;
+}
+.swiper-button-prev{
+  left: -65px !important;
+  bottom: 190px !important;
+  top:unset !important;
+}
 
 .swiper-pagination-bullet{
   height: 7px;

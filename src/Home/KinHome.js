@@ -739,7 +739,7 @@ const KinHome = () => {
 
             <div id="banner" className="banner">
               {value.data() !== undefined ? (
-                <h1 id="h1"> Welcome to {value.data().kindergarten_Name} </h1>
+                <h1 id="h1" className="mint"> Welcome to {value.data().kindergarten_Name} </h1>
               ) : (
                 <h1 id="h1">welcome</h1>
               )}
@@ -747,10 +747,10 @@ const KinHome = () => {
               <button
                 id="button"
                 onClick={(eo) => {
-                  onScroll(eo);
+                  document.documentElement.scrollTop = 470;
                 }}
               >
-                Get Started
+               Scroll Down
               </button>
             </div>
 

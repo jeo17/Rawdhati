@@ -201,7 +201,7 @@ const PrHome = () => {
           </Profile>
           <div className="main appmain">
             <div id="banner2" className="banner2">
-              <h1 id="h1">welcome {user.displayName}</h1>
+              <h1 className="mint" id="h1">welcome {user.displayName}</h1>
 
               <div className="search-container">
                 <input

@@ -1,4 +1,8 @@
 
+html {
+    scroll-behavior: smooth;
+  }
+
 .App{
     
     height: 100vh;

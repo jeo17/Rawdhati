@@ -166,7 +166,7 @@ const PrHome = () => {
                   
                   <label>
                     {value.data().User_Kindergarten !== undefined
-                      ? value.data().User_Kindergarten
+                      ? value.data().User_Kindergarten[0]
                       : ""}
                   </label>
                 </span>

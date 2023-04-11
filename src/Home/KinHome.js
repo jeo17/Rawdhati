@@ -860,8 +860,8 @@ const KinHome = () => {
             <div id="banner" className="banner">
               {value.data() !== undefined ? (
                 <h1 id="h1" className="mint">
-                  {" "}
-                  Welcome to {value.data().kindergarten_Name}{" "}
+                  
+                  Welcome to {value.data().kindergarten_Name}
                 </h1>
               ) : (
                 <h1 id="h1">welcome</h1>
@@ -901,11 +901,11 @@ const KinHome = () => {
                 </li>
 
                 <RegistrationCard
-                  kindergarten_Name={value.data().kindergarten_Name}
-                  kindergarten_Bio={value.data().kindergarten_Bio}
-                  kindergarten_Address={value.data().kindergarten_Address}
-                  kindergarten_Activites={value.data().kindergarten_Activites}
-                  kindergarten_Price={value.data().kindergarten_Price}
+                  kindergarten_Name={ value.data() !== undefined ? value.data().kindergarten_Name:null}
+                  kindergarten_Bio={value.data() !== undefined ?value.data().kindergarten_Bio:null}
+                  kindergarten_Address={value.data() !== undefined ?value.data().kindergarten_Address:null}
+                  kindergarten_Activites={value.data() !== undefined ?value.data().kindergarten_Activites:null}
+                  kindergarten_Price={value.data() !== undefined ?value.data().kindergarten_Price:null}
                 />
               </ul>
             </div>

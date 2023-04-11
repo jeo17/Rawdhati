@@ -60,9 +60,9 @@ function Slider() {
             <div className="card-content">
               <div className="slider-image"></div>
               <div className="media-icons">
-                <i className="fab fa-facebook" />
-                <i className="fab fa-instagram" />
-                <i className="fab fa-google" />
+                <i class="gg-facebook"/>
+                <i class="gg-instagram"/>
+                <i class="gg-google"/>
               </div>
               <div className="name-profession">
                 <span className="slider-name">

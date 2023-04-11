@@ -65,7 +65,7 @@
 .wishlist-border:hover{
 	border-bottom: 1px solid #dee2e6!important;
 }
-.wishlist .material-symbols-outlined{
+.wishlist .material-symbols-outlined,.wishlist2 .material-symbols-outlined{
 	position: absolute;
 	right: 0px;
 	bottom: 3px;

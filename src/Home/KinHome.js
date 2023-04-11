@@ -188,6 +188,7 @@ const KinHome = () => {
   let [address, setaddress] = useState("");
   let [img, setimg] = useState(null);
   let [amount, setamount] = useState("");
+  let [Media, setMedia] = useState("");
   /* let [url, seturl] = useState(null);*/
   let [act, setact] = useState([]);
 
@@ -196,8 +197,11 @@ const KinHome = () => {
   let [SaveAddress, setSaveAddress] = useState("none");
   let [SavePrice, setSavePrice] = useState("none");
   let [SaveBio, setSaveBio] = useState("none");
+  let [SaveMedia, setSaveMedia] = useState("none");
 
   let [Bio, setBio] = useState(undefined);
+
+  let [WhichMedia, setWhichMedia] = useState(undefined);
 
   const [user, loading, error] = useAuthState(auth);
   const [value, loadingg, errorr] = useDocument(
@@ -375,6 +379,122 @@ const KinHome = () => {
                   />
                 </span>
               </div>
+
+              <div className="recent-border mt-4 media-area">
+                <span className="recent-orders">Link your media: </span>
+                <span className="wishlist wishlist-media">
+                  <div className="kin-media-icons">
+                    <i
+                      class="gg-facebook"
+                      onClick={(eo) => {
+                        if (eo.target.style.opacity === "0.6") {
+                          setSaveMedia("none");
+                          document.querySelector(".media-input").value = "";
+                        }
+
+                        eo.target.style.opacity = "1";
+                        document.querySelector(".gg-instagram").style.opacity =
+                          "0.6";
+                        document.querySelector(".gg-google").style.opacity =
+                          "0.6";
+                        setWhichMedia("facebook");
+                        document.querySelector(".media-input").style.display =
+                          "block";
+                      }}
+                    />
+                    <i
+                      class="gg-instagram"
+                      onClick={(eo) => {
+                        if (eo.target.style.opacity === "0.6") {
+                          setSaveMedia("none");
+                          document.querySelector(".media-input").value = "";
+                        }
+                        eo.target.style.opacity = "1";
+                        document.querySelector(".gg-facebook").style.opacity =
+                          "0.6";
+                        document.querySelector(".gg-google").style.opacity =
+                          "0.6";
+                        setWhichMedia("instagram");
+                        document.querySelector(".media-input").style.display =
+                          "block";
+                      }}
+                    />
+                    <i
+                      class="gg-google"
+                      onClick={(eo) => {
+                        if (eo.target.style.opacity === "0.6") {
+                          setSaveMedia("none");
+                          document.querySelector(".media-input").value = "";
+                        }
+                        eo.target.style.opacity = "1";
+                        document.querySelector(".gg-instagram").style.opacity =
+                          "0.6";
+                        document.querySelector(".gg-facebook").style.opacity =
+                          "0.6";
+                        setWhichMedia("google");
+                        document.querySelector(".media-input").style.display =
+                          "block";
+                      }}
+                    />
+                  </div>
+                </span>
+              </div>
+              <span className="wishlist2">
+                <input
+                  className="media-input"
+                  placeholder={`Paste the ${WhichMedia} URL `}
+                  style={{ display: "none" }}
+                  onChange={(eo) => {
+                    setSaveMedia("block");
+                    setMedia(eo.target.value);
+                  }}
+                />
+                <span
+                  style={{ display: `${SaveMedia}`, right: "-8px" }}
+                  className="material-symbols-outlined"
+                  onClick={async (eo) => {
+                    if (
+                      document.querySelector(".gg-facebook").style.opacity === "1"
+                    ) {
+                      await updateDoc(
+                        doc(db, "kindergarten Information", kinId),
+                        {
+                          kindergarten_facebook: Media,
+                        }
+                      );
+                      setSaveMedia("none")
+                      document.querySelector(".media-input").value = "";
+                    }
+
+                    if (
+                      document.querySelector(".gg-instagram").style.opacity === "1"
+                    ) {
+                      await updateDoc(
+                        doc(db, "kindergarten Information", kinId),
+                        {
+                          kindergarten_Instagram: Media,
+                        }
+                      );
+                      setSaveMedia("none")
+                      document.querySelector(".media-input").value = "";
+                    }
+                    if (
+                      document.querySelector(".gg-google").style.opacity === "1"
+                    ) {
+                      await updateDoc(
+                        doc(db, "kindergarten Information", kinId),
+                        {
+                          kindergarten_Google: Media,
+                        }
+                      );
+                      setSaveMedia("none")
+                      document.querySelector(".media-input").value = "";
+                    }
+                  }}
+                >
+                  download
+                </span>
+              </span>
             </div>
           </Profile>
 
@@ -739,7 +859,10 @@ const KinHome = () => {
 
             <div id="banner" className="banner">
               {value.data() !== undefined ? (
-                <h1 id="h1" className="mint"> Welcome to {value.data().kindergarten_Name} </h1>
+                <h1 id="h1" className="mint">
+                  {" "}
+                  Welcome to {value.data().kindergarten_Name}{" "}
+                </h1>
               ) : (
                 <h1 id="h1">welcome</h1>
               )}
@@ -750,7 +873,7 @@ const KinHome = () => {
                   document.documentElement.scrollTop = 470;
                 }}
               >
-               Scroll Down
+                Scroll Down
               </button>
             </div>
 

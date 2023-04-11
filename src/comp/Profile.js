@@ -39,6 +39,7 @@ const Profile = ({children,id}) => {
              onClick={() => {
           const profile = document.getElementById(id === undefined? "profile":`${id}`);
           profile.close();
+          
        }} >close</span>
     
         {children}

@@ -299,9 +299,8 @@ const KinHome = () => {
                     defaultValue={
                       value.data() !== undefined ? (
                         value.data().kindergarten_Address
-                      ) : (
-                        <></>
-                      )
+                      ) : ""
+                      
                     }
                     onChange={async (eo) => {
                       setaddress(eo.target.value);
@@ -318,9 +317,7 @@ const KinHome = () => {
                     defaultValue={
                       value.data() !== undefined ? (
                         value.data().kindergarten_Price
-                      ) : (
-                        <></>
-                      )
+                      ) : ""
                     }
                     onChange={(eo) => {
                       setamount(eo.target.value);
@@ -368,9 +365,7 @@ const KinHome = () => {
                     defaultValue={
                       value.data() !== undefined ? (
                         value.data().kindergarten_Bio
-                      ) : (
-                        <></>
-                      )
+                      ) : ""
                     }
                     onChange={(eo) => {
                       setBio(eo.target.value);
@@ -833,6 +828,7 @@ const KinHome = () => {
                                   kindergarten_Activites: act,
                                   kindergarten_Price: `${amount}.00 DA`,
                                   kindergarten_id: kinId,
+                                  kindergarten_Bio:null,
                                   kindergarten_facebook: null,
                                   kindergarten_Instagram:null,
                                   kindergarten_Google: null,

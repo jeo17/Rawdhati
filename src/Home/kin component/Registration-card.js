@@ -144,7 +144,7 @@ const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Addr
                               profile.close();
 
                               await updateDoc(doc(db, "Parents Informations", item.data().User_id), {
-                                User_Kindergarten: [kindergarten_Name,kindergarten_Bio,kindergarten_Address,kindergarten_Price],
+                                User_Kindergarten: [kindergarten_Name,kindergarten_Address,kindergarten_Price],
                                 User_kindergarten_Activites:kindergarten_Activites,
                                 User_kindergarten_Media:[kindergarten_facebook,kindergarten_Instagram,kindergarten_Google],
                               });

@@ -833,6 +833,9 @@ const KinHome = () => {
                                   kindergarten_Activites: act,
                                   kindergarten_Price: `${amount}.00 DA`,
                                   kindergarten_id: kinId,
+                                  kindergarten_facebook: null,
+                                  kindergarten_Instagram:null,
+                                  kindergarten_Google: null,
                                 }
                               );
                             }}
@@ -906,9 +909,9 @@ const KinHome = () => {
                   kindergarten_Address={value.data() !== undefined ?value.data().kindergarten_Address:null}
                   kindergarten_Activites={value.data() !== undefined ?value.data().kindergarten_Activites:null}
                   kindergarten_Price={value.data() !== undefined ?value.data().kindergarten_Price:null}
-                  kindergarten_facebook={value.data().kindergarten_facebook !== undefined ?value.data().kindergarten_facebook:null}
-                  kindergarten_Instagram={value.data().kindergarten_Instagram !== undefined ?value.data().kindergarten_Instagram:null}
-                  kindergarten_Google={value.data().kindergarten_Google !== undefined ?value.data().kindergarten_Google:null}
+                  kindergarten_facebook={value.data() !== undefined ?value.data().kindergarten_facebook:null}
+                  kindergarten_Instagram={value.data() !== undefined ?value.data().kindergarten_Instagram:null}
+                  kindergarten_Google={value.data() !== undefined ?value.data().kindergarten_Google:null}
                 />
               </ul>
             </div>

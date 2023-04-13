@@ -187,7 +187,7 @@ function Slider() {
                 <span className="recent-orders">Media: </span>
                 <span className="wishlist wishlist-media">
                   <div className="kin-media-icons">
-                    {item.data().kindergarten_facebook !== undefined && (
+                    {item.data().kindergarten_facebook !== null && (
                       <a
                         href={item.data().kindergarten_facebook}
                         target="_blank"
@@ -197,7 +197,7 @@ function Slider() {
                       </a>
                     )}
 
-                    {item.data().kindergarten_Instagram !== undefined && (
+                    {item.data().kindergarten_Instagram !== null && (
                       <a
                         href={item.data().kindergarten_Instagram}
                         target="_blank"
@@ -207,7 +207,7 @@ function Slider() {
                       </a>
                     )}
 
-                    {item.data().kindergarten_Google !== undefined && (
+                    {item.data().kindergarten_Google !== null && (
                       <a
                         href={item.data().kindergarten_Google}
                         target="_blank"

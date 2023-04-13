@@ -272,7 +272,7 @@ const PrHome = () => {
 
               
               {value.data().User_Kindergarten !== undefined &&
-              <MyKindergarten  MyKindergarten_info={value.data().User_Kindergarten} MyKindergarten_activites={value.data().User_kindergarten_Activites}/>            
+              <MyKindergarten  MyKindergarten_info={value.data().User_Kindergarten} MyKindergarten_activites={value.data().User_kindergarten_Activites}  MyKindergarten_media={value.data().User_kindergarten_Media}/>            
                 }
               {value.data().User_Kindergarten === undefined &&
                 <Slider /> 

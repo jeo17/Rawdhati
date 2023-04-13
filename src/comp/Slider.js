@@ -52,36 +52,31 @@ function Slider() {
   value.docs.map((item, index) => {
     if (index < 9) {
       return sliderCard.push(
+        <div
+          className="swiper-slide slider-card"
+          key={item.data().kindergarten_Name}
+        >
+          <div className="card-content">
+            <div className="slider-image"></div>
 
-          <div
-            className="swiper-slide slider-card"
-            key={item.data().kindergarten_Name}
-          >
-            <div className="card-content">
-              <div className="slider-image"></div>
-              <div className="media-icons">
-                <i class="gg-facebook"/>
-                <i class="gg-instagram"/>
-                <i class="gg-google"/>
-              </div>
-              <div className="name-profession">
-                <span className="slider-name">
-                  {item.data().kindergarten_Name}
-                </span>
-                <span
-                  className="profession"
-                  style={{ fontSize: "16px", fontWeight: "600" }}
-                >
-                  {item.data().kindergarten_Address}
-                </span>
-                <span
-                  className="profession"
-                  style={{ fontSize: "16px", fontWeight: "600" }}
-                >
-                  {item.data().kindergarten_Price}
-                </span>
+            <div className="name-profession">
+              <span className="slider-name">
+                {item.data().kindergarten_Name}
+              </span>
+              <span
+                className="profession"
+                style={{ fontSize: "16px", fontWeight: "600" }}
+              >
+                {item.data().kindergarten_Address}
+              </span>
+              <span
+                className="profession"
+                style={{ fontSize: "16px", fontWeight: "600" }}
+              >
+                {item.data().kindergarten_Price}
+              </span>
 
-                {/*  <span className="profession">
+              {/*  <span className="profession">
                 <span style={{ fontSize: "16px", fontWeight: "600" }}>
                   Activites:
                 </span>
@@ -89,49 +84,45 @@ function Slider() {
                   return <span style={{ marginLeft: "5px" }} key={item}>{item},</span>;
                 })}
               </span>  */}
-              </div>
-              <div className="rating">
-                <i className="fas fa-star" />
-                <i className="fas fa-star" />
-                <i className="fas fa-star" />
-                <i className="far fa-star" />
-                <i className="far fa-star" />
-              </div>
-              <div className="slider-button">
-                <button
-                  className="aboutMe"
+            </div>
+            <div className="rating">
+              <i className="fas fa-star" />
+              <i className="fas fa-star" />
+              <i className="fas fa-star" />
+              <i className="far fa-star" />
+              <i className="far fa-star" />
+            </div>
+            <div className="slider-button">
+              <button
+                className="aboutMe"
+                onClick={(eo) => {
+                  const Kprofile = document.getElementById(
+                    `${item.data().kindergarten_id}`
+                  );
+                  if (Kprofile.open) {
+                    Kprofile.close();
+                  } else {
+                    Kprofile.showModal();
+                  }
+                }}
+              >
+                About Me
+              </button>
+              <button className="hireMe">
+                <Link
+                  to={`/kindergarten_form/${item.data().kindergarten_id}`}
+                  style={{ all: "unset" }}
                   onClick={(eo) => {
-                    const Kprofile = document.getElementById(
-                      `${item.data().kindergarten_id}`
-                    );
-                    if(Kprofile.open ){
-                      Kprofile.close()
-                    }
-                    else{
-                      Kprofile.showModal();
-                    }  
+                    document.documentElement.scrollTop = 0;
                   }}
                 >
-                  About Me
-                </button>
-                <button className="hireMe">
-                  <Link
-                    to={`/kindergarten_form/${item.data().kindergarten_id}`}
-                    style={{ all: "unset" }}
-                    onClick={(eo) => {
-                      document.documentElement.scrollTop = 0;
-                    }}
-                  >
-                    Registration
-                  </Link>
-                </button>
-              </div>
-
-
+                  Registration
+                </Link>
+              </button>
             </div>
+          </div>
 
-
-            <Profile id={item.data().kindergarten_id}>
+          <Profile id={item.data().kindergarten_id}>
             <div className="top-container">
               <img
                 src={require("../comp/assets/avatar.jpg")}
@@ -191,30 +182,61 @@ function Slider() {
                   {item.data().kindergarten_Bio}{" "}
                 </span>
               </div>
+
+              <div className="recent-border mt-4 media-area">
+                <span className="recent-orders">Media: </span>
+                <span className="wishlist wishlist-media">
+                  <div className="kin-media-icons">
+                    {item.data().kindergarten_facebook !== undefined && (
+                      <a
+                        href={item.data().kindergarten_facebook}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <i className="gg-facebook" />{" "}
+                      </a>
+                    )}
+
+                    {item.data().kindergarten_Instagram !== undefined && (
+                      <a
+                        href={item.data().kindergarten_Instagram}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <i className="gg-instagram" />
+                      </a>
+                    )}
+
+                    {item.data().kindergarten_Google !== undefined && (
+                      <a
+                        href={item.data().kindergarten_Google}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <i className="gg-google" />
+                      </a>
+                    )}
+                  </div>
+                </span>
+              </div>
             </div>
           </Profile>
-
-          </div>
-
-         
-
+        </div>
       );
     }
   });
 
   if (value) {
     return (
-     
-        <section>
-          <h2 className="card-title">Kindergartens may you like it:</h2>
-          <div className="swiper mySwiper">
-            <div className="swiper-wrapper">{sliderCard}</div>
-          </div>
-          <div className="swiper-button-next" />
-          <div className="swiper-button-prev" />
-          <div className="swiper-pagination" />
-        </section>
-      
+      <section>
+        <h2 className="card-title">Kindergartens may you like it:</h2>
+        <div className="swiper mySwiper">
+          <div className="swiper-wrapper">{sliderCard}</div>
+        </div>
+        <div className="swiper-button-next" />
+        <div className="swiper-button-prev" />
+        <div className="swiper-pagination" />
+      </section>
     );
   }
 }

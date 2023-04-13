@@ -385,7 +385,7 @@ const KinHome = () => {
                 <span className="wishlist wishlist-media">
                   <div className="kin-media-icons">
                     <i
-                      class="gg-facebook"
+                      className="gg-facebook"
                       onClick={(eo) => {
                         if (eo.target.style.opacity === "0.6") {
                           setSaveMedia("none");
@@ -403,7 +403,7 @@ const KinHome = () => {
                       }}
                     />
                     <i
-                      class="gg-instagram"
+                      className="gg-instagram"
                       onClick={(eo) => {
                         if (eo.target.style.opacity === "0.6") {
                           setSaveMedia("none");
@@ -420,7 +420,7 @@ const KinHome = () => {
                       }}
                     />
                     <i
-                      class="gg-google"
+                      className="gg-google"
                       onClick={(eo) => {
                         if (eo.target.style.opacity === "0.6") {
                           setSaveMedia("none");
@@ -906,6 +906,9 @@ const KinHome = () => {
                   kindergarten_Address={value.data() !== undefined ?value.data().kindergarten_Address:null}
                   kindergarten_Activites={value.data() !== undefined ?value.data().kindergarten_Activites:null}
                   kindergarten_Price={value.data() !== undefined ?value.data().kindergarten_Price:null}
+                  kindergarten_facebook={value.data().kindergarten_facebook !== undefined ?value.data().kindergarten_facebook:null}
+                  kindergarten_Instagram={value.data().kindergarten_Instagram !== undefined ?value.data().kindergarten_Instagram:null}
+                  kindergarten_Google={value.data().kindergarten_Google !== undefined ?value.data().kindergarten_Google:null}
                 />
               </ul>
             </div>

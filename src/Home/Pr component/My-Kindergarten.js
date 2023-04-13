@@ -2,8 +2,7 @@ import React from 'react';
 import "./My-Kindergarten.css"
 import Profile from '../../comp/Profile';
 
-const MyKindergarten = ({MyKindergarten_info,MyKindergarten_activites}) => {
-  console.log()
+const MyKindergarten = ({MyKindergarten_info,MyKindergarten_activites,MyKindergarten_media}) => {
     return (
       <>
       <Profile id="My-kin-prof">
@@ -53,6 +52,55 @@ const MyKindergarten = ({MyKindergarten_info,MyKindergarten_activites}) => {
                   }
                 </span>
               </div>
+
+
+
+
+
+
+
+              <div className="recent-border mt-4 media-area">
+                <span className="recent-orders">Media: </span>
+                <span className="wishlist wishlist-media">
+                  <div className="kin-media-icons">
+                    {MyKindergarten_media[0] !== null && (
+                      <a
+                        href={MyKindergarten_media[0]}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <i className="gg-facebook" />{" "}
+                      </a>
+                    )}
+
+                    {MyKindergarten_media[1] !== null && (
+                      <a
+                        href={MyKindergarten_media[1]}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <i className="gg-instagram" />
+                      </a>
+                    )}
+
+                    {MyKindergarten_media[2] !== null && (
+                      <a
+                        href={MyKindergarten_media[2]}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <i className="gg-google" />
+                      </a>
+                    )}
+                  </div>
+                </span>
+              </div>
+
+
+
+
+
+
 
             </div>
         

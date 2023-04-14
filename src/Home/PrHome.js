@@ -212,7 +212,10 @@ const PrHome = () => {
                   placeholder={SearchBy}
                 />
 
-                <span className="searchicon" />
+                <span className="searchicon"  onClick={(eo) => {
+                const ss =  document.querySelector(".search-main").getAttribute("placeholder")
+                  console.log(ss)
+                }}/>
 
 
                 <div

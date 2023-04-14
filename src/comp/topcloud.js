@@ -31,7 +31,7 @@ const Topcloud = ({ height }) => {
                   ? `/kin_home/${user.uid}`
                   : `/pr_home/${user.uid}`
               }
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "black" , padding:"10px 40px" }}
             >
               Home
             </NavLink>

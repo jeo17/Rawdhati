@@ -10,7 +10,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut, sendEmailVerification } from "firebase/auth";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc,updateDoc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "../firebase/config";
 import { useParams } from "react-router-dom";
@@ -55,6 +55,9 @@ const PrHome = () => {
 
   const [Bio, setBio] = useState(undefined);
   let [UpdateBio, setUpdateBio] = useState("none");
+
+  const [SearchBy, setSearchBy] = useState("Search for a kindergarten");
+
 
   const navigate = useNavigate();
 
@@ -206,10 +209,11 @@ const PrHome = () => {
               <div className="search-container">
                 <input
                   className="search-main"
-                  placeholder="Search for a kindergarten"
+                  placeholder={SearchBy}
                 />
 
                 <span className="searchicon" />
+
 
                 <div
                   className="microphone"
@@ -238,19 +242,25 @@ const PrHome = () => {
                 </div>
 
                 <div className="icon-holder">
-                  <div className="icon" id="Price">
+                  <div className="icon" id="Price" onClick={(eo) => {
+                    setSearchBy("Type The Price 💸 ..")
+                  }}>
                     <span className="material-symbols-outlined circ">
                       attach_money
                     </span>
                     <div className="tooltip">Price</div>
                   </div>
-                  <div className="icon" id="Place">
+                  <div className="icon" id="Place" onClick={(eo) => {
+                    setSearchBy("Type The Place 🌐 ..")
+                  }}>
                     <span className="material-symbols-outlined circ">
                       location_on
                     </span>
                     <div className="tooltip">Place</div>
                   </div>
-                  <div className="icon" id="Activ">
+                  <div className="icon" id="Activ" onClick={(eo) => {
+                    setSearchBy("Type The Activite 🎮 ..")
+                  }}>
                     <span className="material-symbols-outlined circ">
                       extension
                     </span>
@@ -260,7 +270,9 @@ const PrHome = () => {
                     <span className="material-symbols-outlined circ">star</span>
                     <div className="tooltip">Trending</div>
                   </div>
-                  <div className="icon" id="All">
+                  <div className="icon" id="All"onClick={(eo) => {
+                    setSearchBy("Search for a kindergarten")
+                  }}>
                     <div className="dots" />
                     <div className="tooltip">All</div>
                   </div>

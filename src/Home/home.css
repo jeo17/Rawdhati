@@ -414,6 +414,11 @@ button {
 .search-main:focus {
   outline: none;
 }
+.search-main::placeholder{
+position: relative;
+left: 7px;
+}
+
 
 .searchicon {
   position: absolute;
@@ -424,6 +429,7 @@ button {
   left: 10px;
   top: 11px;
   border-radius: 100%;
+  cursor: pointer;
 }
 .searchicon:after {
   content: "";
@@ -434,7 +440,20 @@ button {
   bottom: -5px;
   right: -3px;
   transform: rotate(-45deg);
+  cursor: pointer;
 }
+
+/*.sep-searchicon{
+  height: 39px;
+  width: 5px;
+  border-right: 2px solid #5F8FA4;
+  position: relative;
+  right: -15px;
+  bottom: 13px;
+  border-radius: 10px;
+  margin-right: 50px;
+  
+}*/
 
 .microphone {
   display: flex;

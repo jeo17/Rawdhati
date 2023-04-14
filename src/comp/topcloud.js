@@ -19,7 +19,7 @@ const Topcloud = ({ height }) => {
 
 
     const [Language, setLanguage] = useState("Language");
-
+    const [flag, setflag] = useState("lang");
   return (
     <>
       <div className="topcloud" style={{ height: `${height}` }}>
@@ -40,7 +40,7 @@ const Topcloud = ({ height }) => {
 
         {!user && (
           <button>
-            <NavLink to="/" style={{ textDecoration: "none", color: "black" }}>
+            <NavLink to="/" style={{ textDecoration: "none", color: "black", padding:"10px 40px" }}>
               Start
             </NavLink>
           </button>
@@ -50,7 +50,7 @@ const Topcloud = ({ height }) => {
           <button>
             <NavLink
               to="/help"
-              style={{ textDecoration: "none", color: "black" }}
+              style={{ textDecoration: "none", color: "black" , padding:"10px 40px"}}
             >
               help
             </NavLink>
@@ -61,7 +61,7 @@ const Topcloud = ({ height }) => {
           
           <NavLink
             to="/about-us"
-            style={{ textDecoration: "none", color: "black" }}
+            style={{ textDecoration: "none", color: "black" , padding:"10px 40px"}}
           >
             
             about us
@@ -69,15 +69,16 @@ const Topcloud = ({ height }) => {
         </button>
        
        <button>
-        <div className="sl-nav">
+        <div className="sl-nav" style={{ padding:"10px 40px"}}>
           <ul>
             <li>
-              <b>{Language}</b>
+              <b style={{padding:"10px 0", marginRight:"8px"}}><i className={`sl-flag flag-${flag}`}></i> {Language}</b>
               <i className="fa fa-angle-down" aria-hidden="true" />
               <div className="triangle" />
               <ul>
                 <li dir="rtl" onClick={(eo) => {
                   setLanguage("العربية");
+                  setflag("ar")
                   document.getElementById("en").style.color="#3c3c3c";
                   document.getElementById("fr").style.color="#3c3c3c";
                   document.getElementById("ar").style.color="#00a5bb";
@@ -88,9 +89,11 @@ const Topcloud = ({ height }) => {
                 </li>
                 <li onClick={(eo) => {
                   setLanguage("English")
+                  setflag("en")
                   document.getElementById("ar").style.color="#3c3c3c";
                   document.getElementById("fr").style.color="#3c3c3c";
                   document.getElementById("en").style.color="#00a5bb";
+
                 }}>
                   <i className="sl-flag flag-en">                 
                   </i>
@@ -98,6 +101,7 @@ const Topcloud = ({ height }) => {
                 </li>
                 <li onClick={(eo) => {
                   setLanguage("Français")
+                  setflag("fr")
                   document.getElementById("en").style.color="#3c3c3c";
                   document.getElementById("ar").style.color="#3c3c3c";
                   document.getElementById("fr").style.color="#00a5bb";

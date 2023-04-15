@@ -10,7 +10,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut, sendEmailVerification } from "firebase/auth";
-import { doc,updateDoc,collection,query, where } from "firebase/firestore";
+import { doc, updateDoc, collection, query, where } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "../firebase/config";
 import { useParams } from "react-router-dom";
@@ -57,9 +57,9 @@ const PrHome = () => {
   let [UpdateBio, setUpdateBio] = useState("none");
 
   const [SearchBy, setSearchBy] = useState("Search for a kindergarten");
-  const [Collection, setcollection] = useState(collection(db, "kindergarten Information"));  
-  
-
+  const [Collection, setcollection] = useState(
+    collection(db, "kindergarten Information")
+  );
 
   const navigate = useNavigate();
 
@@ -119,7 +119,6 @@ const PrHome = () => {
           >
             <h2>you did signed in on the wrong space ...</h2>
             <h2>
-              
               click here to signin again in the right space 👉
               <span
                 className="material-symbols-outlined refresh"
@@ -168,7 +167,6 @@ const PrHome = () => {
               <div className="recent-border mt-4">
                 <span className="recent-orders">My Kindergarten:</span>
                 <span className="wishlist">
-                  
                   <label>
                     {value.data().User_Kindergarten !== undefined
                       ? value.data().User_Kindergarten[0]
@@ -180,7 +178,6 @@ const PrHome = () => {
               <div className="recent-border mt-4">
                 <span className="recent-orders">Bio:</span>
                 <span className="wishlist">
-                  
                   <textarea
                     defaultValue={value.data().Bio}
                     onChange={(eo) => {
@@ -206,32 +203,197 @@ const PrHome = () => {
           </Profile>
           <div className="main appmain">
             <div id="banner2" className="banner2">
-              <h1 className="mint" id="h1">welcome {user.displayName}</h1>
+              <h1 className="mint" id="h1">
+                welcome {user.displayName}
+              </h1>
 
               <div className="search-container">
-                <input
-                  className="search-main"
-                  placeholder={SearchBy}
-                />
+                <input className="search-main" placeholder={SearchBy} onKeyDown={(eo) => {
+                  if (eo.key === "Enter") {
+                    
+                    if (SearchBy === "Search for a kindergarten") {
+                      const value =
+                        document.querySelector(".search-main").value;
+                      if (value !== "") {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where("kindergarten_Name", "==", value)
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    if (SearchBy === "Type The Price 💸 ..") {
+                      const value = Number(
+                        document.querySelector(".search-main").value
+                      );
+                      if (value !== 0) {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where("kindergarten_Price", "<=", value)
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    if (SearchBy === "Type The Activite 🎮 ..") {
+                      const value =
+                        document.querySelector(".search-main").value;
+                      if (value !== "") {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where(
+                              "kindergarten_Activites",
+                              "array-contains-any",
+                              [value]
+                            )
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    if (SearchBy === "Type The Place 🌐 ..") {
+                      const value =
+                        document.querySelector(".search-main").value;
+                      if (value !== "") {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where("kindergarten_Address", "==", value)
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    if (SearchBy === "Type The Name 🅰 ..") {
+                      const value =
+                        document.querySelector(".search-main").value;
+                      if (value !== "") {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where("kindergarten_Name", "==", value)
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    document.documentElement.scrollTop = 500;
 
-                <span className="searchicon"  onClick={(eo) => {
-
-                if (SearchBy === "Search for a kindergarten") {
-                  setcollection(collection(db, "kindergarten Information"))
-                }
-                if (SearchBy === "Type The Price 💸 ..") {
-                 const value = Number(document.querySelector(".search-main").value) 
-                  setcollection(query(collection(db, "kindergarten Information"), where("kindergarten_Price", "<=", value))) 
-                }
-                if (SearchBy === "Type The Activite 🎮 ..") {
-                  console.log("true")
-                  const value = document.querySelector(".search-main").value
-                  /* setcollection(query(collection(db, "kindergarten Information"), where("kindergarten_Activites", "in", ["Travel", "Quran"]))) */
-                 }
-
-
+                  }
                 }}/>
 
+
+
+                <span
+                  className="searchicon"
+                  onClick={(eo) => {
+                    if (SearchBy === "Search for a kindergarten") {
+                      const value =
+                        document.querySelector(".search-main").value;
+                      if (value !== "") {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where("kindergarten_Name", "==", value)
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    if (SearchBy === "Type The Price 💸 ..") {
+                      const value = Number(
+                        document.querySelector(".search-main").value
+                      );
+                      if (value !== 0) {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where("kindergarten_Price", "<=", value)
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    if (SearchBy === "Type The Activite 🎮 ..") {
+                      const value =
+                        document.querySelector(".search-main").value;
+                      if (value !== "") {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where(
+                              "kindergarten_Activites",
+                              "array-contains-any",
+                              [value]
+                            )
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    if (SearchBy === "Type The Place 🌐 ..") {
+                      const value =
+                        document.querySelector(".search-main").value;
+                      if (value !== "") {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where("kindergarten_Address", "==", value)
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    if (SearchBy === "Type The Name 🅰 ..") {
+                      const value =
+                        document.querySelector(".search-main").value;
+                      if (value !== "") {
+                        setcollection(
+                          query(
+                            collection(db, "kindergarten Information"),
+                            where("kindergarten_Name", "==", value)
+                          )
+                        );
+                      } else {
+                        setcollection(
+                          collection(db, "kindergarten Information")
+                        );
+                      }
+                    }
+                    document.documentElement.scrollTop = 500;
+                  }}
+                />
 
                 <div
                   className="microphone"
@@ -253,44 +415,71 @@ const PrHome = () => {
                   }}
                 >
                   <label style={{ cursor: "pointer" }}> search by</label>
-                  <span className="material-symbols-outlined">
-                    
-                    filter_list
-                  </span>
+                  <span className="material-symbols-outlined">filter_list</span>
                 </div>
 
                 <div className="icon-holder">
-                  <div className="icon" id="Price" onClick={(eo) => {
-                    setSearchBy("Type The Price 💸 ..")
-                  }}>
+                  <div
+                    className="icon"
+                    id="Trending"
+                    onClick={(eo) => {
+                        setSearchBy("Type The Name 🅰 ..");
+                        document.querySelector(".search-main").value = ""
+                    }}
+                  >
+                    <span className="material-symbols-outlined circ">
+                      spellcheck
+                    </span>
+                    <div className="tooltip">Name</div>
+                  </div>
+                  <div
+                    className="icon"
+                    id="Price"
+                    onClick={(eo) => {
+                      setSearchBy("Type The Price 💸 ..");
+                      document.querySelector(".search-main").value = ""
+                    }}
+                  >
                     <span className="material-symbols-outlined circ">
                       attach_money
                     </span>
                     <div className="tooltip">Price</div>
                   </div>
-                  <div className="icon" id="Place" onClick={(eo) => {
-                    setSearchBy("Type The Place 🌐 ..")
-                  }}>
+                  <div
+                    className="icon"
+                    id="Place"
+                    onClick={(eo) => {
+                      setSearchBy("Type The Place 🌐 ..");
+                      document.querySelector(".search-main").value = ""
+                    }}
+                  >
                     <span className="material-symbols-outlined circ">
                       location_on
                     </span>
                     <div className="tooltip">Place</div>
                   </div>
-                  <div className="icon" id="Activ" onClick={(eo) => {
-                    setSearchBy("Type The Activite 🎮 ..")
-                  }}>
+                  <div
+                    className="icon"
+                    id="Activ"
+                    onClick={(eo) => {
+                      setSearchBy("Type The Activite 🎮 ..");
+                      document.querySelector(".search-main").value = ""
+                    }}
+                  >
                     <span className="material-symbols-outlined circ">
                       extension
                     </span>
                     <div className="tooltip">Activite</div>
                   </div>
-                  <div className="icon" id="Trending">
-                    <span className="material-symbols-outlined circ">star</span>
-                    <div className="tooltip">Trending</div>
-                  </div>
-                  <div className="icon" id="All"onClick={(eo) => {
-                    setSearchBy("Search for a kindergarten")
-                  }}>
+
+                  <div
+                    className="icon"
+                    id="All"
+                    onClick={(eo) => {
+                      setSearchBy("Search for a kindergarten");
+                      document.querySelector(".search-main").value = ""
+                    }}
+                  >
                     <div className="dots" />
                     <div className="tooltip">All</div>
                   </div>
@@ -299,14 +488,18 @@ const PrHome = () => {
             </div>
 
             <div className="pr-card">
-
-              
-              {value.data().User_Kindergarten !== undefined &&
-              <MyKindergarten  MyKindergarten_info={value.data().User_Kindergarten} MyKindergarten_activites={value.data().User_kindergarten_Activites}  MyKindergarten_media={value.data().User_kindergarten_Media}/>            
-                }
-              {value.data().User_Kindergarten === undefined &&
-                <Slider  Collection={Collection}/> 
-              }
+              {value.data().User_Kindergarten !== undefined && (
+                <MyKindergarten
+                  MyKindergarten_info={value.data().User_Kindergarten}
+                  MyKindergarten_activites={
+                    value.data().User_kindergarten_Activites
+                  }
+                  MyKindergarten_media={value.data().User_kindergarten_Media}
+                />
+              )}
+              {value.data().User_Kindergarten === undefined && (
+                <Slider Collection={Collection} />
+              )}
 
               <h2 className="card-title">Advertisements:</h2>
 
@@ -341,11 +534,9 @@ const PrHome = () => {
             <div className="bot-container">
               <div className="recent-border mt-4">
                 <span className="wishlist">
-
-                <label>You need to verify yor email first...</label>
+                  <label>You need to verify yor email first...</label>
                 </span>
               </div>
-
             </div>
           </Profile>
           <div className="main appmain">

@@ -475,6 +475,7 @@ left: 7px;
 .icon-holder {
   display: flex;
   justify-content: space-evenly;
+  flex-direction: row-reverse;
   margin-top: 7px;
   visibility: hidden;
 }

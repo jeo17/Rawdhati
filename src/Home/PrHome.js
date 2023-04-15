@@ -208,100 +208,100 @@ const PrHome = () => {
               </h1>
 
               <div className="search-container">
-                <input className="search-main" placeholder={SearchBy} onKeyDown={(eo) => {
-                  if (eo.key === "Enter") {
-                    
-                    if (SearchBy === "Search for a kindergarten") {
-                      const value =
-                        document.querySelector(".search-main").value;
-                      if (value !== "") {
-                        setcollection(
-                          query(
-                            collection(db, "kindergarten Information"),
-                            where("kindergarten_Name", "==", value)
-                          )
-                        );
-                      } else {
-                        setcollection(
-                          collection(db, "kindergarten Information")
-                        );
-                      }
-                    }
-                    if (SearchBy === "Type The Price 💸 ..") {
-                      const value = Number(
-                        document.querySelector(".search-main").value
-                      );
-                      if (value !== 0) {
-                        setcollection(
-                          query(
-                            collection(db, "kindergarten Information"),
-                            where("kindergarten_Price", "<=", value)
-                          )
-                        );
-                      } else {
-                        setcollection(
-                          collection(db, "kindergarten Information")
-                        );
-                      }
-                    }
-                    if (SearchBy === "Type The Activite 🎮 ..") {
-                      const value =
-                        document.querySelector(".search-main").value;
-                      if (value !== "") {
-                        setcollection(
-                          query(
-                            collection(db, "kindergarten Information"),
-                            where(
-                              "kindergarten_Activites",
-                              "array-contains-any",
-                              [value]
+                <input
+                  className="search-main"
+                  placeholder={SearchBy}
+                  onKeyDown={(eo) => {
+                    if (eo.key === "Enter") {
+                      if (SearchBy === "Search for a kindergarten") {
+                        const value =
+                          document.querySelector(".search-main").value;
+                        if (value !== "") {
+                          setcollection(
+                            query(
+                              collection(db, "kindergarten Information"),
+                              where("kindergarten_Name", "==", value)
                             )
-                          )
-                        );
-                      } else {
-                        setcollection(
-                          collection(db, "kindergarten Information")
-                        );
+                          );
+                        } else {
+                          setcollection(
+                            collection(db, "kindergarten Information")
+                          );
+                        }
                       }
-                    }
-                    if (SearchBy === "Type The Place 🌐 ..") {
-                      const value =
-                        document.querySelector(".search-main").value;
-                      if (value !== "") {
-                        setcollection(
-                          query(
-                            collection(db, "kindergarten Information"),
-                            where("kindergarten_Address", "==", value)
-                          )
+                      if (SearchBy === "Type The Price 💸 ..") {
+                        const value = Number(
+                          document.querySelector(".search-main").value
                         );
-                      } else {
-                        setcollection(
-                          collection(db, "kindergarten Information")
-                        );
+                        if (value !== 0) {
+                          setcollection(
+                            query(
+                              collection(db, "kindergarten Information"),
+                              where("kindergarten_Price", "<=", value)
+                            )
+                          );
+                        } else {
+                          setcollection(
+                            collection(db, "kindergarten Information")
+                          );
+                        }
                       }
-                    }
-                    if (SearchBy === "Type The Name 🅰 ..") {
-                      const value =
-                        document.querySelector(".search-main").value;
-                      if (value !== "") {
-                        setcollection(
-                          query(
-                            collection(db, "kindergarten Information"),
-                            where("kindergarten_Name", "==", value)
-                          )
-                        );
-                      } else {
-                        setcollection(
-                          collection(db, "kindergarten Information")
-                        );
+                      if (SearchBy === "Type The Activite 🎮 ..") {
+                        const value =
+                          document.querySelector(".search-main").value;
+                        if (value !== "") {
+                          setcollection(
+                            query(
+                              collection(db, "kindergarten Information"),
+                              where(
+                                "kindergarten_Activites",
+                                "array-contains-any",
+                                [value]
+                              )
+                            )
+                          );
+                        } else {
+                          setcollection(
+                            collection(db, "kindergarten Information")
+                          );
+                        }
                       }
+                      if (SearchBy === "Type The Place 🌐 ..") {
+                        const value =
+                          document.querySelector(".search-main").value;
+                        if (value !== "") {
+                          setcollection(
+                            query(
+                              collection(db, "kindergarten Information"),
+                              where("kindergarten_Address", "==", value)
+                            )
+                          );
+                        } else {
+                          setcollection(
+                            collection(db, "kindergarten Information")
+                          );
+                        }
+                      }
+                      if (SearchBy === "Type The Name 🅰 ..") {
+                        const value =
+                          document.querySelector(".search-main").value;
+                        if (value !== "") {
+                          setcollection(
+                            query(
+                              collection(db, "kindergarten Information"),
+                              where("kindergarten_Name", "==", value)
+                            )
+                          );
+                        } else {
+                          setcollection(
+                            collection(db, "kindergarten Information")
+                          );
+                        }
+                      }
+                      document.documentElement.scrollTop = 500;
                     }
-                    document.documentElement.scrollTop = 500;
-
-                  }
-                }}/>
-
-
+                  }}
+                />
 
                 <span
                   className="searchicon"
@@ -423,8 +423,8 @@ const PrHome = () => {
                     className="icon"
                     id="Trending"
                     onClick={(eo) => {
-                        setSearchBy("Type The Name 🅰 ..");
-                        document.querySelector(".search-main").value = ""
+                      setSearchBy("Type The Name 🅰 ..");
+                      document.querySelector(".search-main").value = "";
                     }}
                   >
                     <span className="material-symbols-outlined circ">
@@ -437,7 +437,7 @@ const PrHome = () => {
                     id="Price"
                     onClick={(eo) => {
                       setSearchBy("Type The Price 💸 ..");
-                      document.querySelector(".search-main").value = ""
+                      document.querySelector(".search-main").value = "";
                     }}
                   >
                     <span className="material-symbols-outlined circ">
@@ -450,7 +450,7 @@ const PrHome = () => {
                     id="Place"
                     onClick={(eo) => {
                       setSearchBy("Type The Place 🌐 ..");
-                      document.querySelector(".search-main").value = ""
+                      document.querySelector(".search-main").value = "";
                     }}
                   >
                     <span className="material-symbols-outlined circ">
@@ -463,7 +463,7 @@ const PrHome = () => {
                     id="Activ"
                     onClick={(eo) => {
                       setSearchBy("Type The Activite 🎮 ..");
-                      document.querySelector(".search-main").value = ""
+                      document.querySelector(".search-main").value = "";
                     }}
                   >
                     <span className="material-symbols-outlined circ">
@@ -477,7 +477,7 @@ const PrHome = () => {
                     id="All"
                     onClick={(eo) => {
                       setSearchBy("Search for a kindergarten");
-                      document.querySelector(".search-main").value = ""
+                      document.querySelector(".search-main").value = "";
                     }}
                   >
                     <div className="dots" />

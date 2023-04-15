@@ -10,7 +10,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut, sendEmailVerification } from "firebase/auth";
-import { doc,updateDoc } from "firebase/firestore";
+import { doc,updateDoc,collection,query, where } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "../firebase/config";
 import { useParams } from "react-router-dom";
@@ -57,6 +57,8 @@ const PrHome = () => {
   let [UpdateBio, setUpdateBio] = useState("none");
 
   const [SearchBy, setSearchBy] = useState("Search for a kindergarten");
+  const [Collection, setcollection] = useState(collection(db, "kindergarten Information"));  
+  
 
 
   const navigate = useNavigate();
@@ -213,8 +215,21 @@ const PrHome = () => {
                 />
 
                 <span className="searchicon"  onClick={(eo) => {
-                const ss =  document.querySelector(".search-main").getAttribute("placeholder")
-                  console.log(ss)
+
+                if (SearchBy === "Search for a kindergarten") {
+                  setcollection(collection(db, "kindergarten Information"))
+                }
+                if (SearchBy === "Type The Price 💸 ..") {
+                 const value = Number(document.querySelector(".search-main").value) 
+                  setcollection(query(collection(db, "kindergarten Information"), where("kindergarten_Price", "<=", value))) 
+                }
+                if (SearchBy === "Type The Activite 🎮 ..") {
+                  console.log("true")
+                  const value = document.querySelector(".search-main").value
+                  /* setcollection(query(collection(db, "kindergarten Information"), where("kindergarten_Activites", "in", ["Travel", "Quran"]))) */
+                 }
+
+
                 }}/>
 
 
@@ -290,7 +305,7 @@ const PrHome = () => {
               <MyKindergarten  MyKindergarten_info={value.data().User_Kindergarten} MyKindergarten_activites={value.data().User_kindergarten_Activites}  MyKindergarten_media={value.data().User_kindergarten_Media}/>            
                 }
               {value.data().User_Kindergarten === undefined &&
-                <Slider /> 
+                <Slider  Collection={Collection}/> 
               }
 
               <h2 className="card-title">Advertisements:</h2>

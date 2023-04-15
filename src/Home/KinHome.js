@@ -187,7 +187,7 @@ const KinHome = () => {
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
   let [img, setimg] = useState(null);
-  let [amount, setamount] = useState("");
+  let [amount, setamount] = useState(null);
   let [Media, setMedia] = useState("");
   /* let [url, seturl] = useState(null);*/
   let [act, setact] = useState([]);
@@ -316,11 +316,11 @@ const KinHome = () => {
                   <input
                     defaultValue={
                       value.data() !== undefined ? (
-                        value.data().kindergarten_Price
+                        `${value.data().kindergarten_Price}.00 DA`
                       ) : ""
                     }
                     onChange={(eo) => {
-                      setamount(eo.target.value);
+                      setamount(Number(eo.target.value));
                       setSavePrice("block");
                     }}
                   />
@@ -331,7 +331,7 @@ const KinHome = () => {
                       await updateDoc(
                         doc(db, "kindergarten Information", kinId),
                         {
-                          kindergarten_Price: `${amount}.00 DA`,
+                          kindergarten_Price: amount ,
                         }
                       );
                       setSavePrice("none");
@@ -726,7 +726,7 @@ const KinHome = () => {
                             <div className="activite">
                               <input
                                 type="checkbox"
-                                id="Quran "
+                                id="Quran"
                                 onChange={(eo) => {
                                   countBOX(eo, act);
                                 }}
@@ -734,7 +734,7 @@ const KinHome = () => {
                                   keyEvent(eo);
                                 }}
                               />
-                              <p htmlFor="Quran ">Quran </p>
+                              <p htmlFor="Quran">Quran</p>
                             </div>
 
                             <div className="activite">
@@ -800,7 +800,7 @@ const KinHome = () => {
                               size="5"
                               style={{ width: "215px" }}
                               onChange={(eo) => {
-                                setamount(eo.target.value);
+                                setamount(Number(eo.target.value));
                                 amount.length < 2
                                   ? (document.querySelectorAll(
                                       ".nextStep"
@@ -826,7 +826,7 @@ const KinHome = () => {
                                   kindergarten_Name: name,
                                   kindergarten_Address: address,
                                   kindergarten_Activites: act,
-                                  kindergarten_Price: `${amount}.00 DA`,
+                                  kindergarten_Price: amount,
                                   kindergarten_id: kinId,
                                   kindergarten_Bio:null,
                                   kindergarten_facebook: null,

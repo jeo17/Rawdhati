@@ -48,7 +48,7 @@ const MyKindergarten = ({MyKindergarten_info,MyKindergarten_activites,MyKinderga
                 <span className="recent-orders">Price: </span>
                 <span className="wishlist">
                   {
-                    MyKindergarten_info[3]
+                    `${MyKindergarten_info[3]}.00 DA`
                   }
                 </span>
               </div>

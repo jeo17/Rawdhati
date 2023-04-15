@@ -9,7 +9,7 @@ import { db } from "../firebase/config";
 import Page404 from "../Page_404";
 import Profile from "./Profile";
 
-function Slider() {
+function Slider({Collection}) {
   useEffect(() => {
     new Swiper(".mySwiper", {
       slidesPerView: 3,
@@ -28,9 +28,14 @@ function Slider() {
     });
   });
 
+  console.log(Collection)
+
   const [value, loading, error] = useCollection(
-    collection(db, "kindergarten Information")
+    Collection
   );
+
+  
+
 
   if (loading) {
     return (
@@ -73,7 +78,7 @@ function Slider() {
                 className="profession"
                 style={{ fontSize: "16px", fontWeight: "600" }}
               >
-                {item.data().kindergarten_Price}
+                {`${item.data().kindergarten_Price}.00 DA`}
               </span>
 
               {/*  <span className="profession">
@@ -168,7 +173,7 @@ function Slider() {
                 <span className="recent-orders">Price: </span>
                 <span className="wishlist">
                   {item.data().kindergarten_Price !== undefined ? (
-                    item.data().kindergarten_Price
+                    `${item.data().kindergarten_Price}.00 DA`
                   ) : (
                     <></>
                   )}

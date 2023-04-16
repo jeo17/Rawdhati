@@ -136,41 +136,101 @@ const SignPr = () => {
                                 
                                 switch (errorCode) {
                                   case "auth/invalid-email":
-                                    seterrMsg_signup("❌ Wrong Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Wrong Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ بريد إلكتروني خاطئ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Mauvaise adresse mail! ❌ ");
+                                    }                
                                     break;
 
                                   case "auth/user-not-found":
-                                    seterrMsg_signup("❌ Wrong Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Wrong Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ بريد إلكتروني خاطئ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Mauvaise adresse mail! ❌ ");
+                                    }                
                                     break;
 
                                   case "auth/email-already-in-use":
-                                    seterrMsg_signup(
-                                      "❌ Email is already in use ! ❌ "
-                                    );
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup(
+                                        "❌ Email is already in use ! ❌ "
+                                      );
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ البريد الالكتروني قيد الاستخدام بالفعل! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Cet email est déjà utilisé! ❌ ");
+                                    }
                                     break;
 
                                   case "auth/missing-email":
-                                    seterrMsg_signup("❌ Missing Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Missing Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ البريد الإلكتروني مفقود! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ E-mail manquant ! ❌ ");
+                                    }         
                                     break;
 
                                   case "auth/wrong-password":
-                                    seterrMsg_signup("❌ Wrong Password ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Wrong Password ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ كلمة مرور خاطئة ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Mauvais mot de passe ! ❌ ");
+                                    }         
                                     break;
 
                                     case "auth/weak-password":
-                                      seterrMsg_signup("❌ Weak Password ! ❌ ");
+                                      if (i18n.language==="en") {
+                                        seterrMsg_signup("❌ Weak Password ! ❌ ");
+                                      }
+                                      if (i18n.language==="ar") {
+                                        seterrMsg_signup("❌ كلمة مرور ضعيفة ! ❌ ");
+                                      }
+                                      if (i18n.language==="fr") {
+                                        seterrMsg_signup("❌ Mot de passe faible ! ❌ ");
+                                      }         
                                       break;
 
                                   case "auth/too-many-requests":
-                                    seterrMsg_signup(
-                                      "❌ Too many requests, please try aganin later ! ❌ "
-                                    );
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Too many requests, please try aganin later ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ هنالك طلبات كثيرة، الرجاء المحاولة لاحقا! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Il y a trop de demandes. S'il-vous-plait réessayez plus tard ! ❌ ");
+                                    }         
                                     break;
 
                                   default:
-                                    seterrMsg_signup(
-                                      "❌ Please check your email & password ! ❌ "
-                                    );
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Please check your email & password ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ يرجى التحقق من بريدك الإلكتروني وكلمة المرور! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Veuillez vérifier votre e-mail et votre mot de passe ! ❌ ");
+                                    }         
                                     break;
                                 }
 
@@ -181,7 +241,7 @@ const SignPr = () => {
                          {i18n.language === "en" && "Sign Up"}{i18n.language === "ar" && "تسجيل"}{i18n.language === "fr" && "S'inscrire"}
                         </button>
 
-                        <p className="sign-err-msg">{errMsg_signup}</p>
+                        <p dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"} className="sign-err-msg" style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null, width:"202px"}}>{errMsg_signup}</p>
 
                         <label dir="auto" id="goLeft" className="off"  style={{width: i18n.language === "en"||i18n.language === "fr" ? "319px":"211px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
                         { i18n.language === "en" && "already have an account?"}
@@ -246,40 +306,88 @@ const SignPr = () => {
 
                                 switch (errorCode) {
                                   case "auth/invalid-email":
-                                    seterrMsg_signin("❌ Wrong Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Wrong Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ بريد إلكتروني خاطئ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ Mauvaise adresse mail! ❌ ");
+                                    }                
                                     break;
 
                                   case "auth/user-not-found":
-                                    seterrMsg_signin("❌ Wrong Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Wrong Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ بريد إلكتروني خاطئ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ Mauvaise adresse mail! ❌ ");
+                                    }                
                                     break;
 
-                                  case "auth/email-already-in-use":
-                                    seterrMsg_signin(
-                                      "❌ Email is already in use ! ❌ "
-                                    );
-                                    break;
 
                                   case "auth/missing-email":
-                                    seterrMsg_signin("❌ Missing Email ! ❌ ");
-                                    break;
-
-                                  case "auth/wrong-password":
-                                    seterrMsg_signin("❌ Wrong Password ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Missing Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ البريد الإلكتروني مفقود! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ E-mail manquant ! ❌ ");
+                                    }         
                                     break;
 
                                     case "auth/weak-password":
-                                      seterrMsg_signin("❌ Weak Password ! ❌ ");
+                                      if (i18n.language==="en") {
+                                        seterrMsg_signin("❌ Weak Password ! ❌ ");
+                                      }
+                                      if (i18n.language==="ar") {
+                                        seterrMsg_signin("❌ كلمة مرور ضعيفة ! ❌ ");
+                                      }
+                                      if (i18n.language==="fr") {
+                                        seterrMsg_signin("❌ Mot de passe faible ! ❌ ");
+                                      }         
                                       break;
 
+                                  case "auth/wrong-password":
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Wrong Password ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ كلمة مرور خاطئة ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ Mauvais mot de passe ! ❌ ");
+                                    }         
+                                    break;
+
                                   case "auth/too-many-requests":
-                                    seterrMsg_signin(
-                                      "❌ Too many requests, please try aganin later ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Too many requests, please try aganin later ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ هنالك طلبات كثيرة، الرجاء المحاولة لاحقا! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ Il y a trop de demandes. S'il-vous-plait réessayez plus tard ! ❌ ");
+                                    }         
                                     break;
 
                                   default:
-                                    seterrMsg_signin(
-                                      "❌ Please check your email & password ! ❌ "
-                                    );
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Please check your email & password ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ يرجى التحقق من بريدك الإلكتروني وكلمة المرور! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ Veuillez vérifier votre e-mail et votre mot de passe ! ❌ ");
+                                    }         
                                     break;
                                 }
                               });
@@ -296,7 +404,7 @@ const SignPr = () => {
                         <ForgetPass />
 
 
-                        <label className="sign-err-msg">{errMsg_signin}</label>
+                        <label className="sign-err-msg"  style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null}}>{errMsg_signin}</label>
 
                         <label id="goRight" className="off"  dir="auto" style={{width: i18n.language === "en"||i18n.language === "fr" ? "300px":"205px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
                         {i18n.language === "en" && "dont have an account?"}{i18n.language === "ar" && "ليس لديك حساب؟"}{i18n.language === "fr" && "vous n'avez pas de compte ?"}

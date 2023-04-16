@@ -81,7 +81,7 @@ function App() {
       <div className="container">
           <Link to="/kindergarten_sign" className={`button button--${bird}`}>
             <div className="button__wrapper">
-              <span className="button__text">{i18n.language === "en" && "Get started"}{i18n.language === "ar" &&" البدء"}{i18n.language === "fr" && "Commencer"}</span>
+              <span  style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null}} className="button__text">{i18n.language === "en" && "Get started"}{i18n.language === "ar" &&" البدء"}{i18n.language === "fr" && "Commencer"}</span>
             </div>
             <div className="characterBox">
               <div className="character wakeup">

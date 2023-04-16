@@ -345,7 +345,7 @@ const SignPr = () => {
                                       seterrMsg_signin("❌ بريد إلكتروني خاطئ! ❌ ");
                                     }
                                     if (i18n.language==="fr") {
-                                      seterrMsg_signup("❌ Mauvaise adresse mail! ❌ ");
+                                      seterrMsg_signin("❌ Mauvaise adresse mail! ❌ ");
                                     }                
                                     break;
 

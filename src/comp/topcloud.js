@@ -8,8 +8,12 @@ import { auth } from "../firebase/config";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Topcloud = ({ height }) => {
+
+  const { t, i18n } = useTranslation();
+
   const navigate = useNavigate();
 
   const [user, loading, error] = useAuthState(auth);
@@ -18,8 +22,7 @@ const Topcloud = ({ height }) => {
     useContext(ThemeContext);
 
 
-    const [Language, setLanguage] = useState("Language");
-    const [flag, setflag] = useState("lang");
+  const [flag, setflag] = useState("lang");
   return (
     <>
       <div className="topcloud" style={{ height: `${height}` }}>
@@ -31,7 +34,11 @@ const Topcloud = ({ height }) => {
                   ? `/kin_home/${user.uid}`
                   : `/pr_home/${user.uid}`
               }
-              style={{ textDecoration: "none", color: "black" , padding:"10px 40px" }}
+              style={{
+                textDecoration: "none",
+                color: "black",
+                padding: "10px 40px",
+              }}
             >
               Home
             </NavLink>
@@ -40,8 +47,15 @@ const Topcloud = ({ height }) => {
 
         {!user && (
           <button>
-            <NavLink to="/" style={{ textDecoration: "none", color: "black", padding:"10px 40px" }}>
-              Start
+            <NavLink
+              to="/"
+              style={{
+                textDecoration: "none",
+                color: "black",
+                padding: "10px 40px",
+              }}
+            >
+              {t("start")}
             </NavLink>
           </button>
         )}
@@ -50,72 +64,91 @@ const Topcloud = ({ height }) => {
           <button>
             <NavLink
               to="/help"
-              style={{ textDecoration: "none", color: "black" , padding:"10px 40px"}}
+              style={{
+                textDecoration: "none",
+                color: "black",
+                padding: "10px 40px",
+              }}
             >
-              help
+              {t("help")}
             </NavLink>
           </button>
         )}
 
         <button>
-          
           <NavLink
             to="/about-us"
-            style={{ textDecoration: "none", color: "black" , padding:"10px 40px"}}
+            style={{
+              textDecoration: "none",
+              color: "black",
+              padding: "10px 40px",
+            }}
           >
-            
-            about us
+            {t("about")}
           </NavLink>
         </button>
-       
-       <button>
-        <div className="sl-nav" style={{ padding:"10px 40px"}}>
-          <ul>
-            <li>
-              <b style={{padding:"10px 0", marginRight:"8px"}}><i className={`sl-flag flag-${flag}`}></i> {Language}</b>
-              <i className="fa fa-angle-down" aria-hidden="true" />
-              <div className="triangle" />
-              <ul>
-                <li dir="rtl" onClick={(eo) => {
-                  setLanguage("العربية");
-                  setflag("ar")
-                  document.getElementById("en").style.color="#3c3c3c";
-                  document.getElementById("fr").style.color="#3c3c3c";
-                  document.getElementById("ar").style.color="#00a5bb";
-                }}>
-                  <i className="sl-flag flag-ar">
-                  </i>
-                  <span id="ar" style={{paddingRight:"5px",paddingLeft:"0"}} className="active">العربية</span>
-                </li>
-                <li onClick={(eo) => {
-                  setLanguage("English")
-                  setflag("en")
-                  document.getElementById("ar").style.color="#3c3c3c";
-                  document.getElementById("fr").style.color="#3c3c3c";
-                  document.getElementById("en").style.color="#00a5bb";
 
-                }}>
-                  <i className="sl-flag flag-en">                 
-                  </i>
-                  <span id="en">English</span>
-                </li>
-                <li onClick={(eo) => {
-                  setLanguage("Français")
-                  setflag("fr")
-                  document.getElementById("en").style.color="#3c3c3c";
-                  document.getElementById("ar").style.color="#3c3c3c";
-                  document.getElementById("fr").style.color="#00a5bb";
-                }}>
-                  <i className="sl-flag flag-fr">              
-                  </i>
-                  <span id="fr">Français</span>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-       </button>
-        
+        <button>
+          <div className="sl-nav" style={{ padding: "10px 40px" }}>
+            <ul>
+              <li>
+                <b style={{ padding: "10px 0", marginRight: "8px" }}>
+                  <i className={`sl-flag flag-${flag}`}></i> {t("lang")}
+                </b>
+                <i className="fa fa-angle-down" aria-hidden="true" />
+                <div className="triangle" />
+                <ul>
+                  <li
+                    dir="rtl"
+                    onClick={(eo) => {
+                      setflag("ar");
+                      document.getElementById("en").style.color = "#3c3c3c";
+                      document.getElementById("fr").style.color = "#3c3c3c";
+                      document.getElementById("ar").style.color = "#00a5bb";
+                      i18n.changeLanguage("ar")
+                      document.body.style.fontfamily = "'El Messiri', sans-serif !important;"
+                    }}
+                  >
+                    <i className="sl-flag flag-ar"></i>
+                    <span
+                      id="ar"
+                      style={{ paddingRight: "5px", paddingLeft: "0" }}
+                      className="active"
+                    >
+                      العربية
+                    </span>
+                  </li>
+                  <li
+                    onClick={(eo) => {
+
+                      setflag("en");
+                      document.getElementById("ar").style.color = "#3c3c3c";
+                      document.getElementById("fr").style.color = "#3c3c3c";
+                      document.getElementById("en").style.color = "#00a5bb";
+                      i18n.changeLanguage("en")
+                    }}
+                  >
+                    <i className="sl-flag flag-en"></i>
+                    <span id="en">English</span>
+                  </li>
+                  <li
+                    onClick={(eo) => {
+
+                      setflag("fr");
+                      document.getElementById("en").style.color = "#3c3c3c";
+                      document.getElementById("ar").style.color = "#3c3c3c";
+                      document.getElementById("fr").style.color = "#00a5bb";
+                      i18n.changeLanguage("fr")
+                    }}
+                  >
+                    <i className="sl-flag flag-fr"></i>
+                    <span id="fr">Français</span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </button>
 
         <input
           type="checkbox"
@@ -177,7 +210,7 @@ const Topcloud = ({ height }) => {
                 </li>
                 <li>
                   <img src={require("./assets/icons/question.png")} alt="" />
-                  <NavLink to="/help">Help</NavLink>
+                  <NavLink to="/help">{t("help")}</NavLink>
                 </li>
                 <li>
                   <img src={require("./assets/icons/log-out.png")} alt="" />

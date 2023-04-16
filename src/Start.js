@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './firebase/config';
 import NeedToSignOut from "./needToSignOut";
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -14,6 +15,8 @@ function App() {
   const {bird,face2,body} = useContext(ThemeContext);
 
   const [user] = useAuthState(auth);
+
+  const { t, i18n } = useTranslation();
 
   return (
     <>
@@ -25,11 +28,12 @@ function App() {
   
       
       <div className="parside ag-offer_item">
-      <div className="pk" ><h1>Parents Space </h1> <img width={"45px"} src={require('./family3.png')} alt="sorry" /> </div>
-      <div className="box-cont ag-offer_visible-item">
-
-        <p>A space for parents to register their children and choose the appropriate kindergarten for them</p>
-
+      <div className="pk" ><h1>{i18n.language === "en" && "Parents Space"}{i18n.language === "ar" && "مساحة الآباء"}{i18n.language === "fr" && "Espace Parents"} </h1> <img width={"45px"} src={require('./family3.png')} alt="sorry" /> </div>
+      <div className="box-cont ag-offer_visible-item" dir="auto">
+ 
+ {i18n.language === "en"  &&  <p>A space for parents to register their children and choose the appropriate kindergarten for them</p>}
+ {i18n.language === "ar"  &&  <p>مساحة لأولياء الأمور لتسجيل أطفالهم واختيار الروضة المناسبة لهم</p>}
+ {i18n.language === "fr"  &&  <p>Un espace permettant aux parents d'inscrire leurs enfants et de choisir le jardin d'enfants qui leur convient</p>}
         
       </div>
 
@@ -37,7 +41,7 @@ function App() {
       <div className="container">
           <Link to="/parent_sign" className={`button button--${bird}`}> 
             <div className="button__wrapper">
-              <span className="button__text">Get started</span>
+              <span style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null}} className="button__text">{i18n.language === "en" && "Get started"}{i18n.language === "ar" &&" البدء"}{i18n.language === "fr" && "Commencer"}</span>
             </div>
             <div className="characterBox">
               <div className="character wakeup">
@@ -64,10 +68,12 @@ function App() {
 
 
     <div className="kinside ag-offer_item">
-      <div className="pk"> <h1>Kindergarten Space  </h1> <img width={"45px"} src={require('./kindergarten.png')} alt="sorry" /> </div>
-      <div className="box-cont ag-offer_visible-item">
+      <div className="pk"> <h1>{i18n.language === "en" && "Kindergarten Space"}{i18n.language === "ar" && "مساحة رياض الأطفال"}{i18n.language === "fr" && "Espace Maternelle"}  </h1> <img width={"45px"} src={require('./kindergarten.png')} alt="sorry" /> </div>
+      <div className="box-cont ag-offer_visible-item" dir="auto">
 
-        <p>A space for kindergartens to register and introduce various activities and communicate with parents</p>
+      {i18n.language === "en"  &&  <p>A space for kindergarteners to register and introduce various activities and communicate with parents</p>}
+      {i18n.language === "ar"  &&  <p>مساحة لرياض الأطفال للتسجيل والتعريف بالأنشطة المختلفة والتواصل مع أولياء الأمور</p>}
+      {i18n.language === "fr"  &&  <p>Un espace pour les maternelles pour s'inscrire et présenter diverses activités et communiquer avec les parents</p>}
        
       </div>
 
@@ -75,7 +81,7 @@ function App() {
       <div className="container">
           <Link to="/kindergarten_sign" className={`button button--${bird}`}>
             <div className="button__wrapper">
-              <span className="button__text">Get started</span>
+              <span className="button__text">{i18n.language === "en" && "Get started"}{i18n.language === "ar" &&" البدء"}{i18n.language === "fr" && "Commencer"}</span>
             </div>
             <div className="characterBox">
               <div className="character wakeup">

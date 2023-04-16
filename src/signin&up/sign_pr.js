@@ -17,6 +17,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { doc, setDoc } from "firebase/firestore"; 
 import { db } from "../firebase/config";
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -39,7 +40,7 @@ const SignPr = () => {
 
   const [user, loading, error] = useAuthState(auth);
 
-
+  const { t, i18n } = useTranslation();
 
 
 
@@ -88,28 +89,31 @@ const SignPr = () => {
                     className="content"
                     style={{ position: "absolute", top: "21%" }}
                   >
-                    <h2>Sign Up</h2>
+                    <h2 dir="auto">{i18n.language === "en" && "Sign Up"}{i18n.language === "ar" && "انشئ حساب"}{i18n.language === "fr" && "S'inscrire"}</h2>
                     <form method="post">
                       <div className="form-group">
                         <input
+                          dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="text"
-                          placeholder="User Name"
+                          placeholder={i18n.language === "en" || i18n.language === "fr"?"User Name":"اسم المستخدم"}
                           required
                           onChange={(eo) => {
                             setuserName(eo.target.value);
                           }}
                         />
                         <input
+                          dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="email"
-                          placeholder="Email"
+                          placeholder={i18n.language === "en" || i18n.language === "fr"?"Email":"البريد الالكتروني"}
                           required
                           onChange={(eo) => {
                             setemail(eo.target.value);
                           }}
                         />
                         <input
+                          dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="password"
-                          placeholder="Password"
+                          placeholder={i18n.language === "en" || i18n.language === "fr"?"Password":"كلمة المرور"}
                           required
                           onChange={(eo) => {
                             setpassword(eo.target.value);
@@ -122,6 +126,7 @@ const SignPr = () => {
 
                       <div className="signButton">
                         <button
+                        style={{marginLeft:i18n.language === "ar"? "42px":null,fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}
                           onClick={(eo) => {
                             eo.preventDefault();
 
@@ -162,54 +167,116 @@ const SignPr = () => {
 
                                 switch (errorCode) {
                                   case "auth/invalid-email":
-                                    seterrMsg_signup("❌ Wrong Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Wrong Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ بريد إلكتروني خاطئ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Mauvaise adresse mail! ❌ ");
+                                    }                
                                     break;
 
                                   case "auth/user-not-found":
-                                    seterrMsg_signup("❌ Wrong Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Wrong Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ بريد إلكتروني خاطئ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Mauvaise adresse mail! ❌ ");
+                                    }                
                                     break;
 
                                   case "auth/email-already-in-use":
-                                    seterrMsg_signup(
-                                      "❌ Email is already in use ! ❌ "
-                                    );
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup(
+                                        "❌ Email is already in use ! ❌ "
+                                      );
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ البريد الالكتروني قيد الاستخدام بالفعل! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Cet email est déjà utilisé! ❌ ");
+                                    }
                                     break;
 
                                   case "auth/missing-email":
-                                    seterrMsg_signup("❌ Missing Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Missing Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ البريد الإلكتروني مفقود! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ E-mail manquant ! ❌ ");
+                                    }         
                                     break;
 
                                   case "auth/wrong-password":
-                                    seterrMsg_signup("❌ Wrong Password ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Wrong Password ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ كلمة مرور خاطئة ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Mauvais mot de passe ! ❌ ");
+                                    }         
                                     break;
 
                                     case "auth/weak-password":
-                                      seterrMsg_signup("❌ Weak Password ! ❌ ");
+                                      if (i18n.language==="en") {
+                                        seterrMsg_signup("❌ Weak Password ! ❌ ");
+                                      }
+                                      if (i18n.language==="ar") {
+                                        seterrMsg_signup("❌ كلمة مرور ضعيفة ! ❌ ");
+                                      }
+                                      if (i18n.language==="fr") {
+                                        seterrMsg_signup("❌ Mot de passe faible ! ❌ ");
+                                      }         
                                       break;
 
                                   case "auth/too-many-requests":
-                                    seterrMsg_signup(
-                                      "❌ Too many requests, please try aganin later ! ❌ "
-                                    );
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Too many requests, please try aganin later ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ هنالك طلبات كثيرة، الرجاء المحاولة لاحقا! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Il y a trop de demandes. S'il-vous-plait réessayez plus tard ! ❌ ");
+                                    }         
                                     break;
 
                                   default:
-                                    seterrMsg_signup(
-                                      "❌ Please check your email & password ! ❌ "
-                                    );
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signup("❌ Please check your email & password ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signup("❌ يرجى التحقق من بريدك الإلكتروني وكلمة المرور! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Veuillez vérifier votre e-mail et votre mot de passe ! ❌ ");
+                                    }         
                                     break;
                                 }
                                 // ..
                               });
                           }}
                         >
-                          Sign up
+                          {i18n.language === "en" && "Sign Up"}{i18n.language === "ar" && "تسجيل"}{i18n.language === "fr" && "S'inscrire"}
                         </button>
 
                         <p className="sign-err-msg">{errMsg_signup}</p>
 
-                        <label id="goLeft" className="off">
-                          already have an account?
+                        <label dir="auto" id="goLeft" className="off" style={{width: i18n.language === "en"||i18n.language === "fr" ? "319px":"211px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
+                        { i18n.language === "en" && "already have an account?"}
+                        { i18n.language === "ar" && "هل لديك حساب؟"}
+                        { i18n.language === "fr" && "Vous avez déjà un compte?"}
                           <p
                             onClick={(eo) => {
                               setMargin("50%");
@@ -217,7 +284,7 @@ const SignPr = () => {
                               eo.preventDefault();
                             }}
                           >
-                            Sign in
+                            {i18n.language === "en" && "Sign in"}{i18n.language === "ar" && "سجل الدخول"}{i18n.language === "fr" && "Se connecter"}
                           </p>
                         </label>
                       </div>
@@ -226,26 +293,29 @@ const SignPr = () => {
                 </div>
                 <div className="right">
                   <div className="content">
-                    <h2>Login</h2>
+                    <h2 dir="auto">{i18n.language === "en" && "Login"}{i18n.language === "ar" && "تسجيل الدخول"}{i18n.language === "fr" && "Se connecter"}</h2>
                     <form method="post">
                       <div className="form-group">
                         <input
+                          dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="email"
-                          placeholder="Email"
+                          placeholder={i18n.language === "en" || i18n.language === "fr"?"Email":"البريد الالكتروني"}
                           onChange={(eo) => {
                             setemail_IN(eo.target.value);
                           }}
                         />
                         <input
+                          dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}                        
                           type="password"
-                          placeholder="Password"
+                          placeholder={i18n.language === "en" || i18n.language === "fr"?"Password":"كلمة المرور"}
                           onChange={(eo) => {
                             setpassword_IN(eo.target.value);
                           }}
                         />
                       </div>
                       <div className="signButton">
-                        <button
+                        <button 
+                         style={{marginLeft: i18n.language === "ar"? "44px":null,fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}
                           id="login"
                           type="submit"
                           onClick={(eo) => {
@@ -268,63 +338,110 @@ const SignPr = () => {
 
                                 switch (errorCode) {
                                   case "auth/invalid-email":
-                                    seterrMsg_signin("❌ Wrong Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Wrong Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ بريد إلكتروني خاطئ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signup("❌ Mauvaise adresse mail! ❌ ");
+                                    }                
                                     break;
 
                                   case "auth/user-not-found":
-                                    seterrMsg_signin("❌ Wrong Email ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Wrong Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ بريد إلكتروني خاطئ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ Mauvaise adresse mail! ❌ ");
+                                    }                
                                     break;
 
-                                  case "auth/email-already-exists":
-                                    seterrMsg_signin(
-                                      "❌ Email is already in use ! ❌ "
-                                    );
-                                    break;
 
                                   case "auth/missing-email":
-                                    seterrMsg_signin("❌ Missing Email ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Missing Email ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ البريد الإلكتروني مفقود! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ E-mail manquant ! ❌ ");
+                                    }         
                                     break;
 
                                     case "auth/weak-password":
-                                      seterrMsg_signin("❌ Weak Password ! ❌ ");
+                                      if (i18n.language==="en") {
+                                        seterrMsg_signin("❌ Weak Password ! ❌ ");
+                                      }
+                                      if (i18n.language==="ar") {
+                                        seterrMsg_signin("❌ كلمة مرور ضعيفة ! ❌ ");
+                                      }
+                                      if (i18n.language==="fr") {
+                                        seterrMsg_signin("❌ Mot de passe faible ! ❌ ");
+                                      }         
                                       break;
 
                                   case "auth/wrong-password":
-                                    seterrMsg_signin("❌ Wrong Password ! ❌ ");
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Wrong Password ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ كلمة مرور خاطئة ! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ Mauvais mot de passe ! ❌ ");
+                                    }         
                                     break;
 
                                   case "auth/too-many-requests":
-                                    seterrMsg_signin(
-                                      "❌ Too many requests, please try aganin later ! ❌ "
-                                    );
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Too many requests, please try aganin later ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ هنالك طلبات كثيرة، الرجاء المحاولة لاحقا! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ Il y a trop de demandes. S'il-vous-plait réessayez plus tard ! ❌ ");
+                                    }         
                                     break;
 
                                   default:
-                                    seterrMsg_signin(
-                                      "❌ Please check your email & password ! ❌ "
-                                    );
+                                    if (i18n.language==="en") {
+                                      seterrMsg_signin("❌ Please check your email & password ! ❌ ");
+                                    }
+                                    if (i18n.language==="ar") {
+                                      seterrMsg_signin("❌ يرجى التحقق من بريدك الإلكتروني وكلمة المرور! ❌ ");
+                                    }
+                                    if (i18n.language==="fr") {
+                                      seterrMsg_signin("❌ Veuillez vérifier votre e-mail et votre mot de passe ! ❌ ");
+                                    }         
                                     break;
                                 }
                               });
                           }}
                         >
-                          Log in
+                        {i18n.language === "en" && "Login"}{i18n.language === "ar" && "تسجيل"}{i18n.language === "fr" && "connecter"}
                         </button>
 
                         
 
-                        <p className="forget-pass" onClick={(eo) => {
+                        <p  dir="auto" className="forget-pass" onClick={(eo) => {
                           const forgetPass = document.getElementById("forget-pass");
                           forgetPass.showModal();
-                        }}>Forgot password ? </p>
+                        }}>{i18n.language === "en" && "Forgot password ?"} {i18n.language === "ar" && "هل نسيت كلمة السر ؟"}{i18n.language === "fr" && "Mot de passe oublié ?"}</p>
 
 
                         <ForgetPass /> 
 
                         <p className="sign-err-msg">{errMsg_signin}</p>
 
-                        <label id="goRight" className="off">
-                          dont have an account?{" "}
+                        <label id="goRight" className="off" dir="auto" style={{width: i18n.language === "en"||i18n.language === "fr" ? "300px":"205px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
+                          {i18n.language === "en" && "dont have an account?"}{i18n.language === "ar" && "ليس لديك حساب؟"}{i18n.language === "fr" && "vous n'avez pas de compte ?"}
                           <p
                             onClick={(eo) => {
                               setMargin("0");
@@ -332,7 +449,7 @@ const SignPr = () => {
                               eo.preventDefault();
                             }}
                           >
-                            Sign Up
+                            {i18n.language === "en" && "Sign Up"}{i18n.language === "ar" && "انشئ واحد"}{i18n.language === "fr" && "S'inscrire"}
                           </p>
                         </label>
                       </div>

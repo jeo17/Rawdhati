@@ -14,6 +14,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 const SignPr = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const SignPr = () => {
 
   const [user, loading, error] = useAuthState(auth);
 
-
+  const { t, i18n } = useTranslation();
 
   if (loading) {
     //if he is in the loading state do this block of code ... and when he done read the rest of the code.
@@ -82,20 +83,22 @@ const SignPr = () => {
               >
                 <div className="left">
                   <div className="content">
-                    <h2>Sign Up</h2>
+                    <h2 dir="auto">{i18n.language === "en" && "Sign Up"}{i18n.language === "ar" && "انشئ حساب"}{i18n.language === "fr" && "S'inscrire"}</h2>
                     <form method="post">
                       <div className="form-group">
                         <input
+                        dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="email"
-                          placeholder="Email"
+                          placeholder={i18n.language === "en" || i18n.language === "fr"?"Email":"البريد الالكتروني"}
                           required
                           onChange={(eo) => {
                             setemail(eo.target.value);
                           }}
                         />
                         <input
+                        dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="password"
-                          placeholder="Password"
+                          placeholder={i18n.language === "en" || i18n.language === "fr"?"Password":"كلمة المرور"}
                           required
                           onChange={(eo) => {
                             setpassword(eo.target.value);
@@ -108,6 +111,7 @@ const SignPr = () => {
 
                       <div className="signButton">
                         <button
+                         style={{marginLeft:i18n.language === "ar"? "42px":null,fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}
                           onClick={(eo) => {
                             eo.preventDefault();
 
@@ -174,13 +178,15 @@ const SignPr = () => {
                               });
                           }}
                         >
-                          Sign up
+                         {i18n.language === "en" && "Sign Up"}{i18n.language === "ar" && "تسجيل"}{i18n.language === "fr" && "S'inscrire"}
                         </button>
 
                         <p className="sign-err-msg">{errMsg_signup}</p>
 
-                        <label id="goLeft" className="off">
-                          already have an account?
+                        <label dir="auto" id="goLeft" className="off"  style={{width: i18n.language === "en"||i18n.language === "fr" ? "319px":"211px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
+                        { i18n.language === "en" && "already have an account?"}
+                        { i18n.language === "ar" && "هل لديك حساب؟"}
+                        { i18n.language === "fr" && "Vous avez déjà un compte?"}
                           <p
                             onClick={(eo) => {
                               setMargin("50%");
@@ -188,7 +194,7 @@ const SignPr = () => {
                               eo.preventDefault();
                             }}
                           >
-                            Sign in
+                             {i18n.language === "en" && "Sign in"}{i18n.language === "ar" && "سجل الدخول"}{i18n.language === "fr" && "Se connecter"}
                           </p>
                         </label>
                       </div>
@@ -197,19 +203,21 @@ const SignPr = () => {
                 </div>
                 <div className="right">
                   <div className="content">
-                    <h2>Login</h2>
+                    <h2 dir="auto">{i18n.language === "en" && "Login"}{i18n.language === "ar" && "تسجيل الدخول"}{i18n.language === "fr" && "Se connecter"}</h2>
                     <form method="post">
                       <div className="form-group">
                         <input
+                          dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="email"
-                          placeholder="Email"
+                          placeholder={i18n.language === "en" || i18n.language === "fr"?"Email":"البريد الالكتروني"}
                           onChange={(eo) => {
                             setemail_IN(eo.target.value);
                           }}
                         />
                         <input
+                          dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="password"
-                          placeholder="Password"
+                          placeholder={i18n.language === "en" || i18n.language === "fr"?"Password":"كلمة المرور"}
                           onChange={(eo) => {
                             setpassword_IN(eo.target.value);
                           }}
@@ -217,6 +225,7 @@ const SignPr = () => {
                       </div>
                       <div className="signButton">
                         <button
+                         style={{marginLeft: i18n.language === "ar"? "44px":null,fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}
                           id="login"
                           type="submit"
                           onClick={(eo) => {
@@ -276,21 +285,21 @@ const SignPr = () => {
                               });
                           }}
                         >
-                          Log in
+                         {i18n.language === "en" && "Login"}{i18n.language === "ar" && "تسجيل"}{i18n.language === "fr" && "connecter"}
                         </button>
 
-                        <p className="forget-pass"  onClick={(eo) => {
+                        <p dir="auto" className="forget-pass"  onClick={(eo) => {
                           const forgetPass = document.getElementById("forget-pass");
                           forgetPass.showModal();
-                        }}>Forgot password ? </p>
+                        }}>{i18n.language === "en" && "Forgot password ?"} {i18n.language === "ar" && "هل نسيت كلمة السر ؟"}{i18n.language === "fr" && "Mot de passe oublié ?"}</p>
                         
                         <ForgetPass />
 
 
                         <label className="sign-err-msg">{errMsg_signin}</label>
 
-                        <label id="goRight" className="off">
-                          dont have an account?{" "}
+                        <label id="goRight" className="off"  dir="auto" style={{width: i18n.language === "en"||i18n.language === "fr" ? "300px":"205px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
+                        {i18n.language === "en" && "dont have an account?"}{i18n.language === "ar" && "ليس لديك حساب؟"}{i18n.language === "fr" && "vous n'avez pas de compte ?"}
                           <p
                             onClick={(eo) => {
                               setMargin("0");
@@ -298,7 +307,7 @@ const SignPr = () => {
                               eo.preventDefault();
                             }}
                           >
-                            Sign Up
+                            {i18n.language === "en" && "Sign Up"}{i18n.language === "ar" && "انشئ واحد"}{i18n.language === "fr" && "S'inscrire"}
                           </p>
                         </label>
                       </div>

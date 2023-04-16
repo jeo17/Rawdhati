@@ -109,6 +109,7 @@
 	color: #03A9F4;
 	font-weight: 300;
 	font-size: 35px;
+    width: 217px;
   }
   
   button {
@@ -165,6 +166,7 @@
 	color: #5c8ca1;
 	font-size: 14px;
 	cursor: pointer;
+	width: 205px;
   }
   .forget-pass:hover{
 	transform: scale(1.02);

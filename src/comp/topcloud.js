@@ -40,7 +40,7 @@ const Topcloud = ({ height }) => {
                 padding: "10px 40px",
               }}
             >
-              Home
+              {t("home")}
             </NavLink>
           </button>
         )}

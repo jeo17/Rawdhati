@@ -2,5 +2,7 @@
     "start": "Commencer",
     "help": "Aider",
     "about": "à propos de nous",     
-    "lang": "langue"
+    "lang": "langue",
+    "forget-pass": "Mot de passe oublié",
+    "home":"accueil"
   }

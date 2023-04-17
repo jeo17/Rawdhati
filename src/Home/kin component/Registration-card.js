@@ -5,6 +5,7 @@ import { collection, query, where ,doc, updateDoc,deleteDoc } from "firebase/fir
 import { useParams } from "react-router-dom";
 import "./cards.css";
 import IosDialog from "./Ios-dialog";
+import { useTranslation } from 'react-i18next';
 
 const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Address,kindergarten_Activites,kindergarten_Price,kindergarten_facebook,kindergarten_Instagram,kindergarten_Google}) => {
   let { kinId } = useParams();
@@ -15,6 +16,8 @@ const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Addr
       where("kindergarten_id", "==", kinId),where("Request_State", "==", "waitting"),
     )
   );
+
+  const { t, i18n } = useTranslation();
 
   if (loading) {
     return (
@@ -38,7 +41,9 @@ const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Addr
         <div className="card card4">
           <div className="card_content">      
             <h2 className="card_title">
-              Registration Requests
+                {i18n.language ==="en" && "Registration Requests"}
+                {i18n.language ==="ar" && "طلبات التسجيل"}
+                {i18n.language ==="fr" && "Demandes d'inscription"}
               <span className="material-symbols-outlined">person_add</span>
             </h2>
             <div className="card_text">

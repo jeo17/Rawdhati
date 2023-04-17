@@ -2,7 +2,7 @@
     "start": "Start",
     "help": "Help",
     "about": "Abou Us",
-    "lang": "Language"
-
-    
+    "lang": "Language",
+     "forget-pass": "Forgot Password",
+     "home":"Home"
   }

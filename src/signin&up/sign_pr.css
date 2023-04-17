@@ -206,6 +206,10 @@
 
 .sign-err-msg{
 	color: #dc2929;
+	width: 400px;
+	margin-top: 1.2rem !important;
+	margin: 0;
+    position: relative;
 }
 .darkmode .sign-err-msg{
 	color: #dc2929;

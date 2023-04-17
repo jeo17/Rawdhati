@@ -4,6 +4,7 @@ import { db } from "../../firebase/config";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, query, where ,doc, updateDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 
 const ClassCard = () => {
@@ -17,6 +18,7 @@ const ClassCard = () => {
         )
       );
 
+      const { t, i18n } = useTranslation();
 
       if (loading) {
         return (
@@ -40,7 +42,9 @@ const ClassCard = () => {
                         <div className="card_content">
                           <h2 className="card_title">
                             
-                            Class
+                {i18n.language ==="en" && "My Class"}
+                {i18n.language ==="ar" && "صفي"}
+                {i18n.language ==="fr" && "Ma classe"}
                             <span className="material-symbols-outlined">
                               
                               school

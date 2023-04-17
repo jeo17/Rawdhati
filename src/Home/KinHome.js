@@ -7,6 +7,7 @@ import Page404 from "../Page_404";
 import RegistrationCard from "./kin component/Registration-card";
 import ClassCard from "./kin component/Class-card";
 import ActivitieCard from "./kin component/Activitie-card";
+import MessagesCard from "./kin component/Messages-card";
 import { auth } from "../firebase/config";
 import { db } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -17,7 +18,7 @@ import { signOut, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useParams } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next';
 //import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const KinHome = () => {
@@ -183,6 +184,8 @@ const KinHome = () => {
     console.log(error.message)
    });
  }*/
+
+ const { t, i18n } = useTranslation();
 
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
@@ -867,12 +870,15 @@ const KinHome = () => {
               )}
 
               <button
+              style={{fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}
                 id="button"
                 onClick={(eo) => {
                   document.documentElement.scrollTop = 470;
                 }}
               >
-                Scroll Down
+                {i18n.language ==="en" && "Scroll Down"}
+                {i18n.language ==="ar" && "انتقل للأسفل"}
+                {i18n.language ==="fr" && "défiler vers le bas"}
               </button>
             </div>
 
@@ -882,22 +888,7 @@ const KinHome = () => {
 
                 <ActivitieCard />
 
-                <li className="cards_item">
-                  <div className="indicator">
-                    <div className="noti_count">0</div>
-                  </div>
-                  <div className="card card3">
-                    <div className="card_content">
-                      <h2 className="card_title">
-                        Chat
-                        <span className="material-symbols-outlined">chat</span>
-                      </h2>
-                      <div className="card_text">
-                        <p>.................</p>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+                <MessagesCard />
 
                 <RegistrationCard
                   kindergarten_Name={ value.data() !== undefined ? value.data().kindergarten_Name:null}

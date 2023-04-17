@@ -4,6 +4,7 @@ import { arrayRemove, doc, updateDoc,arrayUnion } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase/config";
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 
 const ActivitieCard = () => {
   let { kinId } = useParams();
@@ -11,6 +12,9 @@ const ActivitieCard = () => {
     doc(db, "kindergarten Information", kinId)
   );
   const [Activitie, setActivitie] = useState("");
+
+  const { t, i18n } = useTranslation();
+
 
   if (loading) {
     return (
@@ -30,7 +34,9 @@ const ActivitieCard = () => {
         <div className="card card2">
           <div className="card_content">
             <h2 className="card_title">
-              Activities
+                {i18n.language ==="en" && "Activities"}
+                {i18n.language ==="ar" && "أنشطة"}
+                {i18n.language ==="fr" && "Activités"}
               <span className="material-symbols-outlined">extension</span>
             </h2>
             <div className="card_text">

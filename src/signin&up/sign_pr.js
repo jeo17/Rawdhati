@@ -271,7 +271,7 @@ const SignPr = () => {
                           {i18n.language === "en" && "Sign Up"}{i18n.language === "ar" && "تسجيل"}{i18n.language === "fr" && "S'inscrire"}
                         </button>
 
-                        <p className="sign-err-msg" style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null}}>{errMsg_signup}</p>
+                        <p dir="auto" className="sign-err-msg" style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null,right:i18n.language ==="ar"? "191px":null}}>{errMsg_signup}</p>
 
                         <label dir="auto" id="goLeft" className="off" style={{width: i18n.language === "en"||i18n.language === "fr" ? "319px":"211px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
                         { i18n.language === "en" && "already have an account?"}
@@ -438,7 +438,7 @@ const SignPr = () => {
 
                         <ForgetPass /> 
 
-                        <p className="sign-err-msg" style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null}}>{errMsg_signin}</p>
+                        <p dir="auto" className="sign-err-msg" style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null,right:i18n.language ==="ar"? "191px":null}}>{errMsg_signin}</p>
 
                         <label id="goRight" className="off" dir="auto" style={{width: i18n.language === "en"||i18n.language === "fr" ? "300px":"205px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
                           {i18n.language === "en" && "dont have an account?"}{i18n.language === "ar" && "ليس لديك حساب؟"}{i18n.language === "fr" && "vous n'avez pas de compte ?"}

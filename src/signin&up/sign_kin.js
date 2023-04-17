@@ -229,7 +229,7 @@ const SignPr = () => {
                                       seterrMsg_signup("❌ يرجى التحقق من بريدك الإلكتروني وكلمة المرور! ❌ ");
                                     }
                                     if (i18n.language==="fr") {
-                                      seterrMsg_signup("❌ Veuillez vérifier votre e-mail et votre mot de passe ! ❌ ");
+                                      seterrMsg_signup("❌ Veuillez vérifier votre e-mail et votre mot de passe ! ❌ ");
                                     }         
                                     break;
                                 }
@@ -241,7 +241,7 @@ const SignPr = () => {
                          {i18n.language === "en" && "Sign Up"}{i18n.language === "ar" && "تسجيل"}{i18n.language === "fr" && "S'inscrire"}
                         </button>
 
-                        <p dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"} className="sign-err-msg" style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null, width:"202px"}}>{errMsg_signup}</p>
+                        <p dir="auto" className="sign-err-msg" style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null, display:i18n.language ==="ar"? "block":null,right:i18n.language === "ar"?"191px":null}}>{errMsg_signup}</p>
 
                         <label dir="auto" id="goLeft" className="off"  style={{width: i18n.language === "en"||i18n.language === "fr" ? "319px":"211px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
                         { i18n.language === "en" && "already have an account?"}
@@ -404,7 +404,7 @@ const SignPr = () => {
                         <ForgetPass />
 
 
-                        <label className="sign-err-msg"  style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null}}>{errMsg_signin}</label>
+                        <p dir="auto" className="sign-err-msg"  style={{fontFamily:i18n.language ==="ar"? "'Noto Sans Arabic', sans-serif":null,right:i18n.language ==="ar"? "191px":null,display:i18n.language ==="ar"? "block":null}}>{errMsg_signin}</p>
 
                         <label id="goRight" className="off"  dir="auto" style={{width: i18n.language === "en"||i18n.language === "fr" ? "300px":"205px",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}>
                         {i18n.language === "en" && "dont have an account?"}{i18n.language === "ar" && "ليس لديك حساب؟"}{i18n.language === "fr" && "vous n'avez pas de compte ?"}

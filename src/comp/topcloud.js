@@ -196,17 +196,17 @@ const Topcloud = ({ height }) => {
                       profile.showModal();
                     }}
                   >
-                    My profile
+                 {i18n.language === "en" && "My profile"}   {i18n.language === "ar" && "حسابي"} {i18n.language === "fr" && "Mon profil"}
                   </NavLink>
                 </li>
 
                 <li>
                   <img src={require("./assets/icons/envelope.png")} alt="" />
-                  <NavLink to="#">Inbox</NavLink>
+                  <NavLink to="#">{i18n.language === "en" && "Inbox"}   {i18n.language === "ar" && "صندوق الوارد"} {i18n.language === "fr" && "Boîte de réception"}</NavLink>
                 </li>
                 <li>
                   <img src={require("./assets/icons/settings.png")} alt="" />
-                  <NavLink to="#">Setting</NavLink>
+                  <NavLink to="#">{i18n.language === "en" && "Settings"}   {i18n.language === "fr" && "Paramètre"} {i18n.language === "ar" && "إعدادات"}</NavLink>
                 </li>
                 <li>
                   <img src={require("./assets/icons/question.png")} alt="" />
@@ -226,7 +226,7 @@ const Topcloud = ({ height }) => {
                         });
                     }}
                   >
-                    Logout
+                   {i18n.language === "en" && " Logout"}   {i18n.language === "ar" && "تسجيل خروج"} {i18n.language === "fr" && "Se déconnecter"}
                   </NavLink>
                 </li>
               </ul>
@@ -234,14 +234,7 @@ const Topcloud = ({ height }) => {
           </div>
         )}
 
-        {/*user && 
-                 
-                 
-                 <select className="circle" value="AD">
-                 <option style={{display:"none"}}>AD</option>
-                 <option>profile</option>
-                 <option >sign out</option>
-               </select>*/}
+
       </div>
     </>
   );

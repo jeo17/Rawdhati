@@ -18,7 +18,7 @@ import { signOut, sendEmailVerification } from "firebase/auth";
 import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useParams } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 //import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const KinHome = () => {
@@ -185,7 +185,7 @@ const KinHome = () => {
    });
  }*/
 
- const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
@@ -262,14 +262,14 @@ const KinHome = () => {
           <Topcloud />
 
           <Profile>
-            <div className="top-container">
+            <div className="top-container" dir={i18n.language === "ar" ? "rtl" : null}>
               <img
                 src={require("../comp/assets/avatar.jpg")}
                 className="img-fluid profile-image"
                 width={70}
                 alt="sorry"
               />
-              <div style={{ marginLeft: "11px" }}>
+              <div style={{ marginLeft: i18n.language === "ar"? null:"11px",marginRight: i18n.language === "ar"?"11px":null}}>
                 {value.data() !== undefined ? (
                   <h5 className="name"> {value.data().kindergarten_Name}</h5>
                 ) : (
@@ -278,12 +278,26 @@ const KinHome = () => {
                 <p className="mail">{user.email}</p>
               </div>
             </div>
-            <div className="bot-container">
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Address: </span>
+            <div
+              className="bot-container"
+              dir={i18n.language === "ar" ? "rtl" : null}
+            >
+              <div
+                className="recent-border mt-4"
+                style={{
+                  borderLeft: i18n.language === "ar" ? "none" : null,
+                  borderRight:
+                    i18n.language === "ar" ? "2px solid #5957f9" : null,
+                }}
+              >
+                <span className="recent-orders">
+                  {i18n.language === "en" && "Address:"}
+                  {i18n.language === "ar" && "العنوان:"}
+                  {i18n.language === "fr" && "Adresse:"}
+                </span>
                 <span className="wishlist">
                   <span
-                    style={{ display: `${SaveAddress}` }}
+                    style={{ display: `${SaveAddress}`,left: i18n.language === "ar"? "0":null }}
                     className="material-symbols-outlined"
                     onClick={async (eo) => {
                       await updateDoc(
@@ -300,10 +314,9 @@ const KinHome = () => {
 
                   <input
                     defaultValue={
-                      value.data() !== undefined ? (
-                        value.data().kindergarten_Address
-                      ) : ""
-                      
+                      value.data() !== undefined
+                        ? value.data().kindergarten_Address
+                        : ""
                     }
                     onChange={async (eo) => {
                       setaddress(eo.target.value);
@@ -313,14 +326,25 @@ const KinHome = () => {
                 </span>
               </div>
 
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Price: </span>
+              <div
+                className="recent-border mt-4"
+                style={{
+                  borderLeft: i18n.language === "ar" ? "none" : null,
+                  borderRight:
+                    i18n.language === "ar" ? "2px solid #5957f9" : null,
+                }}
+              >
+                <span className="recent-orders">
+                  {i18n.language === "en" && "Price:"}
+                  {i18n.language === "ar" && "السعر:"}
+                  {i18n.language === "fr" && "Prix:"}
+                </span>
                 <span className="wishlist">
                   <input
                     defaultValue={
-                      value.data() !== undefined ? (
-                        `${value.data().kindergarten_Price}.00 DA`
-                      ) : ""
+                      value.data() !== undefined
+                        ? `${value.data().kindergarten_Price}.00 DA`
+                        : ""
                     }
                     onChange={(eo) => {
                       setamount(Number(eo.target.value));
@@ -328,13 +352,13 @@ const KinHome = () => {
                     }}
                   />
                   <span
-                    style={{ display: `${SavePrice}` }}
+                    style={{ display: `${SavePrice}` ,left: i18n.language === "ar"? "0":null }}
                     className="material-symbols-outlined"
                     onClick={async (eo) => {
                       await updateDoc(
                         doc(db, "kindergarten Information", kinId),
                         {
-                          kindergarten_Price: amount ,
+                          kindergarten_Price: amount,
                         }
                       );
                       setSavePrice("none");
@@ -345,11 +369,22 @@ const KinHome = () => {
                 </span>
               </div>
 
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Bio: </span>
+              <div
+                className="recent-border mt-4"
+                style={{
+                  borderLeft: i18n.language === "ar" ? "none" : null,
+                  borderRight:
+                    i18n.language === "ar" ? "2px solid #5957f9" : null,
+                }}
+              >
+                <span className="recent-orders">
+                  {i18n.language === "en" && "Bio:"}
+                  {i18n.language === "ar" && "السيرة:"}
+                  {i18n.language === "fr" && "Bio:"}
+                </span>
                 <span className="wishlist">
                   <span
-                    style={{ display: `${SaveBio}` }}
+                    style={{ display: `${SaveBio}` ,left: i18n.language === "ar"? "0":null}}
                     className="material-symbols-outlined"
                     onClick={async (eo) => {
                       await updateDoc(
@@ -366,9 +401,9 @@ const KinHome = () => {
 
                   <textarea
                     defaultValue={
-                      value.data() !== undefined ? (
-                        value.data().kindergarten_Bio
-                      ) : ""
+                      value.data() !== undefined
+                        ? value.data().kindergarten_Bio
+                        : ""
                     }
                     onChange={(eo) => {
                       setBio(eo.target.value);
@@ -378,8 +413,21 @@ const KinHome = () => {
                 </span>
               </div>
 
-              <div className="recent-border mt-4 media-area">
-                <span className="recent-orders">Link your media: </span>
+              <div
+                className="recent-border mt-4 media-area"
+                style={{
+                  borderLeft: i18n.language === "ar" ? "none" : null,
+                  borderRight:
+                    i18n.language === "ar" ? "2px solid #5957f9" : null,
+                }}
+              >
+                <span className="recent-orders">
+                  {" "}
+                  {i18n.language === "en" && "Link your media:"}
+                  {i18n.language === "ar" &&
+                    " أربط وسائل التواصل الاجتماعي الخاصة بك:"}
+                  {i18n.language === "fr" && "Liez vos médias:"}{" "}
+                </span>
                 <span className="wishlist wishlist-media">
                   <div className="kin-media-icons">
                     <i
@@ -448,11 +496,12 @@ const KinHome = () => {
                   }}
                 />
                 <span
-                  style={{ display: `${SaveMedia}`, right: "-8px" }}
+                  style={{ display: `${SaveMedia}`, right: "-8px" ,left: i18n.language === "ar"? "0":null}}
                   className="material-symbols-outlined"
                   onClick={async (eo) => {
                     if (
-                      document.querySelector(".gg-facebook").style.opacity === "1"
+                      document.querySelector(".gg-facebook").style.opacity ===
+                      "1"
                     ) {
                       await updateDoc(
                         doc(db, "kindergarten Information", kinId),
@@ -460,12 +509,13 @@ const KinHome = () => {
                           kindergarten_facebook: Media,
                         }
                       );
-                      setSaveMedia("none")
+                      setSaveMedia("none");
                       document.querySelector(".media-input").value = "";
                     }
 
                     if (
-                      document.querySelector(".gg-instagram").style.opacity === "1"
+                      document.querySelector(".gg-instagram").style.opacity ===
+                      "1"
                     ) {
                       await updateDoc(
                         doc(db, "kindergarten Information", kinId),
@@ -473,7 +523,7 @@ const KinHome = () => {
                           kindergarten_Instagram: Media,
                         }
                       );
-                      setSaveMedia("none")
+                      setSaveMedia("none");
                       document.querySelector(".media-input").value = "";
                     }
                     if (
@@ -485,7 +535,7 @@ const KinHome = () => {
                           kindergarten_Google: Media,
                         }
                       );
-                      setSaveMedia("none")
+                      setSaveMedia("none");
                       document.querySelector(".media-input").value = "";
                     }
                   }}
@@ -831,9 +881,9 @@ const KinHome = () => {
                                   kindergarten_Activites: act,
                                   kindergarten_Price: amount,
                                   kindergarten_id: kinId,
-                                  kindergarten_Bio:null,
+                                  kindergarten_Bio: null,
                                   kindergarten_facebook: null,
-                                  kindergarten_Instagram:null,
+                                  kindergarten_Instagram: null,
                                   kindergarten_Google: null,
                                 }
                               );
@@ -862,7 +912,6 @@ const KinHome = () => {
             <div id="banner" className="banner">
               {value.data() !== undefined ? (
                 <h1 id="h1" className="mint">
-                  
                   Welcome to {value.data().kindergarten_Name}
                 </h1>
               ) : (
@@ -870,15 +919,20 @@ const KinHome = () => {
               )}
 
               <button
-              style={{fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif":null}}
+                style={{
+                  fontFamily:
+                    i18n.language === "ar"
+                      ? "'Noto Sans Arabic', sans-serif"
+                      : null,
+                }}
                 id="button"
                 onClick={(eo) => {
                   document.documentElement.scrollTop = 470;
                 }}
               >
-                {i18n.language ==="en" && "Scroll Down"}
-                {i18n.language ==="ar" && "انتقل للأسفل"}
-                {i18n.language ==="fr" && "défiler vers le bas"}
+                {i18n.language === "en" && "Scroll Down"}
+                {i18n.language === "ar" && "انتقل للأسفل"}
+                {i18n.language === "fr" && "défiler vers le bas"}
               </button>
             </div>
 
@@ -891,14 +945,46 @@ const KinHome = () => {
                 <MessagesCard />
 
                 <RegistrationCard
-                  kindergarten_Name={ value.data() !== undefined ? value.data().kindergarten_Name:null}
-                  kindergarten_Bio={value.data() !== undefined ?value.data().kindergarten_Bio:null}
-                  kindergarten_Address={value.data() !== undefined ?value.data().kindergarten_Address:null}
-                  kindergarten_Activites={value.data() !== undefined ?value.data().kindergarten_Activites:null}
-                  kindergarten_Price={value.data() !== undefined ?value.data().kindergarten_Price:null}
-                  kindergarten_facebook={value.data() !== undefined ?value.data().kindergarten_facebook:null}
-                  kindergarten_Instagram={value.data() !== undefined ?value.data().kindergarten_Instagram:null}
-                  kindergarten_Google={value.data() !== undefined ?value.data().kindergarten_Google:null}
+                  kindergarten_Name={
+                    value.data() !== undefined
+                      ? value.data().kindergarten_Name
+                      : null
+                  }
+                  kindergarten_Bio={
+                    value.data() !== undefined
+                      ? value.data().kindergarten_Bio
+                      : null
+                  }
+                  kindergarten_Address={
+                    value.data() !== undefined
+                      ? value.data().kindergarten_Address
+                      : null
+                  }
+                  kindergarten_Activites={
+                    value.data() !== undefined
+                      ? value.data().kindergarten_Activites
+                      : null
+                  }
+                  kindergarten_Price={
+                    value.data() !== undefined
+                      ? value.data().kindergarten_Price
+                      : null
+                  }
+                  kindergarten_facebook={
+                    value.data() !== undefined
+                      ? value.data().kindergarten_facebook
+                      : null
+                  }
+                  kindergarten_Instagram={
+                    value.data() !== undefined
+                      ? value.data().kindergarten_Instagram
+                      : null
+                  }
+                  kindergarten_Google={
+                    value.data() !== undefined
+                      ? value.data().kindergarten_Google
+                      : null
+                  }
                 />
               </ul>
             </div>

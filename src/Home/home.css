@@ -744,11 +744,6 @@ font-size: 22px;
 color: #5957f9;
 }
 
-.wishlist .material-symbols-outlined:hover , .wishlist2 .material-symbols-outlined:hover{
-  transform: scale(1.3);
-  
-}
-
 
 .kin-media-icons{
   display: flex;

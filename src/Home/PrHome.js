@@ -14,6 +14,7 @@ import { doc, updateDoc, collection, query, where } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { db } from "../firebase/config";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const PrHome = () => {
   const onScroll = (event) => {
@@ -44,6 +45,8 @@ const PrHome = () => {
   };
 
   document.addEventListener("scroll", onScroll);
+
+  const { i18n } = useTranslation();
 
   let { prId } = useParams();
 
@@ -147,14 +150,14 @@ const PrHome = () => {
           <Topcloud />
 
           <Profile>
-            <div className="top-container">
+            <div className="top-container" dir={i18n.language === "ar"? "rtl":null}>
               <img
                 src={require("../comp/assets/avatar.jpg")}
                 className="img-fluid profile-image"
                 width={70}
                 alt="sorry"
               />
-              <div style={{ marginLeft: "11px" }}>
+              <div style={{ margin: "0 11px" }}>
                 <h5 className="name">
                   {user.displayName === null
                     ? "el rawda"
@@ -163,9 +166,9 @@ const PrHome = () => {
                 <p className="mail">{user.email}</p>
               </div>
             </div>
-            <div className="bot-container">
-              <div className="recent-border mt-4">
-                <span className="recent-orders">My Kindergarten:</span>
+            <div className="bot-container" dir={i18n.language === "ar"? "rtl":null}>
+              <div className="recent-border mt-4" style={{borderLeft:i18n.language === "ar"?"none":null,borderRight:i18n.language === "ar"?"2px solid #5957f9":null}}>
+                <span className="recent-orders">{i18n.language === "en" && "My Kindergarten:"}{i18n.language === "ar" && "روضتي:"}{i18n.language === "fr" && "Ma maternelle:"}</span>
                 <span className="wishlist">
                   <label>
                     {value.data().User_Kindergarten !== undefined
@@ -175,8 +178,12 @@ const PrHome = () => {
                 </span>
               </div>
 
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Bio:</span>
+              <div className="recent-border mt-4" style={{borderLeft:i18n.language === "ar"?"none":null,borderRight:i18n.language === "ar"?"2px solid #5957f9":null}}>
+                <span className="recent-orders">
+                {i18n.language === "en" && "Bio:"}
+                  {i18n.language === "ar" && "السيرة:"}
+                  {i18n.language === "fr" && "Bio:"}
+                </span>
                 <span className="wishlist">
                   <textarea
                     defaultValue={value.data().Bio}
@@ -187,7 +194,7 @@ const PrHome = () => {
                   />
                   <span
                     className="material-symbols-outlined"
-                    style={{ display: `${UpdateBio}` }}
+                    style={{ display: `${UpdateBio}` ,left: i18n.language === "ar"? "0":null}}
                     onClick={async (eo) => {
                       await updateDoc(doc(db, "Parents Informations", prId), {
                         Bio: Bio,
@@ -414,7 +421,7 @@ const PrHome = () => {
                     }
                   }}
                 >
-                  <label style={{ cursor: "pointer" }}> search by</label>
+                  <label style={{ cursor: "pointer",fontFamily:i18n.language === "ar" ? "'Noto Sans Arabic', sans-serif":null}}>{i18n.language === "en" && "filter"}{i18n.language === "ar" && "فلتر"}{i18n.language === "fr" && "filtre"}</label>
                   <span className="material-symbols-outlined">filter_list</span>
                 </div>
 
@@ -430,7 +437,7 @@ const PrHome = () => {
                     <span className="material-symbols-outlined circ">
                       spellcheck
                     </span>
-                    <div className="tooltip">Name</div>
+                    <div className="tooltip">{i18n.language === "en" && "Name"}{i18n.language === "ar" && "الاسم"}{i18n.language === "fr" && "Nom"}</div>
                   </div>
                   <div
                     className="icon"
@@ -443,7 +450,7 @@ const PrHome = () => {
                     <span className="material-symbols-outlined circ">
                       attach_money
                     </span>
-                    <div className="tooltip">Price</div>
+                    <div className="tooltip">{i18n.language === "en" && "Price"}{i18n.language === "ar" && "سعر"}{i18n.language === "fr" && "Prix"}</div>
                   </div>
                   <div
                     className="icon"
@@ -456,7 +463,7 @@ const PrHome = () => {
                     <span className="material-symbols-outlined circ">
                       location_on
                     </span>
-                    <div className="tooltip">Place</div>
+                    <div className="tooltip">{i18n.language === "en" && "Place"}{i18n.language === "ar" && "مكان"}{i18n.language === "fr" && "Lieu"}</div>
                   </div>
                   <div
                     className="icon"
@@ -469,7 +476,7 @@ const PrHome = () => {
                     <span className="material-symbols-outlined circ">
                       extension
                     </span>
-                    <div className="tooltip">Activite</div>
+                    <div className="tooltip">{i18n.language === "en" && "Activity"}{i18n.language === "ar" && "نشاط"}{i18n.language === "fr" && "Activité"}</div>
                   </div>
 
                   <div
@@ -481,7 +488,7 @@ const PrHome = () => {
                     }}
                   >
                     <div className="dots" />
-                    <div className="tooltip">All</div>
+                    <div className="tooltip">{i18n.language === "en" && "All"}{i18n.language === "ar" && "الكل"}{i18n.language === "fr" && "tout"}</div>
                   </div>
                 </div>
               </div>
@@ -515,7 +522,7 @@ const PrHome = () => {
           <Topcloud />
 
           <Profile>
-            <div className="top-container">
+            <div className="top-container" dir={i18n.language === "ar"? "rtl":null}>
               <img
                 src={require("../comp/assets/avatar.jpg")}
                 className="img-fluid profile-image"
@@ -531,7 +538,7 @@ const PrHome = () => {
                 <p className="mail">{user.email}</p>
               </div>
             </div>
-            <div className="bot-container">
+            <div className="bot-container" dir={i18n.language === "ar"? "rtl":null}>
               <div className="recent-border mt-4">
                 <span className="wishlist">
                   <label>You need to verify yor email first...</label>

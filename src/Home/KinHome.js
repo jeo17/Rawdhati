@@ -185,7 +185,7 @@ const KinHome = () => {
    });
  }*/
 
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");

@@ -4,10 +4,9 @@ import "swiper/css/bundle";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection } from "firebase/firestore";
-import { db } from "../firebase/config";
 import Page404 from "../Page_404";
 import Profile from "./Profile";
+import { useTranslation } from "react-i18next";
 
 function Slider({Collection}) {
   useEffect(() => {
@@ -28,7 +27,7 @@ function Slider({Collection}) {
     });
   });
 
-  console.log(Collection)
+  const { i18n } = useTranslation();
 
   const [value, loading, error] = useCollection(
     Collection
@@ -81,14 +80,7 @@ function Slider({Collection}) {
                 {`${item.data().kindergarten_Price}.00 DA`}
               </span>
 
-              {/*  <span className="profession">
-                <span style={{ fontSize: "16px", fontWeight: "600" }}>
-                  Activites:
-                </span>
-                {item.data().kindergarten_Activites.map((item) => {
-                  return <span style={{ marginLeft: "5px" }} key={item}>{item},</span>;
-                })}
-              </span>  */}
+
             </div>
             <div className="rating">
               <i className="fas fa-star" />
@@ -99,6 +91,7 @@ function Slider({Collection}) {
             </div>
             <div className="slider-button">
               <button
+               style={{fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif": null }}
                 className="aboutMe"
                 onClick={(eo) => {
                   const Kprofile = document.getElementById(
@@ -111,32 +104,37 @@ function Slider({Collection}) {
                   }
                 }}
               >
-                About Me
+                  {i18n.language === "en" && "About Me"}
+                  {i18n.language === "ar" && "معلومات عني"}
+                  {i18n.language === "fr" && "Sur moi"}
               </button>
               <button className="hireMe">
                 <Link
                   to={`/kindergarten_form/${item.data().kindergarten_id}`}
-                  style={{ all: "unset" }}
+                  style={{ all: "unset",fontFamily:i18n.language === "ar"? "'Noto Sans Arabic', sans-serif": null }}
                   onClick={(eo) => {
                     document.documentElement.scrollTop = 0;
                   }}
                 >
-                  Registration
+                  {i18n.language === "en" && "Registration"}
+                  {i18n.language === "ar" && "تسجيل"}
+                  {i18n.language === "fr" && "Inscription"}
                 </Link>
               </button>
             </div>
           </div>
 
-          <Profile id={item.data().kindergarten_id}>
-            <div className="top-container">
+          <Profile id={item.data().kindergarten_id} >
+            <div className="top-container" >
               <img
-                src={require("../comp/assets/avatar.jpg")}
+              style={{width:"300px", height:"90px"}}
+                src={require("../comp/assets/cover.jpg")}
                 className="img-fluid profile-image"
                 width={70}
                 alt="sorry"
               />
             </div>
-            <div className="bot-container" style={{ marginTop: "0" }}>
+            <div className="bot-container" style={{ marginTop: "0" }} dir={i18n.language === "ar"? "rtl":null}>
               <div style={{ marginLeft: "11px" }}>
                 {item.data().kindergarten_Name !== undefined ? (
                   <h5 className="name"> {item.data().kindergarten_Name}</h5>
@@ -145,8 +143,8 @@ function Slider({Collection}) {
                 )}
               </div>
 
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Address: </span>
+              <div className="recent-border mt-4" style={{borderLeft:i18n.language === "ar"? "none" : null,borderRight:i18n.language === "ar"? "2px solid #5957f9" : null}}>
+                <span className="recent-orders">{i18n.language === "en" && "Address:"}{i18n.language === "ar" && "العنوان:"}{i18n.language === "fr" && "Adresse:"} </span>
                 <span className="wishlist">
                   {item.data().kindergarten_Address !== undefined ? (
                     item.data().kindergarten_Address
@@ -156,8 +154,8 @@ function Slider({Collection}) {
                 </span>
               </div>
 
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Activites: </span>
+              <div className="recent-border mt-4" style={{borderLeft:i18n.language === "ar"? "none" : null,borderRight:i18n.language === "ar"? "2px solid #5957f9" : null}}>
+                <span className="recent-orders">{i18n.language === "en" && "Activities:"}{i18n.language === "ar" && "الأنشطة:"}{i18n.language === "fr" && "Activités:"} </span>
                 <span className="wishlist">
                   {item.data().kindergarten_Activites.map((item) => {
                     return (
@@ -169,8 +167,8 @@ function Slider({Collection}) {
                 </span>
               </div>
 
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Price: </span>
+              <div className="recent-border mt-4" style={{borderLeft:i18n.language === "ar"? "none" : null,borderRight:i18n.language === "ar"? "2px solid #5957f9" : null}}>
+                <span className="recent-orders">{i18n.language === "en" && "Price"}{i18n.language === "ar" && "السعر:"}{i18n.language === "fr" && "Prix:"} </span>
                 <span className="wishlist">
                   {item.data().kindergarten_Price !== undefined ? (
                     `${item.data().kindergarten_Price}.00 DA`
@@ -180,16 +178,24 @@ function Slider({Collection}) {
                 </span>
               </div>
 
-              <div className="recent-border mt-4">
-                <span className="recent-orders">Bio: </span>
+              <div className="recent-border mt-4" style={{borderLeft:i18n.language === "ar"? "none" : null,borderRight:i18n.language === "ar"? "2px solid #5957f9" : null}}>
+                <span className="recent-orders">
+                {i18n.language === "en" && "Bio:"}
+                  {i18n.language === "ar" && "السيرة:"}
+                  {i18n.language === "fr" && "Bio:"}
+                </span>
                 <span className="wishlist">
                   {" "}
                   {item.data().kindergarten_Bio}{" "}
                 </span>
               </div>
 
-              <div className="recent-border mt-4 media-area">
-                <span className="recent-orders">Media: </span>
+              <div className="recent-border mt-4 media-area" style={{borderLeft:i18n.language === "ar"? "none" : null,borderRight:i18n.language === "ar"? "2px solid #5957f9" : null}}>
+                <span className="recent-orders">
+                {i18n.language === "en" && "Media:"}
+                  {i18n.language === "ar" && "وسائط التواصل:"}
+                  {i18n.language === "fr" && "Médias:"}
+                   </span>
                 <span className="wishlist wishlist-media">
                   <div className="kin-media-icons">
                     {item.data().kindergarten_facebook !== null && (
@@ -234,7 +240,6 @@ function Slider({Collection}) {
   if (value) {
     return (
       <section>
-        <h2 className="card-title">Kindergartens may you like it:</h2>
         <div className="swiper mySwiper">
           <div className="swiper-wrapper">{sliderCard}</div>
         </div>

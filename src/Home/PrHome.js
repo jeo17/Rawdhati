@@ -46,7 +46,7 @@ const PrHome = () => {
 
   document.addEventListener("scroll", onScroll);
 
-  const { i18n } = useTranslation();
+  const {t, i18n } = useTranslation();
 
   let { prId } = useParams();
 
@@ -58,6 +58,9 @@ const PrHome = () => {
 
   const [Bio, setBio] = useState(undefined);
   let [UpdateBio, setUpdateBio] = useState("none");
+
+  let [SearchTitle, setSearchTitle] = useState(true);
+  let [SearchVal, setSearchVal] = useState("");
 
   const [SearchBy, setSearchBy] = useState("Search for a kindergarten");
   const [Collection, setcollection] = useState(
@@ -219,7 +222,17 @@ const PrHome = () => {
                   className="search-main"
                   placeholder={SearchBy}
                   onKeyDown={(eo) => {
+
                     if (eo.key === "Enter") {
+                      setSearchVal(eo.target.value)
+                      const val = document.querySelector(".search-main").value;
+                      if (val !== ""){
+                       setSearchTitle(false)
+                      }
+                      else{
+                       setSearchTitle(true)
+                      }
+ 
                       if (SearchBy === "Search for a kindergarten") {
                         const value =
                           document.querySelector(".search-main").value;
@@ -313,9 +326,17 @@ const PrHome = () => {
                 <span
                   className="searchicon"
                   onClick={(eo) => {
+                    const val = document.querySelector(".search-main").value;
+                    setSearchVal(val)
+                     if (val !== ""){
+                      setSearchTitle(false)
+                     }
+                     else{
+                      setSearchTitle(true)
+                     }
+
                     if (SearchBy === "Search for a kindergarten") {
-                      const value =
-                        document.querySelector(".search-main").value;
+                      const value = document.querySelector(".search-main").value;
                       if (value !== "") {
                         setcollection(
                           query(
@@ -347,8 +368,7 @@ const PrHome = () => {
                       }
                     }
                     if (SearchBy === "Type The Activite 🎮 ..") {
-                      const value =
-                        document.querySelector(".search-main").value;
+                      const value = document.querySelector(".search-main").value;
                       if (value !== "") {
                         setcollection(
                           query(
@@ -367,8 +387,7 @@ const PrHome = () => {
                       }
                     }
                     if (SearchBy === "Type The Place 🌐 ..") {
-                      const value =
-                        document.querySelector(".search-main").value;
+                      const value = document.querySelector(".search-main").value;
                       if (value !== "") {
                         setcollection(
                           query(
@@ -383,8 +402,7 @@ const PrHome = () => {
                       }
                     }
                     if (SearchBy === "Type The Name 🅰 ..") {
-                      const value =
-                        document.querySelector(".search-main").value;
+                      const value = document.querySelector(".search-main").value;
                       if (value !== "") {
                         setcollection(
                           query(
@@ -505,10 +523,16 @@ const PrHome = () => {
                 />
               )}
               {value.data().User_Kindergarten === undefined && (
+                <>
+                <h2 className="card-title">{i18n.language === "en" && SearchTitle && "Kindergartens may you like it:"}{i18n.language === "ar" && SearchTitle  && "رياض أطفال قد يعجبك"}{i18n.language === "fr" && SearchTitle && "Les jardins d'enfants peuvent vous l'aimer:"}
+                                           {i18n.language === "en" && !SearchTitle && `Searching for "${SearchVal}"`}{i18n.language === "ar" && !SearchTitle  && ` "${SearchVal}" البحث عن`}{i18n.language === "fr" && !SearchTitle && `À la recherche de "${SearchVal}"`}
+                </h2>
                 <Slider Collection={Collection} />
+                </>
+
               )}
 
-              <h2 className="card-title">Advertisements:</h2>
+              <h2 className="card-title">{i18n.language === "en" &&"Advertisements:"}{i18n.language === "ar" &&":الإعلانات"}{i18n.language === "fr" &&"Annonces:"}</h2>
 
               <div className="annonces"></div>
             </div>

@@ -62,7 +62,7 @@ const PrHome = () => {
   let [SearchTitle, setSearchTitle] = useState(true);
   let [SearchVal, setSearchVal] = useState("");
 
-  const [SearchBy, setSearchBy] = useState("Search for a kindergarten");
+  const [SearchBy, setSearchBy] = useState(i18n.language==="en"?"Search for a kindergarten":i18n.language==="ar"?"ابحث عن روضة أطفال":"Rechercher une crèche");
   const [Collection, setcollection] = useState(
     collection(db, "kindergarten Information")
   );
@@ -74,6 +74,7 @@ const PrHome = () => {
       navigate("/Visitor");
     }
   });
+
 
   if (loading) {
     //if he is in the loading state do this block of code ... and when he done read the rest of the code.
@@ -448,7 +449,7 @@ const PrHome = () => {
                     className="icon"
                     id="Trending"
                     onClick={(eo) => {
-                      setSearchBy("Type The Name 🅰 ..");
+                      setSearchBy(i18n.language==="en"?"Type The Name 🅰 ..":i18n.language==="ar"?"اكتب الاسم 🅰 ..":"Tapez le nom 🅰 ..");
                       document.querySelector(".search-main").value = "";
                     }}
                   >
@@ -461,7 +462,7 @@ const PrHome = () => {
                     className="icon"
                     id="Price"
                     onClick={(eo) => {
-                      setSearchBy("Type The Price 💸 ..");
+                      setSearchBy(i18n.language==="en"?"Type The Price 💸 ..":i18n.language==="ar"?"اكتب السعر 💸 ..":"Tapez Le Prix 💸 ..");
                       document.querySelector(".search-main").value = "";
                     }}
                   >
@@ -474,7 +475,7 @@ const PrHome = () => {
                     className="icon"
                     id="Place"
                     onClick={(eo) => {
-                      setSearchBy("Type The Place 🌐 ..");
+                      setSearchBy(i18n.language==="en"?"Type The Place 🌐 ..":i18n.language==="ar"?"اكتب المكان 🌐 ..":"Tapez Le Lieu 🌐 ..");
                       document.querySelector(".search-main").value = "";
                     }}
                   >
@@ -487,7 +488,7 @@ const PrHome = () => {
                     className="icon"
                     id="Activ"
                     onClick={(eo) => {
-                      setSearchBy("Type The Activite 🎮 ..");
+                      setSearchBy(i18n.language==="en"?"Type The Activity 🎮 ..":i18n.language==="ar"?"اكتب النشاط 🎮 ..":"Tapez l'activité 🎮 ..");
                       document.querySelector(".search-main").value = "";
                     }}
                   >
@@ -501,7 +502,7 @@ const PrHome = () => {
                     className="icon"
                     id="All"
                     onClick={(eo) => {
-                      setSearchBy("Search for a kindergarten");
+                      setSearchBy(i18n.language==="en"?"Search for a kindergarten":i18n.language==="ar"?"ابحث عن روضة أطفال":"Rechercher une crèche");
                       document.querySelector(".search-main").value = "";
                     }}
                   >

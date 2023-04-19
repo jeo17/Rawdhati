@@ -46,7 +46,7 @@ const PrHome = () => {
 
   document.addEventListener("scroll", onScroll);
 
-  const {t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   let { prId } = useParams();
 

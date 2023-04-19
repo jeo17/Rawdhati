@@ -259,9 +259,6 @@ flex-wrap: wrap;
     margin-top: 10px;
 
 }
-.nth10-1 label{
-    width: 200px;
-}
 
 .nth4-2{
     display: flex;
@@ -275,7 +272,6 @@ flex-wrap: wrap;
 }
 .nth4-2 label{
     padding-right: 60px;
-    width: 200px;
     
 }
 

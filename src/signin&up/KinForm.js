@@ -348,8 +348,8 @@ if (user) {
                 }}/>
             </div>
             <div>
-              <label>Relationship</label>
-              <input type="text" placeholder="Mother, Father, etc" onChange={(eo) => {
+              <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en"?"Relationship":i18n.language ==="ar"?" العلاقة":"Relation"}</label>
+              <input dir={i18n.language ==="ar"?"rtl":null} type="text" placeholder={i18n.language ==="en"?"Mother, Father, etc":i18n.language ==="ar"?"الأم ، الأب ، إلخ":"Mère, Père, etc."} onChange={(eo) => {
                   setGuardianRelationship(eo.target.value)
                 }}/>
             </div>
@@ -357,13 +357,13 @@ if (user) {
 
           <div className="nth10">
             <div className="nth10-1">
-              <label>Mobile Phone Number</label>
+              <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en"?"Mobile Phone Number":i18n.language ==="ar"?"رقم الهاتف الجوال":"Numéro de téléphone portable"}</label>
               <input type="tel" placeholder="+213" onChange={(eo) => {
                   setGuardianPhone(eo.target.value)
                 }}/>
             </div>
             <div className="nth10-1">
-              <label>Work Phone Number</label>
+              <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en"?"Work Phone Number":i18n.language ==="ar"?"رقم هاتف العمل":"Téléphone de travail"}</label>
               <input type="tel" placeholder="+213" onChange={(eo) => {
                   setGuardianWorkPhone(eo.target.value)
                 }}/>
@@ -371,16 +371,16 @@ if (user) {
           </div>
 
           <div className="nth4">
-            <label>Address</label>
-            <div className="nth4-2">
+            <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en" && "Address"}{i18n.language ==="ar" && "العنوان"}{i18n.language ==="fr" && "Adresse"}</label>
+            <div className="nth4-2" style={{justifyContent:  i18n.language ==="ar"?"flex-end":null}}>
               <input type="radio" name="address" onChange={() => {  setDis(false) ; address1.disabled= dis;   }}/>
-              <label>Same with the child</label>
+              <label>{i18n.language==="en" &&"Same with the child"}{i18n.language==="ar" &&"نفس العنوان مع الطفل"}{i18n.language==="fr" &&"Idem avec l'enfant"}</label>
               <input type="radio" name="address" onChange={() => { setDis(true); address1.disabled= dis;          }}/>
-              <label>Different Address</label>
+              <label>{i18n.language==="en" &&"Different Address"}{i18n.language==="ar" &&"عنوان مختلف"}{i18n.language==="fr" &&"Adresse différente"}</label>
             </div>
           </div>
           <div className="nth3">
-            <label>Address</label>
+            <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en" && "Address"}{i18n.language ==="ar" && "العنوان"}{i18n.language ==="fr" && "Adresse"}</label>
             <input type="text" id="address1" disabled onChange={(eo) => {
               setGuardianAddress(eo.target.value)
             }}/>
@@ -407,14 +407,14 @@ if (user) {
 
           <div className="nth10">
             <div>
-              <label>Email</label>
+              <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en"?"E-mail":i18n.language ==="ar"?"بريد إلكتروني":"E-mail"}</label>
               <input type="email" placeholder="example@example.com" onChange={(eo) => {
                 setGuardian_2_Email(eo.target.value)
               }}/>
             </div>
             <div>
-              <label>Relationship</label>
-              <input type="text" placeholder="Mother, Father, etc" onChange={(eo) => {
+              <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en"?"Relationship":i18n.language ==="ar"?" العلاقة":"Relation"}</label>
+              <input dir={i18n.language ==="ar"?"rtl":null} type="text" placeholder={i18n.language ==="en"?"Mother, Father, etc":i18n.language ==="ar"?"الأم ، الأب ، إلخ":"Mère, Père, etc."} onChange={(eo) => {
                 setGuardian_2_Relationship(eo.target.value)
               }}/>
             </div>
@@ -422,13 +422,13 @@ if (user) {
 
           <div className="nth10">
             <div className="nth10-1">
-              <label>Mobile Phone Number</label>
+              <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en"?"Mobile Phone Number":i18n.language ==="ar"?"رقم الهاتف الجوال":"Numéro de téléphone portable"}</label>
               <input type="tel" placeholder="+213" onChange={(eo) => {
                 setGuardian_2_Phone(eo.target.value)
               }}/>
             </div>
             <div className="nth10-1">
-              <label>Work Phone Number</label>
+              <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en"?"Work Phone Number":i18n.language ==="ar"?"رقم هاتف العمل":"Téléphone de travail"}</label>
               <input type="tel" placeholder="+213" onChange={(eo) => {
                 setGuardian_2_WorkPhone(eo.target.value)
               }}/>
@@ -436,17 +436,17 @@ if (user) {
           </div>
 
           <div className="nth4">
-            <label>Address</label>
-            <div className="nth4-2">
+            <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en" && "Address"}{i18n.language ==="ar" && "العنوان"}{i18n.language ==="fr" && "Adresse"}</label>
+            <div className="nth4-2" style={{justifyContent:  i18n.language ==="ar"?"flex-end":null}}>
               <input type="radio" name="address2"  onChange={() => { setDis2(false) ; address2.disabled= dis2;   }}/>
-              <label>Same with the child</label>
+              <label>{i18n.language==="en" &&"Same with the child"}{i18n.language==="ar" &&"نفس العنوان مع الطفل"}{i18n.language==="fr" &&"Idem avec l'enfant"}</label>
               <input type="radio" name="address2" onChange={() => { setDis2(true) ; address2.disabled= dis2;   }}/>
-              <label>Different Address</label>
+              <label>{i18n.language==="en" &&"Different Address"}{i18n.language==="ar" &&"عنوان مختلف"}{i18n.language==="fr" &&"Adresse différente"}</label>
             </div>
           </div>
 
         <div className="nth3">
-            <label>Address</label>
+            <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en" && "Address"}{i18n.language ==="ar" && "العنوان"}{i18n.language ==="fr" && "Adresse"}</label>
             <input type="text" id="address2" disabled  onChange={(eo) => {
               setGuardian_2_Address(eo.target.value)
             }}/>
@@ -456,15 +456,19 @@ if (user) {
           <div className="cut"></div>
 
           <div className="nth8 nth8-1">
-            <label>Do you want to add something?</label>
-            <textarea placeholder="Type here..."  onChange={(eo) => {
+            <label style={{justifyContent:  i18n.language ==="ar"?"flex-end":null,fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en" && "Do you want to add something?"}{i18n.language ==="ar" && "هل تريد اضافة شيء ما؟"}{i18n.language ==="fr" && "Voulez-vous ajouter quelque chose ?"}</label>
+            <textarea dir={i18n.language ==="ar"?"rtl":null} placeholder={i18n.language ==="en"?"Type here...":i18n.language ==="ar"?"أكتب هنا... ":" Écrivez ici..."}  onChange={(eo) => {
               setAddSomeThing(eo.target.value)
             }}></textarea>
-            <p style={{color:"#00708D",marginLeft:"15px",transform:"translate(0px,-15px)"}}>Marital status of parents, medical information, people who the child cannot be  released, etc</p>
+            <p style={{color:"#00708D",margin:"1.2rem 15px",transform:"translate(0px,-15px)",fontFamily:i18n.language==="ar"?"'Noto Sans Arabic', sans-serif":null}} dir="auto">
+              {i18n.language ==="en" &&"Marital status of parents, medical information, people who the child cannot be  released, etc"}
+              {i18n.language ==="ar" &&"الحالة الاجتماعية للوالدين ، المعلومات الطبية ، الأشخاص الذين لا يمكن إطلاق سراح الطفل ، إلخ"}
+              {i18n.language ==="fr" &&"État civil des parents, informations médicales, personnes dont l'enfant ne peut pas être libéré, etc."}
+              </p>
           </div>
           <div className="cut2"></div>
 
-          <button type="submit" onClick={async (eo) => {
+          <button style={{fontFamily:i18n.language==="ar"?"'Noto Sans Arabic', sans-serif":null}} type="submit" onClick={async (eo) => {
             eo.preventDefault();
 
 console.log("wait")
@@ -518,7 +522,7 @@ console.log("wait")
             }, 3000);
             
 
-          }}>Submit</button>
+          }}>{i18n.language ==="en" &&"Submit"}{i18n.language ==="ar" &&"تسجيل"}{i18n.language ==="fr" &&"S'inscrire"}</button>
 
         </form>
       </div>

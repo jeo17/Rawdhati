@@ -267,7 +267,7 @@ const PrHome = () => {
                           );
                         }
                       }
-                      if (SearchBy === "Type The Activite 🎮 ..") {
+                      if (SearchBy === "Type The Activity 🎮 ..") {
                         const value =
                           document.querySelector(".search-main").value;
                         if (value !== "") {
@@ -368,7 +368,7 @@ const PrHome = () => {
                         );
                       }
                     }
-                    if (SearchBy === "Type The Activite 🎮 ..") {
+                    if (SearchBy === "Type The Activity 🎮 ..") {
                       const value = document.querySelector(".search-main").value;
                       if (value !== "") {
                         setcollection(

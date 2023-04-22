@@ -138,7 +138,11 @@ if (user) {
 
    <div className="full-screen">
 
-    <div className="succ-msg">Child's information has been saved successfully ✔️</div>
+    <div className="succ-msg">
+      {i18n.language ==="en"&& "Child's information has been saved successfully ✔️"}
+      {i18n.language ==="ar"&& "تم حفظ معلومات الطفل بنجاح ✔️"}
+      {i18n.language ==="fr"&& "Les informations de l'enfant ont été enregistrées avec succès ✔️"}
+    </div>
     <div className="information">
         <header>
           <h1 style={{fontFamily: i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>{i18n.language ==="en" && "Information form"}{i18n.language ==="ar" && "استمارة التسجيل"}{i18n.language ==="fr" && "Formulaire d'inscription"}</h1>

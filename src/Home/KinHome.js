@@ -1074,7 +1074,7 @@ const KinHome = () => {
           <Profile />
           <div className="main appmain">
             <div className="errorMsg">
-              <h2
+              <h2 className="wait-for-vers"
                 style={{
                   fontFamily: "'Fredoka One', cursive",
                   textAlign: "center",

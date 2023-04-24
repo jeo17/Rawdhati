@@ -148,17 +148,18 @@ const SignPr = () => {
                                       Bio: "Write your own bio"
                                     });  
                                     navigate(`/pr_home/${user.uid}`)
+                                    sendEmailVerification(auth.currentUser).then(
+                                      () => {
+                                        alert("check your email. verification sended!!");
+                                      }
+                                    );
 
                                   })
                                   .catch((error) => {
                                     console.log("buggg");
                                   });
 
-                                sendEmailVerification(auth.currentUser).then(
-                                  () => {
-                                    alert("check your email. verification sended!!");
-                                  }
-                                );
+
 
                                 
                               })

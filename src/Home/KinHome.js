@@ -153,11 +153,27 @@ const KinHome = () => {
 
   const validButton3 = (eo, amount) => {
     eo.preventDefault();
-    if (amount.length < 2 || amount.length > 5) {
+    if (amount < 1000) {
       eo.target.disabled = true;
+      console.log("aaaa")
     } else {
+      console.log("bbbb")
       Next();
-      setTimeout(() => {
+      setTimeout(async () => {
+        await setDoc(
+          doc(db, "kindergarten Information", user.uid),
+          {
+            kindergarten_Name: name,
+            kindergarten_Address: address,
+            kindergarten_Activites: act,
+            kindergarten_Price: amount,
+            kindergarten_id: kinId,
+            kindergarten_Bio: null,
+            kindergarten_facebook: null,
+            kindergarten_Instagram: null,
+            kindergarten_Google: null,
+          }
+        );
         document.getElementById("kin-dialog").close();
       }, 3300);
     }
@@ -190,7 +206,7 @@ const KinHome = () => {
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
   let [img, setimg] = useState(null);
-  let [amount, setamount] = useState(null);
+  let [amount, setamount] = useState(0);
   let [Media, setMedia] = useState("");
   /* let [url, seturl] = useState(null);*/
   let [act, setact] = useState([]);
@@ -606,10 +622,12 @@ const KinHome = () => {
                           <br />
                           <input
                             type="text"
-                            placeholder="Rawdhat:"
+                            dir={i18n.language ==="ar"? "rtl":null}
+                            placeholder={i18n.language ==="ar"? "روضة:":"Rawdhat:"}
                             required
                             onChange={(eo) => {
                               setname(eo.target.value);
+                              +
                               name.length <= 3
                                 ? (document.querySelectorAll(
                                     ".nextStep"
@@ -655,7 +673,8 @@ const KinHome = () => {
                           <input
                             type="text"
                             required
-                            placeholder="Address"
+                            dir={i18n.language ==="ar"? "rtl":null}
+                            placeholder={i18n.language ==="ar"? "عنوان:":"Address:"}
                             onChange={(eo) => {
                               setaddress(eo.target.value);
                               address.length <= 3
@@ -740,9 +759,9 @@ const KinHome = () => {
                               {i18n.language === "fr" && "Activités maternelles"} <p>*</p>
                             </label>
                             <br /> <br />
-                            <p style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
+                            <p style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null,marginBottom:i18n.language ==="ar"?"35px":null}}>
                             {i18n.language === "en" && "Choose the activities that your kindergarten do :"}
-                              {i18n.language === "ar" && "اختر الأنشطة التي تقوم بها روضة أطفالك:"}
+                              {i18n.language === "ar" && ":اختر الأنشطة التي تقوم بها روضة أطفالك"}
                               {i18n.language === "fr" && "Choisissez les activités que votre jardin d'enfants propose :"}
                             </p>
                           </div>
@@ -778,9 +797,9 @@ const KinHome = () => {
                                 }}
                               />
                               <p htmlFor="Language Learning" style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Language Learning"}
-                              {i18n.language === "ar" && "تعلم اللغة"}
-                              {i18n.language === "fr" && "Apprendre une langue"} 
+                              {i18n.language === "en" && "Languages Learning"}
+                              {i18n.language === "ar" && "تعلم اللغات"}
+                              {i18n.language === "fr" && "Apprendre une langues"} 
                               </p>
                             </div>
 
@@ -906,7 +925,7 @@ const KinHome = () => {
                           <div className="amount">
                             <input
                               type="number"
-                              placeholder="Price"
+                              placeholder={i18n.language ==="ar"? "الثمن":"Price:"}
                               min="500"
                               max="10000"
                               step="50"
@@ -915,7 +934,7 @@ const KinHome = () => {
                               style={{ width: "215px" }}
                               onChange={(eo) => {
                                 setamount(Number(eo.target.value));
-                                amount.length < 2
+                                amount < 100
                                   ? (document.querySelectorAll(
                                       ".nextStep"
                                     )[5].disabled = true)
@@ -932,22 +951,9 @@ const KinHome = () => {
                           <button
                             className="nextStep"
                             onClick={async (eo) => {
-                              validButton3(eo, amount);
 
-                              await setDoc(
-                                doc(db, "kindergarten Information", user.uid),
-                                {
-                                  kindergarten_Name: name,
-                                  kindergarten_Address: address,
-                                  kindergarten_Activites: act,
-                                  kindergarten_Price: amount,
-                                  kindergarten_id: kinId,
-                                  kindergarten_Bio: null,
-                                  kindergarten_facebook: null,
-                                  kindergarten_Instagram: null,
-                                  kindergarten_Google: null,
-                                }
-                              );
+                              validButton3(eo,amount);
+
                             }}
                           >
                               {i18n.language === "en" && "Next"}

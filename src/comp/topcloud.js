@@ -60,20 +60,7 @@ const Topcloud = ({ height }) => {
           </button>
         )}
 
-        {!user && (
-          <button>
-            <NavLink
-              to="/help"
-              style={{
-                textDecoration: "none",
-                color: "black",
-                padding: "10px 40px",
-              }}
-            >
-              {t("help")}
-            </NavLink>
-          </button>
-        )}
+
 
         <button>
           <NavLink

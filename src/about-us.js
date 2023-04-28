@@ -107,7 +107,7 @@ if (i18n.language === "en") {
           <p>
           Rawdhati: It is a website accompanied by an application that makes it easier for parents to find the appropriate kindergarten for their children. 
           <br />
-  In short, the application contains two windows: a window for parents and another for the kindergarten, where the application displays all the activities that take place
+  In short, the application contains two windows: a window for parents and another for the kindergarten, where the application displays all the activities that the
   Kindergarten does
           </p>
           <ul className="links">

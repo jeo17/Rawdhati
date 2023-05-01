@@ -789,6 +789,8 @@ color: #5957f9;
 
 
 .profile-pic-kin,.profile-pic-pr {
+  display: flex;
+  flex-direction: column;
   color: transparent;
   transition: all 0.3s ease;
   display: flex;
@@ -834,3 +836,21 @@ color: #5957f9;
 }
 
 
+.save-profile-pic{
+  all: initial;
+  display: none;
+  border: none;
+  padding: 1.5px 16px;
+  font-size: 17px;
+  transition: 0.3s;
+  background-color:#5957f9;
+  color: #272626;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.save-profile-pic span{
+  font-size: 16px;
+  font-weight: 900;
+}

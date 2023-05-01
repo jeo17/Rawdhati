@@ -189,15 +189,16 @@ const KinHome = () => {
   })
   .catch((error) => {
   console.log(error.message)
-  seturl("https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")
+  seturl("https://thumbs.dreamstime.com/b/kindergarten-facade-vector-illustration-preschool-building-front-view-exterior-landscape-background-education-nursery-school-150658496.jpg")
   })  );
 
  
   let [img, setimg] = useState(null);
 
-  const storeIMG = () => {
+  const storeIMG = async () => {
    const imageref = ref(storage, `/Kindergartens Images/${kinId}`);
-   uploadBytes(imageref, img).then(() => {
+   console.log("wait")
+  await uploadBytes(imageref, img).then(() => {console.log("done")
    })
    .catch((error) => {
     console.log(error.message)
@@ -290,14 +291,28 @@ const KinHome = () => {
                  <span className="material-symbols-outlined">photo_camera</span>
                   <span>Change Image</span>
                 </label>
-                <input id="file" type="file" onchange="loadFile(event)"/>
+                
+                <input accept="image/*" id="file" type="file" onChange={(eo) => {
+                  setimg(eo.target.files[0])
+                  document.querySelector(".save-profile-pic").style.display = "block";
+                  let url =URL.createObjectURL(eo.target.files[0])
+                  document.getElementById("profile-pic").src = url
+
+                }}/>
               <img
                 src={Url}
+                id="profile-pic"
                 className="img-fluid profile-image"
                 width="130px"
                 height="130px"
                 alt="sorry"
               />
+              <button className="save-profile-pic"  onClick={ (eo) => {
+                
+                storeIMG();
+                eo.target.style.display ="none"
+              }}>Save 📥
+              </button>
               </div>
 
 
@@ -739,6 +754,7 @@ const KinHome = () => {
                           <br />
                           <br />
                           <input
+                            accept="image/*"
                             type="file"
                             placeholder="add picture"
                             onChange={(eo) => {

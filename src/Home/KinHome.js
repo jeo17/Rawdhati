@@ -285,7 +285,7 @@ const KinHome = () => {
           <Profile>
             <div className="top-container" dir={i18n.language === "ar" ? "rtl" : null}>
               
-            <div className="profile-pic">
+            <div className="profile-pic-kin">
                  <label className="-label" for="file">
                  <span className="material-symbols-outlined">photo_camera</span>
                   <span>Change Image</span>

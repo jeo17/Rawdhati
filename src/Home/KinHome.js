@@ -10,6 +10,7 @@ import ActivitieCard from "./kin component/Activitie-card";
 import MessagesCard from "./kin component/Messages-card";
 import { auth } from "../firebase/config";
 import { db } from "../firebase/config";
+import { storage } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +20,7 @@ import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-//import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
 
 const KinHome = () => {
   const onScroll = (event) => {
@@ -179,39 +180,43 @@ const KinHome = () => {
     }
   };
 
-  const handlIMG = (eo) => {
-    if (eo.target.files[0]) {
-      setimg(eo.target.files[0]);
-    }
-  };
+  let { kinId } = useParams();
+  
 
-  /*const storeIMG = () => {
-   const imageref = ref(db, "Kindergarten Image");
+  let [Url, seturl] = useState(    getDownloadURL(ref(storage, `/Kindergartens Images/${kinId}`))
+  .then((url) => {
+    seturl(url)
+  })
+  .catch((error) => {
+  console.log(error.message)
+  seturl("https://images.unsplash.com/photo-1567746455504-cb3213f8f5b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80")
+  })  );
+
+ 
+  let [img, setimg] = useState(null);
+
+  const storeIMG = () => {
+   const imageref = ref(storage, `/Kindergartens Images/${kinId}`);
    uploadBytes(imageref, img).then(() => {
-    getDownloadURL(imageref).then((url) => {
-      seturl(url);
-    })
-    .catch((error) => {
-      console.log(error.message, "error getting the image url");
-    });
-    setimg(null)
    })
-   .catch(() => {
+   .catch((error) => {
     console.log(error.message)
    });
- }*/
+ }
+
+
+
 
   const { i18n } = useTranslation();
 
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
-  let [img, setimg] = useState(null);
   let [amount, setamount] = useState(0);
   let [Media, setMedia] = useState("");
-  /* let [url, seturl] = useState(null);*/
+
   let [act, setact] = useState([]);
 
-  let { kinId } = useParams();
+
 
   let [SaveAddress, setSaveAddress] = useState("none");
   let [SavePrice, setSavePrice] = useState("none");
@@ -279,12 +284,25 @@ const KinHome = () => {
 
           <Profile>
             <div className="top-container" dir={i18n.language === "ar" ? "rtl" : null}>
+              
+            <div class="profile-pic">
+                 <label class="-label" for="file">
+                  <span class="glyphicon glyphicon-camera"></span>
+                  <span>Change Image</span>
+                </label>
+                <input id="file" type="file" onchange="loadFile(event)"/>
               <img
-                src={require("../comp/assets/avatar.jpg")}
+                src={Url}
                 className="img-fluid profile-image"
-                width={70}
+                width="130px"
+                height="130px"
                 alt="sorry"
               />
+              </div>
+
+
+
+
               <div style={{ marginLeft: i18n.language === "ar"? null:"11px",marginRight: i18n.language === "ar"?"11px":null}}>
                 {value.data() !== undefined ? (
                   <h5 className="name"> {value.data().kindergarten_Name}</h5>
@@ -724,15 +742,16 @@ const KinHome = () => {
                             type="file"
                             placeholder="add picture"
                             onChange={(eo) => {
-                              handlIMG(eo);
+                              setimg(eo.target.files[0])
                             }}
                           />
                           <button
                             className="nextStep"
                             onClick={(eo) => {
                               eo.preventDefault();
+                              storeIMG();
                               Next();
-                              //   storeIMG();
+
                             }}
                           >
                               {i18n.language === "en" && "Next"}

@@ -285,9 +285,9 @@ const KinHome = () => {
           <Profile>
             <div className="top-container" dir={i18n.language === "ar" ? "rtl" : null}>
               
-            <div class="profile-pic">
-                 <label class="-label" for="file">
-                  <span class="glyphicon glyphicon-camera"></span>
+            <div className="profile-pic">
+                 <label className="-label" for="file">
+                 <span className="material-symbols-outlined">photo_camera</span>
                   <span>Change Image</span>
                 </label>
                 <input id="file" type="file" onchange="loadFile(event)"/>

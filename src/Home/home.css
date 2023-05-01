@@ -783,3 +783,54 @@ color: #5957f9;
  
 
 
+
+
+
+
+
+.profile-pic,.profile-pic-pr {
+  color: transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.profile-pic input , .profile-pic-pr input {
+  display: none;
+}
+.profile-pic img{
+  width: 140px;
+  height: 100px;
+}
+.profile-pic-pr img{
+  width: 90px;
+  height: 125px;
+}
+.profile-pic img ,.profile-pic-pr img{
+  position: absolute;
+  object-fit: cover;
+  z-index: 0;
+}
+.profile-pic .-label ,.profile-pic-pr .-label{
+  cursor: pointer;
+  width: 90px;
+  height: 125px;
+}
+.profile-pic:hover .-label ,.profile-pic-pr:hover .-label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  color: #fafafa;
+  transition: background-color 0.2s ease-in-out;
+  margin-bottom: 0;
+}
+.profile-pic span , .profile-pic-pr span{
+  display: inline-flex;
+  padding: 0.2em;
+}
+
+

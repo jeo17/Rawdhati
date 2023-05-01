@@ -155,12 +155,19 @@ const PrHome = () => {
 
           <Profile>
             <div className="top-container" dir={i18n.language === "ar"? "rtl":null}>
+            <div className="profile-pic-pr">
+            <label className="-label" for="file">
+                 <span className="material-symbols-outlined">photo_camera</span>
+                  <span>Change Image</span>
+                </label>
+                <input id="file" type="file" onchange="loadFile(event)"/>
               <img
                 src={require("../comp/assets/avatar.jpg")}
                 className="img-fluid profile-image"
                 width={70}
                 alt="sorry"
               />
+              </div>
               <div style={{ margin: "0 11px" }}>
                 <h5 className="name">
                   {user.displayName === null

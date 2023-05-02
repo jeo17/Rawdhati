@@ -191,7 +191,7 @@ const PrHome = () => {
           <Profile>
             <div className="top-container" dir={i18n.language === "ar"? "rtl":null}>
             <div className="profile-pic-pr">
-            <label className="-label" for="file">
+            <label className="-label" htmlFor="file">
                  <span className="material-symbols-outlined">photo_camera</span>
                   <span>Change Image</span>
                 </label>

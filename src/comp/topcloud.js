@@ -22,10 +22,9 @@ const Topcloud = ({ height,PrID,KinID }) => {
 
 
 
-  let [Url, seturl] = useState( user.displayName !== null?  getDownloadURL(ref(storage, `/Parents Images/${PrID}`))
+  let [Url, seturl] = useState( !user? null:  user.displayName !== null?  getDownloadURL(ref(storage, `/Parents Images/${PrID}`))
   .then((url) => {
     seturl(url)
-    console.log(url)
   })
   .catch((error) => {
   console.log(error.message)
@@ -188,7 +187,7 @@ const Topcloud = ({ height,PrID,KinID }) => {
                 toggleMenu.classList.toggle("active");
               }}
             >
-              <img src={Url} alt="err" />
+              <img src={Url} alt="wait" />
             </div>
             <div className="menu">
               <h3>

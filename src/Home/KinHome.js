@@ -192,13 +192,16 @@ const KinHome = () => {
   seturl("https://thumbs.dreamstime.com/b/kindergarten-facade-vector-illustration-preschool-building-front-view-exterior-landscape-background-education-nursery-school-150658496.jpg")
   })  );
 
- 
+  const [SaveProfilePic, setSaveProfilePic] = useState("Save 📥");
   let [img, setimg] = useState(null);
 
   const storeIMG = async () => {
    const imageref = ref(storage, `/Kindergartens Images/${kinId}`);
    console.log("wait")
-  await uploadBytes(imageref, img).then(() => {console.log("done")
+   setSaveProfilePic(<div class="lds-ring"><div></div><div></div><div></div><div></div></div>)
+  await uploadBytes(imageref, img).then(() => {
+    document.querySelector(".save-profile-pic").style.display="none"
+    setSaveProfilePic("Save 📥")
    })
    .catch((error) => {
     console.log(error.message)
@@ -310,8 +313,7 @@ const KinHome = () => {
               <button className="save-profile-pic"  onClick={ (eo) => {
                 
                 storeIMG();
-                eo.target.style.display ="none"
-              }}>Save 📥
+              }}>{SaveProfilePic}
               </button>
               </div>
 

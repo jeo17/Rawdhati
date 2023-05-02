@@ -183,7 +183,7 @@ const KinHome = () => {
   let { kinId } = useParams();
   
 
-  let [Url, seturl] = useState(    getDownloadURL(ref(storage, `/Kindergartens Images/${kinId}`))
+  let [Url, seturl] = useState(   getDownloadURL(ref(storage, `/Kindergartens Images/${kinId}`))
   .then((url) => {
     seturl(url)
   })
@@ -284,7 +284,7 @@ const KinHome = () => {
     if (user.emailVerified) {
       return (
         <>
-          <Topcloud />
+          <Topcloud  KinID={kinId}/>
 
           <Profile>
             <div className="top-container" dir={i18n.language === "ar" ? "rtl" : null}>
@@ -310,8 +310,7 @@ const KinHome = () => {
                 height="130px"
                 alt="sorry"
               />
-              <button className="save-profile-pic"  onClick={ (eo) => {
-                
+              <button className="save-profile-pic"  onClick={ (eo) => {        
                 storeIMG();
               }}>{SaveProfilePic}
               </button>

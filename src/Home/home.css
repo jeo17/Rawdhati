@@ -838,7 +838,7 @@ style when we hover the profile pic
   all: initial;
   display: none;
   border: none;
-  padding: 1.5px 16px;
+  padding: 1.5px 9px;
   font-size: 17px;
   transition: 0.3s;
   background-color:#5957f9;

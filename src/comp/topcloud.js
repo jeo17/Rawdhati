@@ -8,12 +8,11 @@ import { auth, storage } from "../firebase/config";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
 import { useTranslation } from "react-i18next";
 
 
-const Topcloud = ({ height }) => {
+const Topcloud = ({ height,PrID,KinID }) => {
 
   const { t, i18n } = useTranslation();
 
@@ -22,15 +21,24 @@ const Topcloud = ({ height }) => {
   const [user] = useAuthState(auth);
 
 
-  let [Url, seturl] = useState(   getDownloadURL(ref(storage, `/Parents Images/${prId}`))
+
+  let [Url, seturl] = useState( user.displayName !== null?  getDownloadURL(ref(storage, `/Parents Images/${PrID}`))
+  .then((url) => {
+    seturl(url)
+    console.log(url)
+  })
+  .catch((error) => {
+  console.log(error.message)
+  seturl("https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png")
+  }) :
+  getDownloadURL(ref(storage, `/Kindergartens Images/${KinID}`))
   .then((url) => {
     seturl(url)
   })
   .catch((error) => {
   console.log(error.message)
-  seturl("https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png")
-  })  );
-
+  seturl("https://thumbs.dreamstime.com/b/kindergarten-facade-vector-illustration-preschool-building-front-view-exterior-landscape-background-education-nursery-school-150658496.jpg")
+  })  ) ;
   const { switched, Switched, Theme, Bird, Face, Body, theme } =
     useContext(ThemeContext);
 
@@ -180,7 +188,7 @@ const Topcloud = ({ height }) => {
                 toggleMenu.classList.toggle("active");
               }}
             >
-              <img src={require("./assets/avatar.jpg")} alt="" />
+              <img src={Url} alt="err" />
             </div>
             <div className="menu">
               <h3>

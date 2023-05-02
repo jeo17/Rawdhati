@@ -5,16 +5,16 @@ import Profile from "../comp/Profile";
 import Slider from "../comp/Slider";
 import Page404 from "../Page_404";
 import MyKindergarten from "./Pr component/My-Kindergarten";
-import { auth } from "../firebase/config";
+import { auth, db, storage } from "../firebase/config";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut, sendEmailVerification } from "firebase/auth";
 import { doc, updateDoc, collection, query, where } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
-import { db } from "../firebase/config";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
 
 const PrHome = () => {
   const onScroll = (event) => {
@@ -49,6 +49,41 @@ const PrHome = () => {
   const { i18n } = useTranslation();
 
   let { prId } = useParams();
+
+  let [Url, seturl] = useState(   getDownloadURL(ref(storage, `/Parents Images/${prId}`))
+  .then((url) => {
+    seturl(url)
+  })
+  .catch((error) => {
+  console.log(error.message)
+  seturl("https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png")
+  })  );
+
+  const [SaveProfilePic, setSaveProfilePic] = useState("Save 📥");
+  let [img, setimg] = useState(null);
+
+  const storeIMG = async () => {
+   const imageref = ref(storage, `/Parents Images/${prId}`);
+   console.log("wait")
+   setSaveProfilePic(<div class="lds-ring"><div></div><div></div><div></div><div></div></div>)
+  await uploadBytes(imageref, img).then(() => {
+    document.querySelector(".save-profile-pic").style.display="none"
+    setSaveProfilePic("Save 📥")
+   })
+   .catch((error) => {
+    console.log(error.message)
+   });
+ }
+
+
+
+
+
+
+
+
+
+  
 
   const [value, loadingdata, errordata] = useDocument(
     doc(db, "Parents Informations", prId)
@@ -151,7 +186,7 @@ const PrHome = () => {
     if (user.emailVerified) {
       return (
         <>
-          <Topcloud />
+          <Topcloud PrID={prId}/>
 
           <Profile>
             <div className="top-container" dir={i18n.language === "ar"? "rtl":null}>
@@ -160,13 +195,24 @@ const PrHome = () => {
                  <span className="material-symbols-outlined">photo_camera</span>
                   <span>Change Image</span>
                 </label>
-                <input id="file" type="file" onchange="loadFile(event)"/>
+                <input id="file" type="file" onChange={(eo) => {
+                  setimg(eo.target.files[0])
+                  document.querySelector(".save-profile-pic").style.display = "block";
+                  let url =URL.createObjectURL(eo.target.files[0])
+                  document.getElementById("profile-pic").src = url
+                }} />
               <img
-                src={require("../comp/assets/avatar.jpg")}
+                id="profile-pic"
+                src={Url}
                 className="img-fluid profile-image"
                 width={70}
                 alt="sorry"
+                
               />
+               <button className="save-profile-pic"  onClick={ (eo) => {        
+                storeIMG();
+              }}>{SaveProfilePic}
+              </button>
               </div>
               <div style={{ margin: "0 11px" }}>
                 <h5 className="name">
@@ -551,7 +597,7 @@ const PrHome = () => {
     } else {
       return (
         <>
-          <Topcloud />
+          <Topcloud PrID={prId}/>
 
           <Profile>
             <div className="top-container" dir={i18n.language === "ar"? "rtl":null}>

@@ -181,10 +181,11 @@ const KinHome = () => {
   };
 
   let { kinId } = useParams();
-  
+
 
   let [Url, seturl] = useState(   getDownloadURL(ref(storage, `/Kindergartens Images/${kinId}`))
   .then((url) => {
+
     seturl(url)
   })
   .catch((error) => {

@@ -4,11 +4,14 @@ import "./topcloud.css";
 import { useContext } from "react";
 import ThemeContext from "../context/Theme";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/config";
+import { auth, storage } from "../firebase/config";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
 import { useTranslation } from "react-i18next";
+
 
 const Topcloud = ({ height }) => {
 
@@ -16,7 +19,17 @@ const Topcloud = ({ height }) => {
 
   const navigate = useNavigate();
 
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
+
+
+  let [Url, seturl] = useState(   getDownloadURL(ref(storage, `/Parents Images/${prId}`))
+  .then((url) => {
+    seturl(url)
+  })
+  .catch((error) => {
+  console.log(error.message)
+  seturl("https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png")
+  })  );
 
   const { switched, Switched, Theme, Bird, Face, Body, theme } =
     useContext(ThemeContext);

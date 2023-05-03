@@ -44,7 +44,7 @@ const ActivitieCard = () => {
                   marginBottom: "20px",
                 }}
               >
-                {value.data() !== undefined ? (
+                {value.data().kindergarten_Activites !== undefined ? (
                   value.data().kindergarten_Activites.map((item) => {
                     return (
                       <li className="class-list-item" key={item}>

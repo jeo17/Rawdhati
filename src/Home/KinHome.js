@@ -16,11 +16,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Profile from "../comp/Profile";
 import { signOut, sendEmailVerification } from "firebase/auth";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const KinHome = () => {
   const onScroll = (event) => {
@@ -156,61 +156,76 @@ const KinHome = () => {
     eo.preventDefault();
     if (amount < 1000) {
       eo.target.disabled = true;
-      console.log("aaaa")
+      console.log("aaaa");
     } else {
-      console.log("bbbb")
+      console.log("bbbb");
       Next();
       setTimeout(async () => {
-        await setDoc(
-          doc(db, "kindergarten Information", user.uid),
-          {
-            kindergarten_Name: name,
-            kindergarten_Address: address,
-            kindergarten_Activites: act,
-            kindergarten_Price: amount,
-            kindergarten_id: kinId,
-            kindergarten_Bio: null,
-            kindergarten_facebook: null,
-            kindergarten_Instagram: null,
-            kindergarten_Google: null,
-          }
-        );
+
+        await updateDoc(doc(db, "kindergarten Information", user.uid), {
+          kindergarten_Name: name,
+          kindergarten_Address: address,
+          kindergarten_Activites: act,
+          kindergarten_Price: amount,
+          kindergarten_id: kinId,
+          kindergarten_Bio: null,
+          kindergarten_facebook: null,
+          kindergarten_Instagram: null,
+          kindergarten_Google: null,
+        });
         document.getElementById("kin-dialog").close();
       }, 3300);
     }
   };
 
   let { kinId } = useParams();
+  const [value, loadingg, errorr] = useDocument(
+    doc(db, "kindergarten Information", kinId)
+  );
 
+  let [Url, seturl] = useState(
+    value
+      ? value.data().HasAnImg === true
+        ? getDownloadURL(ref(storage, `/Kindergartens Images/${kinId}`))
+            .then((url) => {
+              seturl(url);
+            })
+            .catch((error) => {
+              console.log(error.message);
+            })
+        : null
+      : "https://thumbs.dreamstime.com/b/kindergarten-facade-vector-illustration-preschool-building-front-view-exterior-landscape-background-education-nursery-school-150658496.jpg"
+  );
 
-  let [Url, seturl] = useState(   getDownloadURL(ref(storage, `/Kindergartens Images/${kinId}`))
-  .then((url) => {
-
-    seturl(url)
-  })
-  .catch((error) => {
-  console.log(error.message)
-  seturl("https://thumbs.dreamstime.com/b/kindergarten-facade-vector-illustration-preschool-building-front-view-exterior-landscape-background-education-nursery-school-150658496.jpg")
-  })  );
-
+  
   const [SaveProfilePic, setSaveProfilePic] = useState("Save 📥");
   let [img, setimg] = useState(null);
 
   const storeIMG = async () => {
-   const imageref = ref(storage, `/Kindergartens Images/${kinId}`);
-   console.log("wait")
-   setSaveProfilePic(<div class="lds-ring"><div></div><div></div><div></div><div></div></div>)
-  await uploadBytes(imageref, img).then(() => {
-    document.querySelector(".save-profile-pic").style.display="none"
-    setSaveProfilePic("Save 📥")
-   })
-   .catch((error) => {
-    console.log(error.message)
-   });
- }
+    const imageref = ref(storage, `/Kindergartens Images/${kinId}`);
+    console.log("wait");
+    setSaveProfilePic(
+      <div className="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
+    await uploadBytes(imageref, img)
+      .then(() => {
+        document.querySelector(".save-profile-pic").style.display = "none";
+        setSaveProfilePic("Save 📥");
 
+           updateDoc(doc(db, "kindergarten Information", user.uid), {
+            HasAnImg: true,
+          });
 
-
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   const { i18n } = useTranslation();
 
@@ -220,8 +235,6 @@ const KinHome = () => {
   let [Media, setMedia] = useState("");
 
   let [act, setact] = useState([]);
-
-
 
   let [SaveAddress, setSaveAddress] = useState("none");
   let [SavePrice, setSavePrice] = useState("none");
@@ -233,9 +246,6 @@ const KinHome = () => {
   let [WhichMedia, setWhichMedia] = useState(undefined);
 
   const [user, loading, error] = useAuthState(auth);
-  const [value, loadingg, errorr] = useDocument(
-    doc(db, "kindergarten Information", kinId)
-  );
 
   const navigate = useNavigate();
 
@@ -285,42 +295,57 @@ const KinHome = () => {
     if (user.emailVerified) {
       return (
         <>
-          <Topcloud  KinID={kinId}/>
+          <Topcloud KinID={kinId} HasAnImg={value.data().HasAnImg} />
 
           <Profile>
-            <div className="top-container" dir={i18n.language === "ar" ? "rtl" : null}>
-              
-            <div className="profile-pic-kin">
-                 <label className="-label" for="file">
-                 <span className="material-symbols-outlined">photo_camera</span>
+            <div
+              className="top-container"
+              dir={i18n.language === "ar" ? "rtl" : null}
+            >
+              <div className="profile-pic-kin">
+                <label className="-label" htmlFor="file">
+                  <span className="material-symbols-outlined">
+                    photo_camera
+                  </span>
                   <span>Change Image</span>
                 </label>
-                
-                <input accept="image/*" id="file" type="file" onChange={(eo) => {
-                  setimg(eo.target.files[0])
-                  document.querySelector(".save-profile-pic").style.display = "block";
-                  let url =URL.createObjectURL(eo.target.files[0])
-                  document.getElementById("profile-pic").src = url
 
-                }}/>
-              <img
-                src={Url}
-                id="profile-pic"
-                className="img-fluid profile-image"
-                width="130px"
-                height="130px"
-                alt="sorry"
-              />
-              <button className="save-profile-pic"  onClick={ (eo) => {        
-                storeIMG();
-              }}>{SaveProfilePic}
-              </button>
+                <input
+                  accept="image/*"
+                  id="file"
+                  type="file"
+                  onChange={(eo) => {
+                    setimg(eo.target.files[0]);
+                    document.querySelector(".save-profile-pic").style.display =
+                      "block";
+                    let url = URL.createObjectURL(eo.target.files[0]);
+                    document.getElementById("profile-pic").src = url;
+                  }}
+                />
+                <img
+                  src={Url}
+                  id="profile-pic"
+                  className="img-fluid profile-image"
+                  width="130px"
+                  height="130px"
+                  alt="sorry"
+                />
+                <button
+                  className="save-profile-pic"
+                  onClick={(eo) => {
+                    storeIMG();
+                  }}
+                >
+                  {SaveProfilePic}
+                </button>
               </div>
 
-
-
-
-              <div style={{ marginLeft: i18n.language === "ar"? null:"11px",marginRight: i18n.language === "ar"?"11px":null}}>
+              <div
+                style={{
+                  marginLeft: i18n.language === "ar" ? null : "11px",
+                  marginRight: i18n.language === "ar" ? "11px" : null,
+                }}
+              >
                 {value.data() !== undefined ? (
                   <h5 className="name"> {value.data().kindergarten_Name}</h5>
                 ) : (
@@ -348,7 +373,10 @@ const KinHome = () => {
                 </span>
                 <span className="wishlist">
                   <span
-                    style={{ display: `${SaveAddress}`,left: i18n.language === "ar"? "0":null }}
+                    style={{
+                      display: `${SaveAddress}`,
+                      left: i18n.language === "ar" ? "0" : null,
+                    }}
                     className="material-symbols-outlined"
                     onClick={async (eo) => {
                       await updateDoc(
@@ -393,7 +421,7 @@ const KinHome = () => {
                 <span className="wishlist">
                   <input
                     defaultValue={
-                      value.data() !== undefined
+                      value.data().kindergarten_Price !== undefined
                         ? `${value.data().kindergarten_Price}.00 DA`
                         : ""
                     }
@@ -403,7 +431,10 @@ const KinHome = () => {
                     }}
                   />
                   <span
-                    style={{ display: `${SavePrice}` ,left: i18n.language === "ar"? "0":null }}
+                    style={{
+                      display: `${SavePrice}`,
+                      left: i18n.language === "ar" ? "0" : null,
+                    }}
                     className="material-symbols-outlined"
                     onClick={async (eo) => {
                       await updateDoc(
@@ -435,7 +466,10 @@ const KinHome = () => {
                 </span>
                 <span className="wishlist">
                   <span
-                    style={{ display: `${SaveBio}` ,left: i18n.language === "ar"? "0":null}}
+                    style={{
+                      display: `${SaveBio}`,
+                      left: i18n.language === "ar" ? "0" : null,
+                    }}
                     className="material-symbols-outlined"
                     onClick={async (eo) => {
                       await updateDoc(
@@ -547,7 +581,11 @@ const KinHome = () => {
                   }}
                 />
                 <span
-                  style={{ display: `${SaveMedia}`, right: "-8px" ,left: i18n.language === "ar"? "0":null}}
+                  style={{
+                    display: `${SaveMedia}`,
+                    right: "-8px",
+                    left: i18n.language === "ar" ? "0" : null,
+                  }}
                   className="material-symbols-outlined"
                   onClick={async (eo) => {
                     if (
@@ -598,7 +636,7 @@ const KinHome = () => {
           </Profile>
 
           <div className="main appmain">
-            {value.data() === undefined && (
+            {value.data().kindergarten_Name === undefined && (
               <dialog id="kin-dialog" open>
                 <form className="kin-form ">
                   <div id="multi_step_form">
@@ -622,15 +660,35 @@ const KinHome = () => {
                       <div className="content-kin-form">
                         <fieldset className="step activated_feild" id="0">
                           <div className="open-kin-dialog-form">
-                            <h2 style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "One last step and we will open a space for you"}
-                              {i18n.language === "ar" && "خطوة أخيرة وسنفتح لك مساحة"}
-                              {i18n.language === "fr" && "Un dernier pas et nous vous ouvrirons un espace"}
+                            <h2
+                              style={{
+                                fontFamily:
+                                  i18n.language === "ar"
+                                    ? "'Noto Sans Arabic', sans-serif"
+                                    : null,
+                              }}
+                            >
+                              {i18n.language === "en" &&
+                                "One last step and we will open a space for you"}
+                              {i18n.language === "ar" &&
+                                "خطوة أخيرة وسنفتح لك مساحة"}
+                              {i18n.language === "fr" &&
+                                "Un dernier pas et nous vous ouvrirons un espace"}
                             </h2>
-                            <h3 style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Please put your information down"}
-                              {i18n.language === "ar" && "الرجاء وضع المعلومات الخاصة بك أسفل"}
-                              {i18n.language === "fr" && "Merci de mettre vos informations"}
+                            <h3
+                              style={{
+                                fontFamily:
+                                  i18n.language === "ar"
+                                    ? "'Noto Sans Arabic', sans-serif"
+                                    : null,
+                              }}
+                            >
+                              {i18n.language === "en" &&
+                                "Please put your information down"}
+                              {i18n.language === "ar" &&
+                                "الرجاء وضع المعلومات الخاصة بك أسفل"}
+                              {i18n.language === "fr" &&
+                                "Merci de mettre vos informations"}
                             </h3>
                           </div>
 
@@ -641,29 +699,39 @@ const KinHome = () => {
                               Next();
                             }}
                           >
-                              {i18n.language === "en" && "Next"}
-                              {i18n.language === "ar" && "التالي"}
-                              {i18n.language === "fr" && "Suivant"} 
+                            {i18n.language === "en" && "Next"}
+                            {i18n.language === "ar" && "التالي"}
+                            {i18n.language === "fr" && "Suivant"}
                           </button>
                         </fieldset>
 
                         <fieldset className="step" id="1">
-                          <label style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Kindergarten Name"}
-                              {i18n.language === "ar" && "اسم الروضة"}
-                              {i18n.language === "fr" && "Nom de la maternelle"}  <p>*</p>
+                          <label
+                            style={{
+                              fontFamily:
+                                i18n.language === "ar"
+                                  ? "'Noto Sans Arabic', sans-serif"
+                                  : null,
+                            }}
+                          >
+                            {i18n.language === "en" && "Kindergarten Name"}
+                            {i18n.language === "ar" && "اسم الروضة"}
+                            {i18n.language === "fr" &&
+                              "Nom de la maternelle"}{" "}
+                            <p>*</p>
                           </label>
                           <br />
                           <br />
                           <input
                             type="text"
-                            dir={i18n.language ==="ar"? "rtl":null}
-                            placeholder={i18n.language ==="ar"? "روضة:":"Rawdhat:"}
+                            dir={i18n.language === "ar" ? "rtl" : null}
+                            placeholder={
+                              i18n.language === "ar" ? "روضة:" : "Rawdhat:"
+                            }
                             required
                             onChange={(eo) => {
                               setname(eo.target.value);
-                              +
-                              name.length <= 3
+                              +name.length <= 3
                                 ? (document.querySelectorAll(
                                     ".nextStep"
                                   )[1].disabled = true)
@@ -681,9 +749,9 @@ const KinHome = () => {
                               validButton(eo, name);
                             }}
                           >
-                              {i18n.language === "en" && "Next"}
-                              {i18n.language === "ar" && "التالي"}
-                              {i18n.language === "fr" && "Suivant"} 
+                            {i18n.language === "en" && "Next"}
+                            {i18n.language === "ar" && "التالي"}
+                            {i18n.language === "fr" && "Suivant"}
                           </button>
                         </fieldset>
                         <fieldset className="step" id="2">
@@ -694,22 +762,33 @@ const KinHome = () => {
                               Prev();
                             }}
                           >
-                              {i18n.language === "en" && "Prev"}
-                              {i18n.language === "ar" && "السابق"}
-                              {i18n.language === "fr" && "Précédente"} 
+                            {i18n.language === "en" && "Prev"}
+                            {i18n.language === "ar" && "السابق"}
+                            {i18n.language === "fr" && "Précédente"}
                           </button>
-                          <label style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Kindergarten Address"}
-                              {i18n.language === "ar" && "عنوان الروضة"}
-                              {i18n.language === "fr" && "Adresse de la maternelle"} <p>*</p>
+                          <label
+                            style={{
+                              fontFamily:
+                                i18n.language === "ar"
+                                  ? "'Noto Sans Arabic', sans-serif"
+                                  : null,
+                            }}
+                          >
+                            {i18n.language === "en" && "Kindergarten Address"}
+                            {i18n.language === "ar" && "عنوان الروضة"}
+                            {i18n.language === "fr" &&
+                              "Adresse de la maternelle"}{" "}
+                            <p>*</p>
                           </label>
                           <br />
                           <br />
                           <input
                             type="text"
                             required
-                            dir={i18n.language ==="ar"? "rtl":null}
-                            placeholder={i18n.language ==="ar"? "عنوان:":"Address:"}
+                            dir={i18n.language === "ar" ? "rtl" : null}
+                            placeholder={
+                              i18n.language === "ar" ? "عنوان:" : "Address:"
+                            }
                             onChange={(eo) => {
                               setaddress(eo.target.value);
                               address.length <= 3
@@ -730,9 +809,9 @@ const KinHome = () => {
                               validButton(eo, address);
                             }}
                           >
-                              {i18n.language === "en" && "Next"}
-                              {i18n.language === "ar" && "التالي"}
-                              {i18n.language === "fr" && "Suivant"} 
+                            {i18n.language === "en" && "Next"}
+                            {i18n.language === "ar" && "التالي"}
+                            {i18n.language === "fr" && "Suivant"}
                           </button>
                         </fieldset>
                         <fieldset className="step" id="3">
@@ -743,15 +822,26 @@ const KinHome = () => {
                               Prev();
                             }}
                           >
-                              {i18n.language === "en" && "Prev"}
-                              {i18n.language === "ar" && "السابق"}
-                              {i18n.language === "fr" && "Précédente"} 
+                            {i18n.language === "en" && "Prev"}
+                            {i18n.language === "ar" && "السابق"}
+                            {i18n.language === "fr" && "Précédente"}
                           </button>
-                          <label style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Kindergarten Picture"}
-                              {i18n.language === "ar" && "صورة الروضة"}
-                              {i18n.language === "fr" && "Image de la maternelle"}
-                            <p style={{ fontSize: "15px" }}>({i18n.language==="en" && "Not Obligatory"}{i18n.language==="ar" && "ليس إلزاميا"}{i18n.language==="fr" && "Pas obligatoire"})</p>
+                          <label
+                            style={{
+                              fontFamily:
+                                i18n.language === "ar"
+                                  ? "'Noto Sans Arabic', sans-serif"
+                                  : null,
+                            }}
+                          >
+                            {i18n.language === "en" && "Kindergarten Picture"}
+                            {i18n.language === "ar" && "صورة الروضة"}
+                            {i18n.language === "fr" && "Image de la maternelle"}
+                            <p style={{ fontSize: "15px" }}>
+                              ({i18n.language === "en" && "Not Obligatory"}
+                              {i18n.language === "ar" && "ليس إلزاميا"}
+                              {i18n.language === "fr" && "Pas obligatoire"})
+                            </p>
                           </label>
                           <br />
                           <br />
@@ -760,7 +850,7 @@ const KinHome = () => {
                             type="file"
                             placeholder="add picture"
                             onChange={(eo) => {
-                              setimg(eo.target.files[0])
+                              setimg(eo.target.files[0]);
                             }}
                           />
                           <button
@@ -769,12 +859,11 @@ const KinHome = () => {
                               eo.preventDefault();
                               storeIMG();
                               Next();
-
                             }}
                           >
-                              {i18n.language === "en" && "Next"}
-                              {i18n.language === "ar" && "التالي"}
-                              {i18n.language === "fr" && "Suivant"} 
+                            {i18n.language === "en" && "Next"}
+                            {i18n.language === "ar" && "التالي"}
+                            {i18n.language === "fr" && "Suivant"}
                           </button>
                         </fieldset>
                         <fieldset className="step" id="4">
@@ -785,21 +874,43 @@ const KinHome = () => {
                               Prev();
                             }}
                           >
-                              {i18n.language === "en" && "Prev"}
-                              {i18n.language === "ar" && "السابق"}
-                              {i18n.language === "fr" && "Précédente"} 
+                            {i18n.language === "en" && "Prev"}
+                            {i18n.language === "ar" && "السابق"}
+                            {i18n.language === "fr" && "Précédente"}
                           </button>
                           <div className="kin-form-header">
-                            <label style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                            {i18n.language === "en" && "Kindergarten Activities"}
+                            <label
+                              style={{
+                                fontFamily:
+                                  i18n.language === "ar"
+                                    ? "'Noto Sans Arabic', sans-serif"
+                                    : null,
+                              }}
+                            >
+                              {i18n.language === "en" &&
+                                "Kindergarten Activities"}
                               {i18n.language === "ar" && "أنشطة رياض الأطفال"}
-                              {i18n.language === "fr" && "Activités maternelles"} <p>*</p>
+                              {i18n.language === "fr" &&
+                                "Activités maternelles"}{" "}
+                              <p>*</p>
                             </label>
                             <br /> <br />
-                            <p style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null,marginBottom:i18n.language ==="ar"?"35px":null}}>
-                            {i18n.language === "en" && "Choose the activities that your kindergarten do :"}
-                              {i18n.language === "ar" && ":اختر الأنشطة التي تقوم بها روضة أطفالك"}
-                              {i18n.language === "fr" && "Choisissez les activités que votre jardin d'enfants propose :"}
+                            <p
+                              style={{
+                                fontFamily:
+                                  i18n.language === "ar"
+                                    ? "'Noto Sans Arabic', sans-serif"
+                                    : null,
+                                marginBottom:
+                                  i18n.language === "ar" ? "35px" : null,
+                              }}
+                            >
+                              {i18n.language === "en" &&
+                                "Choose the activities that your kindergarten do :"}
+                              {i18n.language === "ar" &&
+                                ":اختر الأنشطة التي تقوم بها روضة أطفالك"}
+                              {i18n.language === "fr" &&
+                                "Choisissez les activités que votre jardin d'enfants propose :"}
                             </p>
                           </div>
 
@@ -815,10 +926,18 @@ const KinHome = () => {
                                   keyEvent(eo);
                                 }}
                               />
-                              <p htmlFor="Travel" style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Travel"}
-                              {i18n.language === "ar" && "سفر"}
-                              {i18n.language === "fr" && "Voyage"} 
+                              <p
+                                htmlFor="Travel"
+                                style={{
+                                  fontFamily:
+                                    i18n.language === "ar"
+                                      ? "'Noto Sans Arabic', sans-serif"
+                                      : null,
+                                }}
+                              >
+                                {i18n.language === "en" && "Travel"}
+                                {i18n.language === "ar" && "سفر"}
+                                {i18n.language === "fr" && "Voyage"}
                               </p>
                             </div>
 
@@ -833,10 +952,19 @@ const KinHome = () => {
                                   keyEvent(eo);
                                 }}
                               />
-                              <p htmlFor="Language Learning" style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Languages Learning"}
-                              {i18n.language === "ar" && "تعلم اللغات"}
-                              {i18n.language === "fr" && "Apprendre une langues"} 
+                              <p
+                                htmlFor="Language Learning"
+                                style={{
+                                  fontFamily:
+                                    i18n.language === "ar"
+                                      ? "'Noto Sans Arabic', sans-serif"
+                                      : null,
+                                }}
+                              >
+                                {i18n.language === "en" && "Languages Learning"}
+                                {i18n.language === "ar" && "تعلم اللغات"}
+                                {i18n.language === "fr" &&
+                                  "Apprendre une langues"}
                               </p>
                             </div>
 
@@ -851,10 +979,18 @@ const KinHome = () => {
                                   keyEvent(eo);
                                 }}
                               />
-                              <p htmlFor="Sports" style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Sports"}
-                              {i18n.language === "ar" && "رياضات"}
-                              {i18n.language === "fr" && "Des sports"} 
+                              <p
+                                htmlFor="Sports"
+                                style={{
+                                  fontFamily:
+                                    i18n.language === "ar"
+                                      ? "'Noto Sans Arabic', sans-serif"
+                                      : null,
+                                }}
+                              >
+                                {i18n.language === "en" && "Sports"}
+                                {i18n.language === "ar" && "رياضات"}
+                                {i18n.language === "fr" && "Des sports"}
                               </p>
                             </div>
 
@@ -869,10 +1005,18 @@ const KinHome = () => {
                                   keyEvent(eo);
                                 }}
                               />
-                              <p htmlFor="Painting" style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Painting"}
-                              {i18n.language === "ar" && "فن الرسم"}
-                              {i18n.language === "fr" && "Peinture"} 
+                              <p
+                                htmlFor="Painting"
+                                style={{
+                                  fontFamily:
+                                    i18n.language === "ar"
+                                      ? "'Noto Sans Arabic', sans-serif"
+                                      : null,
+                                }}
+                              >
+                                {i18n.language === "en" && "Painting"}
+                                {i18n.language === "ar" && "فن الرسم"}
+                                {i18n.language === "fr" && "Peinture"}
                               </p>
                             </div>
 
@@ -887,10 +1031,18 @@ const KinHome = () => {
                                   keyEvent(eo);
                                 }}
                               />
-                              <p htmlFor="Quran" style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Quran"}
-                              {i18n.language === "ar" && "القرآن"}
-                              {i18n.language === "fr" && "Coran"} 
+                              <p
+                                htmlFor="Quran"
+                                style={{
+                                  fontFamily:
+                                    i18n.language === "ar"
+                                      ? "'Noto Sans Arabic', sans-serif"
+                                      : null,
+                                }}
+                              >
+                                {i18n.language === "en" && "Quran"}
+                                {i18n.language === "ar" && "القرآن"}
+                                {i18n.language === "fr" && "Coran"}
                               </p>
                             </div>
 
@@ -905,10 +1057,18 @@ const KinHome = () => {
                                   keyEvent(eo);
                                 }}
                               />
-                              <p htmlFor="Reading" style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Reading"}
-                              {i18n.language === "ar" && "قراءة"}
-                              {i18n.language === "fr" && "Lecture"} 
+                              <p
+                                htmlFor="Reading"
+                                style={{
+                                  fontFamily:
+                                    i18n.language === "ar"
+                                      ? "'Noto Sans Arabic', sans-serif"
+                                      : null,
+                                }}
+                              >
+                                {i18n.language === "en" && "Reading"}
+                                {i18n.language === "ar" && "قراءة"}
+                                {i18n.language === "fr" && "Lecture"}
                               </p>
                             </div>
 
@@ -923,10 +1083,19 @@ const KinHome = () => {
                                   keyEvent(eo);
                                 }}
                               />
-                              <p htmlFor="Other Things" style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>                 
-                              {i18n.language === "en" && "Other Things"}
-                              {i18n.language === "ar" && "اشياء اخرى"}
-                              {i18n.language === "fr" && "Autres choses"} </p>
+                              <p
+                                htmlFor="Other Things"
+                                style={{
+                                  fontFamily:
+                                    i18n.language === "ar"
+                                      ? "'Noto Sans Arabic', sans-serif"
+                                      : null,
+                                }}
+                              >
+                                {i18n.language === "en" && "Other Things"}
+                                {i18n.language === "ar" && "اشياء اخرى"}
+                                {i18n.language === "fr" && "Autres choses"}{" "}
+                              </p>
                             </div>
                           </div>
                           <button
@@ -935,9 +1104,9 @@ const KinHome = () => {
                               validButton2(eo, act);
                             }}
                           >
-                              {i18n.language === "en" && "Next"}
-                              {i18n.language === "ar" && "التالي"}
-                              {i18n.language === "fr" && "Suivant"} 
+                            {i18n.language === "en" && "Next"}
+                            {i18n.language === "ar" && "التالي"}
+                            {i18n.language === "fr" && "Suivant"}
                           </button>
                         </fieldset>
 
@@ -949,20 +1118,33 @@ const KinHome = () => {
                               Prev();
                             }}
                           >
-                              {i18n.language === "en" && "Prev"}
-                              {i18n.language === "ar" && "السابق"}
-                              {i18n.language === "fr" && "Précédente"} 
+                            {i18n.language === "en" && "Prev"}
+                            {i18n.language === "ar" && "السابق"}
+                            {i18n.language === "fr" && "Précédente"}
                           </button>
-                          <label style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Kindergarten monthly payment amount"}
-                              {i18n.language === "ar" && "مبلغ الدفعة الشهرية لرياض الأطفال"}
-                              {i18n.language === "fr" && "Montant du paiement mensuel de la maternelle"} <p>*</p>
+                          <label
+                            style={{
+                              fontFamily:
+                                i18n.language === "ar"
+                                  ? "'Noto Sans Arabic', sans-serif"
+                                  : null,
+                            }}
+                          >
+                            {i18n.language === "en" &&
+                              "Kindergarten monthly payment amount"}
+                            {i18n.language === "ar" &&
+                              "مبلغ الدفعة الشهرية لرياض الأطفال"}
+                            {i18n.language === "fr" &&
+                              "Montant du paiement mensuel de la maternelle"}{" "}
+                            <p>*</p>
                           </label>
                           <br /> <br />
                           <div className="amount">
                             <input
                               type="number"
-                              placeholder={i18n.language ==="ar"? "الثمن":"Price:"}
+                              placeholder={
+                                i18n.language === "ar" ? "الثمن" : "Price:"
+                              }
                               min="500"
                               max="10000"
                               step="50"
@@ -988,28 +1170,43 @@ const KinHome = () => {
                           <button
                             className="nextStep"
                             onClick={async (eo) => {
-
-                              validButton3(eo,amount);
-
+                              validButton3(eo, amount);
                             }}
                           >
-                              {i18n.language === "en" && "Next"}
-                              {i18n.language === "ar" && "التالي"}
-                              {i18n.language === "fr" && "Suivant"} 
+                            {i18n.language === "en" && "Next"}
+                            {i18n.language === "ar" && "التالي"}
+                            {i18n.language === "fr" && "Suivant"}
                           </button>
                         </fieldset>
 
                         <fieldset className="step" id="6">
                           <div className="kin-form-footer">
-                            <h1 style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                            {i18n.language === "en" && "Thank You"}
+                            <h1
+                              style={{
+                                fontFamily:
+                                  i18n.language === "ar"
+                                    ? "'Noto Sans Arabic', sans-serif"
+                                    : null,
+                              }}
+                            >
+                              {i18n.language === "en" && "Thank You"}
                               {i18n.language === "ar" && "شكرًا لك"}
                               {i18n.language === "fr" && "Merci"}
-                               </h1>
-                            <h3 style={{fontFamily:i18n.language ==="ar"?"'Noto Sans Arabic', sans-serif":null}}>
-                              {i18n.language === "en" && "Those information will help people reached your kindergarten"}
-                              {i18n.language === "ar" && "هذه المعلومات ستساعد الناس على الوصول إلى روضة أطفالك"}
-                              {i18n.language === "fr" && "Ces informations aideront les personnes à atteindre votre jardin d'enfants"}
+                            </h1>
+                            <h3
+                              style={{
+                                fontFamily:
+                                  i18n.language === "ar"
+                                    ? "'Noto Sans Arabic', sans-serif"
+                                    : null,
+                              }}
+                            >
+                              {i18n.language === "en" &&
+                                "Those information will help people reached your kindergarten"}
+                              {i18n.language === "ar" &&
+                                "هذه المعلومات ستساعد الناس على الوصول إلى روضة أطفالك"}
+                              {i18n.language === "fr" &&
+                                "Ces informations aideront les personnes à atteindre votre jardin d'enfants"}
                             </h3>
                           </div>
                         </fieldset>
@@ -1106,12 +1303,13 @@ const KinHome = () => {
     } else {
       return (
         <>
-          <Topcloud />
+          <Topcloud HasAnImg={value.data().HasAnImg} />
 
           <Profile />
           <div className="main appmain">
             <div className="errorMsg">
-              <h2 className="wait-for-vers"
+              <h2
+                className="wait-for-vers"
                 style={{
                   fontFamily: "'Fredoka One', cursive",
                   textAlign: "center",

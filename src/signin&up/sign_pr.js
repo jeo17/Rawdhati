@@ -102,6 +102,7 @@ const SignPr = () => {
                           }}
                         />
                         <input
+                          autoComplete="username"
                           dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="email"
                           placeholder={i18n.language === "en" || i18n.language === "fr"?"Email":"البريد الالكتروني"}
@@ -111,6 +112,7 @@ const SignPr = () => {
                           }}
                         />
                         <input
+                          autoComplete="current-password"
                           dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="password"
                           placeholder={i18n.language === "en" || i18n.language === "fr"?"Password":"كلمة المرور"}
@@ -145,7 +147,8 @@ const SignPr = () => {
                                   .then(async () => {
 
                                     await setDoc(doc(db, "Parents Informations", user.uid), {
-                                      Bio: "Write your own bio"
+                                      Bio: "Write your own bio",
+                                      HasAnImg:false,
                                     });  
                                     navigate(`/pr_home/${user.uid}`)
                                     sendEmailVerification(auth.currentUser).then(
@@ -298,6 +301,7 @@ const SignPr = () => {
                     <form method="post">
                       <div className="form-group">
                         <input
+                          autoComplete="username"
                           dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="email"
                           placeholder={i18n.language === "en" || i18n.language === "fr"?"Email":"البريد الالكتروني"}
@@ -306,6 +310,7 @@ const SignPr = () => {
                           }}
                         />
                         <input
+                          autoComplete="current-password"
                           dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}                        
                           type="password"
                           placeholder={i18n.language === "en" || i18n.language === "fr"?"Password":"كلمة المرور"}

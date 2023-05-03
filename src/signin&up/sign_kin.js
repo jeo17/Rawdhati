@@ -14,7 +14,10 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore"; 
+import { db } from "../firebase/config";
 import { useTranslation } from 'react-i18next';
+
 
 const SignPr = () => {
   const navigate = useNavigate();
@@ -120,13 +123,16 @@ const SignPr = () => {
                               email,
                               password
                             )
-                              .then((userCredential) => {
+                              .then(async (userCredential) => {
                                 const user = userCredential.user;
                                 sendEmailVerification(auth.currentUser).then(
                                   () => {
                                     alert("check your email. verification sended!!");
                                   }
                                 );
+                                await setDoc(doc(db, "kindergarten Information", user.uid), {
+                                  HasAnImg: false
+                                });  
 
                                 navigate(`/kin_home/${user.uid}`);
                                 

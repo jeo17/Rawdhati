@@ -8,39 +8,41 @@ import { auth, storage } from "../firebase/config";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { ref,uploadBytes,getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useTranslation } from "react-i18next";
 
-
-const Topcloud = ({ height,PrID,KinID }) => {
-
+const Topcloud = ({ height, PrID, KinID, HasAnImg }) => {
   const { t, i18n } = useTranslation();
 
   const navigate = useNavigate();
 
   const [user] = useAuthState(auth);
 
-
-
-  let [Url, seturl] = useState( !user? null:  user.displayName !== null?  getDownloadURL(ref(storage, `/Parents Images/${PrID}`))
-  .then((url) => {
-    seturl(url)
-  })
-  .catch((error) => {
-  console.log(error.message)
-  seturl("https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png")
-  }) :
-  getDownloadURL(ref(storage, `/Kindergartens Images/${KinID}`))
-  .then((url) => {
-    seturl(url)
-  })
-  .catch((error) => {
-  console.log(error.message)
-  seturl("https://thumbs.dreamstime.com/b/kindergarten-facade-vector-illustration-preschool-building-front-view-exterior-landscape-background-education-nursery-school-150658496.jpg")
-  })  ) ;
+  let [Url, seturl] = useState(
+    !user
+      ? null
+      : user.displayName !== null
+      ? HasAnImg
+        ? getDownloadURL(ref(storage, `/Parents Images/${PrID}`))
+            .then((url) => {
+              seturl(url);
+            })
+            .catch((error) => {
+              console.log(error.message);
+            })
+        : "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"
+      : HasAnImg
+      ? getDownloadURL(ref(storage, `/Kindergartens Images/${KinID}`))
+          .then((url) => {
+            seturl(url);
+          })
+          .catch((error) => {
+            console.log(error.message);
+          })
+      : "https://thumbs.dreamstime.com/b/kindergarten-facade-vector-illustration-preschool-building-front-view-exterior-landscape-background-education-nursery-school-150658496.jpg"
+  );
   const { switched, Switched, Theme, Bird, Face, Body, theme } =
     useContext(ThemeContext);
-
 
   const [flag, setflag] = useState("lang");
   return (
@@ -80,8 +82,6 @@ const Topcloud = ({ height,PrID,KinID }) => {
           </button>
         )}
 
-
-
         <button>
           <NavLink
             to="/about-us"
@@ -112,8 +112,9 @@ const Topcloud = ({ height,PrID,KinID }) => {
                       document.getElementById("en").style.color = "#3c3c3c";
                       document.getElementById("fr").style.color = "#3c3c3c";
                       document.getElementById("ar").style.color = "#00a5bb";
-                      i18n.changeLanguage("ar")
-                      document.body.style.fontfamily = "'El Messiri', sans-serif !important;"
+                      i18n.changeLanguage("ar");
+                      document.body.style.fontfamily =
+                        "'El Messiri', sans-serif !important;";
                     }}
                   >
                     <i className="sl-flag flag-ar"></i>
@@ -127,12 +128,11 @@ const Topcloud = ({ height,PrID,KinID }) => {
                   </li>
                   <li
                     onClick={(eo) => {
-
                       setflag("en");
                       document.getElementById("ar").style.color = "#3c3c3c";
                       document.getElementById("fr").style.color = "#3c3c3c";
                       document.getElementById("en").style.color = "#00a5bb";
-                      i18n.changeLanguage("en")
+                      i18n.changeLanguage("en");
                     }}
                   >
                     <i className="sl-flag flag-en"></i>
@@ -140,12 +140,11 @@ const Topcloud = ({ height,PrID,KinID }) => {
                   </li>
                   <li
                     onClick={(eo) => {
-
                       setflag("fr");
                       document.getElementById("en").style.color = "#3c3c3c";
                       document.getElementById("ar").style.color = "#3c3c3c";
                       document.getElementById("fr").style.color = "#00a5bb";
-                      i18n.changeLanguage("fr")
+                      i18n.changeLanguage("fr");
                     }}
                   >
                     <i className="sl-flag flag-fr"></i>
@@ -203,17 +202,27 @@ const Topcloud = ({ height,PrID,KinID }) => {
                       profile.showModal();
                     }}
                   >
-                 {i18n.language === "en" && "My profile"}   {i18n.language === "ar" && "حسابي"} {i18n.language === "fr" && "Mon profil"}
+                    {i18n.language === "en" && "My profile"}{" "}
+                    {i18n.language === "ar" && "حسابي"}{" "}
+                    {i18n.language === "fr" && "Mon profil"}
                   </NavLink>
                 </li>
 
                 <li>
                   <img src={require("./assets/icons/envelope.png")} alt="" />
-                  <NavLink to="#">{i18n.language === "en" && "Inbox"}   {i18n.language === "ar" && "صندوق الوارد"} {i18n.language === "fr" && "Boîte de réception"}</NavLink>
+                  <NavLink to="#">
+                    {i18n.language === "en" && "Inbox"}{" "}
+                    {i18n.language === "ar" && "صندوق الوارد"}{" "}
+                    {i18n.language === "fr" && "Boîte de réception"}
+                  </NavLink>
                 </li>
                 <li>
                   <img src={require("./assets/icons/settings.png")} alt="" />
-                  <NavLink to="#">{i18n.language === "en" && "Settings"}   {i18n.language === "fr" && "Paramètre"} {i18n.language === "ar" && "إعدادات"}</NavLink>
+                  <NavLink to="#">
+                    {i18n.language === "en" && "Settings"}{" "}
+                    {i18n.language === "fr" && "Paramètre"}{" "}
+                    {i18n.language === "ar" && "إعدادات"}
+                  </NavLink>
                 </li>
                 <li>
                   <img src={require("./assets/icons/question.png")} alt="" />
@@ -233,15 +242,15 @@ const Topcloud = ({ height,PrID,KinID }) => {
                         });
                     }}
                   >
-                   {i18n.language === "en" && " Logout"}   {i18n.language === "ar" && "تسجيل خروج"} {i18n.language === "fr" && "Se déconnecter"}
+                    {i18n.language === "en" && " Logout"}{" "}
+                    {i18n.language === "ar" && "تسجيل خروج"}{" "}
+                    {i18n.language === "fr" && "Se déconnecter"}
                   </NavLink>
                 </li>
               </ul>
             </div>
           </div>
         )}
-
-
       </div>
     </>
   );

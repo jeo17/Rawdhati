@@ -90,7 +90,8 @@ const SignPr = () => {
                     <form method="post">
                       <div className="form-group">
                         <input
-                        dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
+                         autoComplete="username"
+                         dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="email"
                           placeholder={i18n.language === "en" || i18n.language === "fr"?"Email":"البريد الالكتروني"}
                           required
@@ -99,7 +100,8 @@ const SignPr = () => {
                           }}
                         />
                         <input
-                        dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
+                          autoComplete="current-password"
+                          dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="password"
                           placeholder={i18n.language === "en" || i18n.language === "fr"?"Password":"كلمة المرور"}
                           required
@@ -273,6 +275,7 @@ const SignPr = () => {
                     <form method="post">
                       <div className="form-group">
                         <input
+                          autoComplete="username"
                           dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="email"
                           placeholder={i18n.language === "en" || i18n.language === "fr"?"Email":"البريد الالكتروني"}
@@ -281,6 +284,7 @@ const SignPr = () => {
                           }}
                         />
                         <input
+                          autoComplete="current-password"
                           dir={i18n.language === "en" || i18n.language === "fr"?"ltr":"rtl"}
                           type="password"
                           placeholder={i18n.language === "en" || i18n.language === "fr"?"Password":"كلمة المرور"}

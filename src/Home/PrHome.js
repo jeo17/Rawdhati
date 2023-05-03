@@ -50,14 +50,21 @@ const PrHome = () => {
 
   let { prId } = useParams();
 
-  let [Url, seturl] = useState(   getDownloadURL(ref(storage, `/Parents Images/${prId}`))
+  const [value, loadingdata, errordata] = useDocument(
+    doc(db, "Parents Informations", prId)
+  );
+
+
+  let [Url, seturl] = useState(    
+    value
+    ?  value.data().HasAnImg === true 
+    ? getDownloadURL(ref(storage, `/Parents Images/${prId}`))
   .then((url) => {
     seturl(url)
   })
   .catch((error) => {
   console.log(error.message)
-  seturl("https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png")
-  })  );
+  }) : null : "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png" );
 
   const [SaveProfilePic, setSaveProfilePic] = useState("Save 📥");
   let [img, setimg] = useState(null);
@@ -65,10 +72,14 @@ const PrHome = () => {
   const storeIMG = async () => {
    const imageref = ref(storage, `/Parents Images/${prId}`);
    console.log("wait")
-   setSaveProfilePic(<div class="lds-ring"><div></div><div></div><div></div><div></div></div>)
+   setSaveProfilePic(<div className="lds-ring"><div></div><div></div><div></div><div></div></div>)
   await uploadBytes(imageref, img).then(() => {
     document.querySelector(".save-profile-pic").style.display="none"
     setSaveProfilePic("Save 📥")
+
+    updateDoc(doc(db, "Parents Informations", user.uid), {
+      HasAnImg: true,
+    });
    })
    .catch((error) => {
     console.log(error.message)
@@ -85,9 +96,6 @@ const PrHome = () => {
 
   
 
-  const [value, loadingdata, errordata] = useDocument(
-    doc(db, "Parents Informations", prId)
-  );
 
   const [user, loading, error] = useAuthState(auth);
 
@@ -186,7 +194,7 @@ const PrHome = () => {
     if (user.emailVerified) {
       return (
         <>
-          <Topcloud PrID={prId}/>
+          <Topcloud PrID={prId} HasAnImg={value.data().HasAnImg}/>
 
           <Profile>
             <div className="top-container" dir={i18n.language === "ar"? "rtl":null}>
@@ -597,12 +605,12 @@ const PrHome = () => {
     } else {
       return (
         <>
-          <Topcloud PrID={prId}/>
+          <Topcloud PrID={prId}  HasAnImg={value.data().HasAnImg}/>
 
           <Profile>
             <div className="top-container" dir={i18n.language === "ar"? "rtl":null}>
               <img
-                src={require("../comp/assets/avatar.jpg")}
+                src={Url}
                 className="img-fluid profile-image"
                 width={70}
                 alt="sorry"

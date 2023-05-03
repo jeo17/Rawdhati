@@ -34,7 +34,7 @@ function Slider({ Collection }) {
 
   const [value, loading, error] = useCollection(Collection);
 
-  let [Url, seturl] = useState(null);
+  let Url;
 
   if (loading) {
     return (
@@ -52,9 +52,30 @@ function Slider({ Collection }) {
     );
   }
 
+
+
   let sliderCard = [];
-  value.docs.map((item, index) => {
+  value.docs.map(async (item, index) => {
     if (index < 9) {
+      if (item.data().HasAnImg === false) {
+        Url ="https://scontent.fqfd1-1.fna.fbcdn.net/v/t1.6435-9/82261670_1485070874965030_3627461333034729472_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=uJctqSN0-rIAX9AthOq&_nc_ht=scontent.fqfd1-1.fna&oh=00_AfAujafa_CFOOXNy3XOEUfvw1VQcDt13sG2h6vpMdzKSgA&oe=6458F6D2";
+
+      } /*else {
+
+      await  getDownloadURL(
+          ref(storage, `/Kindergartens Images/${item.data().kindergarten_id}`)
+        )
+          .then((url) => {
+            Url = "url";
+
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+
+      }*/
+
+
 
       return sliderCard.push(
         <div
@@ -65,7 +86,7 @@ function Slider({ Collection }) {
             <img
               loading="lazy"
               className="slider-image"
-              src="https://scontent.fqfd1-1.fna.fbcdn.net/v/t1.6435-9/82261670_1485070874965030_3627461333034729472_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=uJctqSN0-rIAX9AthOq&_nc_ht=scontent.fqfd1-1.fna&oh=00_AfAujafa_CFOOXNy3XOEUfvw1VQcDt13sG2h6vpMdzKSgA&oe=6458F6D2"
+              src={Url}
               alt="error"
             ></img>
             <div className="bottom-card-content">
@@ -303,19 +324,21 @@ function Slider({ Collection }) {
       );
     }
   });
+  
+    if (value) {
+    
+      return (
+        <section>
+          <div className="swiper mySwiper">
+            <div className="swiper-wrapper">{sliderCard}</div>
+          </div>
+          <div className="swiper-button-next" />
+          <div className="swiper-button-prev" />
+          <div className="swiper-pagination" />
+        </section>
+      );
+    }
 
-  if (value) {
-    return (
-      <section>
-        <div className="swiper mySwiper">
-          <div className="swiper-wrapper">{sliderCard}</div>
-        </div>
-        <div className="swiper-button-next" />
-        <div className="swiper-button-prev" />
-        <div className="swiper-pagination" />
-      </section>
-    );
-  }
 }
 
 export default Slider;

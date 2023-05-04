@@ -210,7 +210,7 @@ const Topcloud = ({ height, PrID, KinID, HasAnImg }) => {
 
                 <li>
                   <img src={require("./assets/icons/envelope.png")} alt="" />
-                  <NavLink to="#">
+                  <NavLink to={user.displayName === null ? `/Kin-ChatRoom/${KinID}`:"Pr-ChatRoom"}>
                     {i18n.language === "en" && "Inbox"}{" "}
                     {i18n.language === "ar" && "صندوق الوارد"}{" "}
                     {i18n.language === "fr" && "Boîte de réception"}

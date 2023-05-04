@@ -183,6 +183,7 @@ const KinHome = () => {
     doc(db, "kindergarten Information", kinId)
   );
 
+
   let [Url, seturl] = useState(
     value
       ? value.data().HasAnImg === true
@@ -282,6 +283,7 @@ const KinHome = () => {
       </div>
     );
   }
+  
 
   if (errorr) {
     return (
@@ -291,6 +293,22 @@ const KinHome = () => {
     );
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   if (user.displayName === null) {
     if (user.emailVerified) {
       return (

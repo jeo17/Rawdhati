@@ -9,6 +9,7 @@ import PrHome from "./Home/PrHome"
 import KinHome from './Home/KinHome';
 import Visitor from "./VisitorRed"
 import Page404 from "./Page_404";
+import KinChat from "./Home/kin component/KinChat";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -57,6 +58,11 @@ function App() {
       path: "/kin_home/:kinId",
       element: <KinHome />,
     },
+    {
+      path: "/Kin-ChatRoom/:kinId",
+      element: <KinChat />,
+    },
+    
  
   
   ]);

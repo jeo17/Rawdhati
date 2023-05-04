@@ -1,7 +1,7 @@
 import React from "react";
 import { db } from "../../firebase/config";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { collection, query, where ,doc, updateDoc,deleteDoc } from "firebase/firestore";
+import { collection, query, where ,doc, updateDoc,deleteDoc,setDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import "./cards.css";
 import IosDialog from "./Ios-dialog";
@@ -109,6 +109,7 @@ const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Addr
                               return(
                                 <span key={index}>{item} </span>
                               )
+                            
                             })} </div>
                             <div><label>Guardian Email:</label> {item.data().Guardian_Email} </div>
                             <div><label>Guardian Relationship:</label> {item.data().Guardian_Relationship} </div>
@@ -156,6 +157,14 @@ const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Addr
 
                               await updateDoc(doc(db, "Registration Requests", item.data().User_id), {
                                 Request_State: "accept",
+                              });
+
+                              await setDoc(doc(db, "Can Chat With", item.data().User_id), {
+                                Parents_User_Name:item.data().User_name,
+                                Child_Name:item.data().Child_Name,
+                                Parents_Id: item.data().User_id,
+                                kindergarten_Id:kinId,
+                                
                               });
 
                             }}>Accept </button>

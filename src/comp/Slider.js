@@ -86,7 +86,7 @@ function Slider({ Collection }) {
             <img
               loading="lazy"
               className="slider-image"
-              src={Url}
+              src="https://scontent.fqfd1-1.fna.fbcdn.net/v/t1.6435-9/82261670_1485070874965030_3627461333034729472_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=uJctqSN0-rIAX9AthOq&_nc_ht=scontent.fqfd1-1.fna&oh=00_AfAujafa_CFOOXNy3XOEUfvw1VQcDt13sG2h6vpMdzKSgA&oe=6458F6D2"
               alt="error"
             ></img>
             <div className="bottom-card-content">

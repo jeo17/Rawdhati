@@ -12,6 +12,7 @@ const KinChat = () => {
 
   const [TheName, setTheName] = useState("");
 
+
   const [value, loading, error] = useCollection(
     query(
       collection(db, "Can Chat With"),
@@ -35,7 +36,7 @@ const KinChat = () => {
     <div id="KinChat-container">
       <aside>
         <header>
-          <input type="text" placeholder="search" />
+          <input type="text" placeholder="search"/>
         </header>
 
         <ul>

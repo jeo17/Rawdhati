@@ -1,7 +1,19 @@
 import React from 'react';
 import MainHeader from './Main-Header';
+import { useState } from "react";
+import { doc,setDoc } from "firebase/firestore";
+import { db } from '../../../firebase/config';
+import { useParams } from "react-router-dom";
 
 const MainList = (UserName) => {
+
+
+
+
+
+    let { kinId } = useParams();
+    const [MsgContant, setMsgContant] = useState(null);
+
 
     if (UserName.UserName !=="") {
 
@@ -88,8 +100,25 @@ const MainList = (UserName) => {
                 src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png"
                 alt=""
               />
-              <textarea placeholder="Type your message" defaultValue={""} />
-              <a href="#">Send</a>
+              <textarea placeholder="Type your message" defaultValue={""}   onChange={(eo) => {
+            setMsgContant(eo.target.value)
+          }}/>
+              <button  className="chat-send-button" onClick={async (eo) => {
+
+
+                              const d = new Date();
+                              let time = d.getTime();
+
+
+                            await setDoc(doc(db, "Messages" , UserName.UserName), {
+                                contant: MsgContant, 
+                                createdAt:time,
+                                sender: "Rawdha",
+                                RawdhaID: kinId, 
+                            });
+                            setMsgContant(null)
+              
+              }}>Send</button>
             </footer>
           </main>
         );

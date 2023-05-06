@@ -1,15 +1,16 @@
 
 #KinChat-container{
 	width:100%;
-	background:#eff3f7;
+    background: linear-gradient(120deg, #17bebb, #f0a6ca);
 	margin:0 auto;
 	font-size:0;
 	border-radius:5px;
+	font-family: 'Fredoka One', cursive;
 }
 #KinChat-container aside{
 	width:22%;
 	height:100vh;
-	background-color:#3b3e49;
+    background-color: rgba(255, 255, 255, 0.08);
 	display:inline-block;
 	font-size:15px;
 	vertical-align:top;
@@ -26,12 +27,16 @@
 }
 #KinChat-container aside input{
 	height:50px;
+	width: 150px;
 	line-height:50px;
 	padding:0 50px 0 20px;
-	background-color:#5e616a;
-	border:none;
+	background-color:transparent;
+	border-top:none;
+	border-right: none;
+	border-left: none;
+	border-bottom-color:rgba(255, 255, 255, 0.9) ;
 	border-radius:3px;
-	color:#fff;
+	color:rgba(255, 255, 255, 0.9);
 	background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_search.png);
 	background-repeat:no-repeat;
 	background-position:170px;
@@ -44,7 +49,7 @@
 	padding-left:0;
 	margin:0;
 	list-style-type:none;
-	overflow-y:scroll;
+	overflow-y:auto;
 	height:75vh;
 }
 #KinChat-container aside li{
@@ -126,7 +131,7 @@
 }
 #KinChat-container main header h2{
 	font-size:16px;
-	margin-bottom:5px;
+	color: rgba(255, 255, 255, 0.9);
 }
 #KinChat-container main header h3{
 	font-size:14px;
@@ -152,7 +157,7 @@
 	font-weight:normal;
 }
 #KinChat-container #chat h3{
-	color:#bbb;
+	color:#656565;
 }
 #KinChat-container #chat .entete{
 	margin-bottom:5px;
@@ -201,7 +206,7 @@
 	width:100%;
 	border-radius:3px;
 	font-size:13px;
-	margin-bottom:13px;
+    margin: 0 12px;
 }
 #KinChat-container main footer textarea::placeholder{
 	color:#ddd;

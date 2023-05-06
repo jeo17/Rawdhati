@@ -126,7 +126,7 @@ const MainList = (UserName) => {
     }else{
         return(
          <main >
-            <h2 style={{textAlign:"center",position:"absolute",bottom:"50%",left:"50%"}}>
+            <h2 style={{textAlign:"center",position:"absolute",bottom:"50%",left:"50%",color:"rgba(255, 255, 255, 0.9)"}}>
                 select a user to chat with ..
             </h2>
          </main>

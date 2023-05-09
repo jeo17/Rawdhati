@@ -164,6 +164,7 @@ const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Addr
                                 Child_Name:item.data().Child_Name,
                                 Parents_Id: item.data().User_id,
                                 kindergarten_Id:kinId,
+                                kindergarten_Name:kindergarten_Name,
                                 
                               });
 

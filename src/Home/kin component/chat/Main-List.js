@@ -1,11 +1,20 @@
 import React from 'react';
 import MainHeader from './Main-Header';
 import { useState } from "react";
-import { doc,setDoc } from "firebase/firestore";
+import { useDocument } from "react-firebase-hooks/firestore";
+import { doc,updateDoc } from "firebase/firestore";
 import { db } from '../../../firebase/config';
 import { useParams } from "react-router-dom";
 
+
 const MainList = (UserName) => {
+
+
+
+
+ const [value, loading, error] = useDocument(doc(db,"Messages", UserName.UserName));
+
+
 
 
 
@@ -15,7 +24,18 @@ const MainList = (UserName) => {
     const [MsgContant, setMsgContant] = useState(null);
 
 
-    if (UserName.UserName !=="") {
+    const [MsgNumber, setMsgNumber] = useState(null);
+
+
+
+
+
+
+
+    if (UserName.UserName !=="null") {
+
+      if (value) {
+            
 
 
 
@@ -100,7 +120,9 @@ const MainList = (UserName) => {
                 src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png"
                 alt=""
               />
-              <textarea placeholder="Type your message" defaultValue={""}   onChange={(eo) => {
+              <textarea placeholder="Type your message" value={MsgContant} onClick={(eo) => {
+                setMsgNumber(Object.keys(value.data()).length)
+              }}   onChange={(eo) => {
             setMsgContant(eo.target.value)
           }}/>
               <button  className="chat-send-button" onClick={async (eo) => {
@@ -109,20 +131,24 @@ const MainList = (UserName) => {
                               const d = new Date();
                               let time = d.getTime();
 
+                              await updateDoc(doc(db, "Messages", UserName.UserName), {
+                                [`Message ${MsgNumber+1}`]:[kinId,MsgContant,time,"Rawdha"],
+                              });
 
-                            await setDoc(doc(db, "Messages" , UserName.UserName), {
+
+                          /*  await setDoc(doc(db, "Messages" , UserName.UserName), {
                                 contant: MsgContant, 
                                 createdAt:time,
                                 sender: "Rawdha",
                                 RawdhaID: kinId, 
-                            });
-                            setMsgContant(null)
+                            });*/
+                            setMsgContant("")
               
               }}>Send</button>
             </footer>
           </main>
         );
-    
+      }
     }else{
         return(
          <main >

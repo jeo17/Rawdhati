@@ -10,7 +10,7 @@ import { useState } from "react";
 const KinChat = () => {
   let { kinId } = useParams();
 
-  const [TheName, setTheName] = useState("");
+  const [TheName, setTheName] = useState("null");
 
 
   const [value, loading, error] = useCollection(

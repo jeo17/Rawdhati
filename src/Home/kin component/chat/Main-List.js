@@ -15,21 +15,16 @@ const MainList = (UserName) => {
  const [value, loading, error] = useDocument(doc(db,"Messages", UserName.UserName));
 
 
+let arr= []
+let arr2= []
 
 
-if (value) {
-  console.log(value.data())
-  
-}
 
 
     let { kinId } = useParams();
     const [MsgContant, setMsgContant] = useState(null);
 
-
     const [MsgNumber, setMsgNumber] = useState(null);
-
-
 
 
 
@@ -41,6 +36,50 @@ if (value) {
             
 
 
+                       
+            Object.entries(value.data()).map((item) => {
+              item.map((item2,index) => {         
+                if (index === 1) {
+
+                  if(arr.includes(item2)===false){
+                    arr.push([item2])
+                  }
+                 
+                }               
+              })
+
+            })
+
+
+        
+
+            for (let index = 0; index < arr.length; index++) {
+              let temp;
+              let min =  arr[index][0][2];
+              let minIndex =  arr[index][0];
+
+             
+         for (let j = index+1; j < arr.length; j++) {
+
+
+           if (arr[j][0][2] < min) {
+            min=arr[j][0][2];
+             if (min !== arr[index][0][2]) {
+              temp = arr[index][0];
+              arr[index][0] = arr[j][0];
+              arr[j][0] = temp;
+             }
+           }
+           
+          }   
+             
+
+
+ 
+          }
+
+            
+
 
         return (
 
@@ -48,71 +87,51 @@ if (value) {
            <MainHeader UserName={UserName}/> 
 
             <ul id="chat">
-              <li className="you">
-                <div className="entete">
-                  <span className="status green" />
-                  <h2>Vincent</h2>
-                  <h3>10:12AM, Today</h3>
+              {arr.map((item) => {
+      if (item[0][3]==="parents") {
+        return(
+          
+            
+          
+          <li className="you">
+          <div className="entete">
+            <span className="status green" />
+            <h2>Vincent</h2>
+            <h3>10:12AM, Today</h3>
+          </div>
+          <div className="triangle" />
+          
+
+
+               <div className="message">
+                 {item[0][1]}
+              </div>
+   
+        </li>
+        )}else{
+          return(
+            <li className="me">
+            <div className="entete">
+              <span className="status green" />
+              <h2>Vincent</h2>
+              <h3>10:12AM, Today</h3>
+            </div>
+            <div className="triangle" />
+            
+  
+  
+                 <div className="message">
+                   {item[0][1]}
                 </div>
-                <div className="triangle" />
-                <div className="message">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                  commodo ligula eget dolor.
-                </div>
-              </li>
-              <li className="me">
-                <div className="entete">
-                  <h3>10:12AM, Today</h3>
-                  <h2>Vincent</h2>
-                  <span className="status blue" />
-                </div>
-                <div className="message">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                  commodo ligula eget dolor.
-                </div>
-              </li>
-              <li className="me">
-                <div className="entete">
-                  <h3>10:12AM, Today</h3>
-                  <h2>Vincent</h2>
-                  <span className="status blue" />
-                </div>
+     
+          </li>
+          )
         
-                <div className="message">OK</div>
-              </li>
-              <li className="you">
-                <div className="entete">
-                  <span className="status green" />
-                  <h2>Vincent</h2>
-                  <h3>10:12AM, Today</h3>
-                </div>
-                <div className="triangle" />
-                <div className="message">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                  commodo ligula eget dolor.
-                </div>
-              </li>
-              <li className="me">
-                <div className="entete">
-                  <h3>10:12AM, Today</h3>
-                  <h2>Vincent</h2>
-                  <span className="status blue" />
-                </div>
-        
-                <div className="message">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                  commodo ligula eget dolor.
-                </div>
-              </li>
-              <li className="me">
-                <div className="entete">
-                  <h3>10:12AM, Today</h3>
-                  <h2>Vincent</h2>
-                  <span className="status blue" />
-                </div>
-        
-                <div className="message">OK</div>
-              </li>
+        }
+
+})}
+
+
             </ul>
             <footer>
               <img
@@ -151,6 +170,7 @@ if (value) {
             </footer>
           </main>
         );
+
       }
     }else{
         return(

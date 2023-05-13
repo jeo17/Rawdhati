@@ -111,7 +111,7 @@ const Main = (kindergarten_Id) => {
               let time = d.getTime();
 
               await updateDoc(doc(db, "Messages", prId), {
-                [`Message ${MsgNumber + 1}`]: [
+                [`Message${MsgNumber + 1}`]: [
                   kindergarten_Id.kindergarten_Id,
                   MsgContant,
                   time,

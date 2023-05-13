@@ -17,7 +17,10 @@ const MainList = (UserName) => {
 
 
 
-
+if (value) {
+  console.log(value.data())
+  
+}
 
 
     let { kinId } = useParams();
@@ -132,7 +135,7 @@ const MainList = (UserName) => {
                               let time = d.getTime();
 
                               await updateDoc(doc(db, "Messages", UserName.UserName), {
-                                [`Message ${MsgNumber+1}`]:[kinId,MsgContant,time,"Rawdha"],
+                                [`Message${MsgNumber+1}`]:[kinId,MsgContant,time,"Rawdha"],
                               });
 
 

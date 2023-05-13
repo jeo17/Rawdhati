@@ -169,7 +169,7 @@ const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Addr
                               });
 
                                 await setDoc(doc(db, "Messages" , item.data().User_id), {
-                                  "Message 1":[kinId,`Welcome ${item.data().User_name}, From now on you can chat with us !`,0,"Rawdha"]
+                                  "Message1":[kinId,`Welcome ${item.data().User_name}, From now on you can chat with us !`,0,"Rawdha"]
 
                             });
 

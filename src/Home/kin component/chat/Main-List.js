@@ -15,7 +15,7 @@ const MainList = (UserName) => {
   let arr2 = [];
 
   let { kinId } = useParams();
-  const [MsgContant, setMsgContant] = useState(null);
+  const [MsgContant, setMsgContant] = useState("");
 
   const [MsgNumber, setMsgNumber] = useState(null);
 
@@ -59,7 +59,7 @@ const MainList = (UserName) => {
                   <li className="you">
                     <div className="entete">
                       <span className="status green" />
-                      <h2>Vincent</h2>
+                      <h2>{UserName.HisName}</h2>
                       <h3>10:12AM, Today</h3>
                     </div>
                     <div className="triangle" />
@@ -72,7 +72,7 @@ const MainList = (UserName) => {
                   <li className="me">
                     <div className="entete">
                       <span className="status green" />
-                      <h2>Vincent</h2>
+                      <h2>El Rawdha</h2>
                       <h3>10:12AM, Today</h3>
                     </div>
                     <div className="triangle" />
@@ -117,12 +117,6 @@ const MainList = (UserName) => {
                   ],
                 });
 
-                /*  await setDoc(doc(db, "Messages" , UserName.UserName), {
-                                contant: MsgContant, 
-                                createdAt:time,
-                                sender: "Rawdha",
-                                RawdhaID: kinId, 
-                            });*/
                 setMsgContant("");
               }}
             >

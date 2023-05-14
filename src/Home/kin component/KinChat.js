@@ -10,8 +10,8 @@ import { useState } from "react";
 const KinChat = () => {
   let { kinId } = useParams();
 
+  const [TheId, setTheId] = useState("null");
   const [TheName, setTheName] = useState("null");
-
 
   const [value, loading, error] = useCollection(
     query(
@@ -19,6 +19,7 @@ const KinChat = () => {
       where("kindergarten_Id", "==", kinId)
     )
   );
+
 
   if (loading) {
     return (
@@ -36,7 +37,7 @@ const KinChat = () => {
     <div id="KinChat-container">
       <aside>
         <header>
-          <input type="text" placeholder="search"/>
+          <input type="text" placeholder="search" />
         </header>
 
         <ul>
@@ -46,30 +47,40 @@ const KinChat = () => {
                 <li
                   key={item.data().Parents_User_Name}
                   data-name={item.data().Parents_Id}
+                  data-UserName={item.data().Parents_User_Name}
                   onClick={(eo) => {
-                    setTheName(eo.target.getAttribute("data-name"));
+                    setTheId(eo.target.getAttribute("data-name"));
+                    setTheName(eo.target.getAttribute("data-UserName"));
+
                   }}
                 >
                   <img
                     src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"
                     alt=""
                     data-name={item.data().Parents_Id}
+                    data-UserName={item.data().Parents_User_Name}
                   />
-                  <div data-name={item.data().Parents_Id}>
-                    <h2 data-name={item.data().Parents_Id}>
+                  <div data-name={item.data().Parents_Id}
+                  data-UserName={item.data().Parents_User_Name}>
+                    <h2 data-name={item.data().Parents_Id}
+                    data-UserName={item.data().Parents_User_Name}>
                       {item.data().Parents_User_Name}
                     </h2>
-                    <h3 data-name={item.data().Parents_Id}>
+                    <h3 data-name={item.data().Parents_Id}
+                    data-UserName={item.data().Parents_User_Name}>
                       <span
                         className="status green"
                         data-name={item.data().Parents_Id}
+                        data-UserName={item.data().Parents_User_Name}
                       />
-                      <span data-name={item.data().Parents_Id}>
+                      <span data-name={item.data().Parents_Id}
+                      data-UserName={item.data().Parents_User_Name}>
                         Parents of{" "}
-                        {item.data().Child_Name.map((item2,index) => {
+                        {item.data().Child_Name.map((item2, index) => {
                           return (
                             <span
-                             key={index}
+                              key={index}
+                              data-UserName={item.data().Parents_User_Name}
                               data-name={item.data().Parents_Id}
                               className="parents-of"
                             >
@@ -88,7 +99,7 @@ const KinChat = () => {
           )}
         </ul>
       </aside>
-      <MainList  UserName={TheName}/>
+      <MainList UserName={TheId} HisName={TheName} /*MyName={value.docs[0].data().kindergarten_Name}*/ />
     </div>
   );
 };

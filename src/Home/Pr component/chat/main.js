@@ -57,7 +57,7 @@ const Main = (kindergarten_Id) => {
                   <li className="me">
                     <div className="entete">
                       <span className="status green" />
-                      <h2>Vincent</h2>
+                      <h2>Me</h2>
                       <h3>10:12AM, Today</h3>
                     </div>
                     <div className="triangle" />
@@ -70,7 +70,7 @@ const Main = (kindergarten_Id) => {
                   <li className="you">
                     <div className="entete">
                       <span className="status green" />
-                      <h2>Vincent</h2>
+                      <h2>{kindergarten_Id.kindergarten_Name}</h2>
                       <h3>10:12AM, Today</h3>
                     </div>
                     <div className="triangle" />

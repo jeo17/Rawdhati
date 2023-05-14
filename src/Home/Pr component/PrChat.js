@@ -28,7 +28,7 @@ const PrChat = () => {
             <h2>{value.data().kindergarten_Name}</h2>
           </div>
         </header>
-       <Main  kindergarten_Id={value.data().kindergarten_Id}/>
+       <Main  kindergarten_Id={value.data().kindergarten_Id} kindergarten_Name={value.data().kindergarten_Name}/>
 
       </main>
       </div>

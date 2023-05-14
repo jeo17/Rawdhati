@@ -48,6 +48,8 @@ const PrHome = () => {
 
   const { i18n } = useTranslation();
 
+
+  const [user, loading, error] = useAuthState(auth);
   let { prId } = useParams();
 
   const [value, loadingdata, errordata] = useDocument(
@@ -56,6 +58,8 @@ const PrHome = () => {
 
 
   let [Url, seturl] = useState(    
+    user?
+    user.displayName !== null ?
     value
     ?  value.data().HasAnImg === true 
     ? getDownloadURL(ref(storage, `/Parents Images/${prId}`))
@@ -64,7 +68,8 @@ const PrHome = () => {
   })
   .catch((error) => {
   console.log(error.message)
-  }) : null : "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png" );
+  }) : null : "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-512.png"
+  :null:null );
 
   const [SaveProfilePic, setSaveProfilePic] = useState("Save 📥");
   let [img, setimg] = useState(null);
@@ -97,7 +102,7 @@ const PrHome = () => {
   
 
 
-  const [user, loading, error] = useAuthState(auth);
+
 
   const [Bio, setBio] = useState(undefined);
   let [UpdateBio, setUpdateBio] = useState("none");

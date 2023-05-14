@@ -178,6 +178,8 @@ const KinHome = () => {
     }
   };
 
+  const [user, loading, error] = useAuthState(auth);
+
   let { kinId } = useParams();
   const [value, loadingg, errorr] = useDocument(
     doc(db, "kindergarten Information", kinId)
@@ -185,6 +187,9 @@ const KinHome = () => {
 
 
   let [Url, seturl] = useState(
+
+    user?
+    user.displayName === null ?
     value
       ? value.data().HasAnImg === true
         ? getDownloadURL(ref(storage, `/Kindergartens Images/${kinId}`))
@@ -196,7 +201,7 @@ const KinHome = () => {
             })
         : null
       : "https://thumbs.dreamstime.com/b/kindergarten-facade-vector-illustration-preschool-building-front-view-exterior-landscape-background-education-nursery-school-150658496.jpg"
-  );
+  :null:null);
 
   
   const [SaveProfilePic, setSaveProfilePic] = useState("Save 📥");
@@ -246,7 +251,7 @@ const KinHome = () => {
 
   let [WhichMedia, setWhichMedia] = useState(undefined);
 
-  const [user, loading, error] = useAuthState(auth);
+  
 
   const navigate = useNavigate();
 

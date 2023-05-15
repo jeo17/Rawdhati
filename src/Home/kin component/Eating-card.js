@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const MessagesCard = () => {
+const EatingCard = () => {
     const { t, i18n } = useTranslation();
 
     return (
@@ -12,10 +12,10 @@ const MessagesCard = () => {
         <div className="card card3">
           <div className="card_content">
             <h2 className="card_title">
-                {i18n.language ==="en" && "Messages"}
-                {i18n.language ==="ar" && "رسائل"}
-                {i18n.language ==="fr" && "Messages"}
-              <span className="material-symbols-outlined">chat</span>
+                {i18n.language ==="en" && "Eating Schedule"}
+                {i18n.language ==="ar" && "جدول الأكل"}
+                {i18n.language ==="fr" && "Horaire Des Repas"}
+              <span className="material-symbols-outlined">calendar_month</span>
             </h2>
             <div className="card_text">
               <p>.................</p>
@@ -26,4 +26,4 @@ const MessagesCard = () => {
     );
 }
 
-export default MessagesCard;
+export default EatingCard;

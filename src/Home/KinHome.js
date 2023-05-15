@@ -7,7 +7,7 @@ import Page404 from "../Page_404";
 import RegistrationCard from "./kin component/Registration-card";
 import ClassCard from "./kin component/Class-card";
 import ActivitieCard from "./kin component/Activitie-card";
-import MessagesCard from "./kin component/Messages-card";
+import EatingCard from "./kin component/Eating-card";
 import { auth } from "../firebase/config";
 import { db } from "../firebase/config";
 import { storage } from "../firebase/config";
@@ -1273,7 +1273,7 @@ const KinHome = () => {
 
                 <ActivitieCard />
 
-                <MessagesCard />
+                <EatingCard />
 
                 <RegistrationCard
                   kindergarten_Name={

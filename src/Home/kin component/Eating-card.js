@@ -25,9 +25,6 @@ const EatingCard = (EatingTable) => {
 
   return (
     <li className="cards_item">
-      <div className="indicator">
-        <div className="noti_count">0</div>
-      </div>
       <div className="card card3">
         <div className="card_content">
           <h2 className="card_title">

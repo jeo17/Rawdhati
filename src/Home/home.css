@@ -879,6 +879,12 @@ style when we hover the profile pic
   border-color: #fff transparent transparent transparent;
   
 }
+
+.save-menu .lds-ring div {
+  border-color: #272626 transparent transparent transparent;
+}
+
+
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;
 }

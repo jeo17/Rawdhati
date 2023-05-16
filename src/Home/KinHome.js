@@ -165,6 +165,7 @@ const KinHome = () => {
           kindergarten_Address: address,
           kindergarten_Activites: act,
           kindergarten_Price: amount,
+          kindergarten_Eating_Table: ["","","","","","",""],
           kindergarten_id: kinId,
           kindergarten_Bio: null,
           kindergarten_facebook: null,
@@ -1271,7 +1272,7 @@ const KinHome = () => {
 
                 <ActivitieCard />
 
-                <EatingCard />
+                <EatingCard  EatingTable={value.data().kindergarten_Eating_Table}/>
 
                 <RegistrationCard
                   kindergarten_Name={

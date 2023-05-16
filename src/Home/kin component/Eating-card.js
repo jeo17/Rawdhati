@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 const EatingCard = () => {
   const { t, i18n } = useTranslation();
   const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+  
 
   return (
     <li className="cards_item">
@@ -34,18 +35,20 @@ const EatingCard = () => {
                     alt=""
                   />
                   {item}:
-                       <input  type="text"/>
+                       <input  type="text" name={item} onChange={(eo) => {
+                        document.querySelector(".save-menu button").style.display = "block";
+                        if (eo.target.name === "Sunday") {
+                          console.log("true")
+                        }
+                       }}/>
                 </li>
                 )
               })}
-
-
-
-
-
-
-
             </ol>
+            <div className="save-menu">
+              <button> Save Changes 📥</button>
+            </div>
+
           </div>
         </div>
       </div>

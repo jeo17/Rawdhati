@@ -219,8 +219,13 @@ const KinHome = () => {
     );
     await uploadBytes(imageref, img)
       .then(() => {
+        setSaveProfilePic("Done ✓");
+
+        setTimeout(() => {
         document.querySelector(".save-profile-pic").style.display = "none";
         setSaveProfilePic("Save 📥");
+        }, 1000);
+
 
            updateDoc(doc(db, "kindergarten Information", user.uid), {
             HasAnImg: true,

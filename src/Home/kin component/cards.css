@@ -8,7 +8,7 @@
 }
 
 .Registration-list-item img{
-    max-width: 20px;
+    max-width: 23px;
     margin-right: 18px;
     opacity: 1;
     transition: 0.5s;
@@ -50,9 +50,13 @@ background-color: gray;
 }
 
 .class-list-item img{
-    max-width: 20px;
+    max-width: 23px;
     margin-right: 18px;
-    opacity: 1;
+    transition: 0.5s;
+}
+.card3 .class-list-item img{
+    max-width: 32px;
+    margin-right: 18px;
     transition: 0.5s;
 }
 
@@ -88,5 +92,16 @@ background-color: gray;
     border-bottom: 1px solid #45494C;
     font-size: 14px;
     padding: 3px 0;
+    font-family: 'Fredoka One', cursive;
+}
+
+.card3 .card_text input{
+    margin-left: 10px;
+    width: 190px;
+    background: transparent;
+    border: 0;
+    background-color: rgba(226, 248, 255, 0.8 );
+    outline: 0;
+    font-size: 16px;
     font-family: 'Fredoka One', cursive;
 }

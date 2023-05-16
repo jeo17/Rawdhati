@@ -156,9 +156,7 @@ const KinHome = () => {
     eo.preventDefault();
     if (amount < 1000) {
       eo.target.disabled = true;
-      console.log("aaaa");
     } else {
-      console.log("bbbb");
       Next();
       setTimeout(async () => {
 

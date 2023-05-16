@@ -49,6 +49,10 @@ background-color: gray;
     position: relative;
 }
 
+
+.card3 .class-list-item{
+    font-weight: 600;
+}
 .class-list-item img{
     max-width: 23px;
     margin-right: 18px;

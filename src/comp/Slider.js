@@ -86,7 +86,7 @@ function Slider({ Collection }) {
             <img
               loading="lazy"
               className="slider-image"
-              src="https://scontent.fqfd1-1.fna.fbcdn.net/v/t1.6435-9/82261670_1485070874965030_3627461333034729472_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=cdbe9c&_nc_ohc=uJctqSN0-rIAX9AthOq&_nc_ht=scontent.fqfd1-1.fna&oh=00_AfAujafa_CFOOXNy3XOEUfvw1VQcDt13sG2h6vpMdzKSgA&oe=6458F6D2"
+              src="https://pentagonwebcontent.blob.core.windows.net/completed-photos/24635/8394/Body/playground-safety-surfacing.JPG"
               alt="error"
             ></img>
             <div className="bottom-card-content">
@@ -164,8 +164,8 @@ function Slider({ Collection }) {
           <Profile id={item.data().kindergarten_id}>
             <div className="top-container">
               <img
-                style={{ width: "300px", height: "90px" }}
-                src={Url}
+                style={{ width: "600px", height: "90px" }}
+                src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgZ_LnvwJhy_ddUmHR_UwYk1jixY8fPm7bKPNwcZbDRb4-qyNMopFgmwxoSj4WrruOlw&usqp=CAU"}
                 className="img-fluid profile-image"
                 width={70}
                 alt="sorry"
@@ -195,7 +195,7 @@ function Slider({ Collection }) {
                 <span className="recent-orders">
                   {i18n.language === "en" && "Address:"}
                   {i18n.language === "ar" && "العنوان:"}
-                  {i18n.language === "fr" && "Adresse:"}{" "}
+                  {i18n.language === "fr" && "Adresse:"}
                 </span>
                 <span className="wishlist">
                   {item.data().kindergarten_Address !== undefined ? (
@@ -217,7 +217,7 @@ function Slider({ Collection }) {
                 <span className="recent-orders">
                   {i18n.language === "en" && "Activities:"}
                   {i18n.language === "ar" && "الأنشطة:"}
-                  {i18n.language === "fr" && "Activités:"}{" "}
+                  {i18n.language === "fr" && "Activités:"}
                 </span>
                 <span className="wishlist">
                   {item.data().kindergarten_Activites.map((item) => {
@@ -230,6 +230,93 @@ function Slider({ Collection }) {
                 </span>
               </div>
 
+
+
+
+
+
+
+
+              <div
+                className="recent-border mt-4"
+                style={{
+                  borderLeft: i18n.language === "ar" ? "none" : null,
+                  borderRight:
+                    i18n.language === "ar" ? "2px solid #5957f9" : null,
+                }}
+              >
+                <span className="recent-orders">
+                  {i18n.language === "en" && "Eating Schedule:"}
+                  {i18n.language === "ar" && "جدول الأكل:"}
+                  {i18n.language === "fr" && "Horaire Des Repas:"}
+                </span>
+                <span className="wishlist">
+
+
+                <table class="styled-table">
+                 <thead>
+                      <tr>
+                          <th>Days</th>
+                         <th>Sunday</th>
+                         <th>Monday</th>
+                          <th>Tuesday</th>
+                         <th>Wednesday</th>
+                          <th>Thursday</th>
+                         <th>Friday</th>
+                         <th>Saturday</th>
+                     </tr>
+                 </thead>
+
+
+                 <tbody>
+                     <tr>
+
+                     <td style={{ marginLeft: "5px",color:"#5957f9" }} key={item} >
+                        Food
+                      </td>
+
+                     {item.data().kindergarten_Eating_Table.map((item) => {
+                    return (
+
+                      <td style={{ marginLeft: "5px" }} key={item}>
+                        {item}
+                      </td>
+                    );
+                  })}
+
+                     </tr>
+
+                 </tbody>
+
+
+
+
+
+
+                 </table>
+
+
+
+
+                </span>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
               <div
                 className="recent-border mt-4"
                 style={{
@@ -241,7 +328,7 @@ function Slider({ Collection }) {
                 <span className="recent-orders">
                   {i18n.language === "en" && "Price"}
                   {i18n.language === "ar" && "السعر:"}
-                  {i18n.language === "fr" && "Prix:"}{" "}
+                  {i18n.language === "fr" && "Prix:"}
                 </span>
                 <span className="wishlist">
                   {item.data().kindergarten_Price !== undefined ? (
@@ -266,8 +353,8 @@ function Slider({ Collection }) {
                   {i18n.language === "fr" && "Bio:"}
                 </span>
                 <span className="wishlist">
-                  {" "}
-                  {item.data().kindergarten_Bio}{" "}
+                  
+                  {item.data().kindergarten_Bio}
                 </span>
               </div>
 
@@ -292,7 +379,7 @@ function Slider({ Collection }) {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        <i className="gg-facebook" />{" "}
+                        <i className="gg-facebook" />
                       </a>
                     )}
 

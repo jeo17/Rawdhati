@@ -273,3 +273,43 @@ section .slider-card .slider-image{
 :root{
   --swiper-theme-color: #7d2ae8 !important;
 }
+
+
+
+/****************************
+table inside the kin profile
+****************************/
+
+
+
+.styled-table {
+  transform: scale(0.89);
+  font-family: 'Fredoka One', cursive;
+  border-collapse: collapse;
+  margin: 5px 0;
+  font-size: 0.9em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead{
+  border-radius: 25px;
+}
+.styled-table thead tr {
+  background-color: #5957f9;
+  color: #ffffff;
+  text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.styled-table tbody tr .active-row {
+  font-weight: bold;
+  color: #009879;
+}
+.styled-table tbody tr td:hover{
+  font-weight: bold;
+  color: #009879;
+}

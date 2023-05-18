@@ -177,6 +177,9 @@ const KinHome = () => {
     }
   };
 
+
+
+
   const [user, loading, error] = useAuthState(auth);
 
   let { kinId } = useParams();
@@ -255,7 +258,6 @@ const KinHome = () => {
 
   let [WhichMedia, setWhichMedia] = useState(undefined);
 
-  
 
   const navigate = useNavigate();
 
@@ -301,16 +303,6 @@ const KinHome = () => {
       </>
     );
   }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -884,7 +876,9 @@ const KinHome = () => {
                             className="nextStep"
                             onClick={(eo) => {
                               eo.preventDefault();
-                              storeIMG();
+                              if (img !==null) {
+                                storeIMG();
+                              }
                               Next();
                             }}
                           >

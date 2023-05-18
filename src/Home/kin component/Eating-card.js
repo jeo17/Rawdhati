@@ -51,7 +51,7 @@ const EatingCard = (EatingTable) => {
                     <input
                       type="text"
                       name={item}
-                      defaultValue={ EatingTable.EatingTable[index]}
+                      defaultValue={EatingTable.EatingTable!==undefined?  EatingTable.EatingTable[index]:""}
                       onChange={(eo) => {
                         document.querySelector(
                           ".save-menu button"

@@ -304,11 +304,6 @@ const KinHome = () => {
     );
   }
 
-
-
-
-
-
   
   if (user.displayName === null) {
     if (user.emailVerified) {

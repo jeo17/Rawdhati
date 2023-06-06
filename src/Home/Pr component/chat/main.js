@@ -53,12 +53,17 @@ const Main = (kindergarten_Id) => {
         <ul id="chat">
         {arr.map((item) => {
               if (item[0][3] === "parents") {
+
+
+                console.log(  new Date(item[0][2]).getUTCMinutes()  )
+
+
                 return (
                   <li className="me">
                     <div className="entete">
                       <span className="status green" />
                       <h2>Me</h2>
-                      <h3>10:12AM, Today</h3>
+                      <h3>{new Date(item[0][2]).getHours().toString().padStart(2, '0')}:{new Date(item[0][2]).getUTCMinutes().toString().padStart(2, '0')}, Today</h3>
                     </div>
                     <div className="triangle" />
 
@@ -71,7 +76,7 @@ const Main = (kindergarten_Id) => {
                     <div className="entete">
                       <span className="status green" />
                       <h2>{kindergarten_Id.kindergarten_Name}</h2>
-                      <h3>10:12AM, Today</h3>
+                      <h3>{new Date(item[0][2]).getHours().toString().padStart(2, '0')}:{new Date(item[0][2]).getUTCMinutes().toString().padStart(2, '0')}, Today</h3>
                     </div>
                     <div className="triangle" />
 

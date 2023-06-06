@@ -63,7 +63,7 @@ const Main = (kindergarten_Id) => {
                     <div className="entete">
                       <span className="status green" />
                       <h2>Me</h2>
-                      <h3>{new Date(item[0][2]).getHours().toString().padStart(2, '0')}:{new Date(item[0][2]).getUTCMinutes().toString().padStart(2, '0')}, Today</h3>
+                      <h3>{new Date(item[0][2]).getHours().toString().padStart(2, '0')}:{new Date(item[0][2]).getUTCMinutes().toString().padStart(2, '0')}, {new Date(item[0][2]).getFullYear()}/{Number(new Date(item[0][2]).getMonth().toString().padStart(2, '0'))+1}/{new Date(item[0][2]).getDate().toString().padStart(2, '0')}</h3>
                     </div>
                     <div className="triangle" />
 
@@ -76,7 +76,7 @@ const Main = (kindergarten_Id) => {
                     <div className="entete">
                       <span className="status green" />
                       <h2>{kindergarten_Id.kindergarten_Name}</h2>
-                      <h3>{new Date(item[0][2]).getHours().toString().padStart(2, '0')}:{new Date(item[0][2]).getUTCMinutes().toString().padStart(2, '0')}, Today</h3>
+                      <h3>{new Date(item[0][2]).getHours().toString().padStart(2, '0')}:{new Date(item[0][2]).getUTCMinutes().toString().padStart(2, '0')}, {new Date(item[0][2]).getFullYear()}/{Number(new Date(item[0][2]).getMonth().toString().padStart(2, '0'))+1}/{new Date(item[0][2]).getDate().toString().padStart(2, '0')}</h3>
                     </div>
                     <div className="triangle" />
 

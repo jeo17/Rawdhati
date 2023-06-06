@@ -149,6 +149,8 @@ const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Addr
                               );
                               profile.close();
 
+                              let time = new Date().getTime();
+
                               await updateDoc(doc(db, "Parents Informations", item.data().User_id), {
                                 User_Kindergarten: [kindergarten_Name,kindergarten_Bio,kindergarten_Address,kindergarten_Price],
                                 User_kindergarten_Activites:kindergarten_Activites,
@@ -169,7 +171,7 @@ const RegistrationCard = ({kindergarten_Name,kindergarten_Bio, kindergarten_Addr
                               });
 
                                 await setDoc(doc(db, "Messages" , item.data().User_id), {
-                                  "Message1":[kinId,`Welcome ${item.data().User_name}, From now on you can chat with us !`,0,"Rawdha"]
+                                  "Message1":[kinId,`Welcome ${item.data().User_name}, From now on you can chat with us !`,time,"Rawdha"]
 
                             });
 

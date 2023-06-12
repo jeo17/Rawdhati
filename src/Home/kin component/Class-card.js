@@ -68,10 +68,13 @@ const ClassCard = () => {
                         <li
                           className="Registration-list-item"
                           onClick={(eo) => {
-                            const ios = document.getElementById(
-                              `${item.data().User_id}`
-                            );
-                            ios.showModal();
+                            if (eo.target.className !=="note-img") {
+                              const ios = document.getElementById(
+                                `${item.data().User_id}`
+                              );
+                              ios.showModal();
+                            }
+
                           }}
                         >
                           <img src="https://cdn-icons-png.flaticon.com/512/1717/1717992.png" alt=""/>
@@ -84,6 +87,9 @@ const ClassCard = () => {
                               
                             )
                           })}
+                          <img className='note-img' src={require('../note.png')} alt="*" onClick={(eo) => {
+                            document.getElementById("wr-note").showModal()
+                          }}/>
                         </li>
 
 

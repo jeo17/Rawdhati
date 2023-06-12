@@ -130,3 +130,12 @@ background-color: gray;
     cursor: pointer;
 }
 
+
+.card1 li .note-img{
+    position:absolute;
+    right: 0;
+    margin-right:0 ;
+}
+.card1 li .note-img:hover{
+    transform: scale(1.2);
+}

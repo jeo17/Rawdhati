@@ -8,6 +8,7 @@ import RegistrationCard from "./kin component/Registration-card";
 import ClassCard from "./kin component/Class-card";
 import ActivitieCard from "./kin component/Activitie-card";
 import EatingCard from "./kin component/Eating-card";
+import WriteNote from "./kin component/Write-note";
 import { auth } from "../firebase/config";
 import { db } from "../firebase/config";
 import { storage } from "../firebase/config";
@@ -1263,6 +1264,8 @@ const KinHome = () => {
             <div className="kin-card">
               <ul className="cards">
                 <ClassCard />
+                <WriteNote /> 
+
 
                 <ActivitieCard />
 

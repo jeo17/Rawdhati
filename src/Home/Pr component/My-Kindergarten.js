@@ -1,8 +1,16 @@
 import React from 'react';
 import "./My-Kindergarten.css"
 import Profile from '../../comp/Profile';
+import { useNavigate } from "react-router-dom";
+import { auth } from '../../firebase/config';
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const MyKindergarten = ({MyKindergarten_info,MyKindergarten_activites,MyKindergarten_media}) => {
+
+  const navigate = useNavigate();
+  const [user, loading, error] = useAuthState(auth);
+
+
     return (
       <>
       <Profile id="My-kin-prof">
@@ -115,7 +123,9 @@ const MyKindergarten = ({MyKindergarten_info,MyKindergarten_activites,MyKinderga
     </p>
   </div>
   <div className="MyKindergarten-button-wrapper">
-    <button className="MyKindergarten-btn MyKindergarten-outline">message us</button>
+    <button className="MyKindergarten-btn MyKindergarten-outline" onClick={(eo) => {
+      navigate(`/Pr-ChatRoom/${user.uid}`);
+    }}>message us</button>
     <button className="MyKindergarten-btn MyKindergarten-fill" onClick={(eo) => {
       const profile = document.getElementById("My-kin-prof")
       profile.showModal()
